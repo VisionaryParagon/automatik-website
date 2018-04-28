@@ -1,0 +1,42 @@
+<div id="intro" [@fade]="true">
+  <div id="greeting" [@fade]="true" *ngIf="greet">Good {{ greeting }}!</div>
+
+  <div id="question" [class.active]="ready">
+    <div class="introWord" id="word1" [class.active]="start">How</div>
+    <div class="introWord" id="word2" [class.active]="start">are</div>
+    <div class="introWord" id="word3" [class.active]="start">you</div>
+    <div class="introWord" id="word4" [class.active]="start">feeling</div>
+    <div class="introWord" id="word5" [class.active]="start">today</div>
+    <div class="introWord" id="questionMark" [class.active]="start">?</div>
+  </div>
+
+  <div id="feelings">
+    <div *ngFor="let feeling of feelings; let idx = index"
+         [class]="'feelingBox face' + (idx + 1)"
+         [class.hovered]="interact && hovering === feeling"
+         [class.selected]="selected === feeling"
+         [class.unselected]="clicked && selected !== feeling"
+         (mouseover)="hoverFeeling(feeling)"
+         (mouseout)="hoverFeeling('')"
+         (touchstart)="hoverFeeling(feeling)"
+         (touchcancel)="hoverFeeling('')"
+         (click)="selectFeeling(feeling)">
+      <div class="circle" [class.active]="ready">
+        <img src="../../../assets/images/feeling-circle.png">
+      </div>
+      <div class="face" [class.active]="ready">
+        <img src="../../../assets/images/feeling-{{ feeling }}.png" alt="{{ feeling | titlecase }}">
+      </div>
+      <div class="feeling" [class.active]="interact && (hovering || selected) === feeling">
+        {{ feeling | titlecase }}
+      </div>
+    </div>
+  </div>
+
+  <div id="feelingMessage" [class.show]="successShow" [class.hide]="successHide">{{ success }}</div>
+
+  <button id="skipButton" class="autoBtn" [@fade]="true" *ngIf="ready && !success.length" [disabled]="loading" (click)="skip()">
+    <span *ngIf="!loading">Skip</span>
+    <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+  </button>
+</div>

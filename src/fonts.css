@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-Light.eot');
+  src: local('Frutiger LT Std 45 Light'), local('FrutigerLTStd-Light'),
+  url('./assets/fonts/FrutigerLTStd-Light.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-Light.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-LightItalic.eot');
+  src: local('Frutiger LT Std 46 Light Italic'), local('FrutigerLTStd-LightItalic'),
+  url('./assets/fonts/FrutigerLTStd-LightItalic.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-LightItalic.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-Roman.eot');
+  src: local('Frutiger LT Std 55 Roman'), local('FrutigerLTStd-Roman'),
+  url('./assets/fonts/FrutigerLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-Roman.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-Roman.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-Italic.eot');
+  src: local('Frutiger LT Std 56 Italic'), local('FrutigerLTStd-Italic'),
+  url('./assets/fonts/FrutigerLTStd-Italic.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-Italic.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-Bold.eot');
+  src: local('Frutiger LT Std 65 Bold'), local('FrutigerLTStd-Bold'),
+  url('./assets/fonts/FrutigerLTStd-Bold.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-Bold.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-BoldItalic.eot');
+  src: local('Frutiger LT Std 66 Bold Italic'), local('FrutigerLTStd-BoldItalic'),
+  url('./assets/fonts/FrutigerLTStd-BoldItalic.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-BoldItalic.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-Black.eot');
+  src: local('Frutiger LT Std 75 Black'), local('FrutigerLTStd-Black'),
+  url('./assets/fonts/FrutigerLTStd-Black.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-Black.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-Black.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-BlackItalic.eot');
+  src: local('Frutiger LT Std 76 Black Italic'), local('FrutigerLTStd-BlackItalic'),
+  url('./assets/fonts/FrutigerLTStd-BlackItalic.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-BlackItalic.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-BlackItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Frutiger LT Std';
+  src: url('./assets/fonts/FrutigerLTStd-UltraBlack.eot');
+  src: local('Frutiger LT Std 95 Ultra Black'), local('FrutigerLTStd-UltraBlack'),
+  url('./assets/fonts/FrutigerLTStd-UltraBlack.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/FrutigerLTStd-UltraBlack.woff') format('woff'),
+  url('./assets/fonts/FrutigerLTStd-UltraBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
