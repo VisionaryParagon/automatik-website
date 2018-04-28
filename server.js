@@ -45,7 +45,8 @@ passport.deserializeUser(admin.deserializeUser());
 
 // https redirect
 function ensureSecure(req, res, next) {
-  if (req.headers['x-forwarded-proto'] == 'https' || (req.headers.host != 'automatik.us' && req.headers.host != 'www.automatik.us')) {
+  // if (req.headers['x-forwarded-proto'] == 'https' || (req.headers.host != 'automatik.us' && req.headers.host != 'www.automatik.us')) {
+  if (req.headers['x-forwarded-proto'] == 'https' || req.headers.host != 'beta.automatik9dots.com') {
     next();
   } else {
     if (req.headers.host.indexOf('www.') === 0) {
