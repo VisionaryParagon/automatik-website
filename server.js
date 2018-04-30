@@ -4,6 +4,7 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
+const prerender = require('prerender-node');
 const mongoose = require('mongoose');
 const hash = require('bcrypt-nodejs');
 const passport = require('passport');
@@ -35,6 +36,7 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false
 }));
+app.use(prerender.set('prerenderToken', 'rwTy653I63xLAglXKLvU'));
 app.use(passport.initialize());
 app.use(passport.session());
 
