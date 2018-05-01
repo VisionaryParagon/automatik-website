@@ -1,6 +1,6 @@
-<header (mouseover)="toggleSubNav($event, 'close')">
+<header [class.mobile]="isMobile" (mouseover)="toggleSubNav($event, 'close')">
   <nav>
-    <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="introActive" (click)="closeSubNav()"><img src="./assets/images/automatik-navigation-logo.png" alt="automätik logo"></a>
+    <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="introActive" [class.mobile]="isMobile" (click)="closeSubNav()"><img src="./assets/images/automatik-navigation-logo.png" alt="automätik logo"></a>
 
     <div id="navMenu" class="fullNav" [@fade]="true" [class.mobile]="isMobile" *ngIf="!introActive">
       <!--
@@ -66,7 +66,7 @@
       <span></span>
     </button>
 
-    <div id="mobileNavMenu" class="mobileNav" [class.open]="state === 'active'">
+    <div id="mobileNavMenu" class="mobileNav" [class.mobile]="isMobile" [class.open]="state === 'active'">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleNav()">Home</a>
 
       <a [class.active]="activePage.indexOf('/services') !== -1" (click)="toggleMobileSubNav('Services')">

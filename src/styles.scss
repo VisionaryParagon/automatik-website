@@ -939,11 +939,20 @@ all and (min-width: 992px) {
   header {
     height: 60px;
   }
+  header.mobile {
+    height: 50px;
+  }
   #navLogo,
   #mobileNavBtn {
     height: 60px;
     padding: 15px;
     width: 60px;
+  }
+  #navLogo.mobile,
+  #mobileNavBtn.mobile {
+    height: 50px;
+    padding: 10px;
+    width: 50px;
   }
   .mobileNav {
     display: none;
