@@ -16,16 +16,70 @@ import { FadeAnimation, TopDownAnimation } from '../../animations';
 export class IntroComponent implements OnInit {
   returnUrl = this.introService.returnUrl || '/';
   feelings = [
-    'angry',
-    'shy',
-    'confident',
-    'tired',
-    'excited',
-    'annoyed',
-    'happy',
-    'mischievous',
-    'sad'
+    {
+      name: 'angry',
+      response: 'Aww shucks, sorry.<br>We&rsquo;ve been there.'
+    },
+    {
+      name: 'shy',
+      response: 'Gotcha. No pressure.'
+    },
+    {
+      name: 'confident',
+      response: 'Awesome! Us too.'
+    },
+    {
+      name: 'tired',
+      response: 'No judgement here!'
+    },
+    {
+      name: 'excited',
+      response: 'Cool! That makes 56 of&nbsp;us!'
+    },
+    {
+      name: 'annoyed',
+      response: 'Ugh, so sorry.<br>#LIFE'
+    },
+    {
+      name: 'happy',
+      response: 'Pleased to meet&nbsp;you.<br>It&rsquo;s a great&nbsp;day!'
+    },
+    {
+      name: 'mischievous',
+      response: 'Hmm... Should we be&nbsp;nervous?'
+    },
+    {
+      name: 'sad',
+      response: 'Aww, we&rsquo;re sorry.<br>:('
+    }
   ];
+  extraFeelings = [
+    {
+      name: 'sneaky',
+      response: 'Hey, we&rsquo;re watching&nbsp;you!'
+    },
+    {
+      name: 'playful',
+      response: 'Great minds...'
+    },
+    {
+      name: 'confused',
+      response: 'We hear you.<br>Hope we can&nbsp;help.'
+    },
+    {
+      name: 'iffy',
+      response: '&lsquo;nuff said. We&rsquo;ll be here if you need&nbsp;us.'
+    },
+    {
+      name: 'dicey',
+      response: 'Yikes! We&rsquo;ll keep our&nbsp;distance...'
+    },
+    {
+      name: 'frustrated',
+      response: 'Bummer. Hope everything works&nbsp;out.'
+    }
+  ];
+  randomFeelings = [];
   introCookie = this.cookieService.get('intro');
   cookieExp = new Date();
   cookieOptions: CookieOptions = {
@@ -63,6 +117,8 @@ export class IntroComponent implements OnInit {
       this.greeting = 'Evening';
     }
 
+    this.randomFeelings = this.shuffle(this.feelings);
+
     setTimeout(() => {
       this.greet = true;
 
@@ -89,20 +145,33 @@ export class IntroComponent implements OnInit {
     // this.returnUrl = '/';
   }
 
+  shuffle(array) {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   hoverFeeling(face) {
     this.hovering = face;
   }
 
-  selectFeeling(face) {
+  selectFeeling(feeling) {
     this.clicked = true;
-    this.selected = face;
-
-    if (face === 'confident' || face === 'excited' || face === 'happy') {
-      this.success = 'Right on! Us too!';
-    } else {
-      this.success = 'Bummer... Let\'s change that!';
-    }
-
+    this.selected = feeling.name;
+    this.success = feeling.response;
     this.successShow = true;
 
     setTimeout(() => {

@@ -705,7 +705,7 @@ nav {
 
 .feelingBox.selected {
   left: 50% !important;
-  top: 16.6667% !important;
+  top: 20% !important;
   -moz-transform: scale(1.2) translate(-50%, -50%) !important;
   -ms-transform: scale(1.2) translate(-50%, -50%) !important;
   -o-transform: scale(1.2) translate(-50%, -50%) !important;
@@ -773,7 +773,7 @@ nav {
   position: absolute;
   text-align: center;
   text-transform: uppercase;
-  top: 50%;
+  top: 55%;
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
@@ -825,7 +825,9 @@ section {
 }
 
 #home1 img {
+  height: auto;
   left: 50%;
+  max-height: 50%;
   max-width: 250px;
   position: absolute;
   top: 50%;
@@ -834,7 +836,7 @@ section {
   -o-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 40%;
+  width: auto;
 }
 
 
