@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
   imports: [
     AppRoutingModule,
     AppSharedModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'automatik-website'}),
     BrowserAnimationsModule,
     MainModule
   ],

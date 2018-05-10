@@ -813,7 +813,6 @@ nav {
 section {
   min-height: 100vh;
   padding: 50px 0 0;
-  position: relative;
 }
 
 #home1 {
@@ -822,6 +821,43 @@ section {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: calc(100vh + 30px);
+  overflow: hidden;
+  position: relative;
+}
+
+#home1:before,
+#home1:after {
+  background-color: cornflowerblue;
+  bottom: 0;
+  content: '';
+  padding-bottom: 30px;
+  position: absolute;
+  width: 50%;
+}
+
+#home1:before {
+  right: 50%;
+  -ms-transform-origin: 100% 100%;
+  -webkit-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+  -moz-transform: skewX(45deg);
+  -ms-transform: skewX(45deg);
+  -o-transform: skewX(45deg);
+  -webkit-transform: skewX(45deg);
+  transform: skewX(45deg);
+}
+
+#home1:after {
+  left: 50%;
+  -ms-transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -moz-transform: skewX(-45deg);
+  -ms-transform: skewX(-45deg);
+  -o-transform: skewX(-45deg);
+  -webkit-transform: skewX(-45deg);
+  transform: skewX(-45deg);
 }
 
 #home1 img {
@@ -837,6 +873,34 @@ section {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: auto;
+}
+
+#home2 {
+  background-color: cornflowerblue;
+  margin: 0 0 -15px;
+  min-height: 50vh;
+  position: relative;
+  color: #fff;
+}
+
+#home2:after {
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 30px solid cornflowerblue;
+  top: 100%;
+  content: '';
+  left: 50%;
+  margin-left: -30px;
+  position: absolute;
+}
+
+#home3 {
+  background-attachment: fixed;
+  background-image: url(https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
 }
 
 
@@ -1003,5 +1067,8 @@ all and (min-width: 992px) {
   }
   #home1 {
     background-image: url(./assets/images/home-bg-01.jpg);
+  }
+  #home3 {
+    background-image: url(https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg);
   }
 }

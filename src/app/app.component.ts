@@ -1,6 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { Location, PopStateEvent } from '@angular/common';
+import { isPlatformBrowser, Location, PopStateEvent } from '@angular/common';
 
 import { CookieService } from 'ngx-cookie';
 
@@ -35,60 +35,64 @@ export class AppComponent implements OnInit {
     public googleAnalyticsEventsService: GoogleAnalyticsEventsService,
     private router: Router,
     private location: Location,
+    private renderer: Renderer2,
     private cookieService: CookieService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    this.testMobile();
-
     this.seoService.addSeoData();
 
-    if (this.introCookie) {
-      this.introActive = false;
-    }
+    this.testMobile();
 
-    this.location.subscribe((ev: PopStateEvent) => {
-      this.lastPoppedUrl = ev.url;
-    });
-
-    this.router.events.subscribe((ev: any) => {
-      if (ev instanceof NavigationStart) {
-        // save page scroll location
-        if (ev.url !== this.lastPoppedUrl) {
-          this.yScrollStack.push(window.scrollY);
-        }
-      } else if (ev instanceof NavigationEnd) {
-        // Google Analytics events
-        ga('set', 'page', ev.urlAfterRedirects);
-        ga('send', 'pageview');
-
-        // set page scroll
-        if (ev.url === this.lastPoppedUrl) {
-          this.lastPoppedUrl = undefined;
-          window.scrollTo(0, this.yScrollStack.pop());
-        } else {
-          window.scrollTo(0, 0);
-        }
-
-        // route checks for nav
-        setTimeout(() => {
-          this.activePage = ev.url;
-
-          if (ev.url.indexOf('/welcome') === 0) {
-            this.introActive = true;
-          } else {
-            this.introActive = false;
-          }
-
-          if (ev.url.indexOf('/admin') === 0) {
-            this.isAdmin = true;
-          } else {
-            this.isAdmin = false;
-          }
-        }, 250);
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.introCookie) {
+        this.introActive = false;
       }
-    });
+
+      this.location.subscribe((ev: PopStateEvent) => {
+        this.lastPoppedUrl = ev.url;
+      });
+
+      this.router.events.subscribe((ev: any) => {
+        if (ev instanceof NavigationStart) {
+          // save page scroll location
+          if (ev.url !== this.lastPoppedUrl) {
+            this.yScrollStack.push(window.scrollY);
+          }
+        } else if (ev instanceof NavigationEnd) {
+          // Google Analytics events
+          ga('set', 'page', ev.urlAfterRedirects);
+          ga('send', 'pageview');
+
+          // set page scroll
+          if (ev.url === this.lastPoppedUrl) {
+            this.lastPoppedUrl = undefined;
+            window.scrollTo(0, this.yScrollStack.pop());
+          } else {
+            window.scrollTo(0, 0);
+          }
+
+          // route checks for nav
+          setTimeout(() => {
+            this.activePage = ev.url;
+
+            if (ev.url.indexOf('/welcome') === 0) {
+              this.introActive = true;
+            } else {
+              this.introActive = false;
+            }
+
+            if (ev.url.indexOf('/admin') === 0) {
+              this.isAdmin = true;
+            } else {
+              this.isAdmin = false;
+            }
+          }, 250);
+        }
+      });
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -97,7 +101,9 @@ export class AppComponent implements OnInit {
   }
 
   testMobile() {
-    this.isMobile = /Android|iPhone|iPad/i.test(window.navigator.userAgent);
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = /Android|iPhone|iPad/i.test(window.navigator.userAgent);
+    }
     this.state = 'inactive';
     this.stateServices = 'inactive';
     this.stateCourses = 'inactive';
@@ -109,21 +115,21 @@ export class AppComponent implements OnInit {
     this.state = (this.state === 'active' ? 'inactive' : 'active');
 
     if (document.body.className.indexOf('modal') === -1) {
-      document.body.classList.add('modal-open');
+      this.renderer.addClass(document.body, 'modal-open');
     } else {
-      document.body.classList.remove('modal-open');
+      this.renderer.removeClass(document.body, 'modal-open');
     }
   }
 
   closeNav() {
     this.state = 'inactive';
-    document.body.classList.remove('modal-open');
+    this.renderer.removeClass(document.body, 'modal-open');
   }
 
   outsideNav() {
     if (this.state === 'active') {
       this.state = 'inactive';
-      document.body.classList.remove('modal-open');
+      this.renderer.removeClass(document.body, 'modal-open');
     }
   }
 
