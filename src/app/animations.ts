@@ -1,5 +1,15 @@
 import { AnimationTriggerMetadata, animate, state, style, transition, trigger } from '@angular/animations';
 
+// intro animations
+export const IntroAnimation: AnimationTriggerMetadata =
+  trigger('intro', [
+    state('*', style({bottom: 0})),
+    transition(':leave', [
+      style({bottom: 0}),
+      animate(500, style({bottom: '100vh'}))
+    ])
+  ]);
+
 // navbar animations
 export const NavAnimation: AnimationTriggerMetadata =
   trigger('navMenu', [

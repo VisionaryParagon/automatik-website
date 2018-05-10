@@ -2,12 +2,12 @@ import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from 
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser, Location, PopStateEvent } from '@angular/common';
 
-import { CookieService } from 'ngx-cookie';
+import { CookieService, CookieOptions } from 'ngx-cookie';
 
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service';
 import { SeoService } from './services/seo.service';
 
-import { NavAnimation, FadeAnimation, TopDownAnimation } from './animations';
+import { IntroAnimation, NavAnimation, FadeAnimation, TopDownAnimation } from './animations';
 
 declare let ga: Function;
 
@@ -15,13 +15,91 @@ declare let ga: Function;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [ NavAnimation, FadeAnimation, TopDownAnimation ]
+  animations: [ IntroAnimation, NavAnimation, FadeAnimation, TopDownAnimation ]
 })
 export class AppComponent implements OnInit {
   isMobile = true;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   introCookie = this.cookieService.get('intro');
+  feelings = [
+    {
+      name: 'angry',
+      response: 'Aww shucks, sorry.<br>We&rsquo;ve been there.'
+    },
+    {
+      name: 'shy',
+      response: 'Gotcha. No pressure.'
+    },
+    {
+      name: 'confident',
+      response: 'Awesome! Us too.'
+    },
+    {
+      name: 'tired',
+      response: 'No judgement here!'
+    },
+    {
+      name: 'excited',
+      response: 'Cool! That makes 56 of&nbsp;us!'
+    },
+    {
+      name: 'annoyed',
+      response: 'Ugh, so sorry.<br>#LIFE'
+    },
+    {
+      name: 'happy',
+      response: 'Pleased to meet&nbsp;you.<br>It&rsquo;s a great&nbsp;day!'
+    },
+    {
+      name: 'mischievous',
+      response: 'Hmm... Should we be&nbsp;nervous?'
+    },
+    {
+      name: 'sad',
+      response: 'Aww, we&rsquo;re sorry.<br>:('
+    }
+  ];
+  extraFeelings = [
+    {
+      name: 'sneaky',
+      response: 'Hey, we&rsquo;re watching&nbsp;you!'
+    },
+    {
+      name: 'playful',
+      response: 'Great minds...'
+    },
+    {
+      name: 'confused',
+      response: 'We hear you.<br>Hope we can&nbsp;help.'
+    },
+    {
+      name: 'iffy',
+      response: '&lsquo;nuff said. We&rsquo;ll be here if you need&nbsp;us.'
+    },
+    {
+      name: 'dicey',
+      response: 'Yikes! We&rsquo;ll keep our&nbsp;distance...'
+    },
+    {
+      name: 'frustrated',
+      response: 'Bummer. Hope everything works&nbsp;out.'
+    }
+  ];
+  randomFeelings = [];
+  cookieExp = new Date();
+  cookieOptions: CookieOptions = {
+    expires: new Date()
+  };
+  hovering = '';
+  selected = '';
+  success = '';
+  start = false;
+  ready = false;
+  interact = false;
+  clicked = false;
+  successShow = false;
+  successHide = false;
   introActive = true;
   isAdmin = false;
   state = 'inactive';
@@ -49,6 +127,26 @@ export class AppComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       if (this.introCookie) {
         this.introActive = false;
+      } else {
+        this.renderer.addClass(document.body, 'modal-open');
+
+        this.randomFeelings = this.shuffle(this.feelings);
+
+        setTimeout(() => {
+          this.start = true;
+
+          setTimeout(() => {
+            this.ready = true;
+
+            setTimeout(() => {
+              this.interact = true;
+            }, 1000);
+          }, 3000);
+        }, 500);
+
+        // Set cookie exp
+        this.cookieExp.setDate(this.cookieExp.getDate() + 7);
+        this.cookieOptions.expires = this.cookieExp;
       }
 
       this.location.subscribe((ev: PopStateEvent) => {
@@ -60,6 +158,11 @@ export class AppComponent implements OnInit {
           // save page scroll location
           if (ev.url !== this.lastPoppedUrl) {
             this.yScrollStack.push(window.scrollY);
+          }
+
+          // Hide intro on blog
+          if (ev.url.indexOf('/blog') !== -1) {
+            this.skipIntro();
           }
         } else if (ev instanceof NavigationEnd) {
           // Google Analytics events
@@ -78,12 +181,6 @@ export class AppComponent implements OnInit {
           setTimeout(() => {
             this.activePage = ev.url;
 
-            if (ev.url.indexOf('/welcome') === 0) {
-              this.introActive = true;
-            } else {
-              this.introActive = false;
-            }
-
             if (ev.url.indexOf('/admin') === 0) {
               this.isAdmin = true;
             } else {
@@ -92,7 +189,63 @@ export class AppComponent implements OnInit {
           }, 250);
         }
       });
+    } else {
+      this.introActive = false;
     }
+  }
+
+  shuffle(array) {
+    let currentIndex = array.length,
+        temporaryValue,
+        randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  hoverFeeling(face) {
+    this.hovering = face;
+  }
+
+  selectFeeling(feeling) {
+    this.clicked = true;
+    this.selected = feeling.name;
+    this.success = feeling.response;
+    this.successShow = true;
+
+    setTimeout(() => {
+      this.successHide = true;
+
+      setTimeout(() => {
+        // Set cookie
+        this.cookieService.put('intro', 'true', this.cookieOptions);
+
+        // Hide intro
+        this.introActive = false;
+        this.renderer.removeClass(document.body, 'modal-open');
+      }, 500);
+    }, 2000);
+  }
+
+  skipIntro() {
+    // Set cookie
+    this.cookieService.put('intro', 'true', this.cookieOptions);
+
+    // Hide intro
+    this.introActive = false;
+    this.renderer.removeClass(document.body, 'modal-open');
   }
 
   @HostListener('window:resize', ['$event'])

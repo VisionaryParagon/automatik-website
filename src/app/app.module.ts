@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Services
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service';
-import { IntroService } from './services/intro.service';
 import { SeoService } from './services/seo.service';
 
 // Components
@@ -30,7 +29,6 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     GoogleAnalyticsEventsService,
-    IntroService,
     SeoService
   ],
   bootstrap: [

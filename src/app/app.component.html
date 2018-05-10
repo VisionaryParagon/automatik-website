@@ -1,3 +1,44 @@
+<div id="intro" [@intro]="true" *ngIf="introActive">
+  <div id="question" [class.active]="ready">
+    <div class="introWord" id="word1" [class.active]="start">How</div>
+    <div class="introWord" id="word2" [class.active]="start">are</div>
+    <div class="introWord" id="word3" [class.active]="start">you</div>
+    <div class="introWord" id="word4" [class.active]="start">feeling</div>
+    <div class="introWord" id="word5" [class.active]="start">today</div>
+    <div class="introWord" id="questionMark" [class.active]="start">?</div>
+  </div>
+
+  <div id="feelings">
+    <div *ngFor="let feeling of randomFeelings; let idx = index"
+         [class]="'feelingBox face' + (idx + 1)"
+         [class.hovered]="interact && hovering === feeling.name"
+         [class.selected]="selected === feeling.name"
+         [class.unselected]="clicked && selected !== feeling.name"
+         (mouseover)="hoverFeeling(feeling.name)"
+         (mouseout)="hoverFeeling('')"
+         (touchstart)="hoverFeeling(feeling.name)"
+         (touchcancel)="hoverFeeling('')"
+         (click)="selectFeeling(feeling)">
+      <div class="circle" [class.active]="ready">
+        <img src="../../../assets/images/feeling-circle.png">
+      </div>
+      <div class="face" [class.active]="ready">
+        <img src="../../../assets/images/feeling-{{ feeling.name }}.png" alt="{{ feeling.name | titlecase }}">
+      </div>
+      <div class="feeling" [class.active]="interact && (hovering || selected) === feeling.name">
+        {{ feeling.name | titlecase }}
+      </div>
+    </div>
+  </div>
+
+  <div id="feelingMessage" [class.show]="successShow" [class.hide]="successHide" [innerHTML]="success"></div>
+
+  <button id="skipButton" class="autoBtn" [@fade]="true" *ngIf="ready && !success.length" [disabled]="loading" (click)="skipIntro()">
+    <span *ngIf="!loading">Skip</span>
+    <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+  </button>
+</div>
+
 <header [class.mobile]="isMobile" (mouseover)="toggleSubNav($event, 'close')">
   <nav>
     <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="introActive" [class.mobile]="isMobile" (click)="closeSubNav()"><img src="./assets/images/automatik-navigation-logo.png" alt="automätik logo"></a>
@@ -69,7 +110,7 @@
     <div id="mobileNavMenu" class="mobileNav" [class.mobile]="isMobile" [class.open]="state === 'active'">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleNav()">Home</a>
 
-      <a [class.active]="activePage.indexOf('/services') !== -1" (click)="toggleMobileSubNav('Services')">
+      <a [class.active]="activePage.indexOf('/services') === 0" (click)="toggleMobileSubNav('Services')">
         <span>Services</span>
         <i class="fa fa-chevron-down" [class.open]="stateServices === 'active'"></i>
       </a>
@@ -83,7 +124,7 @@
         <a routerLink="/services/design-development" (click)="toggleNav()">Design &amp; Development</a>
       </div>
 
-      <a [class.active]="activePage.indexOf('/courses') !== -1" (click)="toggleMobileSubNav('Courses')">
+      <a [class.active]="activePage.indexOf('/courses') === 0" (click)="toggleMobileSubNav('Courses')">
         <span>Courses</span>
         <i class="fa fa-chevron-down" [class.open]="stateCourses === 'active'"></i>
       </a>
@@ -97,7 +138,7 @@
 
       <a routerLink="/portfolio" routerLinkActive="active" (click)="toggleNav()">Portfolio</a>
 
-      <a [class.active]="activePage.indexOf('/resources') !== -1" (click)="toggleMobileSubNav('Resources')">
+      <a [class.active]="activePage.indexOf('/resources') === 0" (click)="toggleMobileSubNav('Resources')">
         <span>Resources</span>
         <i class="fa fa-chevron-down" [class.open]="stateResources === 'active'"></i>
       </a>
@@ -109,7 +150,7 @@
         <a routerLink="/resources/printables" (click)="toggleNav()">Printables</a>
       </div>
 
-      <a [class.active]="activePage.indexOf('/about') !== -1" (click)="toggleMobileSubNav('About')">
+      <a [class.active]="activePage.indexOf('/about') === 0" (click)="toggleMobileSubNav('About')">
         <span>About</span>
         <i class="fa fa-chevron-down" [class.open]="stateAbout === 'active'"></i>
       </a>
