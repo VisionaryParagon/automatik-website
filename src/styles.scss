@@ -2,10 +2,10 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "font-awesome.min.css";
 @import "fonts.css";
-:root {
-  --client-font: "Frutiger LT Std", Helvetica, Arial, sans-serif;
-  --client-color: #ffc11a;
-}
+
+$client-font: "Frutiger LT Std", Helvetica, Arial, sans-serif;
+$client-color: #ffc11a;
+$error-color: #f00;
 
 * {
   box-sizing: border-box;
@@ -19,9 +19,11 @@ html {
 }
 
 body {
-  font-family: var(--client-font);
-  font-size: 16px;
-  font-weight: 400;
+  font: {
+    family: $client-font;
+    size: 16px;
+    weight: 400;
+  }
 }
 
 
@@ -29,66 +31,61 @@ body {
 
 h1,
 h2 {
-  font-family: var(--client-font);
-  font-size: 25px;
-  font-weight: 700;
+  font: {
+    family: $client-font;
+    size: 25px;
+    weight: 700;
+  }
   letter-spacing: -1px;
-  margin: 20px 0 15px;
+  margin: 1.25rem 0 1rem;
   padding: 0;
   text-align: center;
-}
 
-h1 span,
-h2 span {
-  font-weight: 400;
+  span {
+    font-weight: 400;
+  }
 }
 
 h3 {
-  font-family: var(--client-font);
-  font-size: 22px;
-  font-weight: 400;
-  margin: 20px 0 15px;
+  font: {
+    family: $client-font;
+    size: 22px;
+    weight: 400;
+  }
+  margin: 1.25rem 0 1rem;
   padding: 0;
-  text-transform: uppercase;
-}
-
-h3 span {
-  text-transform: none;
 }
 
 h4 {
-  font-family: var(--client-font);
-  font-size: 20px;
-  font-weight: 400;
-  margin: 20px 0 15px;
+  font: {
+    family: $client-font;
+    size: 20px;
+    weight: 400;
+  }
+  margin: 1.25rem 0 1rem;
   padding: 0;
   text-align: left;
 }
 
-h4.modal-title {
-  color: #000;
-  margin: 6px 0 0;
-}
-
-h4 strong {
-  text-transform: uppercase;
-}
-
 h5 {
-  font-family: var(--client-font);
-  font-size: 16px;
-  font-weight: 700;
+  font: {
+    family: $client-font;
+    size: 16px;
+    weight: 700;
+  }
   line-height: 1.5;
-  margin: 20px 0;
+  margin: 1.25rem 0;
   padding: 0;
 }
 
 h6 {
-  font-family: var(--client-font);
-  font-size: 16px;
-  font-weight: 400;
+  font: {
+    family: $client-font;
+    size: 16px;
+    weight: 400;
+  }
   line-height: 1.5;
-  margin: 0 0 15px;
+  margin: 0 0 1rem;
   padding: 0;
 }
 
@@ -99,7 +96,7 @@ a:active,
 a:not([href]):not([tabindex]),
 a:not([href]):not([tabindex]):focus,
 a:not([href]):not([tabindex]):hover {
-  color: var(--client-color);
+  color: $client-color;
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
@@ -113,18 +110,106 @@ a:not([href]):not([tabindex]):hover {
 
 /*~~ Forms and Buttons ~~*/
 
-.autoBtn {
-  background: none;
-  border: 2px solid #000;
-  border-radius: 22px;
-  font-family: var(--client-font);
-  font-size: 20px;
+.inputGroup {
+  margin: 0 0 1rem;
+  position: relative;
+
+  input,
+  select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 0 !important;
+    box-shadow: inset .25rem .25rem 1rem -.5rem;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 0 5px;
+    padding: .25rem .5rem 0;
+    width: 100%;
+
+    &:focus {
+      border-bottom: 1px solid $client-color !important;
+      box-shadow: inset .25rem .25rem 1rem -.5rem !important;
+    }
+  }
+
+  textarea {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 0 !important;
+    box-shadow: inset .25rem .25rem 1rem -.5rem;
+    margin: 0 0 5px;
+    padding: .25rem .5rem 0;
+    width: 100%;
+
+    &:focus {
+      border-bottom: 1px solid $client-color !important;
+      box-shadow: inset .25rem .25rem 1rem -.5rem !important;
+    }
+  }
+
+  i.fa {
+    position: absolute;
+    right: .5rem;
+    top: .75rem;
+  }
+
+  label {
+    text-transform: uppercase;
+  }
+
+  &.nope {
+    color: $error-color;
+
+    input:not(:focus),
+    select:not(:focus),
+    textarea:not(:focus) {
+      border-bottom: 1px solid rgba(255, 0, 0, 0.25);
+      border-right: 1px solid rgba(255, 0, 0, 0.25);
+      box-shadow: inset .25rem .25rem 1rem -.5rem $error-color;
+    }
+  }
+}
+
+.autoBtn,
+.autoBtn:focus {
+  background: $client-color;
+  border: none;
+  box-shadow: 0.25rem 0.25rem 1rem -0.25rem rgba(0, 0, 0, 0.5) !important;
+  color: #fff;
+  cursor: pointer;
+  font-family: $client-font;
   font-weight: normal;
-  height: 44px;
-  line-height: 44px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 0 1rem;
   min-width: 125px;
+  opacity: 1;
+  padding: 0.15rem 2rem 0;
   text-align: center;
   text-transform: uppercase;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    box-shadow: 0.25rem 0.25rem 1rem -0.35rem rgba(0, 0, 0, 0.5) !important;
+    opacity: 1;
+  }
+}
+
+.errorMsg {
+  color: $error-color;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
 }
 
 
@@ -288,7 +373,7 @@ nav {
 }
 
 #mobileNavMenu a.active {
-  color: var(--client-color);
+  color: $client-color;
   font-weight: bold;
   letter-spacing: 0.155rem;
 }
@@ -310,7 +395,7 @@ nav {
 
 #mobileNavMenu .mobileSubNav {
   background: rgba(65, 64, 66, 0.85);
-  padding: 15px 0;
+  padding: 1rem 0;
 }
 
 #mobileNavMenu .mobileSubNav a {
@@ -359,14 +444,14 @@ nav {
 #navMenu a:hover,
 #navMenu a.hover {
   background: rgba(65, 64, 66, 0.85);
-  color: var(--client-color);
+  color: $client-color;
   font-weight: bold;
   letter-spacing: 0.155rem;
   text-decoration: none;
 }
 
 #navMenu a.active::after {
-  background: var(--client-color);
+  background: $client-color;
   content: "";
   display: block;
   height: 2px;
@@ -413,7 +498,7 @@ nav {
 
 #search:hover {
   background: rgba(65, 64, 66, 0.85);
-  color: var(--client-color);
+  color: $client-color;
   text-decoration: none;
 }
 
@@ -797,22 +882,31 @@ nav {
 }
 
 #skipButton {
+  background: none;
+  border: 2px solid #000;
   border-radius: 15px;
   bottom: 10px;
+  font-family: $client-font;
   font-size: 14px;
+  font-weight: normal;
   height: 30px;
   line-height: 30px;
   min-width: 100px;
   position: absolute;
   right: 10px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 
 /*~~ Content ~~*/
 
 section {
-  min-height: 100vh;
-  padding: 50px 0 0;
+  padding: 50px 0;
+
+  &.fullHeight {
+    min-height: 100vh;
+  }
 }
 
 #home1 {
@@ -917,26 +1011,32 @@ footer {
 /*~~ Material Design Components ~~*/
 
 .mat-spinner circle {
-  stroke: var(--client-color);
+  stroke: $client-color;
 }
 
 .btn .mat-spinner circle {
   stroke: #000;
 }
 
+.autoBtn .mat-spinner circle {
+  stroke: #fff;
+}
+
 h2.mat-dialog-title {
-  margin: 0 0 0 10px;
+  font-size: 32px;
+  margin: 5px 0;
+  text-align: left;
 }
 
 mat-dialog-container.mat-dialog-container {
   overflow: hidden;
-  padding: 5px;
+  padding: 1rem;
 }
 
 mat-dialog-content.mat-dialog-content {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-  margin: 5px -5px -5px;
-  padding: 15px;
+  margin: 0 -1rem;
+  padding: 2rem 1rem;
 }
 
 mat-dialog-content.mat-dialog-content.fullDialog {
@@ -952,17 +1052,18 @@ mat-dialog-content.mat-dialog-content .disclaimer {
 }
 
 mat-dialog-content.mat-dialog-content .btn {
-  margin: 15px 0 0;
+  margin: 1rem 0 0;
 }
 
 mat-dialog-actions.mat-dialog-actions {
   border-top: 1px solid rgba(0, 0, 0, .12);
-  margin: 5px -5px 0 !important;
-  padding: 15px;
+  margin: 0 -1rem !important;
+  padding: 1rem 1rem 0;
 }
 
-button[mat-dialog-close]:not(.btn),
+button[mat-dialog-close]:not(.autoBtn),
 .dialog-close {
+  align-self: flex-start;
   background: none;
   border: none;
 }
@@ -1011,7 +1112,7 @@ all and (min-width: 992px) {
   #navLogo,
   #mobileNavBtn {
     height: 60px;
-    padding: 15px;
+    padding: 1rem;
     width: 60px;
   }
   #navLogo.mobile,
@@ -1032,7 +1133,6 @@ all and (min-width: 992px) {
   .fullNav.mobile {
     display: none !important;
   }
-  section,
   #intro {
     padding: 60px 0 0;
   }
@@ -1064,6 +1164,9 @@ all and (min-width: 992px) {
     -o-transform: translateX(50%);
     -webkit-transform: translateX(50%);
     transform: translateX(50%);
+  }
+  section {
+    padding: 60px 0;
   }
   #home1 {
     background-image: url(./assets/images/home-bg-01.jpg);

@@ -21,9 +21,9 @@ const localStrategy = require('passport-local').Strategy;
 const admin = require('./server/models/admin');
 
 // routes
-const contactRoute = require('./server/routes/contact');
-const inventoryRoute = require('./server/routes/inventory');
 const adminRoute = require('./server/routes/admin');
+const careersRoute = require('./server/routes/careers');
+const contactRoute = require('./server/routes/contact');
 
 // connect to db
 mongoose.connect('mongodb://admin:Automatik@ds237379.mlab.com:37379/automatik-apps', {
@@ -96,9 +96,9 @@ app.all('*', (req, res, next) => {
 });
 
 // API endpoints
-app.use('/dir', contactRoute);
-app.use('/inv', inventoryRoute);
 app.use('/admn', adminRoute);
+app.use('/careers', careersRoute);
+app.use('/dir', contactRoute);
 
 // Server static files from /browser
 app.all('*.*', express.static(join(DIST_FOLDER, 'browser'), {

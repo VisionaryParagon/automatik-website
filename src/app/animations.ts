@@ -53,10 +53,10 @@ export const TopDownAnimation: AnimationTriggerMetadata =
     state('*', style({height: '*', opacity: 1})),
     transition(':enter', [
       style({height: 0, opacity: 0}),
-      animate(100, style({height: '*', opacity: 1}))
+      animate(250, style({height: '*', opacity: 1}))
     ]),
     transition(':leave', [
       style({height: '*', opacity: 1}),
-      animate(100, style({height: 0, opacity: 0}))
+      animate(250, style({height: 0, opacity: 0}))
     ])
   ]);

@@ -25,6 +25,11 @@ import { BlogPostComponent } from './resources/blog/blog-post/blog-post.componen
 
 // About
 import { AboutComponent } from './about/about.component';
+import { AboutMainComponent } from './about/about-main/about-main.component';
+import { CareersComponent } from './about/careers/careers.component';
+
+// Form Components
+import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.component';
 
 @NgModule({
   imports: [
@@ -41,7 +46,13 @@ import { AboutComponent } from './about/about.component';
     ResourcesMainComponent,
     BlogComponent,
     BlogPostComponent,
-    AboutComponent
+    AboutComponent,
+    AboutMainComponent,
+    CareersComponent,
+    CareerInquiryComponent
+  ],
+  entryComponents: [
+    CareerInquiryComponent
   ]
 })
 export class MainModule { }

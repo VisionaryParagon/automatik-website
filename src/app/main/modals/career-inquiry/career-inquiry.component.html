@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title *ngIf="data.position === 'general'">{{ data.position | titlecase }} Career Inquiry</h2>
+  <h2 mat-dialog-title *ngIf="data.position !== 'general'">{{ data.position }}</h2>
+  <button mat-dialog-close><i class="fa fa-close"></i></button>
+</div>
+
+<mat-dialog-content>
+  <form #careerForm="ngForm" novalidate [@fade]="true" *ngIf="!success">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="inputGroup" [class.nope]="first_name.errors && (first_name.touched || submitted)">
+          <input type="text" id="first_name" name="first_name" #first_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="inquiry.first_name">
+          <label for="first_name">First Name*</label>
+          <div class="errorMsg" [@topDown]="true" *ngIf="first_name.errors && (first_name.touched || submitted)">
+            <p *ngIf="first_name.errors.required">First Name is required</p>
+            <p *ngIf="first_name.errors.pattern">Numbers and special characters are not allowed</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="inputGroup" [class.nope]="last_name.errors && (last_name.touched || submitted)">
+          <input type="text" id="last_name" name="last_name" #last_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="inquiry.last_name">
+          <label for="last_name">Last Name*</label>
+          <div class="errorMsg" [@topDown]="true" *ngIf="last_name.errors && (last_name.touched || submitted)">
+            <p *ngIf="last_name.errors.required">Last Name is required</p>
+            <p *ngIf="last_name.errors.pattern">Numbers and special characters are not allowed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inputGroup" [class.nope]="email.errors && (email.touched || submitted)">
+      <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="inquiry.email">
+      <label for="email">Email Address*</label>
+      <div class="errorMsg" [@topDown]="true" *ngIf="email.errors && (email.touched || submitted)">
+        <p *ngIf="email.errors.required">Email Address is required</p>
+        <p *ngIf="email.errors.pattern">Email Address is invalid</p>
+      </div>
+    </div>
+
+    <div class="inputGroup" [class.nope]="specialty.errors && (specialty.touched || submitted)" *ngIf="data.position === 'general'">
+      <select id="specialty" name="specialty" #specialty="ngModel" [(ngModel)]="inquiry.specialty" required>
+        <option [value]="anyVal" selected disabled></option>
+        <option value="Creative">Creative</option>
+        <option value="Logistics">Logistics</option>
+        <option value="Production">Production</option>
+        <option value="Graphic Design">Graphic Design</option>
+        <option value="Technology">Technology</option>
+        <option value="Client Services">Client Services</option>
+        <option value="Accounting">Accounting</option>
+        <option value="Internship">Internship</option>
+        <option value="Other">Other</option>
+      </select>
+      <i class="fa fa-caret-down"></i>
+      <label for="specialty">What&rsquo;s Your Specialty?*</label>
+      <div class="errorMsg" [@topDown]="true" *ngIf="specialty.errors && (specialty.touched || submitted)">
+        <p *ngIf="specialty.errors.required">Please select an option</p>
+      </div>
+    </div>
+
+    <div class="inputGroup" [class.nope]="start_date.errors && submitted">
+      <input type="text" id="start_date" name="start_date" #start_date="ngModel" autocomplete="off" required [(ngModel)]="inquiry.start_date" [matDatepicker]="myDatepicker" (focus)="myDatepicker.open()" (click)="myDatepicker.open()">
+      <label for="start_date">When Could You Start?*</label>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+      <div class="errorMsg" [@topDown]="true" *ngIf="start_date.errors && submitted">
+        <p *ngIf="start_date.errors.required">Please select a date</p>
+      </div>
+    </div>
+
+    <div class="inputGroup" [class.nope]="status.errors && (status.touched || submitted)">
+      <select id="status" name="status" #status="ngModel" [(ngModel)]="inquiry.status" required>
+        <option [value]="anyVal" selected disabled></option>
+        <option value="Employed">Employed</option>
+        <option value="Self-Employed">Self-Employed</option>
+        <option value="Unemployed">Unemployed</option>
+        <option value="Student">Student</option>
+      </select>
+      <i class="fa fa-caret-down"></i>
+      <label for="status">What&rsquo;s Your Current Status?*</label>
+      <div class="errorMsg" [@topDown]="true" *ngIf="status.errors && (status.touched || submitted)">
+        <p *ngIf="status.errors.required">Please select an option</p>
+      </div>
+    </div>
+
+    <div class="inputGroup" [class.nope]="awesome.errors && (awesome.touched || submitted)">
+      <textarea id="awesome" name="awesome" #awesome="ngModel" autocomplete="off" maxlength="500" rows="5" required [(ngModel)]="inquiry.awesome"></textarea>
+      <label for="email">What Makes You Awesome?*</label>
+      <div class="errorMsg" [@topDown]="true" *ngIf="awesome.errors && (awesome.touched || submitted)">
+        <p *ngIf="awesome.errors.required">Please submit a response</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <p class="disclaimer">* Required field</p>
+
+      <div class="errorMsg" [@topDown]="true" *ngIf="error">
+        <p>An error occured</p>
+      </div>
+
+      <button class="autoBtn" (click)="submit(inquiry, careerForm.valid)">Get The Ball Rolling!</button>
+    </div>
+  </form>
+
+  <div [@fade]="true" *ngIf="success">
+    <h3>Step one, done! Great work!</h3>
+
+    <p>Our leaders will review your information and be in touch soon with any next steps. In the meantime, keep being&nbsp;great.</p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="justify-content-end">
+  <button class="autoBtn btn" mat-dialog-close>Close</button>
+</mat-dialog-actions>

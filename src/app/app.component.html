@@ -33,7 +33,7 @@
 
   <div id="feelingMessage" [class.show]="successShow" [class.hide]="successHide" [innerHTML]="success"></div>
 
-  <button id="skipButton" class="autoBtn" [@fade]="true" *ngIf="ready && !success.length" [disabled]="loading" (click)="skipIntro()">
+  <button id="skipButton" [@fade]="true" *ngIf="ready && !success.length" [disabled]="loading" (click)="skipIntro()">
     <span *ngIf="!loading">Skip</span>
     <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
   </button>
@@ -92,6 +92,7 @@
           <a routerLink="/about/team" (click)="closeSubNav()">Team</a>
           <a routerLink="/about/values" (click)="closeSubNav()">Values</a>
           <a routerLink="/about/clients" (click)="closeSubNav()">Clients</a>
+          <a routerLink="/about/careers" (click)="closeSubNav()">Careers</a>
           <a routerLink="/about/contact" (click)="closeSubNav()">Contact</a>
         </div>
       </div>
@@ -160,6 +161,7 @@
         <a routerLink="/about/team" (click)="toggleNav()">Team</a>
         <a routerLink="/about/values" (click)="toggleNav()">Values</a>
         <a routerLink="/about/clients" (click)="toggleNav()">Clients</a>
+        <a routerLink="/about/careers" (click)="toggleNav()">Careers</a>
         <a routerLink="/about/contact" (click)="toggleNav()">Contact</a>
       </div>
     </div>

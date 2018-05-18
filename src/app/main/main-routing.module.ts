@@ -24,6 +24,8 @@ import { BlogPostComponent } from './resources/blog/blog-post/blog-post.componen
 
 // About
 import { AboutComponent } from './about/about.component';
+import { AboutMainComponent } from './about/about-main/about-main.component';
+import { CareersComponent } from './about/careers/careers.component';
 
 
 const routes: Routes = [
@@ -132,14 +134,29 @@ const routes: Routes = [
       {
         path: 'about',
         component: AboutComponent,
-        data: {
-          title: 'about automätik',
-          metatags: {
-            description: 'Description for About.',
-            keywords: 'about'
-          }
-        },
         children: [
+          {
+            path: '',
+            component: AboutMainComponent,
+            data: {
+              title: 'about automätik',
+              metatags: {
+                description: 'Description for About.',
+                keywords: 'about'
+              }
+            }
+          },
+          {
+            path: 'careers',
+            component: CareersComponent,
+            data: {
+              title: 'careers at automätik',
+              metatags: {
+                description: 'Description for Careers.',
+                keywords: 'careers'
+              }
+            }
+          },
           {
             path: '**',
             redirectTo: '/about'
