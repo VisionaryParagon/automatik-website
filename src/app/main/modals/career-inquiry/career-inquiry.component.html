@@ -85,7 +85,7 @@
 
     <div class="inputGroup" [class.nope]="awesome.errors && (awesome.touched || submitted)">
       <textarea id="awesome" name="awesome" #awesome="ngModel" autocomplete="off" maxlength="500" rows="5" required [(ngModel)]="inquiry.awesome"></textarea>
-      <label for="email">What Makes You Awesome?*</label>
+      <label for="awesome">What Makes You Awesome?*</label>
       <div class="errorMsg" [@topDown]="true" *ngIf="awesome.errors && (awesome.touched || submitted)">
         <p *ngIf="awesome.errors.required">Please submit a response</p>
       </div>
