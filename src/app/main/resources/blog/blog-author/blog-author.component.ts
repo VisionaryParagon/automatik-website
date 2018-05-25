@@ -7,18 +7,18 @@ import { BlogService } from '../../../../services/blog.service';
 import { FadeAnimation } from '../../../../animations';
 
 @Component({
-  selector: 'app-blog-post',
-  templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.css'],
+  selector: 'app-blog-author',
+  templateUrl: './blog-author.component.html',
+  styleUrls: ['./blog-author.component.css'],
   animations: [ FadeAnimation ]
 })
-export class BlogPostComponent implements OnInit {
+export class BlogAuthorComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
   defaultTitle = 'automätik blog';
   defaultDesc = 'Eradicating boring corporate events from the face of the Earth.';
-  changingBlog = false;
-  post;
-  safeHtml: SafeHtml;
+  changingAuthor = false;
+  selectedAuthor;
+  authoredBlogs;
   categories;
   tags;
   authors;
@@ -42,9 +42,8 @@ export class BlogPostComponent implements OnInit {
       this.authors = this.blogService.authors;
       this.media = this.blogService.media;
       this.blogs = this.blogService.blogs;
-      this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-      this.sanitizeHtml(this.post.content.rendered);
-      this.setSEO(this.post.yoast);
+      this.selectedAuthor = this.authors.filter(author => author.slug === this.slug)[0];
+      this.authoredBlogs = this.blogs.filter(blog => blog.author === this.selectedAuthor.id);
     } else {
       this.blogService.getCategories()
         .subscribe(
@@ -71,9 +70,8 @@ export class BlogPostComponent implements OnInit {
                                   posts => {
                                     this.blogs = this.blogService.blogs;
                                     // console.log(this.blogs);
-                                    this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-                                    this.sanitizeHtml(this.post.content.rendered);
-                                    this.setSEO(this.post.yoast);
+                                    this.selectedAuthor = this.authors.filter(author => author.slug === this.slug)[0];
+                                    this.authoredBlogs = this.blogs.filter(blog => blog.author === this.selectedAuthor.id);
                                   },
                                   error => this.setError(error)
                                 );
@@ -93,17 +91,16 @@ export class BlogPostComponent implements OnInit {
 
     this.router.events.subscribe((ev: any) => {
       if (ev instanceof NavigationEnd) {
-        if (ev.url.indexOf('/resources/blog/post') === 0 && ev.url.indexOf(this.slug) === -1) {
-          this.changingBlog = true;
+        if (ev.url.indexOf('/resources/blog/author') === 0 && ev.url.indexOf(this.slug) === -1) {
+          this.changingAuthor = true;
 
           setTimeout(() => {
             this.slug = ev.url.split('/').reverse()[0];
-            this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-            this.sanitizeHtml(this.post.content.rendered);
-            this.setSEO(this.post.yoast);
+            this.selectedAuthor = this.authors.filter(author => author.slug === this.slug)[0];
+            this.authoredBlogs = this.blogs.filter(blog => blog.author === this.selectedAuthor.id);
 
             setTimeout(() => {
-              this.changingBlog = false;
+              this.changingAuthor = false;
             }, 250);
           }, 250);
         }
@@ -111,46 +108,22 @@ export class BlogPostComponent implements OnInit {
     });
   }
 
-  setSEO(data) {
-    if (data.title.length) {
-      this.titleService.setTitle(data.title);
-    } else {
-      this.titleService.setTitle(this.defaultTitle);
-    }
-
-    if (data.metadesc.length) {
-      this.metaService.addTag({ name: 'description', content: data.metadesc });
-    } else {
-      this.metaService.addTag({ name: 'description', content: this.defaultDesc });
-    }
-  }
-
   getFeaturedImgSrc(id) {
-    if (this.blogService.media) {
-      return this.blogService.media.filter(media => media.id === id)[0].source_url;
+    if (this.media) {
+      return this.media.filter(media => media.id === id)[0].media_details.sizes.medium_large.source_url;
     }
   }
 
   getFeaturedImgAlt(id) {
-    if (this.blogService.media) {
-      return this.blogService.media.filter(media => media.id === id)[0].alt_text;
+    if (this.media) {
+      return this.media.filter(media => media.id === id)[0].alt_text;
     }
   }
 
   getAuthor(id) {
-    if (this.blogService.authors) {
-      return this.blogService.authors.filter(author => author.id === id)[0].name;
+    if (this.authors) {
+      return this.authors.filter(author => author.id === id)[0].name;
     }
-  }
-
-  getAuthorSlug(id) {
-    if (this.blogService.authors) {
-      return this.blogService.authors.filter(author => author.id === id)[0].slug;
-    }
-  }
-
-  sanitizeHtml(data) {
-    this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(data);
   }
 
   setError(err) {

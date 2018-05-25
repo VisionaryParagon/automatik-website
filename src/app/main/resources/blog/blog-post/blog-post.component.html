@@ -1,3 +1,48 @@
-<p>
-  blog-post works!
-</p>
+<div [@fade]="true">
+  <section *ngIf="!post">
+    <mat-spinner class="mx-auto my-5"></mat-spinner>
+  </section>
+
+  <section *ngIf="post && !error">
+    <div class="blogHeader" [class.faded]="changingBlog">
+      <img *ngIf="post.featured_media" [src]="getFeaturedImgSrc(post.featured_media)" [alt]="getFeaturedImgAlt(post.featured_media)">
+    </div>
+    <div class="container">
+      <div class="blogContent">
+        <div [class.faded]="changingBlog">
+          <h1>{{ post.title.rendered }}</h1>
+
+          <div class="row">
+            <div class="col-12 col-lg-9">
+              <p>{{ post.date | date: 'mediumDate' }} &nbsp;|&nbsp; <a routerLink="/resources/blog/author/{{ getAuthorSlug(post.author) }}">{{ getAuthor(post.author) }}</a></p>
+
+              <div [innerHtml]="safeHtml"></div>
+            </div>
+
+            <div class="blogSidebar d-none d-lg-block col-lg-3">
+              <h5>Recent Posts</h5>
+
+              <div class="blogList">
+                <div class="blogPost" *ngFor="let blog of blogs | slice:0:5">
+                  <p><a routerLink="/resources/blog/post/{{ blog.slug }}">{{ blog.title.rendered }}
+                    <br><span class="blogDate">{{ blog.date | date: 'mediumDate' }}</span></a></p>
+                </div>
+              </div>
+
+              <h5>Categories</h5>
+
+              <div class="categoryList">
+                <p *ngFor="let cat of categories"><a routerLink="/resources/blog/category/{{ cat.slug }}">{{ cat.name }}</a></p>
+                <p><a routerLink="/resources/blog">View All</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="error">
+    <div class="container">{{ error }}</div>
+  </section>
+</div>

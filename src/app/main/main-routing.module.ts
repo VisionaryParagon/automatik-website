@@ -20,6 +20,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { ResourcesMainComponent } from './resources/resources-main/resources-main.component';
 import { BlogComponent } from './resources/blog/blog.component';
+import { BlogAuthorComponent } from './resources/blog/blog-author/blog-author.component';
+import { BlogCategoryComponent } from './resources/blog/blog-category/blog-category.component';
 import { BlogPostComponent } from './resources/blog/blog-post/blog-post.component';
 
 // About
@@ -122,7 +124,15 @@ const routes: Routes = [
             }
           },
           {
-            path: 'blog/post/:id',
+            path: 'blog/author/:slug',
+            component: BlogAuthorComponent
+          },
+          {
+            path: 'blog/category/:slug',
+            component: BlogCategoryComponent
+          },
+          {
+            path: 'blog/post/:slug',
             component: BlogPostComponent
           },
           {

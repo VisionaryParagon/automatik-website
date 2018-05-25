@@ -168,8 +168,8 @@
   </nav>
 </header>
 
-<div (mouseover)="toggleSubNav($event, 'close')">
+<div [class.mobile]="isMobile" (mouseover)="closeSubNav()">
   <router-outlet></router-outlet>
 </div>
 
-<footer *ngIf="!introActive" (mouseover)="toggleSubNav($event, 'close')">&copy; autom&auml;tik</footer>
+<footer *ngIf="!introActive" (mouseover)="closeSubNav()">&copy; autom&auml;tik</footer>
