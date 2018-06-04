@@ -253,6 +253,13 @@ export class AppComponent implements OnInit {
     this.testMobile();
   }
 
+  @HostListener('document:mouseout', ['$event'])
+  onLeave(event) {
+    if (event.toElement === null || event.relatedTarget === null) {
+      this.closeSubNav();
+    }
+  }
+
   testMobile() {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile = /Android|iPhone|iPad/i.test(window.navigator.userAgent);
