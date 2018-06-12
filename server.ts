@@ -98,7 +98,7 @@ app.all('*', (req, res, next) => {
 // API endpoints
 app.use('/admn', adminRoute);
 app.use('/careers', careersRoute);
-app.use('/dir', contactRoute);
+app.use('/cntct', contactRoute);
 
 // Server static files from /browser
 app.all('*.*', express.static(join(DIST_FOLDER, 'browser'), {

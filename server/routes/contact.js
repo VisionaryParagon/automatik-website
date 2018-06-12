@@ -1,14 +1,58 @@
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer');
+const smtpConfig = {
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true, // use SSL
+  auth: {
+    user: 'noreply@2018alfaromeosummit.com',
+    pass: 'FCAautomatik'
+  }
+};
 
-// contact model
-const cont = require('../models/contact');
+const transporter = nodemailer.createTransport(smtpConfig);
 
-// get all contacts
-router.get('/contacts', function (req, res) {
-  cont.find({}, function (err, contacts) {
-    if (err) return res.status(500).send(err);
-    return res.status(200).send(contacts);
+// contact email
+router.post('/contact', function (req, res) {
+  // get contact data
+  let data = req.body;
+
+  // Internal response
+  let textContentMsg = `
+    New contact form inquiry from ${data.name} (${data.email}):
+
+    ${data.message}
+  `;
+
+  let htmlContentMsg = `
+    <div style="font-size:14px; margin:30px auto 60px; width:640px;">
+      <span>
+      New contact form inquiry from ${data.name} (<a href="mailto:${data.email}">${data.email}</a>):<br><br>
+
+      ${data.message}
+      </span>
+    </div>
+  `;
+
+  let mailOptionsMsg = {
+    from: '"Alfa Romeo" <noreply@2018alfaromeosummit.com>', // sender address
+    to: '"Alfa Romeo" <info@2018alfaromeosummit.com>', // list of receivers
+    replyTo: data.email, // list of replyTo's
+    subject: 'Contact Form Inquiry from ' + data.name, // Subject line
+    text: textContentMsg, // plaintext body
+    html: htmlContentMsg // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptionsMsg, function (error, info) {
+    if (error) {
+      return res.status(500).send(error);
+      // return console.log(error);
+    } else {
+      return res.status(250).send(info);
+      // return console.log('Message sent: ', info.response);
+    }
   });
 });
 

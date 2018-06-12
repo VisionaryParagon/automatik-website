@@ -115,7 +115,7 @@ a:not([href]):not([tabindex]):hover {
 /*~~ Forms and Buttons ~~*/
 
 .inputGroup {
-  margin: 0 0 1rem;
+  margin: .5rem 0;
   position: relative;
 
   input,
@@ -157,13 +157,14 @@ a:not([href]):not([tabindex]):hover {
     }
   }
 
-  i.fa {
+  i.fa-caret-down {
     position: absolute;
     right: .5rem;
-    top: .75rem;
+    top: 2.25rem;
   }
 
   label {
+    margin-bottom: 0;
     text-transform: uppercase;
   }
 
@@ -185,13 +186,12 @@ a:not([href]):not([tabindex]):hover {
   background: $client-color;
   border: none;
   box-shadow: 0.25rem 0.25rem 1rem -0.25rem rgba(0, 0, 0, 0.5) !important;
-  color: #fff;
   cursor: pointer;
   font-family: $client-font;
   font-weight: normal;
   height: 40px;
   line-height: 40px;
-  margin: 0 0 1rem;
+  margin: 0 auto 1rem;
   min-width: 125px;
   opacity: 1;
   padding: 0.15rem 2rem 0;
@@ -205,6 +205,11 @@ a:not([href]):not([tabindex]):hover {
   &:active {
     box-shadow: 0.25rem 0.25rem 1rem -0.35rem rgba(0, 0, 0, 0.5) !important;
     opacity: 1;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
   }
 }
 
@@ -1170,6 +1175,15 @@ section {
 }
 
 
+/*~~ Careers ~~*/
+
+.position {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  height: 100%;
+  padding: 1rem;
+}
+
+
 /*~~ Footer ~~*/
 
 footer {
@@ -1186,12 +1200,9 @@ footer {
   stroke: $client-color;
 }
 
-.btn .mat-spinner circle {
-  stroke: #000;
-}
-
+.btn .mat-spinner circle,
 .autoBtn .mat-spinner circle {
-  stroke: #fff;
+  stroke: #000;
 }
 
 h2.mat-dialog-title {
@@ -1207,8 +1218,8 @@ mat-dialog-container.mat-dialog-container {
 
 mat-dialog-content.mat-dialog-content {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-  margin: 0 -1rem;
-  padding: 2rem 1rem;
+  margin: 0 -1rem -1rem;
+  padding: 2rem;
 
   &.fullDialog {
     max-height: calc(100% - 67px);

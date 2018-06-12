@@ -2,6 +2,7 @@ export class CareerPosition {
   _id?: String;
   position: String;
   description: String;
+  short_description: String;
 }
 
 export class CareerInquiry {
