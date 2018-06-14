@@ -1074,7 +1074,6 @@ section {
 }
 
 .blogThumb {
-  padding: 1rem;
   min-height: 100px;
 
   a {
@@ -1404,5 +1403,8 @@ all and (min-width: 992px) {
   }
   #home3 {
     background-image: url(https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg);
+  }
+  .blogThumb {
+    padding: 1rem;
   }
 }
