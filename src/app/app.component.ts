@@ -272,12 +272,14 @@ export class AppComponent implements OnInit {
   }
 
   toggleNav() {
-    this.state = (this.state === 'active' ? 'inactive' : 'active');
+    if (this.state === 'active') {
+      this.state = 'inactive';
 
-    if (document.body.className.indexOf('modal') === -1) {
-      this.renderer.addClass(document.body, 'modal-open');
-    } else {
       this.renderer.removeClass(document.body, 'modal-open');
+    } else {
+      this.state = 'active';
+
+      this.renderer.addClass(document.body, 'modal-open');
     }
   }
 
