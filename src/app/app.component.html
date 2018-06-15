@@ -20,10 +20,10 @@
          (touchcancel)="hoverFeeling('')"
          (click)="selectFeeling(feeling)">
       <div class="circle" [class.active]="ready">
-        <img src="../../../assets/images/feeling-circle.png">
+        <img src="https://assets.automatik9dots.com/images/feeling-circle.png">
       </div>
       <div class="face" [class.active]="ready">
-        <img src="../../../assets/images/feeling-{{ feeling.name }}.png" alt="{{ feeling.name | titlecase }}">
+        <img src="https://assets.automatik9dots.com/images/feeling-{{ feeling.name }}.png" alt="{{ feeling.name | titlecase }}">
       </div>
       <div class="feeling" [class.active]="interact && (hovering || selected) === feeling.name">
         {{ feeling.name | titlecase }}
@@ -41,7 +41,7 @@
 
 <header [class.mobile]="isMobile" (mouseover)="toggleSubNav($event, 'close')">
   <nav>
-    <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="introActive" [class.mobile]="isMobile" (click)="closeSubNav()"><img src="./assets/images/automatik-navigation-logo.png" alt="automätik logo"></a>
+    <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="introActive" [class.mobile]="isMobile" (click)="closeSubNav()"><img src="https://assets.automatik9dots.com/images/automatik-navigation-logo.png" alt="automätik logo"></a>
 
     <div id="navMenu" class="fullNav" [@fade]="true" [class.mobile]="isMobile" *ngIf="!introActive">
       <!--
