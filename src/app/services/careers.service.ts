@@ -16,7 +16,11 @@ export class CareersService {
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {
+    if (!isPlatformBrowser(this.platformId)) {
+      this.careerUrlRoot = 'http://localhost/careers/';
+    }
+  }
 
   createPosition(position) {
     return this.http.post<CareerPosition>(this.careerUrlRoot + 'new', position)
