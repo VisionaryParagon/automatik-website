@@ -24,6 +24,7 @@ const admin = require('./server/models/admin');
 const adminRoute = require('./server/routes/admin');
 const careersRoute = require('./server/routes/careers');
 const contactRoute = require('./server/routes/contact');
+const teamRoute = require('./server/routes/team');
 
 // connect to db
 mongoose.connect('mongodb://admin:Automatik@ds237379.mlab.com:37379/automatik-apps', {
@@ -99,6 +100,7 @@ app.all('*', (req, res, next) => {
 app.use('/admn', adminRoute);
 app.use('/careers', careersRoute);
 app.use('/cntct', contactRoute);
+app.use('/tm', teamRoute);
 
 // Server static files from /browser
 app.all('*.*', express.static(join(DIST_FOLDER, 'browser'), {

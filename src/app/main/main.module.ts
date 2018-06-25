@@ -28,6 +28,7 @@ import { BlogPostComponent } from './resources/blog/blog-post/blog-post.componen
 // About
 import { AboutComponent } from './about/about.component';
 import { AboutMainComponent } from './about/about-main/about-main.component';
+import { TeamComponent } from './about/team/team.component';
 import { CareersComponent } from './about/careers/careers.component';
 
 // Form Components
@@ -52,6 +53,7 @@ import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.c
     BlogPostComponent,
     AboutComponent,
     AboutMainComponent,
+    TeamComponent,
     CareersComponent,
     CareerInquiryComponent
   ],

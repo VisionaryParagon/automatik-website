@@ -60,3 +60,17 @@ export const TopDownAnimation: AnimationTriggerMetadata =
       animate(250, style({height: 0, opacity: 0}))
     ])
   ]);
+
+// team bio animations
+export const TeamBioAnimation: AnimationTriggerMetadata =
+  trigger('teamBio', [
+    state('*', style({opacity: 1, transform: 'translateX(0)'})),
+    transition(':enter', [
+      style({opacity: 0, transform: 'translateX(100%)'}),
+      animate(500, style({opacity: 1, transform: 'translateX(0)'}))
+    ]),
+    transition(':leave', [
+      style({opacity: 1, transform: 'translateX(0)'}),
+      animate(500, style({opacity: 0, transform: 'translateX(-100%)'}))
+    ])
+  ]);
