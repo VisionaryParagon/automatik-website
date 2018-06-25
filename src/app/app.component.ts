@@ -108,6 +108,7 @@ export class AppComponent implements OnInit {
   stateResources = 'inactive';
   stateAbout = 'inactive';
   activePage = '';
+  currentYear = new Date().getFullYear();
 
   constructor(
     public googleAnalyticsEventsService: GoogleAnalyticsEventsService,
