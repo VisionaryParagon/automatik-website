@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const smtpConfig = {
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true, // use SSL
+  host: 'smtp.office365.com',
+  port: 587,
   auth: {
-    user: 'noreply@2018alfaromeosummit.com',
-    pass: 'FCAautomatik'
+    user: 'noreply@automatik.us',
+    pass: 'Automatik2point0'
   }
 };
 
@@ -36,8 +35,8 @@ router.post('/contact', function (req, res) {
   `;
 
   let mailOptionsMsg = {
-    from: '"Alfa Romeo" <noreply@2018alfaromeosummit.com>', // sender address
-    to: '"Alfa Romeo" <info@2018alfaromeosummit.com>', // list of receivers
+    from: '"No Reply" <noreply@automatik.us>', // sender address
+    to: '"Conrad Shehan" <cshehan@automatik.us>', // list of receivers
     replyTo: data.email, // list of replyTo's
     subject: 'Contact Form Inquiry from ' + data.name, // Subject line
     text: textContentMsg, // plaintext body
