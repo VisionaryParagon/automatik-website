@@ -21,7 +21,8 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
-              }
+              },
+              "src/googlefec6efa478e79319.html"
             ],
             "styles": [
               "src/styles.scss"
