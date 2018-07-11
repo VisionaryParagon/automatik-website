@@ -1228,13 +1228,14 @@ section {
 
 #team {
   position: relative;
-  -moz-transition: height 250ms;
-  -o-transition: height 250ms;
-  -webkit-transition: height 250ms;
-  transition: height 250ms;
+  -moz-transition: margin 250ms;
+  -o-transition: margin 250ms;
+  -webkit-transition: margin 250ms;
+  transition: margin 250ms;
 
   .teammate {
-    padding: 0.5rem;
+    height: 0px;
+    padding: 0.5rem 0.5rem calc(20% - 0.5rem);
     width: 20%;
 
     img {
@@ -1245,7 +1246,7 @@ section {
       -webkit-transition: all 250ms;
       transition: all 250ms;
 
-      &:hover {
+      &:not(.selected):hover {
         position: relative;
         -moz-transform: scale(1.5);
         -ms-transform: scale(1.5);
@@ -1255,7 +1256,8 @@ section {
         z-index: 5;
       }
 
-      &:active {
+      /*
+      &:not(.selected):active {
         border-width: 5px;
         position: relative;
         -moz-transform: scale(1.5);
@@ -1265,6 +1267,7 @@ section {
         transform: scale(1.5);
         z-index: 5;
       }
+      */
     }
   }
 
@@ -1424,6 +1427,8 @@ button[mat-dialog-close]:not(.autoBtn),
 
 @media all and (min-width: 768px) {
   #team .teammate {
+    height: 0px;
+    padding: 0.5rem 0.5rem calc(10% - 0.5rem);
     width: 10%;
   }
 }

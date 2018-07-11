@@ -1,13 +1,17 @@
 <section [@fade]="true">
   <div class="container">
     <h2>Meet Our Team</h2>
+
+    <div *ngIf="!datacheck">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
   </div>
 
-  <div id="team" [style.height]="newHeight" #teamBox>
-    <div class="container">
+  <div id="team" [style.marginBottom]="bottomMargin" #teamBox>
+    <div class="container" [@fade]="true" *ngIf="datacheck">
       <div class="row px-2">
         <div class="teammate" *ngFor="let mate of teammates">
-          <img [src]="mate.primary_image" width="100%" [alt]="mate.first_name + ' ' + mate.last_name + ' | ' + mate.title.name" (click)="openTeammate(mate)">
+          <img [class.selected]="selected" [src]="mate.primary_image" width="100%" [alt]="mate.first_name + ' ' + mate.last_name + ' | ' + mate.title.name" (click)="openTeammate(mate)">
         </div>
       </div>
     </div>

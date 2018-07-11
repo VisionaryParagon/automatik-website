@@ -15,11 +15,14 @@ export class TeamComponent implements OnInit {
   @ViewChild('teamBox') teamBox: ElementRef;
   @ViewChild('bioBox') bioBox: ElementRef;
   teamHeight = 'auto';
-  newHeight = 'auto';
+  bottomMargin = '0px';
   teammates: Teammate[];
   teammate: Teammate = new Teammate();
   selected: Teammate;
   departments: Department[];
+  teamcheck = false;
+  deptcheck = false;
+  datacheck = false;
   anyVal: any;
   submitted = false;
   loading = false;
@@ -34,18 +37,18 @@ export class TeamComponent implements OnInit {
       .subscribe(
         depts => {
           this.departments = depts;
+          this.deptcheck = true;
+          this.checkData();
+        },
+        error => this.setError(error)
+      );
 
-          this.teamService.getTeammates()
-            .subscribe(
-              team => {
-                this.teammates = this.teamSort(team);
-                setTimeout(() => {
-                  this.teamHeight = this.teamBox.nativeElement.offsetHeight + 'px';
-                  this.newHeight = this.teamHeight;
-                }, 50);
-              },
-              error => this.setError(error)
-            );
+    this.teamService.getTeammates()
+      .subscribe(
+        team => {
+          this.teammates = this.teamSort(team);
+          this.teamcheck = true;
+          this.checkData();
         },
         error => this.setError(error)
       );
@@ -71,20 +74,29 @@ export class TeamComponent implements OnInit {
     return team;
   }
 
+  checkData() {
+    if (this.deptcheck && this.teamcheck) {
+      this.datacheck = true;
+    }
+  }
+
   openTeammate(data) {
+    const teamHeight = this.teamBox.nativeElement.offsetHeight;
+    this.teamHeight = teamHeight + 'px';
+
     this.selected = data;
+
     setTimeout(() => {
       const bioHeight = this.bioBox.nativeElement.offsetHeight;
-      const teamHeight = this.teamBox.nativeElement.offsetHeight;
       if (bioHeight > teamHeight) {
-        this.newHeight = bioHeight + 'px';
+        this.bottomMargin = bioHeight - teamHeight + 'px';
       }
     }, 50);
   }
 
   closeTeammate() {
     this.selected = null;
-    this.newHeight = this.teamHeight;
+    this.bottomMargin = '0px';
   }
 
   getDepartmentRank(id) {
