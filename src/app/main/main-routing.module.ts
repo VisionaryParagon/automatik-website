@@ -39,10 +39,10 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         data: {
-          title: 'automätik',
+          title: 'Eradicating boring corporate events from the face of the Earth | automätik',
           metatags: {
-            description: 'Eradicating boring corporate events from the face of the Earth.',
-            keywords: 'automatik, automatic, auto, event, education, training'
+            description: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.',
+            keywords: 'Corporate Events, Meeting master, sales training'
           }
         }
       },
@@ -50,10 +50,10 @@ const routes: Routes = [
         path: 'services',
         component: ServicesComponent,
         data: {
-          title: 'automätik services',
+          title: 'Turnkey corporate events services and experiences that deliver results | automätik',
           metatags: {
-            description: 'Description for Services',
-            keywords: 'services'
+            description: 'automätik events are produced by our team of in-house departments, including: event management & production, instructional design, graphic & web design.',
+            keywords: 'Event Services, Event management, Event Production, Instructional Design, Graphic Design, Video Production, Web development, app development, technology'
           }
         },
         children: [
