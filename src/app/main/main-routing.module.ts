@@ -15,11 +15,14 @@ import { CoursesComponent } from './courses/courses.component';
 
 // Portfolio
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PortfolioMainComponent } from './portfolio/portfolio-main/portfolio-main.component';
+import { PortfolioProjectComponent } from './portfolio/portfolio-project/portfolio-project.component';
 
 // Resources
 import { ResourcesComponent } from './resources/resources.component';
 import { ResourcesMainComponent } from './resources/resources-main/resources-main.component';
 import { BlogComponent } from './resources/blog/blog.component';
+import { BlogMainComponent } from './resources/blog/blog-main/blog-main.component';
 import { BlogAuthorComponent } from './resources/blog/blog-author/blog-author.component';
 import { BlogCategoryComponent } from './resources/blog/blog-category/blog-category.component';
 import { BlogPostComponent } from './resources/blog/blog-post/blog-post.component';
@@ -83,20 +86,62 @@ const routes: Routes = [
       {
         path: 'portfolio',
         component: PortfolioComponent,
-        data: {
-          title: 'automätik portfolio',
-          metatags: {
-            description: 'Description for Portfolio.',
-            keywords: 'portfolio'
-          }
-        },
         children: [
+          {
+            path: '',
+            component: PortfolioMainComponent,
+            data: {
+              title: 'automätik portfolio',
+              metatags: {
+                description: 'Description for Portfolio.',
+                keywords: 'portfolio'
+              }
+            }
+          },
+          {
+            path: ':slug',
+            component: PortfolioProjectComponent
+          },
           {
             path: '**',
             redirectTo: '/portfolio'
           }
         ]
       },
+      {
+        path: 'resources/blog',
+        component: BlogComponent,
+        children: [
+          {
+            path: '',
+            component: BlogMainComponent,
+            data: {
+              title: 'automätik blog',
+              metatags: {
+                description: 'Description for Blog.',
+                keywords: 'blog'
+              }
+            }
+          },
+          {
+            path: 'author/:slug',
+            component: BlogAuthorComponent
+          },
+          {
+            path: 'category/:slug',
+            component: BlogCategoryComponent
+          },
+          {
+            path: 'post/:slug',
+            component: BlogPostComponent
+          },
+          {
+            path: '**',
+            redirectTo: '/blog'
+          }
+        ]
+      },
+      /*
       {
         path: 'resources',
         component: ResourcesComponent,
@@ -141,6 +186,7 @@ const routes: Routes = [
           }
         ]
       },
+      */
       {
         path: 'about',
         component: AboutComponent,

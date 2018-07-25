@@ -6,8 +6,10 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDialogModule,
+  MatExpansionModule,
   MatInputModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTabsModule
 } from '@angular/material';
 
 import { CookieModule } from 'ngx-cookie';
@@ -20,10 +22,12 @@ import { CookieModule } from 'ngx-cookie';
     HttpClientModule,
     FormsModule,
     MatDatepickerModule,
+    MatExpansionModule,
     MatNativeDateModule,
     MatDialogModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
     CookieModule.forRoot()
   ],
   declarations: [
@@ -33,10 +37,12 @@ import { CookieModule } from 'ngx-cookie';
     HttpClientModule,
     FormsModule,
     MatDatepickerModule,
+    MatExpansionModule,
     MatNativeDateModule,
     MatDialogModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
     CookieModule
   ]
 })

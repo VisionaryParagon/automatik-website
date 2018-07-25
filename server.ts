@@ -24,6 +24,8 @@ const admin = require('./server/models/admin');
 const adminRoute = require('./server/routes/admin');
 const careersRoute = require('./server/routes/careers');
 const contactRoute = require('./server/routes/contact');
+const imageRoute = require('./server/routes/images');
+const projectRoute = require('./server/routes/projects');
 const teamRoute = require('./server/routes/team');
 
 // connect to db
@@ -100,6 +102,8 @@ app.all('*', (req, res, next) => {
 app.use('/admn', adminRoute);
 app.use('/careers', careersRoute);
 app.use('/cntct', contactRoute);
+app.use('/img', imageRoute);
+app.use('/prj', projectRoute);
 app.use('/tm', teamRoute);
 
 // Server static files from /browser

@@ -34,6 +34,7 @@
     "@nguniversal/common": "^6.0.0",
     "@nguniversal/express-engine": "^6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
+    "aws-sdk": "^2.268.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.0.0",
     "classlist.js": "^1.1.20150312",

@@ -6,6 +6,7 @@ import { CookieService, CookieOptions } from 'ngx-cookie';
 
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service';
 import { SeoService } from './services/seo.service';
+import { ProjectService } from './services/project.service';
 
 import { IntroAnimation, NavAnimation, FadeAnimation, TopDownAnimation } from './animations';
 
@@ -18,7 +19,6 @@ declare let ga: Function;
   animations: [ IntroAnimation, NavAnimation, FadeAnimation, TopDownAnimation ]
 })
 export class AppComponent implements OnInit {
-  isMobile = true;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   introCookie = this.cookieService.get('intro');
@@ -116,6 +116,7 @@ export class AppComponent implements OnInit {
     private location: Location,
     private renderer: Renderer2,
     private cookieService: CookieService,
+    private projectService: ProjectService,
     private seoService: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
@@ -195,6 +196,33 @@ export class AppComponent implements OnInit {
     }
   }
 
+  @HostListener('window:resize', ['$event']) onResize(event) {
+    this.testMobile();
+  }
+
+  @HostListener('document:mouseout', ['$event']) onLeave(event) {
+    if (event.toElement === null || event.relatedTarget === null) {
+      this.closeSubNav();
+    }
+  }
+
+  testMobile() {
+    if (isPlatformBrowser(this.platformId)) {
+      if (/Android|iPhone|iPad/i.test(window.navigator.userAgent)) {
+        this.renderer.addClass(document.body, 'mobile');
+      } else {
+        if (document.body.classList.contains('mobile')) {
+          this.renderer.removeClass(document.body, 'mobile');
+        }
+      }
+    }
+    this.state = 'inactive';
+    this.stateServices = 'inactive';
+    this.stateCourses = 'inactive';
+    this.stateResources = 'inactive';
+    this.stateAbout = 'inactive';
+  }
+
   shuffle(array) {
     let currentIndex = array.length,
         temporaryValue,
@@ -249,29 +277,6 @@ export class AppComponent implements OnInit {
     this.renderer.removeClass(document.body, 'modal-open');
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.testMobile();
-  }
-
-  @HostListener('document:mouseout', ['$event'])
-  onLeave(event) {
-    if (event.toElement === null || event.relatedTarget === null) {
-      this.closeSubNav();
-    }
-  }
-
-  testMobile() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = /Android|iPhone|iPad/i.test(window.navigator.userAgent);
-    }
-    this.state = 'inactive';
-    this.stateServices = 'inactive';
-    this.stateCourses = 'inactive';
-    this.stateResources = 'inactive';
-    this.stateAbout = 'inactive';
-  }
-
   toggleNav() {
     if (this.state === 'active') {
       this.state = 'inactive';
@@ -310,11 +315,15 @@ export class AppComponent implements OnInit {
         this.stateAbout = 'inactive';
       } else if (id === 'Portfolio') {
         this.closeSubNav();
+      } else if (id === 'Blog') {
+        this.closeSubNav();
+        /*
       } else if (id === 'Resources') {
         this.stateServices = 'inactive';
         this.stateCourses = 'inactive';
         this.stateResources = 'active';
         this.stateAbout = 'inactive';
+        */
       } else if (id === 'About') {
         this.stateServices = 'inactive';
         this.stateCourses = 'inactive';
@@ -339,11 +348,15 @@ export class AppComponent implements OnInit {
       this.stateAbout = 'inactive';
     } else if (id === 'Portfolio') {
       this.closeSubNav();
+    } else if (id === 'Blog') {
+      this.closeSubNav();
+      /*
     } else if (id === 'Resources') {
       this.stateServices = 'inactive';
       this.stateCourses = 'inactive';
       this.stateResources = (this.stateResources === 'active' ? 'inactive' : 'active');
       this.stateAbout = 'inactive';
+      */
     } else if (id === 'About') {
       this.stateServices = 'inactive';
       this.stateCourses = 'inactive';
@@ -357,6 +370,11 @@ export class AppComponent implements OnInit {
     this.stateCourses = 'inactive';
     this.stateResources = 'inactive';
     this.stateAbout = 'inactive';
+  }
+
+  setPortfolio() {
+    this.projectService.selectedCategory = '';
+    this.projectService.filter = '';
   }
 
   logoutAdmin() {

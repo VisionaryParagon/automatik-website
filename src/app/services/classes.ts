@@ -1,37 +1,63 @@
 export class CareerPosition {
-  _id?: String;
-  position: String;
-  description: String;
-  short_description: String;
+  _id?: string;
+  position: string;
+  description: string;
+  short_description: string;
 }
 
 export class CareerInquiry {
-  _id?: String;
-  position: String;
-  first_name: String;
-  last_name: String;
-  email: String;
-  specialty?: String;
+  _id?: string;
+  position: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  specialty?: string;
   start_date: Date;
-  status: String;
-  awesome: String;
+  status: string;
+  awesome: string;
 }
 
 export class Department {
-  _id?: String;
-  name: String;
+  _id?: string;
+  name: string;
   rank: Number;
 }
 
 export class Teammate {
-  _id?: String;
-  first_name: String;
-  last_name: String;
-  pseudoname: String;
-  title: String;
-  department: String;
+  _id?: string;
+  first_name: string;
+  last_name: string;
+  pseudoname: string;
+  title: string;
+  department: string;
   seniority: Date;
-  bio: String;
-  primary_image: String;
-  secondary_image: String;
+  bio: string;
+  primary_image: string;
+  secondary_image: string;
+}
+
+export class Image {
+  _id?: string;
+  path: string;
+  alt: string;
+  date: Date;
+}
+
+export class Project {
+  _id?: string;
+  title: string;
+  slug: string;
+  description: string;
+  keywords: string;
+  category: string;
+  date: Date;
+  title_image_lg: string;
+  title_image_md: string;
+  title_image_sm: string;
+  headline: string;
+  copy: string;
+  logo?: string;
+  featured_image: string;
+  highlights: string[];
+  images: string[];
 }

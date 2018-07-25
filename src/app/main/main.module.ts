@@ -16,11 +16,14 @@ import { CoursesComponent } from './courses/courses.component';
 
 // Portfolio
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PortfolioMainComponent } from './portfolio/portfolio-main/portfolio-main.component';
+import { PortfolioProjectComponent } from './portfolio/portfolio-project/portfolio-project.component';
 
 // Resources
 import { ResourcesComponent } from './resources/resources.component';
 import { ResourcesMainComponent } from './resources/resources-main/resources-main.component';
 import { BlogComponent } from './resources/blog/blog.component';
+import { BlogMainComponent } from './resources/blog/blog-main/blog-main.component';
 import { BlogAuthorComponent } from './resources/blog/blog-author/blog-author.component';
 import { BlogCategoryComponent } from './resources/blog/blog-category/blog-category.component';
 import { BlogPostComponent } from './resources/blog/blog-post/blog-post.component';
@@ -33,6 +36,7 @@ import { CareersComponent } from './about/careers/careers.component';
 
 // Form Components
 import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.component';
+import { ImageUploaderComponent } from './modals/image-uploader/image-uploader.component';
 
 @NgModule({
   imports: [
@@ -45,9 +49,12 @@ import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.c
     ServicesComponent,
     CoursesComponent,
     PortfolioComponent,
+    PortfolioMainComponent,
+    PortfolioProjectComponent,
     ResourcesComponent,
     ResourcesMainComponent,
     BlogComponent,
+    BlogMainComponent,
     BlogAuthorComponent,
     BlogCategoryComponent,
     BlogPostComponent,
@@ -55,10 +62,12 @@ import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.c
     AboutMainComponent,
     TeamComponent,
     CareersComponent,
-    CareerInquiryComponent
+    CareerInquiryComponent,
+    ImageUploaderComponent
   ],
   entryComponents: [
-    CareerInquiryComponent
+    CareerInquiryComponent,
+    ImageUploaderComponent
   ]
 })
 export class MainModule { }
