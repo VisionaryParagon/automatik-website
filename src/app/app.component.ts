@@ -8,7 +8,7 @@ import { GoogleAnalyticsEventsService } from './services/google-analytics-events
 import { SeoService } from './services/seo.service';
 import { ProjectService } from './services/project.service';
 
-import { IntroAnimation, NavAnimation, FadeAnimation, TopDownAnimation } from './animations';
+import { IntroAnimation, MobileNavAnimation, FadeAnimation, TopDownAnimation } from './animations';
 
 declare let ga: Function;
 
@@ -16,7 +16,7 @@ declare let ga: Function;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [ IntroAnimation, NavAnimation, FadeAnimation, TopDownAnimation ]
+  animations: [ IntroAnimation, MobileNavAnimation, FadeAnimation, TopDownAnimation ]
 })
 export class AppComponent implements OnInit {
   private lastPoppedUrl: string;

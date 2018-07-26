@@ -394,19 +394,11 @@ nav {
 #mobileNavMenu {
   background: rgba(0, 0, 0, 0.85);
   height: calc(100vh - 50px);
-  left: 100%;
+  left: 0;
   overflow: auto;
   position: absolute;
   top: 50px;
-  -moz-transition: all 500ms;
-  -o-transition: all 500ms;
-  -webkit-transition: all 500ms;
-  transition: all 500ms;
   width: 100%;
-
-  &.open {
-    left: 0;
-  }
 
   a {
     align-items: center;

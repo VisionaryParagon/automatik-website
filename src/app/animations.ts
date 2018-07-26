@@ -10,13 +10,18 @@ export const IntroAnimation: AnimationTriggerMetadata =
     ])
   ]);
 
-// navbar animations
-export const NavAnimation: AnimationTriggerMetadata =
-  trigger('navMenu', [
-    state('active', style({height: '*', opacity: 1})),
-    state('inactive', style({height: 0, opacity: 0})),
-    transition('inactive => active', animate(200)),
-    transition('active => inactive', animate(200))
+// mobile nav animations
+export const MobileNavAnimation: AnimationTriggerMetadata =
+  trigger('mobileNavMenu', [
+    state('*', style({transform: 'translateX(0)'})),
+    transition(':enter', [
+      style({transform: 'translateX(100%)'}),
+      animate(250, style({transform: 'translateX(0)'}))
+    ]),
+    transition(':leave', [
+      style({transform: 'translateX(0)'}),
+      animate(250, style({transform: 'translateX(100%)'}))
+    ])
   ]);
 
 // component transition animations
