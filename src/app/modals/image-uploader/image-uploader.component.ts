@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Image } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Image } from '../../services/classes';
+import { ImageService } from '../../services/image.service';
 
-import { FadeAnimation, TopDownAnimation } from '../../../animations';
+import { FadeAnimation, TopDownAnimation } from '../../animations';
 
 @Component({
   selector: 'app-image-uploader',
