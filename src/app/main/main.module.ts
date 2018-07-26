@@ -34,9 +34,9 @@ import { AboutMainComponent } from './about/about-main/about-main.component';
 import { TeamComponent } from './about/team/team.component';
 import { CareersComponent } from './about/careers/careers.component';
 
-// Form Components
-import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.component';
-import { ImageUploaderComponent } from './modals/image-uploader/image-uploader.component';
+// Modal Components
+import { CareerInquiryComponent } from '../modals/career-inquiry/career-inquiry.component';
+import { ImageUploaderComponent } from '../modals/image-uploader/image-uploader.component';
 
 @NgModule({
   imports: [

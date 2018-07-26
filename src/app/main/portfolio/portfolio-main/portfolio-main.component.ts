@@ -8,7 +8,7 @@ import { ProjectService } from '../../../services/project.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
-import { ImageUploaderComponent } from '../../modals/image-uploader/image-uploader.component';
+import { ImageUploaderComponent } from '../../../modals/image-uploader/image-uploader.component';
 
 @Component({
   selector: 'app-portfolio-main',

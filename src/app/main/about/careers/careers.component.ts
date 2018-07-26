@@ -6,7 +6,7 @@ import { CareersService } from '../../../services/careers.service';
 
 import { FadeAnimation } from '../../../animations';
 
-import { CareerInquiryComponent } from '../../modals/career-inquiry/career-inquiry.component';
+import { CareerInquiryComponent } from '../../../modals/career-inquiry/career-inquiry.component';
 
 @Component({
   selector: 'app-careers',
