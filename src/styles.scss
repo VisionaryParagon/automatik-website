@@ -2035,6 +2035,11 @@ mat-tab-body.mat-tab-body {
         top: 50px;
       }
     }
+    .tileBox {
+      .tile {
+        height: calc((100vh - 100px) / 3);
+      }
+    }
     .project {
       section {
         &.hero {

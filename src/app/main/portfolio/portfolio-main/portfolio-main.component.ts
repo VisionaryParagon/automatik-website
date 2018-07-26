@@ -140,7 +140,7 @@ export class PortfolioMainComponent implements OnInit {
   setTilePosition() {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
-        if (window.innerWidth >= 1200) {
+        if (window.outerWidth >= 1200) {
           this.tiles.forEach((el, idx) => {
             const x = idx % 3;
             const y = Math.floor(idx / 3.0);
@@ -151,8 +151,8 @@ export class PortfolioMainComponent implements OnInit {
             el.nativeElement.style.top = y * height + 'px';
           });
 
-          this.tileBox.nativeElement.style.height = ((window.innerHeight - 60) / 3) * Math.ceil(this.tiles.length / 3.0) + 'px';
-        } else if (window.innerWidth >= 768 && window.innerWidth < 1200) {
+          this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 3.0) + 'px';
+        } else if (window.outerWidth >= 768 && window.outerWidth < 1200) {
           this.tiles.forEach((el, idx) => {
             const x = idx % 2;
             const y = Math.floor(idx / 2.0);
@@ -163,7 +163,7 @@ export class PortfolioMainComponent implements OnInit {
             el.nativeElement.style.top = y * height + 'px';
           });
 
-          this.tileBox.nativeElement.style.height = ((window.innerHeight - 50) / 3) * Math.ceil(this.tiles.length / 2.0) + 'px';
+          this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 2.0) + 'px';
         } else {
           this.tiles.forEach((el, idx) => {
             el.nativeElement.style.left = '0px';
