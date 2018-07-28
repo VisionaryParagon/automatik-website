@@ -1,3 +1,8 @@
+export class Admin {
+  username: string;
+  password: string;
+}
+
 export class CareerPosition {
   _id?: string;
   position: string;

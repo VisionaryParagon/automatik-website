@@ -391,7 +391,7 @@ nav {
   }
 }
 
-#mobileNavMenu {
+.mobileNav {
   background: rgba(0, 0, 0, 0.85);
   height: calc(100vh - 50px);
   left: 0;
@@ -471,10 +471,7 @@ nav {
 }
 
 .fullNav {
-  display: none !important;
-}
-
-#navMenu {
+  display: none;
   height: 100%;
   left: 50%;
   max-width: 768px;
@@ -577,7 +574,7 @@ nav {
   }
 }
 
-#search {
+#navSearch {
   align-items: center;
   color: #fff;
   height: 60px;
@@ -592,6 +589,34 @@ nav {
     background: rgba(65, 64, 66, 0.85);
     color: $client-yellow;
     text-decoration: none;
+  }
+}
+
+#navLogout {
+  align-items: center;
+  background: $client-yellow;
+  color: #000;
+  cursor: pointer;
+  display: none;
+  font-weight: normal;
+  height: 60px;
+  letter-spacing: .1rem;
+  line-height: 60px;
+  padding: 0 2rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+
+  &:hover {
+    background: $client-yellow;
+    color: #000;
+    font-weight: bold;
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 1;
   }
 }
 
@@ -1910,11 +1935,15 @@ mat-tab-body.mat-tab-body {
     padding: 1rem;
     width: 60px;
   }
+  #mobileNavBtn,
   .mobileNav {
     display: none;
   }
   .fullNav {
-    display: flex !important;
+    display: flex;
+  }
+  #navLogout {
+    display: block;
   }
   #intro {
     padding: 60px 0 0;
@@ -2024,11 +2053,13 @@ mat-tab-body.mat-tab-body {
       padding: 10px;
       width: 50px;
     }
+    #mobileNavBtn,
     .mobileNav {
       display: block;
     }
-    .fullNav {
-      display: none !important;
+    .fullNav,
+    #navLogout {
+      display: none;
     }
     .filters {
       &.mobile {

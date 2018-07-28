@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-// user model
-const User = require('../models/admin');
+// admin user model
+const admin = require('../models/admin');
 
-// register new user
+// register new admin user
 router.post('/register', function (req, res) {
-  User.register(new User({
+  admin.register(new admin({
       username: req.body.username
     }),
     req.body.password,
@@ -22,7 +22,7 @@ router.post('/register', function (req, res) {
     });
 });
 
-// login user
+// login admin user
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) return res.status(500).send(err);
@@ -36,7 +36,7 @@ router.post('/login', function (req, res, next) {
   })(req, res, next);
 });
 
-// logout user
+// logout admin user
 router.get('/logout', function (req, res) {
   req.logout();
   return res.status(200).send({
@@ -44,7 +44,7 @@ router.get('/logout', function (req, res) {
   });
 });
 
-// get user status
+// get admin user status
 router.get('/status', function (req, res) {
   if (!req.isAuthenticated()) return res.status(200).send({
     auth: false

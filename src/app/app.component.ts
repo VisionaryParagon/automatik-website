@@ -5,8 +5,9 @@ import { isPlatformBrowser, Location, PopStateEvent } from '@angular/common';
 import { CookieService, CookieOptions } from 'ngx-cookie';
 
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service';
-import { SeoService } from './services/seo.service';
+import { AdminService } from './services/admin.service';
 import { ProjectService } from './services/project.service';
+import { SeoService } from './services/seo.service';
 
 import { IntroAnimation, MobileNavAnimation, FadeAnimation, TopDownAnimation } from './animations';
 
@@ -21,7 +22,6 @@ declare let ga: Function;
 export class AppComponent implements OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
-  introCookie = this.cookieService.get('intro');
   feelings = [
     {
       name: 'angry',
@@ -100,8 +100,10 @@ export class AppComponent implements OnInit {
   clicked = false;
   successShow = false;
   successHide = false;
+
   introActive = true;
   isAdmin = false;
+  isLogin = false;
   state = 'inactive';
   stateServices = 'inactive';
   stateCourses = 'inactive';
@@ -116,54 +118,51 @@ export class AppComponent implements OnInit {
     private location: Location,
     private renderer: Renderer2,
     private cookieService: CookieService,
+    private adminService: AdminService,
     private projectService: ProjectService,
     private seoService: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    this.seoService.addSeoData();
-
-    this.testMobile();
-
     if (isPlatformBrowser(this.platformId)) {
-      if (this.introCookie) {
-        this.introActive = false;
-      } else {
-        this.renderer.addClass(document.body, 'modal-open');
-
-        this.randomFeelings = this.shuffle(this.feelings);
-
-        setTimeout(() => {
-          this.start = true;
-
-          setTimeout(() => {
-            this.ready = true;
-
-            setTimeout(() => {
-              this.interact = true;
-            }, 1000);
-          }, 3000);
-        }, 500);
-
-        // Set cookie exp
-        this.cookieExp.setDate(this.cookieExp.getDate() + 7);
-        this.cookieOptions.expires = this.cookieExp;
-      }
-
       this.location.subscribe((ev: PopStateEvent) => {
         this.lastPoppedUrl = ev.url;
       });
 
       this.router.events.subscribe((ev: any) => {
         if (ev instanceof NavigationStart) {
+          if (this.cookieService.get('intro')) {
+            this.introActive = false;
+          } else {
+            this.renderer.addClass(document.body, 'modal-open');
+
+            this.randomFeelings = this.shuffle(this.feelings);
+
+            setTimeout(() => {
+              this.start = true;
+
+              setTimeout(() => {
+                this.ready = true;
+
+                setTimeout(() => {
+                  this.interact = true;
+                }, 1000);
+              }, 3000);
+            }, 500);
+
+            // Set cookie exp
+            this.cookieExp.setDate(this.cookieExp.getDate() + 7);
+            this.cookieOptions.expires = this.cookieExp;
+          }
+
           // save page scroll location
           if (ev.url !== this.lastPoppedUrl) {
             this.yScrollStack.push(window.scrollY);
           }
 
-          // Hide intro on blog
-          if (ev.url.indexOf('/blog') !== -1) {
+          // Hide intro on blog and admin
+          if (ev.url.indexOf('/admin') !== -1 || ev.url.indexOf('/blog') !== -1) {
             this.skipIntro();
           }
         } else if (ev instanceof NavigationEnd) {
@@ -180,7 +179,7 @@ export class AppComponent implements OnInit {
           }
 
           // route checks for nav
-          setTimeout(() => {
+          // setTimeout(() => {
             this.activePage = ev.url;
 
             if (ev.url.indexOf('/admin') === 0) {
@@ -188,12 +187,22 @@ export class AppComponent implements OnInit {
             } else {
               this.isAdmin = false;
             }
-          }, 250);
+
+            if (ev.url.indexOf('/login') > -1) {
+              this.isLogin = true;
+            } else {
+              this.isLogin = false;
+            }
+          // }, 250);
         }
       });
     } else {
       this.introActive = false;
     }
+
+    this.seoService.addSeoData();
+
+    this.testMobile();
   }
 
   @HostListener('window:resize', ['$event']) onResize(event) {
@@ -378,11 +387,10 @@ export class AppComponent implements OnInit {
   }
 
   logoutAdmin() {
-    this.cookieService.removeAll();
-    // this.adminService.logout();
-    // this.adminService.loggedIn = false;
-
-    this.router.navigate(['/admin/login']);
+    this.adminService.logout().subscribe(
+      res => this.router.navigate(['/admin/login']),
+      err => console.log('logout error: ', err)
+    );
   }
 }
 
