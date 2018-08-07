@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title>Images</h2>
+  <button mat-dialog-close><i class="fa fa-close"></i></button>
+</div>
+
+<form #imageForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <mat-tab-group [selectedIndex]="tabId" (selectedIndexChange)="setTab($event)">
+      <mat-tab label="Upload">
+        <div *ngIf="!success">
+          <div class="inputGroup" [class.nope]="img.errors && (img.touched || submitted)">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" #img required (change)="setImageData($event)">
+              <label class="custom-file-label" for="img">{{ imageName }}</label>
+            </div>
+            <div class="errorMsg" [@topDown]="true" *ngIf="img.errors && (img.touched || submitted)">
+              <p *ngIf="img.errors.required">Please choose an image to upload</p>
+            </div>
+          </div>
+
+          <div class="inputGroup" [class.nope]="alt.errors && (alt.touched || submitted)">
+            <label for="alt">Alt Text</label>
+            <input type="text" class="form-control" name="alt" #alt="ngModel" autocomplete="off" required [(ngModel)]="image.alt">
+            <div class="errorMsg" [@topDown]="true" *ngIf="alt.errors && (alt.touched || submitted)">
+              <p *ngIf="alt.errors.required">Alt Text is required</p>
+            </div>
+          </div>
+
+          <div class="text-danger" [@topDown]="true" *ngIf="invalid">
+            <p>An image already exists with this file name</p>
+          </div>
+        </div>
+
+        <div class="text-center" *ngIf="success">
+          <h3>Success!</h3>
+
+          <p>Your image has successfully been uploaded to the database and is currently selected:</p>
+
+          <img class="mb-3 w-50" [src]="image.path" [alt]="image.alt">
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Select">
+        <ng-template matTabContent>
+          <div class="imageSelection">
+            <div class="imageBox" *ngFor="let item of imageList" (click)="select(item._id)">
+              <div class="image" [class.selected]="this.imageId === item._id" [style.backgroundImage]="'url(' + item.path + ')'"></div>
+            </div>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div *ngIf="tabId === 0">
+      <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+      <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="upload()">
+        <span *ngIf="!loading">Upload</span>
+        <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+      </button>
+      <button class="autoBtn secondary" *ngIf="success" (click)="uploadAnother()">Upload Another</button>
+      <button class="autoBtn" *ngIf="success" [mat-dialog-close]="imageId">Done</button>
+    </div>
+
+    <div *ngIf="tabId === 1">
+      <button class="autoBtn secondary" mat-dialog-close>Cancel</button>
+      <button class="autoBtn" [mat-dialog-close]="imageId">Select</button>
+    </div>
+  </mat-dialog-actions>
+</form>

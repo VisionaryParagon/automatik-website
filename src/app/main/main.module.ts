@@ -35,8 +35,7 @@ import { TeamComponent } from './about/team/team.component';
 import { CareersComponent } from './about/careers/careers.component';
 
 // Modal Components
-import { CareerInquiryComponent } from '../modals/career-inquiry/career-inquiry.component';
-import { ImageUploaderComponent } from '../modals/image-uploader/image-uploader.component';
+import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.component';
 
 @NgModule({
   imports: [
@@ -62,12 +61,10 @@ import { ImageUploaderComponent } from '../modals/image-uploader/image-uploader.
     AboutMainComponent,
     TeamComponent,
     CareersComponent,
-    CareerInquiryComponent,
-    ImageUploaderComponent
+    CareerInquiryComponent
   ],
   entryComponents: [
-    CareerInquiryComponent,
-    ImageUploaderComponent
+    CareerInquiryComponent
   ]
 })
 export class MainModule { }

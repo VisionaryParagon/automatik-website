@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title>Edit Image</h2>
+  <button mat-dialog-close><i class="fa fa-close"></i></button>
+</div>
+
+<form #imageForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success && !error.length">
+        <div class="text-center">
+          <img class="mb-3 w-50" [src]="image.path" [alt]="image.alt">
+
+          <p>{{ image.path }}</p>
+        </div>
+
+        <div class="inputGroup" [class.nope]="alt.errors && (alt.touched || submitted)">
+          <label for="alt">Alt Text</label>
+          <input type="text" class="form-control" name="alt" #alt="ngModel" autocomplete="off" required [(ngModel)]="image.alt">
+          <div class="errorMsg" [@topDown]="true" *ngIf="alt.errors && (alt.touched || submitted)">
+            <p *ngIf="alt.errors.required">Alt Text is required</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="success && !error.length">
+        <h3>Success!</h3>
+
+        <p>This image has successfully been updated.</p>
+
+        <img class="mb-3 w-50" [src]="image.path" [alt]="image.alt">
+
+        <p>{{ image.path }}</p>
+
+        <p>Alt text: {{ image.alt }}</p>
+      </div>
+
+      <div class="errorMsg text-center" [@topDown]="true" *ngIf="error.length > 0">
+        <p>{{ error }}</p>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(image, imageForm.valid)">
+      <span *ngIf="!loading">Update</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn secondary" *ngIf="success" (click)="editAgain()">Edit Again</button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Done</button>
+  </mat-dialog-actions>
+</form>

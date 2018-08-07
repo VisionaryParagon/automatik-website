@@ -13,6 +13,7 @@ import { Project } from '../services/classes';
 export class ProjectService {
   projectUrlRoot = '/prj/';
   projects: Project[];
+  categories: string[];
   selectedCategory = '';
   filter = '';
 
@@ -48,7 +49,12 @@ export class ProjectService {
     return this.http.get<Project[]>(this.projectUrlRoot + 'projects')
       .pipe(
         retry(3),
-        tap(prj => this.projects = prj),
+        tap(prj => {
+          this.projects = prj;
+          this.categories = prj.map(project => project.category).filter((cat, idx, arr) => {
+            return arr.indexOf(cat) === idx;
+          });
+        }),
         catchError(this.handleError)
       );
   }

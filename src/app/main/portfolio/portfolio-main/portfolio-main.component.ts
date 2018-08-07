@@ -1,14 +1,11 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { MatDialog } from '@angular/material';
 
 import { Image, Project } from '../../../services/classes';
 import { ImageService } from '../../../services/image.service';
 import { ProjectService } from '../../../services/project.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
-
-import { ImageUploaderComponent } from '../../../modals/image-uploader/image-uploader.component';
 
 @Component({
   selector: 'app-portfolio-main',
@@ -30,26 +27,12 @@ export class PortfolioMainComponent implements OnInit {
   filterOpen = false;
   error = '';
 
-  project: Project = new Project();
-  highlightList: Array<string> = new Array<string>(3).fill('');
-  imageList: Array<string> = new Array<string>(3).fill('');
-  modalOptions = {
-    maxHeight: '90%',
-    maxWidth: '768px',
-    width: '80%'
-  };
-  submitted = false;
-  formLoading = false;
-  success = false;
-  invalid = false;
-
   @ViewChild('sidebar') sidebar: ElementRef;
   @ViewChild('tileBox') tileBox: ElementRef;
   @ViewChildren('tiles') tiles: QueryList<ElementRef>;
 
   constructor(
     private renderer: Renderer2,
-    private modalService: MatDialog,
     private imageService: ImageService,
     private projectService: ProjectService,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -261,101 +244,8 @@ export class PortfolioMainComponent implements OnInit {
     this.setTilePosition();
   }
 
-
-
-  setSlug(title) {
-    if (title.length > 0) {
-      this.project.slug = title.toLowerCase()
-        .replace(/&/g, 'and')
-        .replace(/%/g, 'percent')
-        .replace(/\+/g, 'plus')
-        .replace(/=/g, 'equals')
-        .replace(/[~`!@#$^*(){}[\]/\\|<>'";:,?®™–—]|(\.+$)/g, '')
-        .replace(/(\s*\-\s*)|(\.\s*)|\.+/g, ' ')
-        .replace(/\s{2,}/g, ' ')
-        .replace(/(\s+$)/g, '')
-        .split(' ').join('-');
-    }
-  }
-
-  trackByIndex(index: number, obj: any): any {
-    return index;
-  }
-
-  chooseImage(field, idx?) {
-    const modal = this.modalService.open(ImageUploaderComponent, this.modalOptions);
-    modal.afterClosed()
-      .subscribe(
-        result => {
-          if (field === 'title_lg') {
-            this.project.title_image_lg = result;
-          } else if (field === 'title_md') {
-            this.project.title_image_md = result;
-          } else if (field === 'title_sm') {
-            this.project.title_image_sm = result;
-          } else if (field === 'logo') {
-            this.project.logo = result;
-          } else if (field === 'featured') {
-            this.project.featured_image = result;
-          } else if (field === 'image') {
-            this.imageList[idx] = result;
-          }
-        },
-        error => this.setError(error)
-      );
-  }
-
-  addItem(array) {
-    // console.log('adding highlight');
-    array.push('');
-  }
-
-  deleteItem(array, id) {
-    // console.log('deleting highlight');
-    array.splice(id, 1);
-  }
-
-  submit(data, isValid) {
-    this.submitted = true;
-
-    if (isValid) {
-      this.formLoading = true;
-      this.project.highlights = this.highlightList;
-      this.project.images = this.imageList;
-      console.log(this.project);
-      this.projectService.validateProject(this.project)
-        .subscribe(
-          res => {
-            if (res.isValid) {
-              this.projectService.createProject(this.project)
-                .subscribe(
-                  newRes => {
-                    this.success = true;
-                    this.formLoading = false;
-                  },
-                  newErr => this.setError('New project error: ' + newErr)
-                );
-            } else {
-              this.invalid = true;
-              this.setError('Please fix errors above');
-            }
-          },
-          err => this.setError('Validation error: ' + err)
-        );
-    }
-  }
-
-  addAnother() {
-    this.project = new Project();
-    this.highlightList = new Array<string>(3).fill('');
-    this.imageList = new Array<string>(3).fill('');
-    this.submitted = false;
-    this.success = false;
-  }
-
   setError(err) {
     this.error = err;
     console.error(err);
-    this.formLoading = false;
   }
 }

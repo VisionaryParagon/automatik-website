@@ -22,7 +22,11 @@ import { AdminTeamComponent } from './admin-team/admin-team.component';
 import { AdminCareersComponent } from './admin-careers/admin-careers.component';
 
 // Modal Components
-import { ImageUploaderComponent } from '../modals/image-uploader/image-uploader.component';
+import { ImageUploaderComponent } from './modals/image-uploader/image-uploader.component';
+import { ImageEditComponent } from './modals/image-edit/image-edit.component';
+import { ImageDeleteComponent } from './modals/image-delete/image-delete.component';
+import { PortfolioFormComponent } from './modals/portfolio-form/portfolio-form.component';
+import { PortfolioDeleteComponent } from './modals/portfolio-delete/portfolio-delete.component';
 
 @NgModule({
   imports: [
@@ -36,10 +40,19 @@ import { ImageUploaderComponent } from '../modals/image-uploader/image-uploader.
     AdminImagesComponent,
     AdminPortfolioComponent,
     AdminTeamComponent,
-    AdminCareersComponent
+    AdminCareersComponent,
+    ImageUploaderComponent,
+    ImageEditComponent,
+    ImageDeleteComponent,
+    PortfolioFormComponent,
+    PortfolioDeleteComponent
   ],
   entryComponents: [
-    ImageUploaderComponent
+    ImageUploaderComponent,
+    ImageEditComponent,
+    ImageDeleteComponent,
+    PortfolioFormComponent,
+    PortfolioDeleteComponent
   ]
 })
 export class AdminModule { }

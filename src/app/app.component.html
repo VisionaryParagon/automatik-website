@@ -193,12 +193,12 @@
     </div>
 
     <div class="mobileNav" [@mobileNavMenu]="true" *ngIf="state === 'active' && isAdmin && !isLogin">
-      <a routerLink="/admin" routerLinkActive="active" (click)="toggleNav()">Home</a>
+      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleNav()">Home</a>
       <a routerLink="/admin/images" routerLinkActive="active" (click)="toggleNav()">Images</a>
       <a routerLink="/admin/portfolio" routerLinkActive="active" (click)="toggleNav()">Portfolio</a>
       <a routerLink="/admin/team" routerLinkActive="active" (click)="toggleNav()">Team</a>
       <a routerLink="/admin/careers" routerLinkActive="active" (click)="toggleNav()">Careers</a>
-      <a (click)="toggleNav(); logoutAdmin()">Logout</a>
+      <a class="navBtn" (click)="toggleNav(); logoutAdmin()">Logout</a>
     </div>
   </nav>
 </header>

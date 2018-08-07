@@ -1,0 +1,230 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title *ngIf="new">New Project</h2>
+  <h2 mat-dialog-title *ngIf="!new">Edit Project</h2>
+  <button mat-dialog-close><i class="fa fa-close"></i></button>
+</div>
+
+<form #projectForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success">
+        <div class="inputGroup" [class.nope]="title.errors && (title.touched || submitted)">
+          <label for="title">Title*</label>
+          <input type="text" class="form-control" name="title" #title="ngModel" autocomplete="off" [disabled]="!new" required [(ngModel)]="project.title" (blur)="setSlug(title.value)">
+          <div class="errorMsg" [@topDown]="true" *ngIf="title.errors && (title.touched || submitted)">
+            <p *ngIf="title.errors.required">Title is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="invalid || (slug.errors && (slug.touched || submitted))">
+          <label for="slug">Slug*</label>
+          <input type="text" class="form-control" name="slug" #slug="ngModel" disabled required [(ngModel)]="project.slug">
+          <p class="disclaimer">This cannot be changed once submitted</p>
+          <div class="errorMsg" [@topDown]="true" *ngIf="slug.errors && (slug.touched || submitted)">
+            <p *ngIf="slug.errors.required">Slug is required</p>
+          </div>
+          <div class="text-danger" [@topDown]="true" *ngIf="invalid">
+            <p>A project already exists with this slug. Please use a different Title.</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="description.errors && (description.touched || submitted)">
+          <label for="description">Description*</label>
+          <textarea class="form-control" name="description" #description="ngModel" autocomplete="off" rows="3" required [(ngModel)]="project.description"></textarea>
+          <div class="errorMsg" [@topDown]="true" *ngIf="description.errors && (description.touched || submitted)">
+            <p *ngIf="description.errors.required">Description is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="keywords.errors && (keywords.touched || submitted)">
+          <label for="keywords">Keywords*</label>
+          <input type="text" class="form-control" name="keywords" #keywords="ngModel" autocomplete="off" required [(ngModel)]="project.keywords">
+          <div class="errorMsg" [@topDown]="true" *ngIf="keywords.errors && (keywords.touched || submitted)">
+            <p *ngIf="keywords.errors.required">Keywords are required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="category.errors && (category.touched || submitted)">
+          <label for="category">Category*</label>
+          <input type="text" class="form-control" name="category" #category="ngModel" autocomplete="off" required [(ngModel)]="project.category">
+          <div class="errorMsg" [@topDown]="true" *ngIf="category.errors && (category.touched || submitted)">
+            <p *ngIf="category.errors.required">Category is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="date.errors && submitted">
+          <label for="date">Project Date*</label>
+          <input type="text" id="date" name="date" #date="ngModel" autocomplete="off" required [(ngModel)]="project.date" [matDatepicker]="myDatepicker" (focus)="myDatepicker.open()" (click)="myDatepicker.open()">
+          <mat-datepicker #myDatepicker></mat-datepicker>
+          <div class="errorMsg" [@topDown]="true" *ngIf="date.errors && submitted">
+            <p *ngIf="date.errors.required">Please select a date</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="title_image_lg.errors && submitted">
+          <div class="row">
+            <div class="col-12" [class.col-md-6]="project.title_image_lg">
+              <label for="title_image_lg">Large Title Image*</label>
+              <input type="text" class="form-control" name="title_image_lg" #title_image_lg="ngModel" autocomplete="off" required [(ngModel)]="project.title_image_lg" (click)="chooseImage('title_lg')">
+            </div>
+
+            <div class="col-12 col-md-6" *ngIf="project.title_image_lg">
+              <img class="w-100" [src]="getImagePath(project.title_image_lg)" [alt]="getImageAlt(project.title_image_lg)" (click)="chooseImage('title_lg')">
+            </div>
+          </div>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="title_image_lg.errors && submitted">
+            <p *ngIf="title_image_lg.errors.required">Large Title Image is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="title_image_md.errors && submitted">
+          <div class="row">
+            <div class="col-12" [class.col-md-6]="project.title_image_md">
+              <label for="title_image_md">Medium Title Image*</label>
+              <input type="text" class="form-control" name="title_image_md" #title_image_md="ngModel" autocomplete="off" required [(ngModel)]="project.title_image_md" (click)="chooseImage('title_md')">
+            </div>
+
+            <div class="col-12 col-md-6" *ngIf="project.title_image_md">
+              <img class="w-100" [src]="getImagePath(project.title_image_md)" [alt]="getImageAlt(project.title_image_md)" (click)="chooseImage('title_md')">
+            </div>
+          </div>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="title_image_md.errors && submitted">
+            <p *ngIf="title_image_md.errors.required">Medium Title Image is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="title_image_sm.errors && submitted">
+          <div class="row">
+            <div class="col-12" [class.col-md-6]="project.title_image_sm">
+              <label for="title_image_sm">Small Title Image*</label>
+              <input type="text" class="form-control" name="title_image_sm" #title_image_sm="ngModel" autocomplete="off" required [(ngModel)]="project.title_image_sm" (click)="chooseImage('title_sm')">
+            </div>
+
+            <div class="col-12 col-md-6" *ngIf="project.title_image_sm">
+              <img class="w-100" [src]="getImagePath(project.title_image_sm)" [alt]="getImageAlt(project.title_image_sm)" (click)="chooseImage('title_sm')">
+            </div>
+          </div>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="title_image_sm.errors && submitted">
+            <p *ngIf="title_image_sm.errors.required">Small Title Image is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="headline.errors && (headline.touched || submitted)">
+          <label for="headline">Headline*</label>
+          <textarea class="form-control" name="headline" #headline="ngModel" autocomplete="off" rows="3" required [(ngModel)]="project.headline"></textarea>
+          <div class="errorMsg" [@topDown]="true" *ngIf="headline.errors && (headline.touched || submitted)">
+            <p *ngIf="headline.errors.required">Headline is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="copy.errors && (copy.touched || submitted)">
+          <label for="copy">Body Copy*</label>
+          <textarea class="form-control" name="copy" #copy="ngModel" autocomplete="off" rows="5" required [(ngModel)]="project.copy"></textarea>
+          <div class="errorMsg" [@topDown]="true" *ngIf="copy.errors && (copy.touched || submitted)">
+            <p *ngIf="copy.errors.required">Body Copy is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup">
+          <div class="row">
+            <div class="col-12" [class.col-md-6]="project.logo">
+              <label for="logo">Logo</label>
+              <input type="text" class="form-control" name="logo" #logo="ngModel" autocomplete="off" [(ngModel)]="project.logo" (click)="chooseImage('logo')">
+            </div>
+
+            <div class="col-12 col-md-6" *ngIf="project.logo">
+              <img class="w-100" [src]="getImagePath(project.logo)" [alt]="getImageAlt(project.logo)" (click)="chooseImage('logo')">
+            </div>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="featured_image.errors && submitted">
+          <div class="row">
+            <div class="col-12" [class.col-md-6]="project.featured_image">
+              <label for="featured_image">Featured Image*</label>
+              <input type="text" class="form-control" name="featured_image" #featured_image="ngModel" autocomplete="off" required [(ngModel)]="project.featured_image" (click)="chooseImage('featured')">
+            </div>
+
+            <div class="col-12 col-md-6" *ngIf="project.featured_image">
+              <img class="w-100" [src]="getImagePath(project.featured_image)" [alt]="getImageAlt(project.featured_image)" (click)="chooseImage('featured')">
+            </div>
+          </div>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="featured_image.errors && submitted">
+            <p *ngIf="featured_image.errors.required">Featured Image is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup">
+          <label>Highlights*</label>
+          <div class="inputGroup" [class.nope]="highlight.errors && (highlight.touched || submitted)" *ngFor="let item of highlightList; let i = index; trackBy: trackByIndex">
+            <div class="input-group">
+              <input type="text" class="form-control" name="highlight{{i}}" #highlight="ngModel" autocomplete="off" required [(ngModel)]="highlightList[i]">
+              <div class="input-group-append" *ngIf="i > 1">
+                <button type="button" class="btn btn-danger" (click)="deleteItem(highlightList, i)"><i class="fa fa-close"></i></button>
+              </div>
+            </div>
+            <div class="errorMsg" [@topDown]="true" *ngIf="highlight.errors && (highlight.touched || submitted)">
+              <p *ngIf="highlight.errors.required">This highlight is required<span *ngIf="i > 1"> or must be deleted</span></p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success" (click)="addItem(highlightList)"><i class="fa fa-plus"></i> Add Hightlight</button>
+        </div>
+
+        <div class="inputGroup">
+          <label>Images*</label>
+          <div class="inputGroup" [class.nope]="image.errors && submitted" *ngFor="let item of imageList; let i = index; trackBy: trackByIndex">
+            <div class="row">
+              <div class="col-12" [class.col-md-6]="imageList[i]">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="image{{i}}" #image="ngModel" autocomplete="off" required [(ngModel)]="imageList[i]" (click)="chooseImage('image', i)">
+                  <div class="input-group-append" *ngIf="i > 1">
+                    <button type="button" class="btn btn-danger" (click)="deleteItem(imageList, i)"><i class="fa fa-close"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6" *ngIf="imageList[i]">
+                <img class="w-100" [src]="getImagePath(imageList[i])" [alt]="getImageAlt(imageList[i])" (click)="chooseImage('image', i)">
+              </div>
+            </div>
+
+            <div class="errorMsg" [@topDown]="true" *ngIf="image.errors && submitted">
+              <p *ngIf="image.errors.required">This image is required<span *ngIf="i > 1"> or must be deleted</span></p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success" (click)="addItem(imageList)"><i class="fa fa-plus"></i> Add Image</button>
+        </div>
+
+        <div class="text-center">
+          <p class="disclaimer">* Required field</p>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length > 0">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="success">
+        <h3>Success!</h3>
+
+        <p>This project has been added:</p>
+
+        <pre class="text-left">{{ project | json }}</pre>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(project, projectForm.valid)">
+      <span *ngIf="!loading">Submit</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn secondary" *ngIf="success" (click)="addAnother()">Add Another</button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Done</button>
+  </mat-dialog-actions>
+</form>

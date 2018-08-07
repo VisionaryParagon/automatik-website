@@ -1,3 +1,65 @@
 <section [@fade]="true">
-  <h1>Admin Portfolio</h1>
+  <div class="container">
+    <h1 class="text-center">Admin Portfolio</h1>
+
+    <div class="row">
+      <div class="col-12 col-md-6 order-md-last text-md-right">
+        <button class="autoBtn my-3" (click)="new()">New Project</button>
+      </div>
+
+      <div class="col-12 col-md-6 order-md-first">
+        <div class="inputGroup">
+          <input type="text" name="search" class="form-control" autocomplete="off" placeholder="Search" (keyup)="updateFilter($event.target.value)">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading && !error.length">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
+
+    <div class="tableContainer">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="date" matSortDirection="desc">
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Title </th>
+          <td mat-cell *matCellDef="let row"> {{ row.title }} </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Date </th>
+          <td mat-cell *matCellDef="let row"> {{ row.date | date: 'shortDate' }} </td>
+        </ng-container>
+
+        <!-- View Column -->
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> View </th>
+          <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="view(row)"><i class="fa fa-eye fa-lg"></i></button> </td>
+        </ng-container>
+
+        <!-- Edit Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Edit </th>
+          <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="edit(row)"><i class="fa fa-edit fa-lg"></i></button> </td>
+        </ng-container>
+
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Delete </th>
+          <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="delete(row)"><i class="fa fa-trash-o fa-lg"></i></button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <mat-paginator [pageSize]="12" [pageSizeOptions]="[4, 12, 24, 48]"></mat-paginator>
+
+    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+      <p>{{ error }}</p>
+    </div>
+  </div>
 </section>

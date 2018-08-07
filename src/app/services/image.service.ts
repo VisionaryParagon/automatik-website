@@ -97,6 +97,15 @@ export class ImageService {
     return this.bucket.upload(params).promise();
   }
 
+  delete(file) {
+    const params = {
+      Bucket: 'assets.automatik9dots.com',
+      Key: 'images/' + file
+    };
+
+    return this.bucket.deleteObject(params).promise();
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (isPlatformBrowser(this.platformId)) {
       if (error.error instanceof ErrorEvent) {

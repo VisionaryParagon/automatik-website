@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-import { CareerInquiry } from '../../services/classes';
-import { CareersService } from '../../services/careers.service';
+import { CareerInquiry } from '../../../services/classes';
+import { CareersService } from '../../../services/careers.service';
 
-import { FadeAnimation, TopDownAnimation } from '../../animations';
+import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
 @Component({
   selector: 'app-career-inquiry',

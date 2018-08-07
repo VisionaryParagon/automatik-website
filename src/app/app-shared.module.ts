@@ -8,7 +8,10 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatInputModule,
+  MatPaginatorModule,
   MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule,
   MatTabsModule
 } from '@angular/material';
 
@@ -26,7 +29,10 @@ import { CookieModule } from 'ngx-cookie';
     MatNativeDateModule,
     MatDialogModule,
     MatInputModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
     CookieModule.forRoot()
   ],
@@ -41,7 +47,10 @@ import { CookieModule } from 'ngx-cookie';
     MatNativeDateModule,
     MatDialogModule,
     MatInputModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
     CookieModule
   ]

@@ -1,3 +1,84 @@
 <section [@fade]="true">
-  <h1>Admin Images</h1>
+  <div class="container">
+    <h1 class="text-center">Admin Images</h1>
+
+    <div class="row">
+      <div class="col-12 col-md-6 order-md-last text-md-right">
+        <button class="autoBtn my-3" (click)="addNew()">New Image</button>
+      </div>
+
+      <div class="col-12 col-md-6 order-md-first">
+        <div class="inputGroup">
+          <input type="text" name="search" class="form-control" autocomplete="off" placeholder="Search" (keyup)="updateFilter($event.target.value)">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!imageList.length && !error.length">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
+
+    <div class="formDrawer" [@topDown]="true" *ngIf="new">
+      <h3>Add New Image</h3>
+
+      <div *ngIf="!success">
+        <form #imageForm="ngForm" novalidate>
+          <div class="inputGroup" [class.nope]="img.errors && (img.touched || submitted)">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" #img required (change)="setImageData($event)">
+              <label class="custom-file-label" for="img">{{ imageName }}</label>
+            </div>
+            <div class="errorMsg" [@topDown]="true" *ngIf="img.errors && (img.touched || submitted)">
+              <p *ngIf="img.errors.required">Please choose an image to upload</p>
+            </div>
+          </div>
+
+          <div class="inputGroup" [class.nope]="alt.errors && (alt.touched || submitted)">
+            <label for="alt">Alt Text</label>
+            <input type="text" class="form-control" name="alt" #alt="ngModel" autocomplete="off" required [(ngModel)]="image.alt">
+            <div class="errorMsg" [@topDown]="true" *ngIf="alt.errors && (alt.touched || submitted)">
+              <p *ngIf="alt.errors.required">Alt Text is required</p>
+            </div>
+          </div>
+
+          <div class="text-danger" [@topDown]="true" *ngIf="invalid">
+            <p>An image already exists with this file name</p>
+          </div>
+
+          <button class="autoBtn" [disabled]="loading" (click)="upload()">
+            <span *ngIf="!loading">Upload</span>
+            <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+          </button>
+
+          <button class="autoBtn secondary mx-3" (click)="cancel()">Cancel</button>
+        </form>
+      </div>
+
+      <div class="text-center" *ngIf="success">
+        <h3>Success!</h3>
+
+        <p>Your image has successfully been uploaded.</p>
+
+        <button class="autoBtn" (click)="uploadAnother()">Upload Another</button>
+
+        <button class="autoBtn secondary mx-3" (click)="cancel()">Close</button>
+      </div>
+    </div>
+
+    <div class="imageSelection">
+      <div class="imageBox" *ngFor="let item of imageList" (mouseenter)="select(item._id)" (mouseleave)="select('')" (click)="select(item._id)">
+        <div class="image" [style.backgroundImage]="'url(' + item.path + ')'"></div>
+        <div class="buttons" [@topDown]="true" *ngIf="this.imageId === item._id">
+          <button class="btn" (click)="edit(item)"><i class="fa fa-edit fa-2x"></i></button>
+          <button class="btn" (click)="delete(item)"><i class="fa fa-trash-o fa-2x"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <mat-paginator [length]="totalLength" [pageSize]="pageSize" [pageIndex]="currentPage" [pageSizeOptions]="[4, 12, 24, 48]" (page)="handlePage($event)"></mat-paginator>
+
+    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+      <p>{{ error }}</p>
+    </div>
+  </div>
 </section>
