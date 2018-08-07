@@ -211,7 +211,7 @@
       <div class="text-center" *ngIf="success">
         <h3>Success!</h3>
 
-        <p>This project has been added:</p>
+        <p>This project has been <span *ngIf="new">added</span><span *ngIf="!new">updated</span>:</p>
 
         <p><a routerLink="/portfolio/{{ project.slug }}" target="_blank">{{ project.title }}</a></p>
       </div>
