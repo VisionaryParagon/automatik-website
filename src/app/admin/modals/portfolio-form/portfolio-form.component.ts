@@ -7,8 +7,6 @@ import { ProjectService } from '../../../services/project.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
-import { ImageDeleteComponent } from '../image-delete/image-delete.component';
-import { ImageEditComponent } from '../image-edit/image-edit.component';
 import { ImageUploaderComponent } from '../image-uploader/image-uploader.component';
 
 @Component({
