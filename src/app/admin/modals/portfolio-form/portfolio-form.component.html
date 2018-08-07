@@ -213,7 +213,7 @@
 
         <p>This project has been added:</p>
 
-        <pre class="text-left">{{ project | json }}</pre>
+        <p><a routerLink="/portfolio/{{ project.slug }}" target="_blank">{{ project.title }}</a></p>
       </div>
     </div>
   </mat-dialog-content>
