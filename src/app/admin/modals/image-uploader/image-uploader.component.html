@@ -53,19 +53,13 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <div *ngIf="tabId === 0">
-      <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
-      <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="upload()">
-        <span *ngIf="!loading">Upload</span>
-        <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
-      </button>
-      <button class="autoBtn secondary" *ngIf="success" (click)="uploadAnother()">Upload Another</button>
-      <button class="autoBtn" *ngIf="success" [mat-dialog-close]="imageId">Done</button>
-    </div>
-
-    <div *ngIf="tabId === 1">
-      <button class="autoBtn secondary" mat-dialog-close>Cancel</button>
-      <button class="autoBtn" [mat-dialog-close]="imageId">Select</button>
-    </div>
+    <button class="autoBtn secondary" *ngIf="(!success && tabId === 0) || tabId === 1" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success && tabId === 0" [disabled]="loading" (click)="upload()">
+      <span *ngIf="!loading">Upload</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn secondary" *ngIf="success && tabId === 0" (click)="uploadAnother()">Upload Another</button>
+    <button class="autoBtn" *ngIf="success && tabId === 0" [mat-dialog-close]="imageId">Done</button>
+    <button class="autoBtn" *ngIf="tabId === 1" [mat-dialog-close]="imageId">Select</button>
   </mat-dialog-actions>
 </form>
