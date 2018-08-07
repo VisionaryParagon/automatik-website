@@ -162,6 +162,11 @@ export class PortfolioFormComponent implements OnInit {
     this.success = false;
   }
 
+  editAgain() {
+    this.submitted = false;
+    this.success = false;
+  }
+
   setError(err) {
     this.error = err;
     console.error(err);
