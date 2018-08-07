@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { Image, Project } from '../../services/classes';
@@ -37,7 +36,6 @@ export class AdminPortfolioComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private router: Router,
     private modalService: MatDialog,
     private imageService: ImageService,
     private projectService: ProjectService
