@@ -123,19 +123,18 @@ export class PortfolioFormComponent implements OnInit {
       this.loading = true;
       this.project.highlights = this.highlightList;
       this.project.images = this.imageList;
-      console.log(this.project);
-      this.projectService.validateProject(this.project)
-        .subscribe(
+
+      if (this.new) {
+        this.projectService.validateProject(this.project).subscribe(
           res => {
             if (res.isValid) {
-              this.projectService.createProject(this.project)
-                .subscribe(
-                  newRes => {
-                    this.success = true;
-                    this.loading = false;
-                  },
-                  newErr => this.setError('New project error: ' + newErr)
-                );
+              this.projectService.createProject(this.project).subscribe(
+                newRes => {
+                  this.success = true;
+                  this.loading = false;
+                },
+                newErr => this.setError('New project error: ' + newErr)
+              );
             } else {
               this.invalid = true;
               this.setError('Please fix errors above');
@@ -143,6 +142,15 @@ export class PortfolioFormComponent implements OnInit {
           },
           err => this.setError('Validation error: ' + err)
         );
+      } else {
+        this.projectService.updateProject(this.project).subscribe(
+          res => {
+            this.success = true;
+            this.loading = false;
+          },
+          err => this.setError('Update project error: ' + err)
+        );
+      }
     }
   }
 
