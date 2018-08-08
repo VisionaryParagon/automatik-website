@@ -41,35 +41,37 @@ export class AdminLoginComponent implements OnInit {
     if (isValid) {
       this.loading = true;
 
-      this.adminService.login(user).subscribe(
-        res => {
-          this.loading = false;
+      this.adminService.login(user)
+        .subscribe(
+          res => {
+            this.loading = false;
 
-          if (res.message === 'Login successful!') {
-            this.hideError();
+            if (res.message === 'Login successful!') {
+              this.hideError();
 
-            // Redirect to saved URL or home
-            this.router.navigateByUrl(this.returnUrl);
-          } else {
-            this.invalid = true;
-            this.err = res.message;
+              // Redirect to saved URL or home
+              this.router.navigateByUrl(this.returnUrl);
+            } else {
+              this.invalid = true;
+              this.err = res.message;
+            }
+          },
+          err => {
+            this.loading = false;
+
+            if (err.error.name === 'IncorrectUsernameError') {
+              this.invalidUsername = true;
+              this.invalid = true;
+              this.err = 'Invalid username';
+            } else if (err.error.name === 'IncorrectPasswordError') {
+              this.invalidPassword = true;
+              this.invalid = true;
+              this.err = 'Invalid password';
+            } else {
+              this.showError();
+            }
           }
-        },
-        err => {
-          this.loading = false;
-
-          if (err.error.name === 'IncorrectUsernameError') {
-            this.invalidUsername = true;
-            this.invalid = true;
-            this.err = 'Invalid username';
-          } else if (err.error.name === 'IncorrectPasswordError') {
-            this.invalidPassword = true;
-            this.invalid = true;
-            this.err = 'Invalid password';
-          } else {
-            this.showError();
-          }
-        });
+        );
     }
     return false;
   }
