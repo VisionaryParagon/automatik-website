@@ -46,10 +46,11 @@ export class CareersComponent implements OnInit {
       maxWidth: '768px',
       width: '80%'
     });
-    modal.afterClosed().subscribe(
-      result => {},
-      error => {}
-    );
+    modal.afterClosed()
+      .subscribe(
+        result => {},
+        error => {}
+      );
   }
 
   setError(err) {

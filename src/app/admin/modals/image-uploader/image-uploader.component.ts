@@ -80,15 +80,16 @@ export class ImageUploaderComponent implements OnInit {
               this.imageService.upload(this.imageData)
                 .then(uploadRes => {
                   // console.log('Upload Success: ', uploadRes);
-                  this.imageService.createImage(this.image).subscribe(
-                    imageRes => {
-                      // console.log('New Image Success: ', imageRes);
-                      this.imageId = imageRes._id;
-                      this.success = true;
-                      this.loading = false;
-                    },
-                    err => this.setError('New Image Error: ' + err)
-                  );
+                  this.imageService.createImage(this.image)
+                    .subscribe(
+                      imageRes => {
+                        // console.log('New Image Success: ', imageRes);
+                        this.imageId = imageRes._id;
+                        this.success = true;
+                        this.loading = false;
+                      },
+                      err => this.setError('New Image Error: ' + err)
+                    );
                 })
                 .catch(err => this.setError('Upload Error: ' + err));
             } else {

@@ -125,31 +125,34 @@ export class PortfolioFormComponent implements OnInit {
       this.project.images = this.imageList;
 
       if (this.new) {
-        this.projectService.validateProject(this.project).subscribe(
-          res => {
-            if (res.isValid) {
-              this.projectService.createProject(this.project).subscribe(
-                newRes => {
-                  this.success = true;
-                  this.loading = false;
-                },
-                newErr => this.setError('New project error: ' + newErr)
-              );
-            } else {
-              this.invalid = true;
-              this.setError('Please fix errors above');
-            }
-          },
-          err => this.setError('Validation error: ' + err)
-        );
+        this.projectService.validateProject(this.project)
+          .subscribe(
+            res => {
+              if (res.isValid) {
+                this.projectService.createProject(this.project)
+                  .subscribe(
+                    newRes => {
+                      this.success = true;
+                      this.loading = false;
+                    },
+                    newErr => this.setError('New project error: ' + newErr)
+                  );
+              } else {
+                this.invalid = true;
+                this.setError('Please fix errors above');
+              }
+            },
+            err => this.setError('Validation error: ' + err)
+          );
       } else {
-        this.projectService.updateProject(this.project).subscribe(
-          res => {
-            this.success = true;
-            this.loading = false;
-          },
-          err => this.setError('Update project error: ' + err)
-        );
+        this.projectService.updateProject(this.project)
+          .subscribe(
+            res => {
+              this.success = true;
+              this.loading = false;
+            },
+            err => this.setError('Update project error: ' + err)
+          );
       }
     }
   }

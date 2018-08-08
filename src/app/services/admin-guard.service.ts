@@ -17,26 +17,28 @@ export class AdminGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
     return new Promise(resolve => {
-      this.adminService.status().subscribe(
-        res => {
-          if (res.auth) {
-            resolve(true);
-          } else {
-            // Save redirect URL
-            this.adminService.returnUrl = state.url;
+      this.adminService.status()
+        .subscribe(
+          res => {
+            if (res.auth) {
+              resolve(true);
+            } else {
+              // Save redirect URL
+              this.adminService.returnUrl = state.url;
 
+              // Navigate to the login page
+              this.router.navigate(['/admin/login']);
+
+              resolve(false);
+            }
+          },
+          err => {
             // Navigate to the login page
             this.router.navigate(['/admin/login']);
 
             resolve(false);
           }
-        },
-        err => {
-          // Navigate to the login page
-          this.router.navigate(['/admin/login']);
-
-          resolve(false);
-        });
+        );
     });
   }
 }

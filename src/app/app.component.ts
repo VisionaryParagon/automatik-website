@@ -387,10 +387,11 @@ export class AppComponent implements OnInit {
   }
 
   logoutAdmin() {
-    this.adminService.logout().subscribe(
-      res => this.router.navigate(['/admin/login']),
-      err => console.log('logout error: ', err)
-    );
+    this.adminService.logout()
+      .subscribe(
+        res => this.router.navigate(['/admin/login']),
+        err => console.log('logout error: ', err)
+      );
   }
 }
 

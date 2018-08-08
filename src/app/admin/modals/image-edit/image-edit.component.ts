@@ -35,13 +35,14 @@ export class ImageEditComponent implements OnInit {
 
     if (isValid) {
       this.loading = true;
-      this.imageService.updateImage(data).subscribe(
-        res => {
-          this.success = true;
-          this.loading = false;
-        },
-        err => this.setError(err)
-      );
+      this.imageService.updateImage(data)
+        .subscribe(
+          res => {
+            this.success = true;
+            this.loading = false;
+          },
+          err => this.setError(err)
+        );
     }
     return false;
   }

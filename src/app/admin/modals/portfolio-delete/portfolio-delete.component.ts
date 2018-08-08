@@ -31,13 +31,14 @@ export class PortfolioDeleteComponent implements OnInit {
 
   delete() {
     this.loading = true;
-    this.projectService.deleteProject(this.project).subscribe(
-      res => {
-        this.success = true;
-        this.loading = false;
-      },
-      err => this.setError(err)
-    );
+    this.projectService.deleteProject(this.project)
+      .subscribe(
+        res => {
+          this.success = true;
+          this.loading = false;
+        },
+        err => this.setError(err)
+      );
   }
 
   setError(err) {
