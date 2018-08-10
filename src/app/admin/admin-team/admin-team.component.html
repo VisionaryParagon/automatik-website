@@ -1,3 +1,19 @@
 <section [@fade]="true">
-  <h1>Admin Team</h1>
+  <div class="container">
+    <h1 class="text-center">Admin Team</h1>
+
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Team">
+        <ng-template matTabContent>
+          <app-team-data></app-team-data>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Departments">
+        <ng-template matTabContent>
+          <app-department-data></app-department-data>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </section>

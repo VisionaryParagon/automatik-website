@@ -25,7 +25,7 @@ export class CareerInquiry {
 export class Department {
   _id?: string;
   name: string;
-  rank: Number;
+  rank: number;
 }
 
 export class Teammate {

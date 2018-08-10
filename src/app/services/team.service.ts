@@ -11,6 +11,8 @@ import { Department, Teammate } from '../services/classes';
   providedIn: 'root'
 })
 export class TeamService {
+  team: Teammate[];
+  departments: Department[];
   teamUrlRoot = '/tm/';
 
   constructor(
@@ -36,6 +38,7 @@ export class TeamService {
     return this.http.get<Department[]>(this.teamUrlRoot + 'depts')
       .pipe(
         retry(3),
+        tap(res => this.departments = res),
         catchError(this.handleError)
       );
   }
@@ -52,6 +55,15 @@ export class TeamService {
   // Update department
   updateDepartment(department) {
     return this.http.put<Department>(this.teamUrlRoot + 'depts/' + department._id, department)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  // Update department ranks
+  updateDepartmentRanks(departments) {
+    return this.http.put<any>(this.teamUrlRoot + 'deptsrank', departments)
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -78,9 +90,10 @@ export class TeamService {
 
   // Get all teammates
   getTeammates() {
-    return this.http.get<Teammate>(this.teamUrlRoot + 'teammates')
+    return this.http.get<Teammate[]>(this.teamUrlRoot + 'teammates')
       .pipe(
         retry(3),
+        tap(res => this.team = res),
         catchError(this.handleError)
       );
   }

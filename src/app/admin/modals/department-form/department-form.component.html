@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title *ngIf="new">New Department</h2>
+  <h2 mat-dialog-title *ngIf="!new">Edit Department</h2>
+  <button mat-dialog-close><i class="fa fa-close"></i></button>
+</div>
+
+<form #departmentForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="inputGroup" [class.nope]="name.errors && (name.touched || submitted)">
+              <label for="name">Name*</label>
+              <input type="text" class="form-control" name="name" #name="ngModel" autocomplete="off" required [(ngModel)]="department.name">
+              <div class="errorMsg" [@topDown]="true" *ngIf="name.errors && (name.touched || submitted)">
+                <p *ngIf="name.errors.required">Name is required</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="inputGroup" [class.nope]="rank.errors && (rank.touched || submitted)">
+              <label for="rank">Rank*</label>
+              <input type="number" class="form-control" name="rank" #rank="ngModel" autocomplete="off" [min]="deptMin" [max]="deptMax" [minVal]="deptMin" [maxVal]="deptMax" required [(ngModel)]="department.rank">
+              <div class="errorMsg" [@topDown]="true" *ngIf="rank.errors && (rank.touched || submitted)">
+                <p *ngIf="rank.errors.required">Rank is required</p>
+                <p *ngIf="rank.errors.minVal">Cannot be less than {{ deptMin }}</p>
+                <p *ngIf="rank.errors.maxVal">Cannot be greater than {{ deptMax }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="disclaimer">* Required field</p>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length > 0">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="success">
+        <h3>Success!</h3>
+
+        <p>{{ department.name }} has been <span *ngIf="new">added</span><span *ngIf="!new">updated</span>.</p>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(department, departmentForm.valid)">
+      <span *ngIf="!loading">Submit</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn secondary" *ngIf="success && new" (click)="addAnother()">Add Another</button>
+    <button class="autoBtn secondary" *ngIf="success && !new" (click)="editAgain()">Edit Again</button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Done</button>
+  </mat-dialog-actions>
+</form>

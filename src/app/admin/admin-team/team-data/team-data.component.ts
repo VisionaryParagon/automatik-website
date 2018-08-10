@@ -1,34 +1,44 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { Department, Image, Teammate } from '../../../services/classes';
 import { ImageService } from '../../../services/image.service';
 import { TeamService } from '../../../services/team.service';
 
-import { FadeAnimation, TeamBioAnimation } from '../../../animations';
+import { FadeAnimation, TopDownAnimation } from '../../../animations';
+
+import { TeamFormComponent } from '../../modals/team-form/team-form.component';
+import { TeamDeleteComponent } from '../../modals/team-delete/team-delete.component';
 
 @Component({
-  selector: 'app-team',
-  templateUrl: './team.component.html',
-  styleUrls: ['./team.component.css'],
-  animations: [ FadeAnimation, TeamBioAnimation ]
+  selector: 'app-team-data',
+  templateUrl: './team-data.component.html',
+  styleUrls: ['./team-data.component.css'],
+  animations: [ FadeAnimation, TopDownAnimation ]
 })
-export class TeamComponent implements OnInit {
+export class TeamDataComponent implements OnInit {
   teammates: Teammate[] = this.teamService.team;
   departments: Department[] = this.teamService.departments;
   images: Image[] = this.imageService.images;
-  teamHeight = 'auto';
-  bottomMargin = '0px';
-  selected: Teammate;
+  dataSource: MatTableDataSource<Teammate>;
+  displayedColumns: string[] = ['primary_image', 'first_name', 'last_name', 'edit', 'delete'];
   teamLoaded = false;
   deptsLoaded = false;
   imagesLoaded = false;
   loading = true;
   error = '';
 
-  @ViewChild('teamBox') teamBox: ElementRef;
-  @ViewChild('bioBox') bioBox: ElementRef;
+  modalOptions = {
+    maxHeight: '90%',
+    maxWidth: '768px',
+    width: '80%'
+  };
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private modalService: MatDialog,
     private imageService: ImageService,
     private teamService: TeamService
   ) { }
@@ -63,6 +73,9 @@ export class TeamComponent implements OnInit {
 
   setTeam(data) {
     this.teammates = this.teamSort(data);
+    this.dataSource = new MatTableDataSource(this.teammates);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.teamLoaded = true;
     this.checkData();
   }
@@ -133,23 +146,64 @@ export class TeamComponent implements OnInit {
     }
   }
 
-  openTeammate(data) {
-    const teamHeight = this.teamBox.nativeElement.offsetHeight;
-    this.teamHeight = teamHeight + 'px';
-
-    this.selected = data;
-
-    setTimeout(() => {
-      const bioHeight = this.bioBox.nativeElement.offsetHeight;
-      if (bioHeight > teamHeight) {
-        this.bottomMargin = bioHeight - teamHeight + 'px';
-      }
-    }, 50);
+  getImageAlt(id) {
+    if (this.images) {
+      return this.images.filter(img => img._id === id)[0].alt;
+    }
   }
 
-  closeTeammate() {
-    this.selected = null;
-    this.bottomMargin = '0px';
+  updateFilter(val: string) {
+    this.dataSource.filter = val.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  new() {
+    const modal = this.modalService.open(TeamFormComponent, this.modalOptions);
+    modal.afterClosed()
+      .subscribe(
+        result => {
+          this.getTeam();
+          this.getImages();
+        },
+        error => this.setError(error)
+      );
+  }
+
+  edit(data) {
+    const modal = this.modalService.open(TeamFormComponent, {
+      data: data,
+      maxHeight: '90%',
+      maxWidth: '768px',
+      width: '80%'
+    });
+    modal.afterClosed()
+      .subscribe(
+        result => {
+          this.getTeam();
+          this.getImages();
+        },
+        error => this.setError(error)
+      );
+  }
+
+  delete(data) {
+    const modal = this.modalService.open(TeamDeleteComponent, {
+      data: data,
+      maxHeight: '90%',
+      maxWidth: '768px',
+      width: '80%'
+    });
+    modal.afterClosed()
+      .subscribe(
+        result => {
+          this.getTeam();
+          this.getImages();
+        },
+        error => this.setError(error)
+      );
   }
 
   setError(err) {

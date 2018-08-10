@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title *ngIf="new">New Teammate</h2>
+  <h2 mat-dialog-title *ngIf="!new">Edit Teammate</h2>
+  <button mat-dialog-close><i class="fa fa-close"></i></button>
+</div>
+
+<form #teamForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="inputGroup" [class.nope]="first_name.errors && (first_name.touched || submitted)">
+              <label for="first_name">First Name*</label>
+              <input type="text" class="form-control" name="first_name" #first_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="teammate.first_name">
+              <div class="errorMsg" [@topDown]="true" *ngIf="first_name.errors && (first_name.touched || submitted)">
+                <p *ngIf="first_name.errors.required">First Name is required</p>
+                <p *ngIf="first_name.errors.pattern">Numbers and special characters are not allowed</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="inputGroup" [class.nope]="last_name.errors && (last_name.touched || submitted)">
+              <label for="last_name">Last Name*</label>
+              <input type="text" class="form-control" name="last_name" #last_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="teammate.last_name">
+              <div class="errorMsg" [@topDown]="true" *ngIf="last_name.errors && (last_name.touched || submitted)">
+                <p *ngIf="last_name.errors.required">Last Name is required</p>
+                <p *ngIf="last_name.errors.pattern">Numbers and special characters are not allowed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="pseudoname.errors && (pseudoname.touched || submitted)">
+          <label for="pseudoname">Pseudoname*</label>
+          <input type="text" class="form-control" name="pseudoname" #pseudoname="ngModel" autocomplete="off" required [(ngModel)]="teammate.pseudoname">
+          <div class="errorMsg" [@topDown]="true" *ngIf="pseudoname.errors && (pseudoname.touched || submitted)">
+            <p *ngIf="pseudoname.errors.required">Pseudoname is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="title.errors && (title.touched || submitted)">
+          <label for="title">Title*</label>
+          <input type="text" class="form-control" name="title" #title="ngModel" autocomplete="off" required [(ngModel)]="teammate.title">
+          <div class="errorMsg" [@topDown]="true" *ngIf="title.errors && (title.touched || submitted)">
+            <p *ngIf="title.errors.required">Please select an option</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="department.errors && (department.touched || submitted)">
+          <label for="department">Department*</label>
+          <select class="form-control" name="department" #department required [(ngModel)]="teammate.department">
+            <option [value]="anyVal" selected disabled></option>
+            <option *ngFor="let department of departments" [value]="department._id">{{ department.name }}</option>
+          </select>
+          <i class="fa fa-caret-down"></i>
+          <div class="errorMsg" [@topDown]="true" *ngIf="department.errors && (department.touched || submitted)">
+            <p *ngIf="department.errors.required">Please select an option</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="seniority.errors && submitted">
+          <label for="seniority">Start Date*</label>
+          <input type="text" class="form-control" name="seniority" #seniority="ngModel" autocomplete="off" required [(ngModel)]="teammate.seniority" [matDatepicker]="myDatepicker" (focus)="myDatepicker.open()" (click)="myDatepicker.open()">
+          <mat-datepicker #myDatepicker></mat-datepicker>
+          <div class="errorMsg" [@topDown]="true" *ngIf="seniority.errors && submitted">
+            <p *ngIf="seniority.errors.required">Please select a date</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="bio.errors && (bio.touched || submitted)">
+          <label for="bio">Bio*</label>
+          <textarea class="form-control" name="bio" #bio="ngModel" autocomplete="off" rows="5" required [(ngModel)]="teammate.bio"></textarea>
+          <div class="errorMsg" [@topDown]="true" *ngIf="bio.errors && (bio.touched || submitted)">
+            <p *ngIf="bio.errors.required">Please submit a response</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="primary_image.errors && submitted">
+          <div class="row">
+            <div class="col-12" [class.col-md-6]="teammate.primary_image">
+              <label for="primary_image">Primary Image*</label>
+              <input type="text" class="form-control" name="primary_image" #primary_image="ngModel" autocomplete="off" required [(ngModel)]="teammate.primary_image" (click)="chooseImage('primary_image')">
+            </div>
+
+            <div class="col-12 col-md-6" *ngIf="teammate.primary_image">
+              <img class="w-100" [src]="getImagePath(teammate.primary_image)" [alt]="getImageAlt(teammate.primary_image)" (click)="chooseImage('primary_image')">
+            </div>
+          </div>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="primary_image.errors && submitted">
+            <p *ngIf="primary_image.errors.required">Primary Image is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="secondary_image.errors && submitted">
+          <div class="row">
+            <div class="col-12" [class.col-md-6]="teammate.secondary_image">
+              <label for="secondary_image">Secondary Image*</label>
+              <input type="text" class="form-control" name="secondary_image" #secondary_image="ngModel" autocomplete="off" required [(ngModel)]="teammate.secondary_image" (click)="chooseImage('secondary_image')">
+            </div>
+
+            <div class="col-12 col-md-6" *ngIf="teammate.secondary_image">
+              <img class="w-100" [src]="getImagePath(teammate.secondary_image)" [alt]="getImageAlt(teammate.secondary_image)" (click)="chooseImage('secondary_image')">
+            </div>
+          </div>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="secondary_image.errors && submitted">
+            <p *ngIf="secondary_image.errors.required">Secondary Image is required</p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="disclaimer">* Required field</p>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length > 0">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="success">
+        <h3>Success!</h3>
+
+        <p>{{ teammate.first_name }} {{ teammate.last_name }} has been <span *ngIf="new">added</span><span *ngIf="!new">updated</span>.</p>
+
+        <img class="w-50" [src]="getImagePath(teammate.primary_image)" [alt]="getImageAlt(teammate.primary_image)">
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(teammate, teamForm.valid)">
+      <span *ngIf="!loading">Submit</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn secondary" *ngIf="success && new" (click)="addAnother()">Add Another</button>
+    <button class="autoBtn secondary" *ngIf="success && !new" (click)="editAgain()">Edit Again</button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Done</button>
+  </mat-dialog-actions>
+</form>

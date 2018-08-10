@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-12 col-md-6 order-md-last text-md-right">
+    <button class="autoBtn my-3" (click)="new()">New Department</button>
+  </div>
+
+  <div class="col-12 col-md-6 order-md-first">
+    <div class="inputGroup">
+      <input type="text" name="search" class="form-control" autocomplete="off" placeholder="Search" (keyup)="updateFilter($event.target.value)">
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading && !error.length">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+  <p>{{ error }}</p>
+</div>
+
+<div class="tableContainer">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Department Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Department Name </th>
+      <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+    </ng-container>
+
+    <!-- Rank Column -->
+    <ng-container matColumnDef="rank">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rank </th>
+      <td mat-cell *matCellDef="let row"> {{ row.rank }} </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Edit </th>
+      <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="edit(row)"><i class="fa fa-edit fa-lg"></i></button> </td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Delete </th>
+      <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="delete(row)"><i class="fa fa-trash-o fa-lg"></i></button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<mat-paginator [pageSize]="12" [pageSizeOptions]="[4, 12, 24, 48]"></mat-paginator>

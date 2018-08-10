@@ -43,6 +43,21 @@ router.put('/depts/:id', function (req, res) {
   });
 });
 
+// update department ranks
+router.put('/deptsrank', function (req, res) {
+  const success = {
+    message: 'Success!'
+  };
+  req.body.forEach(dept => {
+    departments.findByIdAndUpdate(dept._id, dept, {
+      new: true
+    }, function (err, data) {
+      if (err) return res.status(500).send(err);
+    });
+  });
+  return res.status(200).send(success);
+});
+
 // delete department
 router.delete('/depts/:id', function (req, res) {
   departments.findByIdAndRemove(req.params.id, function (err, data) {

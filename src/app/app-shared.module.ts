@@ -18,6 +18,9 @@ import {
 
 import { CookieModule } from 'ngx-cookie';
 
+import { MaxValidatorDirective } from './directives/max-validator.directive';
+import { MinValidatorDirective } from './directives/min-validator.directive';
+
 // Directives
 
 @NgModule({
@@ -39,6 +42,8 @@ import { CookieModule } from 'ngx-cookie';
     CookieModule.forRoot()
   ],
   declarations: [
+    MaxValidatorDirective,
+    MinValidatorDirective
   ],
   exports: [
     CommonModule,
@@ -55,7 +60,9 @@ import { CookieModule } from 'ngx-cookie';
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    CookieModule
+    CookieModule,
+    MaxValidatorDirective,
+    MinValidatorDirective
   ]
 })
 export class AppSharedModule { }
