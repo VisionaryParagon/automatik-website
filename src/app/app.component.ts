@@ -135,7 +135,7 @@ export class AppComponent implements OnInit {
           if (this.cookieService.get('intro')) {
             this.introActive = false;
           } else {
-            this.renderer.addClass(document.body, 'modal-open');
+            this.renderer.addClass(document.documentElement, 'modal-open');
 
             this.randomFeelings = this.shuffle(this.feelings);
 
@@ -218,10 +218,10 @@ export class AppComponent implements OnInit {
   testMobile() {
     if (isPlatformBrowser(this.platformId)) {
       if (/Android|iPhone|iPad/i.test(window.navigator.userAgent)) {
-        this.renderer.addClass(document.body, 'mobile');
+        this.renderer.addClass(document.documentElement, 'mobile');
       } else {
-        if (document.body.classList.contains('mobile')) {
-          this.renderer.removeClass(document.body, 'mobile');
+        if (document.documentElement.classList.contains('mobile')) {
+          this.renderer.removeClass(document.documentElement, 'mobile');
         }
       }
     }
@@ -272,7 +272,7 @@ export class AppComponent implements OnInit {
 
         // Hide intro
         this.introActive = false;
-        this.renderer.removeClass(document.body, 'modal-open');
+        this.renderer.removeClass(document.documentElement, 'modal-open');
       }, 500);
     }, 2000);
   }
@@ -283,30 +283,30 @@ export class AppComponent implements OnInit {
 
     // Hide intro
     this.introActive = false;
-    this.renderer.removeClass(document.body, 'modal-open');
+    this.renderer.removeClass(document.documentElement, 'modal-open');
   }
 
   toggleNav() {
     if (this.state === 'active') {
       this.state = 'inactive';
 
-      this.renderer.removeClass(document.body, 'modal-open');
+      this.renderer.removeClass(document.documentElement, 'modal-open');
     } else {
       this.state = 'active';
 
-      this.renderer.addClass(document.body, 'modal-open');
+      this.renderer.addClass(document.documentElement, 'modal-open');
     }
   }
 
   closeNav() {
     this.state = 'inactive';
-    this.renderer.removeClass(document.body, 'modal-open');
+    this.renderer.removeClass(document.documentElement, 'modal-open');
   }
 
   outsideNav() {
     if (this.state === 'active') {
       this.state = 'inactive';
-      this.renderer.removeClass(document.body, 'modal-open');
+      this.renderer.removeClass(document.documentElement, 'modal-open');
     }
   }
 

@@ -32,7 +32,7 @@
 
 <header (mouseover)="toggleSubNav($event, 'close')">
   <nav>
-    <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="introActive" (click)="toggleNav(); closeSubNav()"><img src="https://assets.automatik9dots.com/images/automatik-navigation-logo.png" alt="automätik logo"></a>
+    <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="introActive" (click)="closeNav(); closeSubNav()"><img src="https://assets.automatik9dots.com/images/automatik-navigation-logo.png" alt="automätik logo"></a>
 
     <div class="fullNav" [@fade]="true" *ngIf="!introActive && !isAdmin">
       <!--
@@ -128,7 +128,7 @@
 
     <div class="mobileNav" [@mobileNavMenu]="true" *ngIf="state === 'active' && !isAdmin">
       <!--
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleNav()">Home</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNav()">Home</a>
       -->
 
       <a [class.active]="activePage.indexOf('/services') === 0" (click)="toggleMobileSubNav('Services')">
@@ -137,12 +137,12 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateServices === 'active'">
-        <a routerLink="/services/event-planning" routerLinkActive="active" (click)="toggleNav()">Event Planning</a>
-        <a routerLink="/services/event-production" routerLinkActive="active" (click)="toggleNav()">Event Production</a>
-        <a routerLink="/services/instructional-design" routerLinkActive="active" (click)="toggleNav()">Instructional Design</a>
-        <a routerLink="/services/graphic-design" routerLinkActive="active" (click)="toggleNav()">Graphic Design</a>
-        <a routerLink="/services/video-production" routerLinkActive="active" (click)="toggleNav()">Video Production</a>
-        <a routerLink="/services/design-development" routerLinkActive="active" (click)="toggleNav()">Design &amp; Development</a>
+        <a routerLink="/services/event-planning" routerLinkActive="active" (click)="closeNav()">Event Planning</a>
+        <a routerLink="/services/event-production" routerLinkActive="active" (click)="closeNav()">Event Production</a>
+        <a routerLink="/services/instructional-design" routerLinkActive="active" (click)="closeNav()">Instructional Design</a>
+        <a routerLink="/services/graphic-design" routerLinkActive="active" (click)="closeNav()">Graphic Design</a>
+        <a routerLink="/services/video-production" routerLinkActive="active" (click)="closeNav()">Video Production</a>
+        <a routerLink="/services/design-development" routerLinkActive="active" (click)="closeNav()">Design &amp; Development</a>
       </div>
 
       <a [class.active]="activePage.indexOf('/courses') === 0" (click)="toggleMobileSubNav('Courses')">
@@ -151,17 +151,17 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateCourses === 'active'">
-        <a routerLink="/courses/workshops" routerLinkActive="active" (click)="toggleNav()">Workshops</a>
+        <a routerLink="/courses/workshops" routerLinkActive="active" (click)="closeNav()">Workshops</a>
         <!--
-        <a routerLink="/courses/e-learning" routerLinkActive="active" (click)="toggleNav()">E-Learning</a>
-        <a routerLink="/courses/e-books" routerLinkActive="active" (click)="toggleNav()">E-Books</a>
+        <a routerLink="/courses/e-learning" routerLinkActive="active" (click)="closeNav()">E-Learning</a>
+        <a routerLink="/courses/e-books" routerLinkActive="active" (click)="closeNav()">E-Books</a>
         -->
-        <a routerLink="/courses/custom-training" routerLinkActive="active" (click)="toggleNav()">Custom Training</a>
+        <a routerLink="/courses/custom-training" routerLinkActive="active" (click)="closeNav()">Custom Training</a>
       </div>
 
-      <a routerLink="/portfolio" routerLinkActive="active" (click)="toggleNav(); setPortfolio()">Portfolio</a>
+      <a routerLink="/portfolio" routerLinkActive="active" (click)="closeNav(); setPortfolio()">Portfolio</a>
 
-      <a routerLink="/resources/blog" routerLinkActive="active" (click)="toggleNav()">Blog</a>
+      <a routerLink="/resources/blog" routerLinkActive="active" (click)="closeNav()">Blog</a>
 
       <!--
       <a [class.active]="activePage.indexOf('/resources') === 0" (click)="toggleMobileSubNav('Resources')">
@@ -170,10 +170,10 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateResources === 'active'">
-        <a routerLink="/resources/blog" routerLinkActive="active" (click)="toggleNav()">Blog</a>
-        <a routerLink="/resources/podcast" routerLinkActive="active" (click)="toggleNav()">Podcast</a>
-        <a routerLink="/resources/videos" routerLinkActive="active" (click)="toggleNav()">Videos</a>
-        <a routerLink="/resources/printables" routerLinkActive="active" (click)="toggleNav()">Printables</a>
+        <a routerLink="/resources/blog" routerLinkActive="active" (click)="closeNav()">Blog</a>
+        <a routerLink="/resources/podcast" routerLinkActive="active" (click)="closeNav()">Podcast</a>
+        <a routerLink="/resources/videos" routerLinkActive="active" (click)="closeNav()">Videos</a>
+        <a routerLink="/resources/printables" routerLinkActive="active" (click)="closeNav()">Printables</a>
       </div>
       -->
 
@@ -183,22 +183,22 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateAbout === 'active'">
-        <a routerLink="/about/history" routerLinkActive="active" (click)="toggleNav()">History</a>
-        <a routerLink="/about/team" routerLinkActive="active" (click)="toggleNav()">Team</a>
-        <a routerLink="/about/values" routerLinkActive="active" (click)="toggleNav()">Values</a>
-        <a routerLink="/about/clients" routerLinkActive="active" (click)="toggleNav()">Clients</a>
-        <a routerLink="/about/careers" routerLinkActive="active" (click)="toggleNav()">Careers</a>
-        <a class="navBtn" routerLink="/about/contact" (click)="toggleNav()">Contact</a>
+        <a routerLink="/about/history" routerLinkActive="active" (click)="closeNav()">History</a>
+        <a routerLink="/about/team" routerLinkActive="active" (click)="closeNav()">Team</a>
+        <a routerLink="/about/values" routerLinkActive="active" (click)="closeNav()">Values</a>
+        <a routerLink="/about/clients" routerLinkActive="active" (click)="closeNav()">Clients</a>
+        <a routerLink="/about/careers" routerLinkActive="active" (click)="closeNav()">Careers</a>
+        <a class="navBtn" routerLink="/about/contact" (click)="closeNav()">Contact</a>
       </div>
     </div>
 
     <div class="mobileNav" [@mobileNavMenu]="true" *ngIf="state === 'active' && isAdmin && !isLogin">
-      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleNav()">Home</a>
-      <a routerLink="/admin/images" routerLinkActive="active" (click)="toggleNav()">Images</a>
-      <a routerLink="/admin/portfolio" routerLinkActive="active" (click)="toggleNav()">Portfolio</a>
-      <a routerLink="/admin/team" routerLinkActive="active" (click)="toggleNav()">Team</a>
-      <a routerLink="/admin/careers" routerLinkActive="active" (click)="toggleNav()">Careers</a>
-      <a class="navBtn" (click)="toggleNav(); logoutAdmin()">Logout</a>
+      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNav()">Home</a>
+      <a routerLink="/admin/images" routerLinkActive="active" (click)="closeNav()">Images</a>
+      <a routerLink="/admin/portfolio" routerLinkActive="active" (click)="closeNav()">Portfolio</a>
+      <a routerLink="/admin/team" routerLinkActive="active" (click)="closeNav()">Team</a>
+      <a routerLink="/admin/careers" routerLinkActive="active" (click)="closeNav()">Careers</a>
+      <a class="navBtn" (click)="closeNav(); logoutAdmin()">Logout</a>
     </div>
   </nav>
 </header>

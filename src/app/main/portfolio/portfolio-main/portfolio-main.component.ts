@@ -189,10 +189,10 @@ export class PortfolioMainComponent implements OnInit {
 
   setModalClass() {
     if (isPlatformBrowser(this.platformId)) {
-      if (document.body.classList.contains('modal-open')) {
-        this.renderer.removeClass(document.body, 'modal-open');
+      if (document.documentElement.classList.contains('modal-open')) {
+        this.renderer.removeClass(document.documentElement, 'modal-open');
       } else {
-        this.renderer.addClass(document.body, 'modal-open');
+        this.renderer.addClass(document.documentElement, 'modal-open');
       }
     }
   }
