@@ -1,3 +1,14 @@
+export class Seo {
+  title: string;
+  metatags: Meta[] = new Array<Meta>();
+}
+
+export class Meta {
+  name?: string;
+  property?: string;
+  content: string;
+}
+
 export class Admin {
   username: string;
   password: string;

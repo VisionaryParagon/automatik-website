@@ -43,10 +43,16 @@ const routes: Routes = [
         component: HomeComponent,
         data: {
           title: 'Eradicating boring corporate events from the face of the Earth | automätik',
-          metatags: {
-            description: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.',
-            keywords: 'Corporate Events, Meeting master, sales training'
-          }
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+            },
+            {
+              name: 'keywords',
+              content: 'Corporate Events, Meeting master, sales training'
+            }
+          ]
         }
       },
       {
@@ -54,10 +60,16 @@ const routes: Routes = [
         component: ServicesComponent,
         data: {
           title: 'Turnkey corporate events services and experiences that deliver results | automätik',
-          metatags: {
-            description: 'automätik events are produced by our team of in-house departments, including: event management & production, instructional design, graphic & web design.',
-            keywords: 'Event Services, Event management, Event Production, Instructional Design, Graphic Design, Video Production, Web development, app development, technology'
-          }
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik events are produced by our team of in-house departments, including: event management & production, instructional design, graphic & web design.'
+            },
+            {
+              name: 'keywords',
+              content: 'Event Services, Event management, Event Production, Instructional Design, Graphic Design, Video Production, Web development, app development, technology'
+            }
+          ]
         },
         children: [
           {
@@ -71,10 +83,16 @@ const routes: Routes = [
         component: CoursesComponent,
         data: {
           title: 'automätik courses',
-          metatags: {
-            description: 'Description for Courses.',
-            keywords: 'courses'
-          }
+          metatags: [
+            {
+              name: 'description',
+              content: 'Description for Courses.'
+            },
+            {
+              name: 'keywords',
+              content: 'courses'
+            }
+          ]
         },
         children: [
           {
@@ -92,10 +110,16 @@ const routes: Routes = [
             component: PortfolioMainComponent,
             data: {
               title: 'automätik portfolio',
-              metatags: {
-                description: 'Description for Portfolio.',
-                keywords: 'portfolio'
-              }
+              metatags: [
+                {
+                  name: 'description',
+                  content: 'Description for Portfolio.'
+                },
+                {
+                  name: 'keywords',
+                  content: 'portfolio'
+                }
+              ]
             }
           },
           {
@@ -117,10 +141,16 @@ const routes: Routes = [
             component: BlogMainComponent,
             data: {
               title: 'automätik blog',
-              metatags: {
-                description: 'Description for Blog.',
-                keywords: 'blog'
-              }
+              metatags: [
+                {
+                  name: 'description',
+                  content: 'Description for Blog.'
+                },
+                {
+                  name: 'keywords',
+                  content: 'blog'
+                }
+              ]
             }
           },
           {
@@ -151,10 +181,16 @@ const routes: Routes = [
             component: ResourcesMainComponent,
             data: {
               title: 'automätik resources',
-              metatags: {
-                description: 'Description for Resources.',
-                keywords: 'resources'
-              }
+              metatags: [
+                {
+                  name: 'description',
+                  content: 'Description for Resources.'
+                },
+                {
+                  name: 'keywords',
+                  content: 'resources'
+                }
+              ]
             }
           },
           {
@@ -162,10 +198,16 @@ const routes: Routes = [
             component: BlogComponent,
             data: {
               title: 'automätik blog',
-              metatags: {
-                description: 'Description for Blog.',
-                keywords: 'blog'
-              }
+              metatags: [
+                {
+                  name: 'description',
+                  content: 'Description for Blog.'
+                },
+                {
+                  name: 'keywords',
+                  content: 'blog'
+                }
+              ]
             }
           },
           {
@@ -196,10 +238,16 @@ const routes: Routes = [
             component: AboutMainComponent,
             data: {
               title: 'about automätik',
-              metatags: {
-                description: 'Description for About.',
-                keywords: 'about'
-              }
+              metatags: [
+                {
+                  name: 'description',
+                  content: 'Description for About.'
+                },
+                {
+                  name: 'keywords',
+                  content: 'about'
+                }
+              ]
             }
           },
           {
@@ -207,10 +255,16 @@ const routes: Routes = [
             component: CareersComponent,
             data: {
               title: 'careers at automätik',
-              metatags: {
-                description: 'Description for Careers.',
-                keywords: 'careers'
-              }
+              metatags: [
+                {
+                  name: 'description',
+                  content: 'Description for Careers.'
+                },
+                {
+                  name: 'keywords',
+                  content: 'careers'
+                }
+              ]
             }
           },
           {

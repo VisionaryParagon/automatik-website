@@ -1,11 +1,12 @@
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { DomSanitizer, SafeHtml, Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { Image, Project } from '../../../services/classes';
+import { Image, Project, Seo } from '../../../services/classes';
 import { ImageService } from '../../../services/image.service';
 import { ProjectService } from '../../../services/project.service';
+import { SeoService } from '../../../services/seo.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
@@ -17,8 +18,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 })
 export class PortfolioProjectComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
-  defaultTitle = 'automätik Portfolio';
-  defaultDesc = 'Eradicating boring corporate events from the face of the Earth.';
+  metadata: Seo = new Seo();
   projects: Project[] = this.projectService.projects;
   project: Project;
   images: Image[] = this.imageService.images;
@@ -34,10 +34,9 @@ export class PortfolioProjectComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private metaService: Meta,
-    private titleService: Title,
     private route: ActivatedRoute,
     private router: Router,
+    private seoService: SeoService,
     private imageService: ImageService,
     private projectService: ProjectService,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -91,12 +90,22 @@ export class PortfolioProjectComponent implements OnInit {
 
   setSEO(data?) {
     if (data) {
-      this.titleService.setTitle(data.title + ' | automätik');
-      this.metaService.addTag({ name: 'description', content: data.description });
-      this.metaService.addTag({ name: 'keywords', content: data.keywords });
+      // Set title
+      this.metadata.title = data.title + ' | automätik';
+
+      // Set meta tags
+      this.metadata.metatags.push({
+        name: 'description',
+        content: data.description
+      });
+      this.metadata.metatags.push({
+        name: 'keywords',
+        content: data.keywords
+      });
+
+      this.seoService.addDynamicSeoData(this.metadata);
     } else {
-      this.titleService.setTitle(this.defaultTitle);
-      this.metaService.addTag({ name: 'description', content: this.defaultDesc });
+      this.seoService.addDynamicSeoData();
     }
   }
 

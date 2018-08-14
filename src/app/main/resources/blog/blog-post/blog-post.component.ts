@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { DomSanitizer, SafeHtml, Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
+import { Seo } from '../../../../services/classes';
 import { BlogService } from '../../../../services/blog.service';
+import { SeoService } from '../../../../services/seo.service';
 
 import { FadeAnimation } from '../../../../animations';
 
@@ -14,8 +16,7 @@ import { FadeAnimation } from '../../../../animations';
 })
 export class BlogPostComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
-  defaultTitle = 'automätik blog';
-  defaultDesc = 'Eradicating boring corporate events from the face of the Earth.';
+  metadata: Seo = new Seo();
   changingBlog = false;
   post;
   safeHtml: SafeHtml;
@@ -28,11 +29,10 @@ export class BlogPostComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private metaService: Meta,
-    private titleService: Title,
     private route: ActivatedRoute,
     private router: Router,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private seoService: SeoService
   ) { }
 
   ngOnInit() {
@@ -111,17 +111,26 @@ export class BlogPostComponent implements OnInit {
     });
   }
 
-  setSEO(data) {
-    if (data.title.length) {
-      this.titleService.setTitle(data.title);
-    } else {
-      this.titleService.setTitle(this.defaultTitle);
-    }
+  setSEO(data?) {
+    if (data) {
+      // Set title
+      this.metadata.title = data.title;
 
-    if (data.metadesc.length) {
-      this.metaService.addTag({ name: 'description', content: data.metadesc });
+      // Set meta tags
+      this.metadata.metatags.push({
+        name: 'description',
+        content: data.metadesc
+      });
+      /*
+      this.metadata.metatags.push({
+        name: 'keywords',
+        content: data.keywords
+      });
+      */
+
+      this.seoService.addDynamicSeoData(this.metadata);
     } else {
-      this.metaService.addTag({ name: 'description', content: this.defaultDesc });
+      this.seoService.addDynamicSeoData();
     }
   }
 
