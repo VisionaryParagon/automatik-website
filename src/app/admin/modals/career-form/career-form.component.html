@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between mb-3">
   <h2 mat-dialog-title *ngIf="new">New Position</h2>
   <h2 mat-dialog-title *ngIf="!new">Edit Position</h2>
-  <button mat-dialog-close><i class="fa fa-close"></i></button>
+  <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
 </div>
 
 <form #careerForm="ngForm" novalidate>

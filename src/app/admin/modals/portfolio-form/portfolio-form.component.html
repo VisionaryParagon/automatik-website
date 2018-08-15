@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between mb-3">
   <h2 mat-dialog-title *ngIf="new">New Project</h2>
   <h2 mat-dialog-title *ngIf="!new">Edit Project</h2>
-  <button mat-dialog-close><i class="fa fa-close"></i></button>
+  <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
 </div>
 
 <form #projectForm="ngForm" novalidate>
@@ -164,14 +164,14 @@
             <div class="input-group">
               <input type="text" class="form-control" name="highlight{{i}}" #highlight="ngModel" autocomplete="off" required [(ngModel)]="highlightList[i]">
               <div class="input-group-append" *ngIf="i > 1">
-                <button type="button" class="btn btn-danger" (click)="deleteItem(highlightList, i)"><i class="fa fa-close"></i></button>
+                <button type="button" class="btn btn-danger" (click)="deleteItem(highlightList, i)"><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
               </div>
             </div>
             <div class="errorMsg" [@topDown]="true" *ngIf="highlight.errors && (highlight.touched || submitted)">
               <p *ngIf="highlight.errors.required">This highlight is required<span *ngIf="i > 1"> or must be deleted</span></p>
             </div>
           </div>
-          <button type="button" class="btn btn-success" (click)="addItem(highlightList)"><i class="fa fa-plus"></i> Add Hightlight</button>
+          <button type="button" class="btn btn-success" (click)="addItem(highlightList)"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add Hightlight</button>
         </div>
 
         <div class="inputGroup">
@@ -182,7 +182,7 @@
                 <div class="input-group">
                   <input type="text" class="form-control" name="image{{i}}" #image="ngModel" autocomplete="off" required [(ngModel)]="imageList[i]" (click)="chooseImage('image', i)">
                   <div class="input-group-append" *ngIf="i > 1">
-                    <button type="button" class="btn btn-danger" (click)="deleteItem(imageList, i)"><i class="fa fa-close"></i></button>
+                    <button type="button" class="btn btn-danger" (click)="deleteItem(imageList, i)"><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
                   </div>
                 </div>
               </div>
@@ -196,7 +196,7 @@
               <p *ngIf="image.errors.required">This image is required<span *ngIf="i > 1"> or must be deleted</span></p>
             </div>
           </div>
-          <button type="button" class="btn btn-success" (click)="addItem(imageList)"><i class="fa fa-plus"></i> Add Image</button>
+          <button type="button" class="btn btn-success" (click)="addItem(imageList)"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add Image</button>
         </div>
 
         <div class="text-center">

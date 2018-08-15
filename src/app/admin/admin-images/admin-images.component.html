@@ -69,8 +69,8 @@
       <div class="imageBox" *ngFor="let item of imageList" (mouseenter)="select(item._id)" (mouseleave)="select('')" (click)="select(item._id)">
         <div class="image" [style.backgroundImage]="'url(' + item.path + ')'"></div>
         <div class="buttons" [@topDown]="true" *ngIf="this.imageId === item._id">
-          <button class="btn" (click)="edit(item)"><i class="fa fa-edit fa-2x"></i></button>
-          <button class="btn" (click)="delete(item)"><i class="fa fa-trash-o fa-2x"></i></button>
+          <button class="btn" (click)="edit(item)"><fa-icon [icon]="['fas', 'edit']" size="2x"></fa-icon></button>
+          <button class="btn" (click)="delete(item)"><fa-icon [icon]="['fas', 'trash-alt']" size="2x"></fa-icon></button>
         </div>
       </div>
     </div>

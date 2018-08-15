@@ -36,13 +36,13 @@
     <!-- Edit Column -->
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef class="text-center"> Edit </th>
-      <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="edit(row)"><i class="fa fa-edit fa-lg"></i></button> </td>
+      <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="edit(row)"><fa-icon [icon]="['fas', 'edit']" size="lg"></fa-icon></button> </td>
     </ng-container>
 
     <!-- Delete Column -->
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef class="text-center"> Delete </th>
-      <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="delete(row)"><i class="fa fa-trash-o fa-lg"></i></button> </td>
+      <td mat-cell *matCellDef="let row" class="text-center"> <button class="btn" (click)="delete(row)"><fa-icon [icon]="['fas', 'trash-alt']" size="lg"></fa-icon></button> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

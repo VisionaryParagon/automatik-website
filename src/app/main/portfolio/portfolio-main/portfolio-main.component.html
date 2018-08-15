@@ -10,7 +10,7 @@
       </mat-expansion-panel-header>
 
       <div class="inputGroup">
-        <label for="search"><i class="fa fa-search fa-lg"></i></label>
+        <label for="search"><fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon></label>
         <input type="text" class="form-control" name="search" #search="ngModel" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
       </div>
 
@@ -27,7 +27,7 @@
     <h1>Portfolio</h1>
 
     <div class="inputGroup">
-      <label for="search"><i class="fa fa-search fa-lg"></i></label>
+      <label for="search"><fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon></label>
       <input type="text" class="form-control" name="search" #search="ngModel" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
     </div>
 

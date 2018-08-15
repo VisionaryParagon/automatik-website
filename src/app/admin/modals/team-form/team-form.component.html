@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between mb-3">
   <h2 mat-dialog-title *ngIf="new">New Teammate</h2>
   <h2 mat-dialog-title *ngIf="!new">Edit Teammate</h2>
-  <button mat-dialog-close><i class="fa fa-close"></i></button>
+  <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
 </div>
 
 <form #teamForm="ngForm" novalidate>
@@ -54,7 +54,7 @@
             <option [value]="anyVal" selected disabled></option>
             <option *ngFor="let department of departments" [value]="department._id">{{ department.name }}</option>
           </select>
-          <i class="fa fa-caret-down"></i>
+          <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
           <div class="errorMsg" [@topDown]="true" *ngIf="department.errors && (department.touched || submitted)">
             <p *ngIf="department.errors.required">Please select an option</p>
           </div>
