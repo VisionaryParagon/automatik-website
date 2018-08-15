@@ -18,6 +18,10 @@
       <mat-spinner class="mx-auto my-5"></mat-spinner>
     </div>
 
+    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+      <p>{{ error }}</p>
+    </div>
+
     <div class="formDrawer" [@topDown]="true" *ngIf="new">
       <h3>Add New Image</h3>
 
@@ -61,7 +65,7 @@
 
         <button class="autoBtn" (click)="uploadAnother()">Upload Another</button>
 
-        <button class="autoBtn secondary mx-3" (click)="cancel()">Close</button>
+        <button class="autoBtn secondary mx-3" (click)="done()">Done</button>
       </div>
     </div>
 
@@ -76,9 +80,5 @@
     </div>
 
     <mat-paginator [length]="totalLength" [pageSize]="pageSize" [pageIndex]="currentPage" [pageSizeOptions]="[4, 12, 24, 48]" (page)="handlePage($event)"></mat-paginator>
-
-    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
-      <p>{{ error }}</p>
-    </div>
   </div>
 </section>

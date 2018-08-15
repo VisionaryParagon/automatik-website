@@ -94,6 +94,12 @@ export class AdminImagesComponent implements OnInit {
     this.imageList = filtered;
     this.totalLength = filtered.length;
     this.paginator.firstPage();
+
+    if (!this.totalLength) {
+      this.setError('No images found');
+    } else {
+      this.clearError();
+    }
   }
 
   select(id) {
@@ -133,9 +139,9 @@ export class AdminImagesComponent implements OnInit {
   }
 
   setImageData(ev) {
-    this.image.path = 'https://assets.automatik9dots.com/images/' + ev.target.files[0].name;
-    this.imageName = ev.target.files[0].name;
     this.imageData = ev.target.files[0];
+    this.imageName = ev.target.files[0].name;
+    this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
   }
 
   upload() {
@@ -172,8 +178,6 @@ export class AdminImagesComponent implements OnInit {
           },
           err => this.setError('Validate fail: ' + err)
         );
-    } else {
-      this.setError('Please select an image to upload');
     }
     return false;
   }
@@ -183,9 +187,13 @@ export class AdminImagesComponent implements OnInit {
     return false;
   }
 
+  done() {
+    this.new = false;
+    this.uploadAnother();
+  }
+
   uploadAnother() {
     this.image = new Image();
-    this.imageData = new FileList();
     this.imageName = 'Choose image...';
     this.imageId = '';
     this.submitted = false;
@@ -196,5 +204,9 @@ export class AdminImagesComponent implements OnInit {
     this.error = err;
     console.error(err);
     this.loading = false;
+  }
+
+  clearError() {
+    this.error = '';
   }
 }
