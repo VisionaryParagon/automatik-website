@@ -76,10 +76,14 @@ export class AdminImagesComponent implements OnInit {
     this.iterator();
   }
 
-  iterator() {
+  iterator(data?) {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
-    this.imageList = this.filteredImages.slice(start, end);
+    if (!data) {
+      this.imageList = this.filteredImages.slice(start, end);
+    } else {
+      this.imageList = data.slice(start, end);
+    }
   }
 
   updateFilter(val) {
@@ -93,7 +97,8 @@ export class AdminImagesComponent implements OnInit {
 
     this.imageList = filtered;
     this.totalLength = filtered.length;
-    this.paginator.firstPage();
+    this.currentPage = 0;
+    this.iterator(this.imageList);
 
     if (!this.totalLength) {
       this.setError('No images found');
