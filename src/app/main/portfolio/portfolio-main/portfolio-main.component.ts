@@ -225,6 +225,7 @@ export class PortfolioMainComponent implements OnInit {
 
   clearFilter() {
     this.filter = '';
+    this.updateFilter();
   }
 
   selectCategory(cat?) {

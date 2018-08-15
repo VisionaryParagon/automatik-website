@@ -10,8 +10,11 @@
       </mat-expansion-panel-header>
 
       <div class="inputGroup">
-        <label for="search"><fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon></label>
-        <input type="text" class="form-control" name="search" #search="ngModel" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
+        <label for="search">
+          <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+          <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length > 0" (click)="clearFilter()"></fa-icon>
+        </label>
+        <input type="text" class="form-control" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
       </div>
 
       <h4>Categories</h4>
@@ -27,8 +30,11 @@
     <h1>Portfolio</h1>
 
     <div class="inputGroup">
-      <label for="search"><fa-icon [icon]="['fas', 'search']" size="lg"></fa-icon></label>
-      <input type="text" class="form-control" name="search" #search="ngModel" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
+      <label for="search">
+        <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+        <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length > 0" (click)="clearFilter()"></fa-icon>
+      </label>
+      <input type="text" class="form-control" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
     </div>
 
     <h4>Categories</h4>
