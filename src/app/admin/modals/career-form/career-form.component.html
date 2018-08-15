@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title *ngIf="new">New Position</h2>
+  <h2 mat-dialog-title *ngIf="!new">Edit Position</h2>
+  <button mat-dialog-close><i class="fa fa-close"></i></button>
+</div>
+
+<form #careerForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success">
+        <div class="inputGroup" [class.nope]="position.errors && (position.touched || submitted)">
+          <label for="position">Position*</label>
+          <input type="text" class="form-control" name="position" #position="ngModel" autocomplete="off" required [(ngModel)]="career.position">
+          <div class="errorMsg" [@topDown]="true" *ngIf="position.errors && (position.touched || submitted)">
+            <p *ngIf="position.errors.required">Position is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="short_description.errors && (short_description.touched || submitted)">
+          <label for="short_description">Short Description*</label>
+          <input type="text" class="form-control" name="short_description" #short_description="ngModel" autocomplete="off" required [(ngModel)]="career.short_description">
+          <div class="errorMsg" [@topDown]="true" *ngIf="short_description.errors && (short_description.touched || submitted)">
+            <p *ngIf="short_description.errors.required">Short Description is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="description.errors && (description.touched || submitted)">
+          <label for="description">Description*</label>
+          <textarea class="form-control" name="description" #description="ngModel" autocomplete="off" rows="5" required [(ngModel)]="career.description"></textarea>
+          <div class="errorMsg" [@topDown]="true" *ngIf="description.errors && (description.touched || submitted)">
+            <p *ngIf="description.errors.required">Description is required</p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="disclaimer">* Required field</p>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length > 0">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="success">
+        <h3>Success!</h3>
+
+        <p>{{ career.position }} has been <span *ngIf="new">added</span><span *ngIf="!new">updated</span>.</p>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(career, careerForm.valid)">
+      <span *ngIf="!loading">Submit</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn secondary" *ngIf="success && new" (click)="addAnother()">Add Another</button>
+    <button class="autoBtn secondary" *ngIf="success && !new" (click)="editAgain()">Edit Again</button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Done</button>
+  </mat-dialog-actions>
+</form>

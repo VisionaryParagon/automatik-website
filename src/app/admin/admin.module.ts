@@ -33,6 +33,8 @@ import { DepartmentFormComponent } from './modals/department-form/department-for
 import { DepartmentDeleteComponent } from './modals/department-delete/department-delete.component';
 import { DepartmentDataComponent } from './admin-team/department-data/department-data.component';
 import { TeamDataComponent } from './admin-team/team-data/team-data.component';
+import { CareerFormComponent } from './modals/career-form/career-form.component';
+import { CareerDeleteComponent } from './modals/career-delete/career-delete.component';
 
 @NgModule({
   imports: [
@@ -57,7 +59,9 @@ import { TeamDataComponent } from './admin-team/team-data/team-data.component';
     DepartmentFormComponent,
     DepartmentDeleteComponent,
     DepartmentDataComponent,
-    TeamDataComponent
+    TeamDataComponent,
+    CareerFormComponent,
+    CareerDeleteComponent
   ],
   entryComponents: [
     ImageUploaderComponent,
@@ -68,7 +72,9 @@ import { TeamDataComponent } from './admin-team/team-data/team-data.component';
     TeamFormComponent,
     TeamDeleteComponent,
     DepartmentFormComponent,
-    DepartmentDeleteComponent
+    DepartmentDeleteComponent,
+    CareerFormComponent,
+    CareerDeleteComponent
   ]
 })
 export class AdminModule { }

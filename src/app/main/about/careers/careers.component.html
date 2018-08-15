@@ -13,7 +13,7 @@
             <div class="position">
               <h4>{{ position.position }}</h4>
 
-              <div [innerHtml]="position.short_description"></div>
+              <p>{{ position.short_description }}</p>
 
               <button class="autoBtn" (click)="inquire(position)">Learn More</button>
             </div>
@@ -30,6 +30,8 @@
       <button class="autoBtn" (click)="inquire()">Contact Us Anyway</button>
     </div>
 
-    <div *ngIf="error">{{ error }}</div>
+    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+      <p>{{ error }}</p>
+    </div>
   </div>
 </section>

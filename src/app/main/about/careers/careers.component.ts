@@ -15,9 +15,9 @@ import { CareerInquiryComponent } from '../../modals/career-inquiry/career-inqui
   animations: [ FadeAnimation ]
 })
 export class CareersComponent implements OnInit {
-  positions: CareerPosition;
+  positions: CareerPosition[] = this.careersService.positions;
   inquiry: CareerPosition = new CareerPosition();
-  error;
+  error = '';
 
   constructor(
     private modalService: MatDialog,
@@ -25,11 +25,15 @@ export class CareersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.careersService.getPositions()
-      .subscribe(
-        data => this.positions = data,
-        error => this.setError(error)
-      );
+    if (!this.positions) {
+      this.careersService.getPositions()
+        .subscribe(
+          data => this.positions = data,
+          err => this.setError(err)
+        );
+    } else {
+      this.positions = this.positions;
+    }
   }
 
   inquire(position?) {

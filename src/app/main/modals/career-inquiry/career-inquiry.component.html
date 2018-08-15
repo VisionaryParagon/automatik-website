@@ -7,118 +7,108 @@
   <mat-dialog-content>
     <div class="dialogScroll">
       <div *ngIf="!isGeneral">
-        <div [innerHtml]="data.description"></div>
+        <div class="careerDesc">{{ data.description }}</div>
       </div>
 
       <div *ngIf="!success">
-        <div *ngIf="!isGeneral && !formOpened">
-          <button class="autoBtn" (click)="openForm()">Inquire About This Position</button>
-        </div>
+        <p><strong>To inquire, complete the form below.</strong></p>
 
-        <div *ngIf="isGeneral">
-          <p>Complete the form below and we&rsquo;ll let you know if anything becomes available.</p>
-        </div>
-
-        <div [@fade]="true" *ngIf="isGeneral || formOpened">
-          <h3 *ngIf="!isGeneral">Complete the form below.</h3>
-
-          <div class="row">
-            <div class="col-12 col-lg-6">
-              <div class="inputGroup" [class.nope]="first_name.errors && (first_name.touched || submitted)">
-                <label for="first_name">First Name*</label>
-                <input type="text" id="first_name" name="first_name" #first_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="inquiry.first_name">
-                <div class="errorMsg" [@topDown]="true" *ngIf="first_name.errors && (first_name.touched || submitted)">
-                  <p *ngIf="first_name.errors.required">First Name is required</p>
-                  <p *ngIf="first_name.errors.pattern">Numbers and special characters are not allowed</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-lg-6">
-              <div class="inputGroup" [class.nope]="last_name.errors && (last_name.touched || submitted)">
-                <label for="last_name">Last Name*</label>
-                <input type="text" id="last_name" name="last_name" #last_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="inquiry.last_name">
-                <div class="errorMsg" [@topDown]="true" *ngIf="last_name.errors && (last_name.touched || submitted)">
-                  <p *ngIf="last_name.errors.required">Last Name is required</p>
-                  <p *ngIf="last_name.errors.pattern">Numbers and special characters are not allowed</p>
-                </div>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="inputGroup m-0" [class.nope]="first_name.errors && (first_name.touched || submitted)">
+              <label for="first_name">First Name*</label>
+              <input type="text" id="first_name" name="first_name" #first_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="inquiry.first_name">
+              <div class="errorMsg" [@topDown]="true" *ngIf="first_name.errors && (first_name.touched || submitted)">
+                <p *ngIf="first_name.errors.required">First Name is required</p>
+                <p *ngIf="first_name.errors.pattern">Numbers and special characters are not allowed</p>
               </div>
             </div>
           </div>
 
-          <div class="inputGroup" [class.nope]="email.errors && (email.touched || submitted)">
-            <label for="email">Email Address*</label>
-            <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="inquiry.email">
-            <div class="errorMsg" [@topDown]="true" *ngIf="email.errors && (email.touched || submitted)">
-              <p *ngIf="email.errors.required">Email Address is required</p>
-              <p *ngIf="email.errors.pattern">Email Address is invalid</p>
+          <div class="col-12 col-lg-6">
+            <div class="inputGroup m-0" [class.nope]="last_name.errors && (last_name.touched || submitted)">
+              <label for="last_name">Last Name*</label>
+              <input type="text" id="last_name" name="last_name" #last_name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="inquiry.last_name">
+              <div class="errorMsg" [@topDown]="true" *ngIf="last_name.errors && (last_name.touched || submitted)">
+                <p *ngIf="last_name.errors.required">Last Name is required</p>
+                <p *ngIf="last_name.errors.pattern">Numbers and special characters are not allowed</p>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="inputGroup" [class.nope]="specialty.errors && (specialty.touched || submitted)" *ngIf="isGeneral">
-            <label for="specialty">What&rsquo;s Your Specialty?*</label>
-            <select id="specialty" name="specialty" #specialty="ngModel" [(ngModel)]="inquiry.specialty" required>
-              <option [value]="anyVal" selected disabled></option>
-              <option value="Creative">Creative</option>
-              <option value="Logistics">Logistics</option>
-              <option value="Production">Production</option>
-              <option value="Graphic Design">Graphic Design</option>
-              <option value="Technology">Technology</option>
-              <option value="Client Services">Client Services</option>
-              <option value="Accounting">Accounting</option>
-              <option value="Internship">Internship</option>
-              <option value="Other">Other</option>
-            </select>
-            <i class="fa fa-caret-down"></i>
-            <div class="errorMsg" [@topDown]="true" *ngIf="specialty.errors && (specialty.touched || submitted)">
-              <p *ngIf="specialty.errors.required">Please select an option</p>
-            </div>
+        <div class="inputGroup" [class.nope]="email.errors && (email.touched || submitted)">
+          <label for="email">Email Address*</label>
+          <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="inquiry.email">
+          <div class="errorMsg" [@topDown]="true" *ngIf="email.errors && (email.touched || submitted)">
+            <p *ngIf="email.errors.required">Email Address is required</p>
+            <p *ngIf="email.errors.pattern">Email Address is invalid</p>
           </div>
+        </div>
 
-          <div class="inputGroup" [class.nope]="start_date.errors && submitted">
-            <label for="start_date">When Could You Start?*</label>
-            <input type="text" id="start_date" name="start_date" #start_date="ngModel" autocomplete="off" required [(ngModel)]="inquiry.start_date" [matDatepicker]="myDatepicker" (focus)="myDatepicker.open()" (click)="myDatepicker.open()">
-            <mat-datepicker #myDatepicker></mat-datepicker>
-            <div class="errorMsg" [@topDown]="true" *ngIf="start_date.errors && submitted">
-              <p *ngIf="start_date.errors.required">Please select a date</p>
-            </div>
+        <div class="inputGroup" [class.nope]="specialty.errors && (specialty.touched || submitted)" *ngIf="isGeneral">
+          <label for="specialty">What&rsquo;s Your Specialty?*</label>
+          <select id="specialty" name="specialty" #specialty="ngModel" [(ngModel)]="inquiry.specialty" required>
+            <option [value]="anyVal" selected disabled></option>
+            <option value="Creative">Creative</option>
+            <option value="Logistics">Logistics</option>
+            <option value="Production">Production</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Technology">Technology</option>
+            <option value="Client Services">Client Services</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Internship">Internship</option>
+            <option value="Other">Other</option>
+          </select>
+          <i class="fa fa-caret-down"></i>
+          <div class="errorMsg" [@topDown]="true" *ngIf="specialty.errors && (specialty.touched || submitted)">
+            <p *ngIf="specialty.errors.required">Please select an option</p>
           </div>
+        </div>
 
-          <div class="inputGroup" [class.nope]="status.errors && (status.touched || submitted)">
-            <label for="status">What&rsquo;s Your Current Status?*</label>
-            <select id="status" name="status" #status="ngModel" [(ngModel)]="inquiry.status" required>
-              <option [value]="anyVal" selected disabled></option>
-              <option value="Employed">Employed</option>
-              <option value="Self-Employed">Self-Employed</option>
-              <option value="Unemployed">Unemployed</option>
-              <option value="Student">Student</option>
-            </select>
-            <i class="fa fa-caret-down"></i>
-            <div class="errorMsg" [@topDown]="true" *ngIf="status.errors && (status.touched || submitted)">
-              <p *ngIf="status.errors.required">Please select an option</p>
-            </div>
+        <div class="inputGroup" [class.nope]="start_date.errors && submitted">
+          <label for="start_date">When Could You Start?*</label>
+          <input type="text" id="start_date" name="start_date" #start_date="ngModel" autocomplete="off" required [(ngModel)]="inquiry.start_date" [matDatepicker]="myDatepicker" (focus)="myDatepicker.open()" (click)="myDatepicker.open()">
+          <mat-datepicker #myDatepicker></mat-datepicker>
+          <div class="errorMsg" [@topDown]="true" *ngIf="start_date.errors && submitted">
+            <p *ngIf="start_date.errors.required">Please select a date</p>
           </div>
+        </div>
 
-          <div class="inputGroup" [class.nope]="awesome.errors && (awesome.touched || submitted)">
-            <label for="awesome">What Makes You Awesome?*</label>
-            <textarea id="awesome" name="awesome" #awesome="ngModel" autocomplete="off" maxlength="500" rows="5" required [(ngModel)]="inquiry.awesome"></textarea>
-            <div class="errorMsg" [@topDown]="true" *ngIf="awesome.errors && (awesome.touched || submitted)">
-              <p *ngIf="awesome.errors.required">Please submit a response</p>
-            </div>
+        <div class="inputGroup" [class.nope]="status.errors && (status.touched || submitted)">
+          <label for="status">What&rsquo;s Your Current Status?*</label>
+          <select id="status" name="status" #status="ngModel" [(ngModel)]="inquiry.status" required>
+            <option [value]="anyVal" selected disabled></option>
+            <option value="Employed">Employed</option>
+            <option value="Self-Employed">Self-Employed</option>
+            <option value="Unemployed">Unemployed</option>
+            <option value="Student">Student</option>
+          </select>
+          <i class="fa fa-caret-down"></i>
+          <div class="errorMsg" [@topDown]="true" *ngIf="status.errors && (status.touched || submitted)">
+            <p *ngIf="status.errors.required">Please select an option</p>
           </div>
+        </div>
 
-          <div class="text-center">
-            <p class="disclaimer">* Required field</p>
+        <div class="inputGroup" [class.nope]="awesome.errors && (awesome.touched || submitted)">
+          <label for="awesome">What Makes You Awesome?*</label>
+          <textarea id="awesome" name="awesome" #awesome="ngModel" autocomplete="off" maxlength="500" rows="5" required [(ngModel)]="inquiry.awesome"></textarea>
+          <div class="errorMsg" [@topDown]="true" *ngIf="awesome.errors && (awesome.touched || submitted)">
+            <p *ngIf="awesome.errors.required">Please submit a response</p>
+          </div>
+        </div>
 
-            <div class="errorMsg" [@topDown]="true" *ngIf="error">
-              <p>An error occured</p>
-            </div>
+        <div class="text-center">
+          <p class="disclaimer">* Required field</p>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length > 0">
+            <p>{{ error }}</p>
           </div>
         </div>
       </div>
 
       <div [@fade]="true" *ngIf="success">
-        <h3>Step one, done! Great work!</h3>
+        <p><strong>Step one, done! Great work!</strong></p>
 
         <p>Our leaders will review your information and be in touch soon with any next steps. In the meantime, keep being&nbsp;great.</p>
       </div>

@@ -12,6 +12,7 @@ import { CareerInquiry, CareerPosition } from './classes';
 })
 export class CareersService {
   careerUrlRoot = '/careers/';
+  positions: CareerPosition[];
 
   constructor(
     private http: HttpClient,
@@ -31,9 +32,10 @@ export class CareersService {
   }
 
   getPositions() {
-    return this.http.get<CareerPosition>(this.careerUrlRoot + 'positions')
+    return this.http.get<CareerPosition[]>(this.careerUrlRoot + 'positions')
       .pipe(
         retry(3),
+        tap(res => this.positions = res),
         catchError(this.handleError)
       );
   }

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-import { CareerInquiry } from '../../../services/classes';
+import { CareerInquiry, CareerPosition } from '../../../services/classes';
 import { CareersService } from '../../../services/careers.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
@@ -20,11 +20,11 @@ export class CareerInquiryComponent implements OnInit {
   loading = false;
   submitted = false;
   success = false;
-  error = false;
+  error = '';
 
   constructor(
     private careersService: CareersService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: CareerPosition
   ) { }
 
   ngOnInit() {
@@ -36,10 +36,10 @@ export class CareerInquiryComponent implements OnInit {
     this.formOpened = true;
   }
 
-  submit(info, valid) {
+  submit(info, isValid) {
     this.submitted = true;
 
-    if (valid) {
+    if (isValid) {
       this.loading = true;
       this.careersService.inquire(info)
         .subscribe(
@@ -47,7 +47,7 @@ export class CareerInquiryComponent implements OnInit {
             this.success = true;
             this.loading = false;
           },
-          error => this.setError(error)
+          err => this.setError(err)
         );
     }
 
@@ -55,7 +55,7 @@ export class CareerInquiryComponent implements OnInit {
   }
 
   setError(err) {
-    this.error = true;
+    this.error = err;
     console.error(err);
     this.loading = false;
   }

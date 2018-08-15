@@ -3,10 +3,7 @@
 @import "font-awesome.min.css";
 @import "fonts.css";
 
-$client-font: "Frutiger LT Std",
-Helvetica,
-Arial,
-sans-serif;
+$client-font: "Frutiger LT Std", Helvetica, Arial, sans-serif;
 $client-yellow: #ffc11a;
 $client-blue: #00aeef;
 $client-blue-bg: #11679b;
@@ -223,6 +220,10 @@ button {
       border-bottom: 1px solid rgba(255, 0, 0, 0.25);
       border-right: 1px solid rgba(255, 0, 0, 0.25);
       box-shadow: inset .25rem .25rem 1rem -.5rem $error-color;
+    }
+
+    p {
+      margin: 0;
     }
   }
 }
@@ -1762,6 +1763,11 @@ section {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   height: 100%;
   padding: 1rem;
+}
+
+.careerDesc {
+  margin: 0 0 2rem;
+  white-space: pre-wrap;
 }
 
 
