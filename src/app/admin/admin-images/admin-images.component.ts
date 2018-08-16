@@ -91,10 +91,7 @@ export class AdminImagesComponent implements OnInit {
     const val = this.filter.toLowerCase();
     let filtered = [];
 
-    filtered = this.filteredImages.filter(d => {
-      return  d.path.toLowerCase().indexOf(val) !== -1 ||
-              d.alt.toLowerCase().indexOf(val) !== -1;
-    });
+    filtered = this.filteredImages.filter(d => JSON.stringify(Object.values(d)).toLowerCase().indexOf(val) !== -1);
 
     this.imageList = filtered;
     this.totalLength = filtered.length;

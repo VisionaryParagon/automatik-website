@@ -206,20 +206,9 @@ export class PortfolioMainComponent implements OnInit {
     let filtered = [];
 
     if (this.activeCat.length === 0) {
-      filtered = this.filteredProjects.filter(d => {
-        return  d.category.toLowerCase().indexOf(val) !== -1 ||
-                d.title.toLowerCase().indexOf(val) !== -1 ||
-                d.description.toLowerCase().indexOf(val) !== -1 ||
-                d.headline.toLowerCase().indexOf(val) !== -1 ||
-                d.copy.toLowerCase().indexOf(val) !== -1;
-      });
+      filtered = this.filteredProjects.filter(d => JSON.stringify(Object.values(d)).toLowerCase().indexOf(val) !== -1);
     } else {
-      filtered = this.filteredProjects.filter(prj => prj.category === this.activeCat).filter(d => {
-        return  d.title.toLowerCase().indexOf(val) !== -1 ||
-                d.description.toLowerCase().indexOf(val) !== -1 ||
-                d.headline.toLowerCase().indexOf(val) !== -1 ||
-                d.copy.toLowerCase().indexOf(val) !== -1;
-      });
+      filtered = this.filteredProjects.filter(prj => prj.category === this.activeCat).filter(d => JSON.stringify(Object.values(d)).toLowerCase().indexOf(val) !== -1);
     }
 
     this.projectService.filter = this.filter;
