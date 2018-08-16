@@ -12,7 +12,7 @@
       <div class="inputGroup">
         <label for="search">
           <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
-          <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length > 0" (click)="clearFilter()"></fa-icon>
+          <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
         </label>
         <input type="text" class="form-control" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
       </div>
@@ -32,7 +32,7 @@
     <div class="inputGroup">
       <label for="search">
         <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
-        <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length > 0" (click)="clearFilter()"></fa-icon>
+        <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
       </label>
       <input type="text" class="form-control" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
     </div>
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+    <div class="text-center" [@topDown]="true" *ngIf="error.length">
       <p>{{ error }}</p>
     </div>
   </div>

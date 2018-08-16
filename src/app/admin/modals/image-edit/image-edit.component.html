@@ -34,7 +34,7 @@
         <p>Alt text: {{ image.alt }}</p>
       </div>
 
-      <div class="errorMsg text-center" [@topDown]="true" *ngIf="error.length > 0">
+      <div class="errorMsg text-center" [@topDown]="true" *ngIf="error.length">
         <p>{{ error }}</p>
       </div>
     </div>

@@ -30,7 +30,7 @@
       <button class="autoBtn" (click)="inquire()">Contact Us Anyway</button>
     </div>
 
-    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+    <div class="text-center" [@topDown]="true" *ngIf="error.length">
       <p>{{ error }}</p>
     </div>
   </div>

@@ -101,7 +101,7 @@
         <div class="text-center">
           <p class="disclaimer">* Required field</p>
 
-          <div class="errorMsg" [@topDown]="true" *ngIf="error.length > 0">
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length">
             <p>{{ error }}</p>
           </div>
         </div>

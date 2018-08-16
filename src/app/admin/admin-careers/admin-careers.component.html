@@ -46,7 +46,7 @@
 
     <mat-paginator [pageSize]="12" [pageSizeOptions]="[4, 12, 24, 48]"></mat-paginator>
 
-    <div class="text-center" [@topDown]="true" *ngIf="error.length > 0">
+    <div class="text-center" [@topDown]="true" *ngIf="error.length">
       <p>{{ error }}</p>
     </div>
   </div>
