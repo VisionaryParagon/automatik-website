@@ -207,4 +207,63 @@
   <router-outlet></router-outlet>
 </div>
 
-<footer [@fade]="true" *ngIf="!introActive" (mouseover)="closeSubNav()">&copy; autom&auml;tik {{ currentYear }}</footer>
+<footer [@fade]="true" *ngIf="!introActive" (mouseover)="closeSubNav()">
+  <div class="container">
+    <div class="socialMedia">
+      <a class="smIcon facebook" href="https://www.facebook.com/automatikus/" target="_blank">
+        <fa-icon [icon]="['fab', 'facebook-f']" size="lg"></fa-icon>
+      </a>
+      <a class="smIcon twitter" href="#" target="_blank">
+        <fa-icon [icon]="['fab', 'twitter']" size="lg"></fa-icon>
+      </a>
+      <a class="smIcon linkedin" href="https://www.linkedin.com/company/autom-tik" target="_blank">
+        <fa-icon [icon]="['fab', 'linkedin-in']" size="lg"></fa-icon>
+      </a>
+      <a class="smIcon googleplus" href="#" target="_blank">
+        <fa-icon [icon]="['fab', 'google-plus-g']" size="lg"></fa-icon>
+      </a>
+      <a class="smIcon pinterest" href="#" target="_blank">
+        <fa-icon [icon]="['fab', 'pinterest']" size="lg"></fa-icon>
+      </a>
+      <a class="smIcon instagram" href="#" target="_blank">
+        <fa-icon [icon]="['fab', 'instagram']" size="lg"></fa-icon>
+      </a>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-xl-7">
+        <div class="row">
+          <div class="col-12 col-md-5 offset-md-1 col-lg-4 offset-lg-2 col-xl-6 offset-xl-0 text-center text-xl-left">
+            <h5>Our Mission</h5>
+
+            <p>To eradicate boring corporate events from the face of the&nbsp;Earth.</p>
+          </div>
+          <div class="col-12 col-md-5 col-lg-4 col-xl-6 text-center text-xl-left">
+            <h5>Contact Us</h5>
+
+            <p>Phone: (480) 775-6216
+              <br>Email: info@automatik.us</p>
+          </div>
+        </div>
+
+        <p class="d-none d-xl-block mt-5">Copyright &copy; {{ currentYear }} autom&auml;tik LLC, All rights reserved. Privacy Policy: By accessing or using the automätik LLC website, you agree to the terms of this Privacy Policy. If you do not agree to these terms, please do not access or use this&nbsp;site.</p>
+      </div>
+
+      <div class="col-12 col-xl-5 align-self-end mt-5 mt-lg-0 text-center text-xl-right">
+        <a routerLink="/services">Services</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
+        <a routerLink="/courses">Courses</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
+        <a routerLink="/portfolio">Portfolio</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
+        <a routerLink="/resources/blog">Blog</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
+        <a routerLink="/about">About</a>
+
+        <div class="d-lg-none"></div>
+
+        <img src="https://assets.automatik9dots.com/images/wbenc-logo.png" alt="Certified WBENC Women's Business Enterprise" width="180">
+
+        <a routerLink="/"><img src="https://assets.automatik9dots.com/images/automatik-logo.png" alt="automätik" width="90"></a>
+      </div>
+    </div>
+
+    <p class="d-block d-xl-none mt-5">Copyright &copy; {{ currentYear }} autom&auml;tik LLC, All rights reserved. Privacy Policy: By accessing or using the automätik LLC website, you agree to the terms of this Privacy Policy. If you do not agree to these terms, please do not access or use this&nbsp;site.</p>
+  </div>
+</footer>

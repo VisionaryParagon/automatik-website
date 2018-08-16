@@ -449,18 +449,18 @@ nav {
       letter-spacing: .155rem;
     }
 
-    i {
-      -moz-transition: all 500ms;
-      -o-transition: all 500ms;
-      -webkit-transition: all 500ms;
-      transition: all 500ms;
+    fa-icon {
+      -moz-transition: all 250ms;
+      -o-transition: all 250ms;
+      -webkit-transition: all 250ms;
+      transition: all 250ms;
 
       &.open {
-        -moz-transform: rotate(-180deg);
-        -ms-transform: rotate(-180deg);
-        -o-transform: rotate(-180deg);
-        -webkit-transform: rotate(-180deg);
-        transform: rotate(-180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
       }
     }
   }
@@ -1773,10 +1773,98 @@ section {
 /*~~ Footer ~~*/
 
 footer {
-  background: #000;
-  color: #ccc;
-  padding: 2rem 0;
-  text-align: center;
+  background: #272727;
+  color: #979797;
+  padding: 3rem 0;
+
+  h5 {
+    color: $client-yellow;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  a {
+    border-bottom: 1px solid;
+    color: inherit;
+    display: block;
+    font-weight: 300;
+    padding: 1rem 0;
+    text-transform: uppercase;
+
+    &:first-child {
+      border-top: 1px solid;
+    }
+
+    &:last-child {
+      border: none;
+      padding: 0;
+    }
+  }
+
+  img {
+    margin: 3rem 0 0;
+  }
+
+  .socialMedia {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto 2rem;
+    max-width: 400px;
+
+    .smIcon {
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 17px;
+      height: 40px;
+      padding: 0;
+      position: relative;
+      width: 40px;
+
+      &.facebook {
+        background: #3b5998;
+      }
+
+      &.twitter {
+        background: #1da1f2;
+      }
+
+      &.linkedin {
+        background: #0077b5;
+        font-size: 18px;
+      }
+
+      &.googleplus {
+        background: #db4437;
+        font-size: 18px;
+      }
+
+      &.pinterest {
+        background: #bd081c;
+        font-size: 21px;
+      }
+
+      &.instagram {
+        background: #d6249f;
+        background: -moz-radial-gradient(30% 107%, circle cover, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+        background: -webkit-radial-gradient(30% 107%, circle cover, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd5949', endColorstr='#d6249f',GradientType=1 );
+        font-size: 22px;
+      }
+
+      fa-icon {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -moz-transform: translate(-50%, -44%);
+        -ms-transform: translate(-50%, -44%);
+        -o-transform: translate(-50%, -44%);
+        -webkit-transform: translate(-50%, -44%);
+        transform: translate(-50%, -44%);
+      }
+    }
+  }
 }
 
 
@@ -2153,6 +2241,21 @@ div.cdk-overlay-dark-backdrop {
       width: 100%;
     }
   }
+  footer {
+    a {
+      border: none;
+      display: inline-block;
+      padding: 0;
+
+      &:first-child {
+        border: none;
+      }
+    }
+    img {
+      margin: 2.75rem 0 1rem 3rem;
+    }
+  }
+
   .mobile {
     section {
       padding: 50px 0;
@@ -2195,6 +2298,11 @@ div.cdk-overlay-dark-backdrop {
             top: 5rem;
           }
         }
+      }
+    }
+    footer {
+      img {
+        margin: 3rem 2rem 0;
       }
     }
   }
