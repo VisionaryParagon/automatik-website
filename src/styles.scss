@@ -15,7 +15,7 @@ $error-color: #f00;
 }
 
 html {
-  background: #000;
+  background: #272727;
   min-height: 100%;
   overflow-x: hidden;
 }
@@ -286,7 +286,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 1000;
 }
 
 nav {

@@ -71,9 +71,11 @@ export class PortfolioMainComponent implements OnInit {
   @HostListener('window:scroll', ['$event']) onScroll(ev) {
     const tileBoxHeight = this.tileBox.nativeElement.getBoundingClientRect().height;
     const scrollHeight = window.innerHeight - 60 + window.scrollY;
-    if (window.innerWidth >= 1200) {
+    if (!document.documentElement.classList.contains('mobile')) {
       if (scrollHeight >= tileBoxHeight) {
         this.sidebar.nativeElement.style.top = tileBoxHeight - scrollHeight + 'px';
+      } else {
+        this.sidebar.nativeElement.style.top = '0px';
       }
     }
   }
@@ -122,6 +124,8 @@ export class PortfolioMainComponent implements OnInit {
 
   setTilePosition() {
     if (isPlatformBrowser(this.platformId)) {
+      window.scroll({top: 0, left: 0, behavior: 'smooth'});
+
       setTimeout(() => {
         if (window.outerWidth >= 1200) {
           this.tiles.forEach((el, idx) => {
