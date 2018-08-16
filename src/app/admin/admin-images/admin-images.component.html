@@ -53,12 +53,14 @@
             <p>An image already exists with this file name</p>
           </div>
 
-          <button class="autoBtn" [disabled]="loading" (click)="upload()">
-            <span *ngIf="!loading">Upload</span>
-            <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
-          </button>
+          <div class="d-flex">
+            <button class="autoBtn mx-0" [disabled]="loading" (click)="upload()">
+              <span *ngIf="!loading">Upload</span>
+              <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+            </button>
 
-          <button class="autoBtn secondary mx-3" (click)="cancel()">Cancel</button>
+            <button class="autoBtn secondary mx-3" (click)="cancel()">Cancel</button>
+          </div>
         </form>
       </div>
 
