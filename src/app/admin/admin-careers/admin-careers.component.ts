@@ -21,6 +21,7 @@ export class AdminCareersComponent implements OnInit {
   careers: CareerPosition[] = this.careersService.positions;
   careersLoaded = false;
   loading = true;
+  filter = '';
   error = '';
 
   modalOptions = {
@@ -71,12 +72,17 @@ export class AdminCareersComponent implements OnInit {
     }
   }
 
-  updateFilter(val: string) {
-    this.dataSource.filter = val.trim().toLowerCase();
+  updateFilter() {
+    this.dataSource.filter = this.filter.toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  clearFilter() {
+    this.filter = '';
+    this.updateFilter();
   }
 
   new() {

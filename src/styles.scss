@@ -1870,6 +1870,19 @@ footer {
 
 /*~~ ADMIN ~~*/
 
+.adminFilter {
+  .inputGroup {
+    position: relative;
+
+    label {
+      color: #000;
+      padding: .5rem 1rem;
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
 /*~~ Image Uploader ~~*/
 
 .imageSelection {

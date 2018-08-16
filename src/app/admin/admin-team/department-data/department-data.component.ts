@@ -20,6 +20,7 @@ export class DepartmentDataComponent implements OnInit {
   dataSource: MatTableDataSource<Department>;
   displayedColumns: string[] = ['name', 'rank', 'edit', 'delete'];
   loading = true;
+  filter = '';
   error = '';
 
   modalOptions = {
@@ -74,12 +75,17 @@ export class DepartmentDataComponent implements OnInit {
     return depts;
   }
 
-  updateFilter(val: string) {
-    this.dataSource.filter = val.trim().toLowerCase();
+  updateFilter() {
+    this.dataSource.filter = this.filter.toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  clearFilter() {
+    this.filter = '';
+    this.updateFilter();
   }
 
   new() {

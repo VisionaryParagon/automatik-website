@@ -24,6 +24,7 @@ export class AdminPortfolioComponent implements OnInit {
   projectsLoaded = false;
   imagesLoaded = false;
   loading = true;
+  filter = '';
   error = '';
 
   modalOptions = {
@@ -90,12 +91,17 @@ export class AdminPortfolioComponent implements OnInit {
     }
   }
 
-  updateFilter(val: string) {
-    this.dataSource.filter = val.trim().toLowerCase();
+  updateFilter() {
+    this.dataSource.filter = this.filter.toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  clearFilter() {
+    this.filter = '';
+    this.updateFilter();
   }
 
   new() {

@@ -21,6 +21,7 @@ export class AdminImagesComponent implements OnInit {
   pageSize = 12;
   totalLength = 0;
   currentPage = 0;
+  filter = '';
   image: Image = new Image();
   imageName = 'Choose image...';
   imageData: FileList;
@@ -86,8 +87,8 @@ export class AdminImagesComponent implements OnInit {
     }
   }
 
-  updateFilter(val) {
-    val = val.trim().toLowerCase();
+  updateFilter() {
+    const val = this.filter.toLowerCase();
     let filtered = [];
 
     filtered = this.filteredImages.filter(d => {
@@ -105,6 +106,11 @@ export class AdminImagesComponent implements OnInit {
     } else {
       this.clearError();
     }
+  }
+
+  clearFilter() {
+    this.filter = '';
+    this.updateFilter();
   }
 
   select(id) {

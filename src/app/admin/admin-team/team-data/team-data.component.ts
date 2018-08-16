@@ -26,6 +26,7 @@ export class TeamDataComponent implements OnInit {
   deptsLoaded = false;
   imagesLoaded = false;
   loading = true;
+  filter = '';
   error = '';
 
   modalOptions = {
@@ -152,12 +153,17 @@ export class TeamDataComponent implements OnInit {
     }
   }
 
-  updateFilter(val: string) {
-    this.dataSource.filter = val.trim().toLowerCase();
+  updateFilter() {
+    this.dataSource.filter = this.filter.toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  clearFilter() {
+    this.filter = '';
+    this.updateFilter();
   }
 
   new() {

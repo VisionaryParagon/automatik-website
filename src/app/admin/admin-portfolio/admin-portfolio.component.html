@@ -7,9 +7,13 @@
         <button class="autoBtn my-3" (click)="new()">New Project</button>
       </div>
 
-      <div class="col-12 col-md-6 order-md-first">
+      <div class="col-12 col-md-6 order-md-first adminFilter">
         <div class="inputGroup">
-          <input type="text" name="search" class="form-control" autocomplete="off" placeholder="Search" (keyup)="updateFilter($event.target.value)">
+          <label for="search">
+            <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+            <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
+          </label>
+          <input type="text" class="form-control" name="search" #search="ngModel" autocomplete="off" placeholder="Search" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
         </div>
       </div>
     </div>
