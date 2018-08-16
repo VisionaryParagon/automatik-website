@@ -126,35 +126,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      this.checkIntro();
+
       this.location.subscribe((ev: PopStateEvent) => {
         this.lastPoppedUrl = ev.url;
       });
 
       this.router.events.subscribe((ev: any) => {
         if (ev instanceof NavigationStart) {
-          if (this.cookieService.get('intro')) {
-            this.introActive = false;
-          } else {
-            this.renderer.addClass(document.documentElement, 'modal-open');
-
-            this.randomFeelings = this.shuffle(this.feelings);
-
-            setTimeout(() => {
-              this.start = true;
-
-              setTimeout(() => {
-                this.ready = true;
-
-                setTimeout(() => {
-                  this.interact = true;
-                }, 1000);
-              }, 3000);
-            }, 500);
-
-            // Set cookie exp
-            this.cookieExp.setDate(this.cookieExp.getDate() + 7);
-            this.cookieOptions.expires = this.cookieExp;
-          }
+          this.checkIntro();
 
           // save page scroll location
           if (ev.url !== this.lastPoppedUrl) {
@@ -230,6 +210,32 @@ export class AppComponent implements OnInit {
     this.stateCourses = 'inactive';
     this.stateResources = 'inactive';
     this.stateAbout = 'inactive';
+  }
+
+  checkIntro() {
+    if (this.cookieService.get('intro')) {
+      this.introActive = false;
+    } else {
+      this.renderer.addClass(document.documentElement, 'modal-open');
+
+      this.randomFeelings = this.shuffle(this.feelings);
+
+      setTimeout(() => {
+        this.start = true;
+
+        setTimeout(() => {
+          this.ready = true;
+
+          setTimeout(() => {
+            this.interact = true;
+          }, 1000);
+        }, 3000);
+      }, 500);
+
+      // Set cookie exp
+      this.cookieExp.setDate(this.cookieExp.getDate() + 7);
+      this.cookieOptions.expires = this.cookieExp;
+    }
   }
 
   shuffle(array) {
