@@ -10,11 +10,11 @@
       </mat-expansion-panel-header>
 
       <div class="inputGroup">
-        <label for="search">
+        <label for="searchMobile">
           <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
           <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
         </label>
-        <input type="text" class="form-control" id="search" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
+        <input type="text" class="form-control" id="searchMobile" name="searchMobile" #searchMobile="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
       </div>
 
       <h4>Categories</h4>
