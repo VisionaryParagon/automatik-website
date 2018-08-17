@@ -146,9 +146,24 @@ export class AdminImagesComponent implements OnInit {
     this.new = true;
   }
 
+  setImageName(name) {
+    if (name.length) {
+      return name.toLowerCase()
+        .replace(/&/g, 'and')
+        .replace(/%/g, 'percent')
+        .replace(/\+/g, 'plus')
+        .replace(/=/g, 'equals')
+        .replace(/[~`!@#$^*(){}[\]/\\|<>'";:,?®™–—]|(\.+$)/g, '')
+        .replace(/(\s*\-\s*)|(\.\s*)|\.+/g, ' ')
+        .replace(/\s{2,}/g, ' ')
+        .replace(/(\s+$)/g, '')
+        .split(' ').join('-');
+    }
+  }
+
   setImageData(ev) {
     this.imageData = ev.target.files[0];
-    this.imageName = ev.target.files[0].name;
+    this.imageName = this.setImageName(ev.target.files[0].name);
     this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
   }
 
@@ -192,15 +207,16 @@ export class AdminImagesComponent implements OnInit {
 
   cancel() {
     this.new = false;
+    this.reset();
     return false;
   }
 
   done() {
     this.new = false;
-    this.uploadAnother();
+    this.reset();
   }
 
-  uploadAnother() {
+  reset() {
     this.image = new Image();
     this.imageName = 'Choose image...';
     this.imageId = '';

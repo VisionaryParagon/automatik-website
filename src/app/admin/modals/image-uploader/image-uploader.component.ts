@@ -104,9 +104,8 @@ export class ImageUploaderComponent implements OnInit {
     return false;
   }
 
-  uploadAnother() {
+  reset() {
     this.image = new Image();
-    this.imageData = new FileList();
     this.imageName = 'Choose image...';
     this.imageId = '';
     this.submitted = false;

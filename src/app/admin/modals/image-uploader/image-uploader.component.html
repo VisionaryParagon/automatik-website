@@ -58,7 +58,7 @@
       <span *ngIf="!loading">Upload</span>
       <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
     </button>
-    <button class="autoBtn secondary" *ngIf="success && tabId === 0" (click)="uploadAnother()">Upload Another</button>
+    <button class="autoBtn secondary" *ngIf="success && tabId === 0" (click)="reset()">Upload Another</button>
     <button class="autoBtn" *ngIf="success && tabId === 0" [mat-dialog-close]="imageId">Done</button>
     <button class="autoBtn" *ngIf="tabId === 1" [mat-dialog-close]="imageId">Select</button>
   </mat-dialog-actions>
