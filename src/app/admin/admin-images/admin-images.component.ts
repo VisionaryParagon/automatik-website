@@ -154,7 +154,7 @@ export class AdminImagesComponent implements OnInit {
         .replace(/\+/g, 'plus')
         .replace(/=/g, 'equals')
         .replace(/[~`!@#$^*(){}[\]/\\|<>'";:,?®™–—]|(\.+$)/g, '')
-        .replace(/(\s*\-\s*)|(\.\s*)|\.+/g, ' ')
+        .replace(/(\s*\-\s*)|(\.\s+)/g, ' ')
         .replace(/\s{2,}/g, ' ')
         .replace(/(\s+$)/g, '')
         .split(' ').join('-');
