@@ -22,6 +22,7 @@ export class ImageUploaderComponent implements OnInit {
   submitted = false;
   loading = false;
   success = false;
+  rename = false;
   invalid = false;
   error = '';
 
@@ -60,16 +61,22 @@ export class ImageUploaderComponent implements OnInit {
     this.imageId = id;
   }
 
+  testImageName(name) {
+    const regex = RegExp(/[~`!@#$%^&*()=+{}[\]/\\|<>'";:,?®™–—]|(\s+)|(\.+$)/, 'g');
+    this.rename = regex.test(name);
+  }
+
   setImageData(ev) {
-    this.image.path = 'https://assets.automatik9dots.com/images/' + ev.target.files[0].name;
-    this.imageName = ev.target.files[0].name;
     this.imageData = ev.target.files[0];
+    this.imageName = ev.target.files[0].name;
+    this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
+    this.testImageName(this.imageName);
   }
 
   upload() {
     this.submitted = true;
 
-    if (this.imageData) {
+    if (this.imageData && !this.rename) {
       this.loading = true;
 
       this.imageService.validateImage(this.image)
@@ -110,6 +117,8 @@ export class ImageUploaderComponent implements OnInit {
     this.imageId = '';
     this.submitted = false;
     this.success = false;
+    this.rename = false;
+    this.invalid = false;
   }
 
   setError(err) {

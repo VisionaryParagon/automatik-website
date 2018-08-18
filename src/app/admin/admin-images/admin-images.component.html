@@ -31,13 +31,24 @@
 
       <div *ngIf="!success">
         <form #imageForm="ngForm" novalidate>
-          <div class="inputGroup" [class.nope]="img.errors && (img.touched || submitted)">
+          <div class="inputGroup" [class.nope]="invalid || rename || (img.errors && (img.touched || submitted))">
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" #img required (change)="setImageData($event)">
               <label class="custom-file-label" for="img">{{ imageName }}</label>
             </div>
             <div class="errorMsg" [@topDown]="true" *ngIf="img.errors && (img.touched || submitted)">
               <p *ngIf="img.errors.required">Please choose an image to upload</p>
+            </div>
+            <div class="errorMsg" [@topDown]="true" *ngIf="rename">
+              <p>Please rename image to meet standards and try again:</p>
+              <ul>
+                <li>All lowercase letters</li>
+                <li>No special characters</li>
+                <li>Dashes for spaces</li>
+              </ul>
+            </div>
+            <div class="errorMsg" [@topDown]="true" *ngIf="invalid">
+              <p>An image already exists with this file name</p>
             </div>
           </div>
 
@@ -47,10 +58,6 @@
             <div class="errorMsg" [@topDown]="true" *ngIf="alt.errors && (alt.touched || submitted)">
               <p *ngIf="alt.errors.required">Alt Text is required</p>
             </div>
-          </div>
-
-          <div class="text-danger" [@topDown]="true" *ngIf="invalid">
-            <p>An image already exists with this file name</p>
           </div>
 
           <div class="d-flex">

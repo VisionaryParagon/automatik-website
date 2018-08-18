@@ -30,6 +30,7 @@ export class AdminImagesComponent implements OnInit {
   submitted = false;
   loading = false;
   success = false;
+  rename = false;
   invalid = false;
   error = '';
 
@@ -146,31 +147,22 @@ export class AdminImagesComponent implements OnInit {
     this.new = true;
   }
 
-  setImageName(name) {
-    if (name.length) {
-      return name.toLowerCase()
-        .replace(/&/g, 'and')
-        .replace(/%/g, 'percent')
-        .replace(/\+/g, 'plus')
-        .replace(/=/g, 'equals')
-        .replace(/[~`!@#$^*(){}[\]/\\|<>'";:,?®™–—]|(\.+$)/g, '')
-        .replace(/(\s*\-\s*)|(\.\s+)/g, ' ')
-        .replace(/\s{2,}/g, ' ')
-        .replace(/(\s+$)/g, '')
-        .split(' ').join('-');
-    }
+  testImageName(name) {
+    const regex = RegExp(/[~`!@#$%^&*()=+{}[\]/\\|<>'";:,?®™–—]|(\s+)|(\.+$)/, 'g');
+    this.rename = regex.test(name);
   }
 
   setImageData(ev) {
     this.imageData = ev.target.files[0];
-    this.imageName = this.setImageName(ev.target.files[0].name);
+    this.imageName = ev.target.files[0].name;
     this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
+    this.testImageName(this.imageName);
   }
 
   upload() {
     this.submitted = true;
 
-    if (this.imageData) {
+    if (this.imageData && !this.rename) {
       this.loading = true;
 
       this.imageService.validateImage(this.image)
@@ -222,6 +214,8 @@ export class AdminImagesComponent implements OnInit {
     this.imageId = '';
     this.submitted = false;
     this.success = false;
+    this.rename = false;
+    this.invalid = false;
   }
 
   setError(err) {
