@@ -62,7 +62,7 @@ export class ImageUploaderComponent implements OnInit {
   }
 
   testImageName(name) {
-    const regex = RegExp(/[~`!@#$%^&*()=+{}[\]/\\|<>'";:,?®™–—]|(\s+)|(\.+$)/, 'g');
+    const regex = RegExp(/[A-Z~`!@#$%^&*()=+{}[\]/\\|<>'";:,?®™–—]|(\s+)|(\.+$)/, 'g');
     this.rename = regex.test(name);
   }
 
