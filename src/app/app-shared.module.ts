@@ -21,6 +21,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCaretDown,
   faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faCircle,
   faEdit,
   faEye,
   faPlus,
@@ -46,6 +49,9 @@ import { MinValidatorDirective } from './directives/min-validator.directive';
 // Icons for fontawesome library
 library.add(faCaretDown);
 library.add(faChevronDown);
+library.add(faChevronLeft);
+library.add(faChevronRight);
+library.add(faCircle);
 library.add(faEdit);
 library.add(faEye);
 library.add(faPlus);

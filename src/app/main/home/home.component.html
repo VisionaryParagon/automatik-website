@@ -1,28 +1,248 @@
 <div [@fade]="true">
-  <section class="fullHeight" id="home1">
-    <h1><span class="fadeText">Eradicating</span> boring corporate events from the face of the Earth.</h1>
-    <!--
-    <img src="https://assets.automatik9dots.com/images/automatik-logo.png" alt="automätik">
-    -->
+  <section class="dark fixed fullHeight" id="home1">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-11 col-md-10">
+          <h1><span class="fadeText">Eradicating</span>
+            <br><span class="yellowText">boring&nbsp;corporate events</span> from the face of&nbsp;the&nbsp;Earth.</h1>
+
+          <button class="autoBtn my-3" routerLink="/">Let&rsquo;s Save the World</button>
+        </div>
+      </div>
+
+      <span class="textShadow">Eradicating</span>
+      <img id="particleImg" src="https://assets.automatik9dots.com/images/eradicate-particulates.png" alt="Particulates">
+    </div>
   </section>
 
-  <section class="fullHeight" id="home2">
-    <h2>Section for Services</h2>
+  <section class="dark fixed imgArrow" id="home2">
+    <div class="container">
+      <h2>Trusted by
+        <br>the&nbsp;world&rsquo;s&nbsp;best</h2>
+
+      <div class="row">
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-acura.png" alt="Acura" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-land-rover.png" alt="Land Rover" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-alfa-romeo.png" alt="Alfa Romeo" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-audi.png" alt="Audi" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-toyota.png" alt="Toyota" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-honda.png" alt="Honda" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-jaguar.png" alt="Jaguar" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-bmw.png" alt="BMW" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-lexus.png" alt="Lexus" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-mini.png" alt="Mini" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-sub-zero-wolf-cove.png" alt="Sub Zero | Wolf | Cove" width="100%">
+        </div>
+        <div class="col-3 col-sm-2">
+          <img src="https://assets.automatik9dots.com/images/client-logo-volkswagen.png" alt="Volkswagen" width="100%">
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="fullHeight" id="home3">
-    <h2>Section for Courses</h2>
+  <section class="dark solidArrow" id="home3" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
+    <div class="container">
+      <h3>Client Testimonial</h3>
+
+      <div class="row">
+        <div class="col-1 d-none d-md-flex align-items-center justify-content-center" (click)="prevSlide()">
+          <fa-icon [icon]="['fas', 'chevron-left']" size="2x"></fa-icon>
+        </div>
+
+        <div class="col-12 col-md-8 offset-md-1">
+          <div class="carousel" #carousel>
+            <div class="slide" *ngFor="let item of randomTestimonials; let i = index" [class.active]="i === currentSlide" [class.left]="i === currentSlide - 1 || (i === dataLength && currentSlide === 0)" [class.right]="i === currentSlide + 1 || (i === 0 && currentSlide === dataLength)" #slides>
+              <p class="testimonial"><span class="bigQuote">&ldquo;</span>{{ item.copy }}<span class="bigQuote">&rdquo;</span></p>
+
+              <h4>{{ item.client }}</h4>
+            </div>
+          </div>
+
+          <div class="pager">
+            <fa-icon [icon]="['fas', 'circle']" size="sm" *ngFor="let item of randomTestimonials; let i = index" [class.active]="i === currentSlide" (click)="setSlide(i)"></fa-icon>
+          </div>
+        </div>
+
+        <div class="col-1 offset-md-1 d-none d-md-flex align-items-center justify-content-center" (click)="nextSlide()">
+          <fa-icon [icon]="['fas', 'chevron-right']" size="2x"></fa-icon>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="fullHeight" id="home4">
-    <h2>Section for Portfolio</h2>
+  <section class="dark fixed" id="home4">
+    <div class="container">
+      <h2>5 Secrets to de&#8209;borifying your&nbsp;next&nbsp;event</h2>
+
+      <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <h3>Subscribe to our monthly newsletter and receive our free article that&rsquo;s sure to supercharge your next&nbsp;event.</h3>
+        </div>
+      </div>
+
+      <div class="mt-4 text-left" *ngIf="!success && !error.length">
+        <form #newsletterForm="ngForm" novalidate>
+          <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-0">
+              <div class="inputGroup" [class.nope]="name.errors && (name.touched || submitted)">
+                <input type="text" class="form-control" name="name" #name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="newsletter.name">
+                <label for="name">Name</label>
+                <div class="errorMsg" [@topDown]="true" *ngIf="name.errors && (name.touched || submitted)">
+                  <p *ngIf="name.errors.required">First Name is required</p>
+                  <p *ngIf="name.errors.pattern">Numbers and special characters are not allowed</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-0">
+              <div class="inputGroup" [class.nope]="email.errors && (email.touched || submitted)">
+                <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="newsletter.email">
+                <label for="email">Email</label>
+                <div class="errorMsg" [@topDown]="true" *ngIf="email.errors && (email.touched || submitted)">
+                  <p *ngIf="email.errors.required">Email Address is required</p>
+                  <p *ngIf="email.errors.pattern">Email Address is invalid</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-0">
+              <button class="autoBtn my-3 w-100" *ngIf="!success" [disabled]="loading" (click)="submit(newsletter, newsletterForm.valid)">
+                <span *ngIf="!loading">Send Me The Secrets!</span>
+                <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div [@fade]="true" *ngIf="success && !error.length">
+        <h4 class="text-center text-success">Thanks for subscribing! Keep an eye out for all our latest event&nbsp;secrets!</h4>
+      </div>
+
+      <div class="errorMsg" [@topDown]="true" *ngIf="error.length">
+        <p>{{ error }}</p>
+      </div>
+    </div>
   </section>
 
-  <section class="fullHeight" id="home5">
-    <h2>Section for Resources</h2>
+  <section class="dark fixed fullHeight" id="home5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 offset-md-6">
+          <h2>Your one&#8209;stop
+            <br>event&nbsp;shop</h2>
+
+          <button class="autoBtn my-3" routerLink="/">We Have Your Back</button>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="fullHeight" id="home6">
-    <h2>Section for About</h2>
+  <section class="dark fullHeight" id="home6">
+    <div class="container">
+      <h2>We practice
+        <br>the <span class="asterisk">*</span>platinum rule</h2>
+
+      <h4>*<strong>Ask us</strong> what this means : )</h4>
+
+      <button class="autoBtn dark my-3 px-5" routerLink="/about">Meet Our Team</button>
+    </div>
   </section>
+
+  <section class="dark fullHeight" id="home7">
+    <div class="container">
+      <h2>Become a presentation hero</h2>
+
+      <button class="autoBtn my-3" routerLink="/">Sign Up For A Workshop</button>
+    </div>
+  </section>
+
+  <section class="dark fullHeight" id="home8">
+    <div class="container">
+      <h2>Event tips
+        <br>from the gurus</h2>
+
+      <button class="autoBtn my-3 px-5" routerLink="/resources/blog">Read Our Blog</button>
+    </div>
+  </section>
+
+  <section id="home9">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-7 order-md-last">
+          <img src="https://assets.automatik9dots.com/images/home-event-sign-ups-bg-900.jpg" alt="Event registration">
+        </div>
+
+        <div class="col-12 col-md-5 order-md-first align-self-center">
+          <h2>Beautiful, easy event sign&#8209;ups</h2>
+
+          <button class="autoBtn dark my-3 px-3" routerLink="/">Build A Registration Site</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark fixed fullHeight" id="home10">
+    <div class="container">
+      <h2>We don&rsquo;t do&nbsp;boring</h2>
+
+      <button class="autoBtn my-3 px-5" routerLink="/">Find Out Why</button>
+    </div>
+  </section>
+
+  <section class="dark fixed fullHeight" id="home11">
+    <div class="container">
+      <h2>Meet in style</h2>
+
+      <button class="autoBtn my-3" routerLink="/">Find The Perfect Venue</button>
+    </div>
+  </section>
+
+  <section class="dark fullHeight" id="home12">
+    <div class="container">
+      <h2>Engage your audience
+        <br>to the max</h2>
+
+      <button class="autoBtn my-3 px-4" routerLink="/courses">Explore MeetingMastery</button>
+    </div>
+  </section>
+
+  <section class="dark fullHeight" id="home13">
+    <div class="container">
+      <h2>Write the perfect&nbsp;speech</h2>
+
+      <button class="autoBtn my-3 px-5" routerLink="/">Get Started</button>
+    </div>
+  </section>
+
+  <section class="dark fixed fullHeight" id="home14">
+    <div class="container">
+      <h2>Become a PowerPoint&nbsp;Jedi</h2>
+
+      <button class="autoBtn my-3" routerLink="/">Take Our Web Course</button>
+    </div>
+  </section>
+
+  <div id="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
+    <div class="arrowDown"></div>
+  </div>
 </div>

@@ -1,5 +1,0 @@
-.fadeText {
-  background: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}

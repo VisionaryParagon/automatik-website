@@ -2,7 +2,10 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "fonts.css";
 
-$client-font: "Frutiger LT Std", Helvetica, Arial, sans-serif;
+$client-font: "Frutiger LT Std",
+Helvetica,
+Arial,
+sans-serif;
 $client-yellow: #ffc11a;
 $client-blue: #00aeef;
 $client-blue-bg: #11679b;
@@ -32,19 +35,17 @@ body {
 /* ~~~ Typography ~~~ */
 
 h1,
-h2 {
+h2,
+span.textShadow {
   font: {
     family: $client-font;
     size: 40px;
     weight: 700;
   }
-  letter-spacing: -1px;
+  letter-spacing: -0.15rem;
+  line-height: 1.1;
   margin: 1.25rem 0 1rem;
   padding: 0;
-
-  span {
-    font-weight: 400;
-  }
 }
 
 h3 {
@@ -168,7 +169,7 @@ button {
     }
   }
 
-  fa-icon>.fa-caret-down {
+  fa-icon > .fa-caret-down {
     position: absolute;
     right: .5rem;
     top: 2.25rem;
@@ -236,6 +237,7 @@ button {
   font-family: $client-font;
   font-weight: normal;
   height: 40px;
+  letter-spacing: .05rem;
   line-height: 40px;
   margin: 0 auto 1rem;
   min-width: 125px;
@@ -245,7 +247,7 @@ button {
   text-transform: uppercase;
 
   &:hover {
-    opacity: 0.9;
+    opacity: 0.85;
   }
 
   &:active {
@@ -256,6 +258,11 @@ button {
   &:disabled {
     cursor: not-allowed;
     opacity: 0.8;
+  }
+
+  &.dark {
+    background: #000;
+    color: $client-yellow;
   }
 
   &.secondary {
@@ -1030,10 +1037,85 @@ nav {
 /*~~ Content ~~*/
 
 section {
-  padding: 50px 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+
+  .container {
+    position: relative;
+  }
+
+  &:first-child {
+    padding: 50px 0;
+  }
+
+  &.fixed {
+    background-attachment: fixed;
+  }
+
+  &.dark {
+    background-color: #000;
+    color: #fff;
+  }
 
   &.fullHeight {
     min-height: 100vh;
+  }
+
+  &.imgArrow {
+    &:before,
+    &:after {
+      background-color: $client-blue-bg;
+      bottom: 0;
+      content: '';
+      padding-bottom: 30px;
+      position: absolute;
+      width: 50%;
+      z-index: 1;
+    }
+
+    &:before {
+      right: 50%;
+      -ms-transform-origin: 100% 100%;
+      -webkit-transform-origin: 100% 100%;
+      transform-origin: 100% 100%;
+      -moz-transform: skewX(45deg);
+      -ms-transform: skewX(45deg);
+      -o-transform: skewX(45deg);
+      -webkit-transform: skewX(45deg);
+      transform: skewX(45deg);
+    }
+
+    &:after {
+      left: 50%;
+      -ms-transform-origin: 0 100%;
+      -webkit-transform-origin: 0 100%;
+      transform-origin: 0 100%;
+      -moz-transform: skewX(-45deg);
+      -ms-transform: skewX(-45deg);
+      -o-transform: skewX(-45deg);
+      -webkit-transform: skewX(-45deg);
+      transform: skewX(-45deg);
+    }
+  }
+
+  &.solidArrow {
+    background-color: $client-blue-bg;
+    overflow: visible;
+    padding: 20px 0;
+
+    &:after {
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-top: 30px solid $client-blue-bg;
+      content: '';
+      left: 50%;
+      margin-left: -30px;
+      position: absolute;
+      top: 100%;
+    }
   }
 
   &.tileSection {
@@ -1043,55 +1125,166 @@ section {
   }
 }
 
-#home1 {
-  background-attachment: fixed;
-  background-image: url(https://assets.automatik9dots.com/images/home-bg-01-sm.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: calc(100vh + 30px);
-  overflow: hidden;
-  position: relative;
+#scrollArrow {
+  bottom: 1rem;
+  color: #fff;
+  height: 4rem;
+  position: fixed;
+  right: 1rem;
+  width: 4rem;
+  z-index: 5;
 
-  &:before,
-  &:after {
-    background-color: $client-blue-bg;
-    bottom: 0;
-    content: '';
-    padding-bottom: 30px;
+  .arrowDown {
+    -moz-animation: scrollDown 1500ms infinite;
+    -o-animation: scrollDown 1500ms infinite;
+    -webkit-animation: scrollDown 1500ms infinite;
+    animation: scrollDown 1500ms infinite;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    height: 1.5rem;
+    left: 50%;
     position: absolute;
-    width: 50%;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%) rotate(45deg);
+    -ms-transform: translate(-50%, -50%) rotate(45deg);
+    -o-transform: translate(-50%, -50%) rotate(45deg);
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 1.5rem;
   }
+}
 
-  &:before {
-    right: 50%;
-    -ms-transform-origin: 100% 100%;
-    -webkit-transform-origin: 100% 100%;
-    transform-origin: 100% 100%;
-    -moz-transform: skewX(45deg);
-    -ms-transform: skewX(45deg);
-    -o-transform: skewX(45deg);
-    -webkit-transform: skewX(45deg);
-    transform: skewX(45deg);
-  }
+#home1 {
+  background-image: url(https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-900.jpg);
+  background-position: center 50px;
 
-  &:after {
+  .container {
+    bottom: 4rem;
     left: 50%;
-    -ms-transform-origin: 0 100%;
-    -webkit-transform-origin: 0 100%;
-    transform-origin: 0 100%;
-    -moz-transform: skewX(-45deg);
-    -ms-transform: skewX(-45deg);
-    -o-transform: skewX(-45deg);
-    -webkit-transform: skewX(-45deg);
-    transform: skewX(-45deg);
+    position: absolute;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 2;
+
+    h1 {
+      position: relative;
+      z-index: 3;
+    }
   }
 
-  img {
+  .fadeText {
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .yellowText {
+    color: $client-yellow;
+  }
+
+  .textShadow {
+    color: transparent;
+    font-size: 60px;
+    left: 15px;
+    position: absolute;
+    text-shadow: 0 0 .75rem rgba(0, 0, 0, 0.3);
+    top: -10px;
+    z-index: 0;
+  }
+
+  #particleImg {
     height: auto;
+    left: 68px;
+    position: absolute;
+    top: -2px;
+    width: 160px;
+    z-index: 1;
+  }
+}
+
+#home2 {
+  background-image: url(https://assets.automatik9dots.com/images/home-mesh-bg-900.jpg);
+  min-height: 50vh;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 15px 6rem;
+    text-align: center;
+  }
+}
+
+#home3 {
+  .container {
+    padding: 0 15px 2rem;
+    text-align: center;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 0.05rem;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    h4 {
+      font-size: 18px;
+      white-space: pre-line;
+      text-align: center;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: 300;
+
+      .bigQuote {
+        font-size: 40px;
+        line-height: 24px;
+        vertical-align: sub;
+      }
+    }
+  }
+}
+
+#home4 {
+  background-image: url(https://assets.automatik9dots.com/images/home-5-secrets-bg-900.jpg);
+  padding: 60px 0;
+  position: static;
+  text-align: center;
+
+  h3 {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+}
+
+#home5 {
+  background-image: url(https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-900.jpg);
+
+  .container {
     left: 50%;
-    max-height: 50%;
-    max-width: 250px;
+    position: absolute;
+    text-align: right;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+#home6 {
+  background-image: url(https://assets.automatik9dots.com/images/home-platimum-rule-bg-900.jpg);
+  background-position: center top;
+
+  .container {
+    left: 50%;
     position: absolute;
     top: 50%;
     -moz-transform: translate(-50%, -50%);
@@ -1099,36 +1292,209 @@ section {
     -o-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    width: auto;
+
+    h4 {
+      font-weight: 300;
+    }
+
+    .asterisk {
+      font-size: 20px;
+      font-weight: 300;
+      vertical-align: super;
+    }
   }
 }
 
-#home2 {
-  background-color: $client-blue-bg;
-  margin: 0 0 -15px;
-  min-height: 50vh;
-  position: relative;
-  color: #fff;
+#home7 {
+  background-image: url(https://assets.automatik9dots.com/images/home-presentaion-hero-bg-900.jpg);
 
-  &:after {
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-top: 30px solid $client-blue-bg;
-    top: 100%;
-    content: '';
+  .container {
+    bottom: 25%;
     left: 50%;
-    margin-left: -30px;
     position: absolute;
+    -moz-transform: translate(-50%, 25%);
+    -ms-transform: translate(-50%, 25%);
+    -o-transform: translate(-50%, 25%);
+    -webkit-transform: translate(-50%, 25%);
+    transform: translate(-50%, 25%);
   }
 }
 
-#home3 {
-  background-attachment: fixed;
-  background-image: url(https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff;
+#home8 {
+  background-image: url(https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-900.jpg);
+  background-position: center top;
+
+  .container {
+    bottom: 25%;
+    left: 50%;
+    position: absolute;
+    -moz-transform: translate(-50%, 25%);
+    -ms-transform: translate(-50%, 25%);
+    -o-transform: translate(-50%, 25%);
+    -webkit-transform: translate(-50%, 25%);
+    transform: translate(-50%, 25%);
+  }
+}
+
+#home9 {
+  padding: 30px 0;
+
+  .container {
+    text-align: center;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+#home10 {
+  background-image: url(https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-900.jpg);
+  background-position: center top;
+
+  .container {
+    bottom: 25%;
+    left: 50%;
+    position: absolute;
+    text-align: right;
+    -moz-transform: translate(-50%, 25%);
+    -ms-transform: translate(-50%, 25%);
+    -o-transform: translate(-50%, 25%);
+    -webkit-transform: translate(-50%, 25%);
+    transform: translate(-50%, 25%);
+  }
+}
+
+#home11 {
+  background-image: url(https://assets.automatik9dots.com/images/home-meet-in-style-bg-900.jpg);
+
+  .container {
+    bottom: 4rem;
+    left: 50%;
+    position: absolute;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+#home12 {
+  background-image: url(https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-900.jpg);
+  background-position: center top;
+
+  .container {
+    bottom: 25%;
+    left: 50%;
+    position: absolute;
+    text-align: right;
+    -moz-transform: translate(-50%, 25%);
+    -ms-transform: translate(-50%, 25%);
+    -o-transform: translate(-50%, 25%);
+    -webkit-transform: translate(-50%, 25%);
+    transform: translate(-50%, 25%);
+  }
+}
+
+#home13 {
+  background-image: url(https://assets.automatik9dots.com/images/home-perfect-speech-bg-900.jpg);
+  background-position: center top;
+
+  .container {
+    bottom: 4rem;
+    left: 50%;
+    position: absolute;
+    text-align: right;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+#home14 {
+  background-image: url(https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-900.jpg);
+
+  .container {
+    bottom: 25%;
+    left: 50%;
+    position: absolute;
+    -moz-transform: translate(-50%, 25%);
+    -ms-transform: translate(-50%, 25%);
+    -o-transform: translate(-50%, 25%);
+    -webkit-transform: translate(-50%, 25%);
+    transform: translate(-50%, 25%);
+  }
+}
+
+
+/*~~ Carousel ~~*/
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  -moz-transition: height 500ms;
+  -o-transition: height 500ms;
+  -webkit-transition: height 500ms;
+  transition: height 500ms;
+
+  .slide {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -moz-transition: all 500ms 250ms;
+    -o-transition: all 500ms 250ms;
+    -webkit-transition: all 500ms 250ms;
+    transition: all 500ms 250ms;
+
+    &.active {
+      opacity: 1;
+    }
+
+    &.left {
+      -moz-transform: translateX(-100vw);
+      -ms-transform: translateX(-100vw);
+      -o-transform: translateX(-100vw);
+      -webkit-transform: translateX(-100vw);
+      transform: translateX(-100vw);
+    }
+
+    &.right {
+      -moz-transform: translateX(100vw);
+      -ms-transform: translateX(100vw);
+      -o-transform: translateX(100vw);
+      -webkit-transform: translateX(100vw);
+      transform: translateX(100vw);
+    }
+  }
+}
+
+.pager {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+
+  fa-icon {
+    opacity: 0.5;
+    padding: .25rem;
+    -moz-transition: opacity 500ms 250ms;
+    -o-transition: opacity 500ms 250ms;
+    -webkit-transition: opacity 500ms 250ms;
+    transition: opacity 500ms 250ms;
+
+    &.active {
+      opacity: 1;
+    }
+  }
 }
 
 
@@ -1850,7 +2216,7 @@ footer {
         background: -moz-radial-gradient(30% 107%, circle cover, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
         background: -webkit-radial-gradient(30% 107%, circle cover, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
         background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd5949', endColorstr='#d6249f',GradientType=1 );
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd5949', endColorstr='#d6249f', GradientType=1);
         font-size: 22px;
       }
 
@@ -2121,6 +2487,13 @@ div.cdk-overlay-dark-backdrop {
 }
 
 @media all and (max-width: 991px) and (orientation: landscape) {
+  #home1,
+  #home11,
+  #home13 {
+    .container {
+      bottom: 2rem;
+    }
+  }
   .project {
     section.hero {
       h1 {
@@ -2131,6 +2504,10 @@ div.cdk-overlay-dark-backdrop {
 }
 
 @media all and (min-width: 768px) {
+  h1,
+  h2 {
+    font-size: 50px;
+  }
   .formDrawer {
     padding: 1rem 2rem;
   }
@@ -2186,17 +2563,94 @@ div.cdk-overlay-dark-backdrop {
     transform: translateX(50%);
   }
   section {
-    padding: 60px 0;
+    &:first-child {
+      padding: 60px 0;
+    }
 
     &.tileSection {
       padding: 60px 0 0;
     }
   }
   #home1 {
-    background-image: url(https://assets.automatik9dots.com/images/home-bg-01.jpg);
+    background-image: url(https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-1440.jpg);
+    background-position: center 60px;
+
+    .container {
+      .textShadow {
+        font-size: 74px;
+        left: 40px;
+        top: -14px;
+      }
+
+      #particleImg {
+        left: 90px;
+        width: 180px;
+      }
+    }
+  }
+  #home2 {
+    background-image: url(https://assets.automatik9dots.com/images/home-mesh-bg-1440.jpg);
   }
   #home3 {
-    background-image: url(https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg);
+    .container {
+      p {
+        font-size: 30px;
+
+        .bigQuote {
+          font-size: 50px;
+        }
+      }
+    }
+  }
+  #home4 {
+    background-image: url(https://assets.automatik9dots.com/images/home-5-secrets-bg-1440.jpg);
+    padding: 100px 0;
+
+    h3 {
+      font-size: 30px;
+    }
+  }
+  #home5 {
+    background-image: url(https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-1440.jpg);
+  }
+  #home6 {
+    background-image: url(https://assets.automatik9dots.com/images/home-platimum-rule-bg-1440.jpg);
+
+    .container {
+      .asterisk {
+        font-size: 30px;
+      }
+    }
+  }
+  #home7 {
+    background-image: url(https://assets.automatik9dots.com/images/home-presentaion-hero-bg-1440.jpg);
+  }
+  #home8 {
+    background-image: url(https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-1440.jpg);
+  }
+  #home9 {
+    .container {
+      text-align: left;
+
+      img {
+        width: 125%;
+      }
+    }
+  }
+  #home10 {
+    background-image: url(https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-1440.jpg);
+  }
+  #home11 {
+    background-image: url(https://assets.automatik9dots.com/images/home-meet-in-style-bg-1440.jpg);
+  }
+  #home12 {
+    background-image: url(https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-1440.jpg);
+  }
+  #home13 {
+    background-image: url(https://assets.automatik9dots.com/images/home-perfect-speech-bg-1440.jpg);
+  }
+  #home14 {
+    background-image: url(https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-1440.jpg);
   }
   .blogThumb {
     padding: 1rem;
@@ -2271,13 +2725,6 @@ div.cdk-overlay-dark-backdrop {
   }
 
   .mobile {
-    section {
-      padding: 50px 0;
-
-      &.tileSection {
-        padding: 50px 0 0;
-      }
-    }
     header {
       height: 50px;
     }
@@ -2294,6 +2741,18 @@ div.cdk-overlay-dark-backdrop {
     .fullNav,
     #navLogout {
       display: none;
+    }
+    section {
+      &:first-child {
+        padding: 50px 0;
+      }
+
+      &.tileSection {
+        padding: 50px 0 0;
+      }
+    }
+    #home1 {
+      background-position: center 50px;
     }
     .filters {
       &.mobile {
@@ -2322,7 +2781,82 @@ div.cdk-overlay-dark-backdrop {
   }
 }
 
+@media all and (min-width: 992px) {
+  h1,
+  h2 {
+    font-size: 68px;
+  }
+  #home1 {
+    .container {
+      .textShadow {
+        font-size: 105px;
+        left: 45px;
+        top: -25px;
+      }
+      #particleImg {
+        left: 110px;
+        top: -15px;
+        width: 275px;
+      }
+    }
+  }
+}
+
 @media all and (min-width: 1200px) {
+  h1,
+  h2 {
+    font-size: 86px;
+  }
+  #home1 {
+    background-image: url(https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg);
+
+    .container {
+      .textShadow {
+        font-size: 135px;
+        left: 68px;
+        top: -32px;
+      }
+      #particleImg {
+        left: 148px;
+        top: -23px;
+        width: 342px;
+      }
+    }
+  }
+  #home2 {
+    background-image: url(https://assets.automatik9dots.com/images/home-mesh-bg-2560.jpg);
+  }
+  #home4 {
+    background-image: url(https://assets.automatik9dots.com/images/home-5-secrets-bg-2560.jpg);
+  }
+  #home5 {
+    background-image: url(https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-2560.jpg);
+  }
+  #home6 {
+    background-image: url(https://assets.automatik9dots.com/images/home-platimum-rule-bg-2560.jpg);
+  }
+  #home7 {
+    background-image: url(https://assets.automatik9dots.com/images/home-presentaion-hero-bg-2560.jpg);
+  }
+  #home8 {
+    background-image: url(https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-2560.jpg);
+  }
+  #home9 {}
+  #home10 {
+    background-image: url(https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-2560.jpg);
+  }
+  #home11 {
+    background-image: url(https://assets.automatik9dots.com/images/home-meet-in-style-bg-2560.jpg);
+  }
+  #home12 {
+    background-image: url(https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-2560.jpg);
+  }
+  #home13 {
+    background-image: url(https://assets.automatik9dots.com/images/home-perfect-speech-bg-2560.jpg);
+  }
+  #home14 {
+    background-image: url(https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-2560.jpg);
+  }
   .filters {
     display: block;
     height: 100vh;
@@ -2348,5 +2882,89 @@ div.cdk-overlay-dark-backdrop {
       position: absolute;
       width: calc(100% / 3);
     }
+  }
+}
+
+
+/*~~ Animation Keyframes ~~*/
+
+@-webkit-keyframes scrollDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -150%) rotate(45deg);
+    transform: translate(-50%, -150%) rotate(45deg);
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+}
+
+@-moz-keyframes scrollDown {
+  0% {
+    opacity: 0;
+    -moz-transform: translate(-50%, -150%) rotate(45deg);
+    transform: translate(-50%, -150%) rotate(45deg);
+  }
+  75% {
+    opacity: 1;
+    -moz-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -moz-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+}
+
+@-o-keyframes scrollDown {
+  0% {
+    opacity: 0;
+    -o-transform: translate(-50%, -150%) rotate(45deg);
+    transform: translate(-50%, -150%) rotate(45deg);
+  }
+  75% {
+    opacity: 1;
+    -o-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -o-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 0;
+    -moz-transform: translate(-50%, -150%) rotate(45deg);
+    -ms-transform: translate(-50%, -150%) rotate(45deg);
+    -o-transform: translate(-50%, -150%) rotate(45deg);
+    -webkit-transform: translate(-50%, -150%) rotate(45deg);
+    transform: translate(-50%, -150%) rotate(45deg);
+  }
+  75% {
+    opacity: 1;
+    -moz-transform: translate(-50%, 0) rotate(45deg);
+    -ms-transform: translate(-50%, 0) rotate(45deg);
+    -o-transform: translate(-50%, 0) rotate(45deg);
+    -webkit-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -moz-transform: translate(-50%, 0) rotate(45deg);
+    -ms-transform: translate(-50%, 0) rotate(45deg);
+    -o-transform: translate(-50%, 0) rotate(45deg);
+    -webkit-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
   }
 }
