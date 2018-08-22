@@ -25,6 +25,7 @@ export class PortfolioFormComponent implements OnInit {
   loading = false;
   submitted = false;
   success = false;
+  suffix = false;
   invalid = false;
   error = '';
 
@@ -63,7 +64,7 @@ export class PortfolioFormComponent implements OnInit {
   }
 
   setSlug(title) {
-    if (title.length > 0) {
+    if (title.length) {
       this.project.slug = title.toLowerCase()
         .replace(/&/g, 'and')
         .replace(/%/g, 'percent')
@@ -74,6 +75,20 @@ export class PortfolioFormComponent implements OnInit {
         .replace(/\s{2,}/g, ' ')
         .replace(/(\s+$)/g, '')
         .split(' ').join('-');
+
+      if (!this.project.meta_title) {
+        this.project.meta_title = title;
+      }
+    }
+  }
+
+  setMetaTitle(title) {
+    if (title.length) {
+      if (title.indexOf(' | automätik') > -1 || title.indexOf(' | automatik') > -1) {
+        this.suffix = true;
+      } else {
+        this.suffix = false;
+      }
     }
   }
 

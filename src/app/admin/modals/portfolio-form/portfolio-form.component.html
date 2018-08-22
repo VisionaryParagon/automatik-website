@@ -8,22 +8,35 @@
   <mat-dialog-content>
     <div class="dialogScroll">
       <div *ngIf="!success">
-        <div class="inputGroup" [class.nope]="title.errors && (title.touched || submitted)">
+        <div class="inputGroup" [class.nope]="invalid || (title.errors && (title.touched || submitted))">
           <label for="title">Title*</label>
           <input type="text" class="form-control" name="title" #title="ngModel" autocomplete="off" [disabled]="!new" required [(ngModel)]="project.title" (blur)="setSlug(title.value)">
+          <p class="disclaimer">This cannot be changed once submitted</p>
           <div class="errorMsg" [@topDown]="true" *ngIf="title.errors && (title.touched || submitted)">
             <p *ngIf="title.errors.required">Title is required</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="suffix || (meta_title.errors && (meta_title.touched || submitted))">
+          <label for="meta_title">Meta Title*</label>
+          <input type="text" class="form-control" name="meta_title" #meta_title="ngModel" autocomplete="off" [disabled]="!new" required [(ngModel)]="project.meta_title" (blur)="setMetaTitle(meta_title.value)">
+          <p class="disclaimer">This cannot be changed once submitted
+            <br>The following suffix gets added on dynamically: &ldquo;&nbsp;|&nbsp;autom&auml;tik&rdquo;</p>
+          <div class="errorMsg" [@topDown]="true" *ngIf="meta_title.errors && (meta_title.touched || submitted)">
+            <p *ngIf="meta_title.errors.required">Meta Title is required</p>
+          </div>
+          <div class="errorMsg" [@topDown]="true" *ngIf="suffix">
+            <p>Please remove the suffix. It is added dynamically.</p>
           </div>
         </div>
 
         <div class="inputGroup" [class.nope]="invalid || (slug.errors && (slug.touched || submitted))">
           <label for="slug">Slug*</label>
           <input type="text" class="form-control" name="slug" #slug="ngModel" disabled required [(ngModel)]="project.slug">
-          <p class="disclaimer">This cannot be changed once submitted</p>
           <div class="errorMsg" [@topDown]="true" *ngIf="slug.errors && (slug.touched || submitted)">
             <p *ngIf="slug.errors.required">Slug is required</p>
           </div>
-          <div class="text-danger" [@topDown]="true" *ngIf="invalid">
+          <div class="errorMsg" [@topDown]="true" *ngIf="invalid">
             <p>A project already exists with this slug. Please use a different Title.</p>
           </div>
         </div>

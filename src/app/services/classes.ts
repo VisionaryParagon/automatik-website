@@ -62,6 +62,7 @@ export class Image {
 export class Project {
   _id?: string;
   title: string;
+  meta_title: string;
   slug: string;
   description: string;
   keywords: string;

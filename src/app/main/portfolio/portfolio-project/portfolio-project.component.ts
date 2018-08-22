@@ -91,7 +91,7 @@ export class PortfolioProjectComponent implements OnInit {
   setSEO(data?) {
     if (data) {
       // Set title
-      this.metadata.title = data.title + ' | automätik';
+      this.metadata.title = data.meta_title + ' | automätik';
 
       // Set meta tags
       this.metadata.metatags.push({

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const PortfolioSchema = new mongoose.Schema({
   title: String,
+  meta_title: String,
   slug: String,
   description: String,
   keywords: String,
