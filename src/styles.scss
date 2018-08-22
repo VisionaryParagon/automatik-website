@@ -1341,7 +1341,7 @@ section {
 }
 
 #home9 {
-  padding: 30px 0;
+  padding: 60px 0;
 
   .container {
     text-align: center;
@@ -2179,8 +2179,7 @@ footer {
   .socialMedia {
     display: flex;
     justify-content: space-around;
-    margin: 0 auto 2rem;
-    // max-width: 360px;
+    margin: 0 auto 2rem; // max-width: 360px;
     max-width: 240px;
 
     .smIcon {
@@ -2636,10 +2635,6 @@ div.cdk-overlay-dark-backdrop {
   #home9 {
     .container {
       text-align: left;
-
-      img {
-        width: 125%;
-      }
     }
   }
   #home10 {
@@ -2846,7 +2841,14 @@ div.cdk-overlay-dark-backdrop {
   #home8 {
     background-image: url(https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-2560.jpg);
   }
-  #home9 {}
+  #home9 {
+    padding: 90px 0;
+
+    .container {
+      img {
+        width: 125%;
+      }
+    }}
   #home10 {
     background-image: url(https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-2560.jpg);
   }

@@ -70,7 +70,7 @@
           <fa-icon [icon]="['fas', 'chevron-left']" size="2x"></fa-icon>
         </div>
 
-        <div class="col-12 col-md-8 offset-md-1">
+        <div class="col-12 col-md-10">
           <div class="carousel" #carousel>
             <div class="slide" *ngFor="let item of randomTestimonials; let i = index" [class.active]="i === currentSlide" [class.left]="i === currentSlide - 1 || (i === dataLength && currentSlide === 0)" [class.right]="i === currentSlide + 1 || (i === 0 && currentSlide === dataLength)" #slides>
               <p class="testimonial"><span class="bigQuote">&ldquo;</span>{{ item.copy }}<span class="bigQuote">&rdquo;</span></p>
@@ -84,7 +84,7 @@
           </div>
         </div>
 
-        <div class="col-1 offset-md-1 d-none d-md-flex align-items-center justify-content-center" (click)="nextSlide()">
+        <div class="col-1 d-none d-md-flex align-items-center justify-content-center" (click)="nextSlide()">
           <fa-icon [icon]="['fas', 'chevron-right']" size="2x"></fa-icon>
         </div>
       </div>
@@ -151,7 +151,7 @@
           <h2>Your one&#8209;stop
             <br>event&nbsp;shop</h2>
 
-          <button class="autoBtn my-3" routerLink="/">We Have Your Back</button>
+          <button class="autoBtn my-3" routerLink="/services">We Have Your Back</button>
         </div>
       </div>
     </div>
@@ -189,7 +189,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-7 order-md-last">
-          <img src="https://assets.automatik9dots.com/images/home-event-sign-ups-bg-900.jpg" alt="Event registration">
+          <img src="https://assets.automatik9dots.com/images/home-event-sign-ups.png" alt="Event registration">
         </div>
 
         <div class="col-12 col-md-5 order-md-first align-self-center">
@@ -205,7 +205,7 @@
     <div class="container">
       <h2>We don&rsquo;t do&nbsp;boring</h2>
 
-      <button class="autoBtn my-3 px-5" routerLink="/">Find Out Why</button>
+      <button class="autoBtn my-3 px-5" routerLink="/portfolio">Find Out Why</button>
     </div>
   </section>
 
