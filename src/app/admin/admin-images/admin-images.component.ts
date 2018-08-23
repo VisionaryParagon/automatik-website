@@ -49,10 +49,15 @@ export class AdminImagesComponent implements OnInit {
     this.imageService.getImages()
       .subscribe(
         res => {
-          this.imageList = this.imageSort(res);
           this.filteredImages = [...this.imageSort(res)];
-          this.totalLength = res.length;
-          this.iterator();
+
+          if (!this.filter.length) {
+            this.imageList = this.imageSort(res);
+            this.totalLength = res.length;
+            this.iterator();
+          } else {
+            this.updateFilter();
+          }
         },
         err => this.setError(err)
       );

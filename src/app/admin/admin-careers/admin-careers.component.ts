@@ -68,6 +68,11 @@ export class AdminCareersComponent implements OnInit {
       if (!this.careers.length) {
         this.setError('There are currently no careers available.');
       }
+
+      if (this.filter.length) {
+        this.updateFilter();
+      }
+
       this.loading = false;
     }
   }

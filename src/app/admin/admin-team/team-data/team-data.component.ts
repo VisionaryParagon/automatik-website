@@ -137,6 +137,10 @@ export class TeamDataComponent implements OnInit {
 
   checkData() {
     if (this.teamLoaded && this.deptsLoaded && this.imagesLoaded) {
+      if (this.filter.length) {
+        this.updateFilter();
+      }
+
       this.loading = false;
     }
   }

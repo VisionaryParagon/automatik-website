@@ -87,6 +87,11 @@ export class AdminPortfolioComponent implements OnInit {
       if (!this.projects.length) {
         this.setError('There are currently no projects available.');
       }
+
+      if (this.filter.length) {
+        this.updateFilter();
+      }
+
       this.loading = false;
     }
   }
