@@ -163,15 +163,9 @@ export class PortfolioMainComponent implements OnInit {
     }
   }
 
-  getImagePath(id) {
-    if (this.imagesLoaded) {
-      return this.images.filter(img => img._id === id)[0].path;
-    }
-  }
-
-  getImageAlt(id) {
-    if (this.imagesLoaded) {
-      return this.images.filter(img => img._id === id)[0].alt;
+  getImageAlt(path) {
+    if (this.images) {
+      return this.images.filter(img => img.path === path)[0].alt;
     }
   }
 

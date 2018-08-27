@@ -8,9 +8,9 @@
   <div [@fade]="true" *ngIf="!loading && !error.length">
     <section class="hero">
       <div class="heroBanner">
-        <img *ngIf="lg" [@fade]="true" [src]="getImagePath(project.title_image_lg)" [alt]="getImageAlt(project.title_image_lg)" [style.height]="imgHeight" [style.width]="imgWidth">
-        <img *ngIf="md" [@fade]="true" [src]="getImagePath(project.title_image_md)" [alt]="getImageAlt(project.title_image_md)" [style.height]="imgHeight" [style.width]="imgWidth">
-        <img *ngIf="sm" [@fade]="true" [src]="getImagePath(project.title_image_sm)" [alt]="getImageAlt(project.title_image_sm)" [style.height]="imgHeight" [style.width]="imgWidth">
+        <img *ngIf="lg" [@fade]="true" [src]="project.title_image_lg" [alt]="getImageAlt(project.title_image_lg)" [style.height]="imgHeight" [style.width]="imgWidth">
+        <img *ngIf="md" [@fade]="true" [src]="project.title_image_md" [alt]="getImageAlt(project.title_image_md)" [style.height]="imgHeight" [style.width]="imgWidth">
+        <img *ngIf="sm" [@fade]="true" [src]="project.title_image_sm" [alt]="getImageAlt(project.title_image_sm)" [style.height]="imgHeight" [style.width]="imgWidth">
       </div>
 
       <div class="overlay"></div>
@@ -25,12 +25,12 @@
         <h2>{{ project.headline }}</h2>
 
         <div class="projectLogo" *ngIf="project.logo">
-          <img [src]="getImagePath(project.logo)" [alt]="getImageAlt(project.logo)">
+          <img [src]="project.logo" [alt]="getImageAlt(project.logo)">
         </div>
 
         <p>{{ project.copy }}</p>
 
-        <img class="featuredImg" [src]="getImagePath(project.featured_image)" [alt]="getImageAlt(project.featured_image)" width="100%">
+        <img class="featuredImg" [src]="project.featured_image" [alt]="getImageAlt(project.featured_image)" width="100%">
 
         <h3 class="headingBar">Highlights</h3>
       </div>
@@ -46,7 +46,7 @@
 
     <section class="gallery">
       <div class="container">
-        <img *ngFor="let image of project.images" [src]="getImagePath(image)" [alt]="getImageAlt(image)" width="100%">
+        <img *ngFor="let image of project.images" [src]="image" [alt]="getImageAlt(image)" width="100%">
       </div>
     </section>
   </div>

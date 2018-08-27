@@ -16,7 +16,7 @@ import { FadeAnimation } from '../../../../animations';
 })
 export class BlogPostComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
-  metadata: Seo = new Seo();
+  metadata: Seo;
   changingBlog = false;
   post;
   safeHtml: SafeHtml;
@@ -44,7 +44,7 @@ export class BlogPostComponent implements OnInit {
       this.blogs = this.blogService.blogs;
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
       this.sanitizeHtml(this.post.content.rendered);
-      this.setSEO(this.post.yoast);
+      this.setSEO(this.post);
     } else {
       this.blogService.getCategories()
         .subscribe(
@@ -73,7 +73,7 @@ export class BlogPostComponent implements OnInit {
                                     // console.log(this.blogs);
                                     this.post = this.blogs.filter(post => post.slug === this.slug)[0];
                                     this.sanitizeHtml(this.post.content.rendered);
-                                    this.setSEO(this.post.yoast);
+                                    this.setSEO(this.post);
                                   },
                                   error => this.setError(error)
                                 );
@@ -100,7 +100,7 @@ export class BlogPostComponent implements OnInit {
             this.slug = ev.url.split('/').reverse()[0];
             this.post = this.blogs.filter(post => post.slug === this.slug)[0];
             this.sanitizeHtml(this.post.content.rendered);
-            this.setSEO(this.post.yoast);
+            this.setSEO(this.post);
 
             setTimeout(() => {
               this.changingBlog = false;
@@ -113,20 +113,62 @@ export class BlogPostComponent implements OnInit {
 
   setSEO(data?) {
     if (data) {
-      // Set title
-      this.metadata.title = data.title;
+      const seoImg = this.getFeaturedImgSrc(data.featured_media);
+      console.log(data.yoast);
 
-      // Set meta tags
-      this.metadata.metatags.push({
-        name: 'description',
-        content: data.metadesc
-      });
-      /*
-      this.metadata.metatags.push({
-        name: 'keywords',
-        content: data.keywords
-      });
-      */
+      this.metadata = {
+        title: data.yoast.title,
+        metatags: [
+          {
+            name: 'description',
+            content: data.yoast.metadesc
+          },
+          {
+            name: 'keywords',
+            content: data.yoast.metakeywords
+          },
+          {
+            property: 'og:title',
+            content: data.yoast.title
+          },
+          {
+            property: 'og:type',
+            content: 'article'
+          },
+          {
+            property: 'og:url',
+            content: 'https://beta.automatik9dots.com/portfolio/' + data.slug
+          },
+          {
+            property: 'og:image',
+            content: seoImg
+          },
+          {
+            property: 'og:description',
+            content: data.yoast.metadesc
+          },
+          {
+            name: 'twitter:card',
+            content: 'summary_large_image'
+          },
+          {
+            name: 'twitter:site',
+            content: '@automatikEvents'
+          },
+          {
+            name: 'twitter:title',
+            content: data.yoast.title
+          },
+          {
+            name: 'twitter:description',
+            content: data.yoast.metadesc
+          },
+          {
+            name: 'twitter:image:src',
+            content: seoImg
+          }
+        ]
+      };
 
       this.seoService.addDynamicSeoData(this.metadata);
     } else {

@@ -47,7 +47,7 @@
 
   <div class="tileBox" [class.on]="!loading" #tileBox>
     <div class="tile" [@fade]="true" *ngFor="let project of projects" [class.hovered]="hovered === project._id" (mouseenter)="setHover(project._id)" (mouseleave)="setHover('')" routerLink="/portfolio/{{ project.slug }}" #tiles>
-      <img [src]="getImagePath(project.title_image_sm)" [alt]="getImageAlt(project.title_image_sm)">
+      <img [src]="project.title_image_sm" [alt]="getImageAlt(project.title_image_sm)">
 
       <div class="overlay"></div>
 

@@ -50,8 +50,8 @@
       <mat-tab label="Select">
         <ng-template matTabContent>
           <div class="imageSelection">
-            <div class="imageBox" *ngFor="let item of imageList" (click)="select(item._id)">
-              <div class="image" [class.selected]="this.imageId === item._id" [style.backgroundImage]="'url(' + item.path + ')'"></div>
+            <div class="imageBox" *ngFor="let item of imageList" (click)="select(item.path)">
+              <div class="image" [class.selected]="this.selected === item.path" [style.backgroundImage]="'url(' + item.path + ')'"></div>
             </div>
           </div>
         </ng-template>
@@ -66,7 +66,7 @@
       <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
     </button>
     <button class="autoBtn secondary" *ngIf="success && tabId === 0" (click)="reset()">Upload Another</button>
-    <button class="autoBtn" *ngIf="success && tabId === 0" [mat-dialog-close]="imageId">Done</button>
-    <button class="autoBtn" *ngIf="tabId === 1" [mat-dialog-close]="imageId">Select</button>
+    <button class="autoBtn" *ngIf="success && tabId === 0" [mat-dialog-close]="selected">Done</button>
+    <button class="autoBtn" *ngIf="tabId === 1" [mat-dialog-close]="selected">Select</button>
   </mat-dialog-actions>
 </form>

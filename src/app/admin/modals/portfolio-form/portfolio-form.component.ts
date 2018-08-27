@@ -51,16 +51,8 @@ export class PortfolioFormComponent implements OnInit {
     }
   }
 
-  getImage(id) {
-    return this.images.filter(img => img._id === id)[0];
-  }
-
-  getImagePath(id) {
-    return this.images.filter(img => img._id === id)[0].path;
-  }
-
-  getImageAlt(id) {
-    return this.images.filter(img => img._id === id)[0].alt;
+  getImageAlt(path) {
+    return this.images.filter(img => img.path === path)[0].alt;
   }
 
   setSlug(title) {

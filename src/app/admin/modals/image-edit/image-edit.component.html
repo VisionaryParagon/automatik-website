@@ -5,7 +5,7 @@
 
 <form #imageForm="ngForm" novalidate>
   <mat-dialog-content>
-    <div class="dialogScroll">
+    <div class="dialogScroll imgDialog">
       <div *ngIf="!success && !error.length">
         <div class="text-center">
           <img class="mb-3 w-50" [src]="image.path" [alt]="image.alt">

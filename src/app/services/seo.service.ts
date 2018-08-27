@@ -8,7 +8,7 @@ import { Seo } from './classes';
   providedIn: 'root'
 })
 export class SeoService {
-  private defaultMetadata: Seo = {
+  defaultMetadata: Seo = {
     title: 'Eradicating boring corporate events from the face of the Earth | automätik',
     metatags: [
       {
@@ -18,6 +18,46 @@ export class SeoService {
       {
         name: 'keywords',
         content: 'Corporate Events, Meeting master, sales training'
+      },
+      {
+        property: 'og:title',
+        content: 'Eradicating boring corporate events from the face of the Earth'
+      },
+      {
+        property: 'og:type',
+        content: 'website'
+      },
+      {
+        property: 'og:url',
+        content: 'https://beta.automatik9dots.com/'
+      },
+      {
+        property: 'og:image',
+        content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+      },
+      {
+        property: 'og:description',
+        content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      {
+        name: 'twitter:site',
+        content: '@automatikEvents'
+      },
+      {
+        name: 'twitter:title',
+        content: 'Eradicating boring corporate events from the face of the Earth'
+      },
+      {
+        name: 'twitter:description',
+        content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+      },
+      {
+        name: 'twitter:image:src',
+        content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
       }
     ]
   };
@@ -28,7 +68,7 @@ export class SeoService {
     private router: Router
   ) { }
 
-  public addSeoData() {
+  addSeoData() {
     this.router.events.subscribe((ev: any) => {
       if (ev instanceof NavigationEnd) {
         let root = this.router.routerState.snapshot.root;
@@ -37,31 +77,10 @@ export class SeoService {
             root = root.children[0];
           } else if (root.data && root.data['title']) {
             this.titleService.setTitle(root.data['title']);
-
-            const tags = root.data.metatags;
-
-            for (const tag of tags) {
-              if (this.metaService.getTag('name="' + tag.name + '"')) {
-                this.metaService.updateTag({ name: tag.name, content: tag.content });
-              } else {
-                this.metaService.addTag({ name: tag.name, content: tag.content });
-              }
-            }
-
+            this.setTags(root.data.metatags);
             return;
           } else {
-            this.titleService.setTitle(this.defaultMetadata.title);
-
-            const tags = this.defaultMetadata.metatags;
-
-            for (const tag of tags) {
-              if (this.metaService.getTag('name="' + tag.name + '"')) {
-                this.metaService.updateTag({ name: tag.name, content: tag.content });
-              } else {
-                this.metaService.addTag({ name: tag.name, content: tag.content });
-              }
-            }
-
+            this.addDynamicSeoData();
             return;
           }
         }
@@ -72,26 +91,26 @@ export class SeoService {
   addDynamicSeoData(metadata?) {
     if (metadata) {
       this.titleService.setTitle(metadata.title);
+      this.setTags(metadata.metatags);
+    } else {
+      this.titleService.setTitle(this.defaultMetadata.title);
+      this.setTags(this.defaultMetadata.metatags);
+    }
+  }
 
-      const tags = metadata.metatags;
-
-      for (const tag of tags) {
+  setTags(tags) {
+    for (const tag of tags) {
+      if (tag.name) {
         if (this.metaService.getTag('name="' + tag.name + '"')) {
           this.metaService.updateTag({ name: tag.name, content: tag.content });
         } else {
           this.metaService.addTag({ name: tag.name, content: tag.content });
         }
-      }
-    } else {
-      this.titleService.setTitle(this.defaultMetadata.title);
-
-      const tags = this.defaultMetadata.metatags;
-
-      for (const tag of tags) {
-        if (this.metaService.getTag('name="' + tag.name + '"')) {
-          this.metaService.updateTag({ name: tag.name, content: tag.content });
+      } else {
+        if (this.metaService.getTag('property="' + tag.property + '"')) {
+          this.metaService.updateTag({ property: tag.property, content: tag.content });
         } else {
-          this.metaService.addTag({ name: tag.name, content: tag.content });
+          this.metaService.addTag({ property: tag.property, content: tag.content });
         }
       }
     }

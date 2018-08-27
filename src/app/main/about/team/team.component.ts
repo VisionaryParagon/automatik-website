@@ -127,12 +127,6 @@ export class TeamComponent implements OnInit {
     }
   }
 
-  getImagePath(id) {
-    if (this.images) {
-      return this.images.filter(img => img._id === id)[0].path;
-    }
-  }
-
   openTeammate(data) {
     const teamHeight = this.teamBox.nativeElement.offsetHeight;
     this.teamHeight = teamHeight + 'px';

@@ -18,7 +18,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 })
 export class PortfolioProjectComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
-  metadata: Seo = new Seo();
+  metadata: Seo;
   projects: Project[] = this.projectService.projects;
   project: Project;
   images: Image[] = this.imageService.images;
@@ -90,18 +90,59 @@ export class PortfolioProjectComponent implements OnInit {
 
   setSEO(data?) {
     if (data) {
-      // Set title
-      this.metadata.title = data.meta_title + ' | automätik';
-
-      // Set meta tags
-      this.metadata.metatags.push({
-        name: 'description',
-        content: data.description
-      });
-      this.metadata.metatags.push({
-        name: 'keywords',
-        content: data.keywords
-      });
+      this.metadata = {
+        title: data.meta_title + ' | automätik',
+        metatags: [
+          {
+            name: 'description',
+            content: data.description
+          },
+          {
+            name: 'keywords',
+            content: data.keywords
+          },
+          {
+            property: 'og:title',
+            content: data.meta_title + ' | automätik'
+          },
+          {
+            property: 'og:type',
+            content: 'website'
+          },
+          {
+            property: 'og:url',
+            content: 'https://beta.automatik9dots.com/portfolio/' + data.slug
+          },
+          {
+            property: 'og:image',
+            content: data.title_image_lg
+          },
+          {
+            property: 'og:description',
+            content: data.description
+          },
+          {
+            name: 'twitter:card',
+            content: 'summary_large_image'
+          },
+          {
+            name: 'twitter:site',
+            content: '@automatikEvents'
+          },
+          {
+            name: 'twitter:title',
+            content: data.meta_title + ' | automätik'
+          },
+          {
+            name: 'twitter:description',
+            content: data.description
+          },
+          {
+            name: 'twitter:image:src',
+            content: data.title_image_lg
+          }
+        ]
+      };
 
       this.seoService.addDynamicSeoData(this.metadata);
     } else {
@@ -144,15 +185,9 @@ export class PortfolioProjectComponent implements OnInit {
     }
   }
 
-  getImagePath(id) {
-    if (this.imagesLoaded) {
-      return this.images.filter(img => img._id === id)[0].path;
-    }
-  }
-
-  getImageAlt(id) {
-    if (this.imagesLoaded) {
-      return this.images.filter(img => img._id === id)[0].alt;
+  getImageAlt(path) {
+    if (this.images) {
+      return this.images.filter(img => img.path === path)[0].alt;
     }
   }
 

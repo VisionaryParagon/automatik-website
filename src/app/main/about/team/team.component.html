@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row px-2" [@fade]="true" *ngIf="!loading && !error.length">
         <div class="teammate" *ngFor="let mate of teammates">
-          <img [class.selected]="selected" [src]="getImagePath(mate.primary_image)" width="100%" [alt]="mate.first_name + ' ' + mate.last_name + ' | ' + mate.title" (click)="openTeammate(mate)">
+          <img [class.selected]="selected" [src]="mate.primary_image" width="100%" [alt]="mate.first_name + ' ' + mate.last_name + ' | ' + mate.title" (click)="openTeammate(mate)">
         </div>
       </div>
 
@@ -34,10 +34,10 @@
 
         <div class="d-flex">
           <div class="primary">
-            <img [src]="getImagePath(selected.primary_image)" [alt]="selected.first_name + ' ' + selected.last_name + ' | ' + selected.title">
+            <img [src]="selected.primary_image" [alt]="selected.first_name + ' ' + selected.last_name + ' | ' + selected.title">
           </div>
           <div class="secondary">
-            <img [src]="getImagePath(selected.secondary_image)" [alt]="selected.first_name + ' ' + selected.last_name + ' | ' + selected.title">
+            <img [src]="selected.secondary_image" [alt]="selected.first_name + ' ' + selected.last_name + ' | ' + selected.title">
           </div>
         </div>
 

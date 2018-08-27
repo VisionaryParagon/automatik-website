@@ -30,32 +30,86 @@ const routes: Routes = [
       {
         path: '',
         component: AdminHomeComponent,
-        canActivate: [AdminGuardService]
+        canActivate: [AdminGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik admin panel'
+            }
+          ]
+        }
       },
       {
         path: 'login',
         component: AdminLoginComponent,
-        canActivate: [AdminLoginGuardService]
+        canActivate: [AdminLoginGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik admin panel'
+            }
+          ]
+        }
       },
       {
         path: 'images',
         component: AdminImagesComponent,
-        canActivate: [AdminGuardService]
+        canActivate: [AdminGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik admin panel'
+            }
+          ]
+        }
       },
       {
         path: 'portfolio',
         component: AdminPortfolioComponent,
-        canActivate: [AdminGuardService]
+        canActivate: [AdminGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik admin panel'
+            }
+          ]
+        }
       },
       {
         path: 'team',
         component: AdminTeamComponent,
-        canActivate: [AdminGuardService]
+        canActivate: [AdminGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik admin panel'
+            }
+          ]
+        }
       },
       {
         path: 'careers',
         component: AdminCareersComponent,
-        canActivate: [AdminGuardService]
+        canActivate: [AdminGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'description',
+              content: 'automätik admin panel'
+            }
+          ]
+        }
       }
     ]
   },

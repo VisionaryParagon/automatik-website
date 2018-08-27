@@ -1,6 +1,6 @@
 export class Seo {
   title: string;
-  metatags: Meta[] = new Array<Meta>();
+  metatags: Meta[];
 }
 
 export class Meta {

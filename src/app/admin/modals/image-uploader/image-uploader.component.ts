@@ -17,8 +17,7 @@ export class ImageUploaderComponent implements OnInit {
   image: Image = new Image();
   imageName = 'Choose image...';
   imageData: FileList;
-  imageId: string;
-  selected = '';
+  selected: string;
   submitted = false;
   loading = false;
   success = false;
@@ -56,9 +55,8 @@ export class ImageUploaderComponent implements OnInit {
     this.tabId = ev;
   }
 
-  select(id) {
-    this.selected = id;
-    this.imageId = id;
+  select(path) {
+    this.selected = path;
   }
 
   testImageName(name) {
@@ -91,7 +89,7 @@ export class ImageUploaderComponent implements OnInit {
                     .subscribe(
                       imageRes => {
                         // console.log('New Image Success: ', imageRes);
-                        this.imageId = imageRes._id;
+                        this.selected = imageRes.path;
                         this.success = true;
                         this.loading = false;
                       },
@@ -114,7 +112,7 @@ export class ImageUploaderComponent implements OnInit {
   reset() {
     this.image = new Image();
     this.imageName = 'Choose image...';
-    this.imageId = '';
+    this.selected = '';
     this.submitted = false;
     this.success = false;
     this.rename = false;

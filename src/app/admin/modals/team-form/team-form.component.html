@@ -85,7 +85,7 @@
             </div>
 
             <div class="col-12 col-md-6" *ngIf="teammate.primary_image">
-              <img class="w-100" [src]="getImagePath(teammate.primary_image)" [alt]="getImageAlt(teammate.primary_image)" (click)="chooseImage('primary_image')">
+              <img class="w-100" [src]="teammate.primary_image" [alt]="getImageAlt(teammate.primary_image)" (click)="chooseImage('primary_image')">
             </div>
           </div>
 
@@ -102,7 +102,7 @@
             </div>
 
             <div class="col-12 col-md-6" *ngIf="teammate.secondary_image">
-              <img class="w-100" [src]="getImagePath(teammate.secondary_image)" [alt]="getImageAlt(teammate.secondary_image)" (click)="chooseImage('secondary_image')">
+              <img class="w-100" [src]="teammate.secondary_image" [alt]="getImageAlt(teammate.secondary_image)" (click)="chooseImage('secondary_image')">
             </div>
           </div>
 
@@ -125,7 +125,7 @@
 
         <p>{{ teammate.first_name }} {{ teammate.last_name }} has been <span *ngIf="new">added</span><span *ngIf="!new">updated</span>.</p>
 
-        <img class="w-50" [src]="getImagePath(teammate.primary_image)" [alt]="getImageAlt(teammate.primary_image)">
+        <img class="w-50" [src]="teammate.primary_image" [alt]="getImageAlt(teammate.primary_image)">
       </div>
     </div>
   </mat-dialog-content>

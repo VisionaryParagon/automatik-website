@@ -145,15 +145,9 @@ export class TeamDataComponent implements OnInit {
     }
   }
 
-  getImagePath(id) {
+  getImageAlt(path) {
     if (this.images) {
-      return this.images.filter(img => img._id === id)[0].path;
-    }
-  }
-
-  getImageAlt(id) {
-    if (this.images) {
-      return this.images.filter(img => img._id === id)[0].alt;
+      return this.images.filter(img => img.path === path)[0].alt;
     }
   }
 

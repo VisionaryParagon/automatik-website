@@ -82,7 +82,7 @@
             </div>
 
             <div class="col-12 col-md-6" *ngIf="project.title_image_lg">
-              <img class="w-100" [src]="getImagePath(project.title_image_lg)" [alt]="getImageAlt(project.title_image_lg)" (click)="chooseImage('title_lg')">
+              <img class="w-100" [src]="project.title_image_lg" [alt]="getImageAlt(project.title_image_lg)" (click)="chooseImage('title_lg')">
             </div>
           </div>
 
@@ -99,7 +99,7 @@
             </div>
 
             <div class="col-12 col-md-6" *ngIf="project.title_image_md">
-              <img class="w-100" [src]="getImagePath(project.title_image_md)" [alt]="getImageAlt(project.title_image_md)" (click)="chooseImage('title_md')">
+              <img class="w-100" [src]="project.title_image_md" [alt]="getImageAlt(project.title_image_md)" (click)="chooseImage('title_md')">
             </div>
           </div>
 
@@ -116,7 +116,7 @@
             </div>
 
             <div class="col-12 col-md-6" *ngIf="project.title_image_sm">
-              <img class="w-100" [src]="getImagePath(project.title_image_sm)" [alt]="getImageAlt(project.title_image_sm)" (click)="chooseImage('title_sm')">
+              <img class="w-100" [src]="project.title_image_sm" [alt]="getImageAlt(project.title_image_sm)" (click)="chooseImage('title_sm')">
             </div>
           </div>
 
@@ -149,7 +149,7 @@
             </div>
 
             <div class="col-12 col-md-6" *ngIf="project.logo">
-              <img class="w-100" [src]="getImagePath(project.logo)" [alt]="getImageAlt(project.logo)" (click)="chooseImage('logo')">
+              <img class="w-100" [src]="project.logo" [alt]="getImageAlt(project.logo)" (click)="chooseImage('logo')">
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@
             </div>
 
             <div class="col-12 col-md-6" *ngIf="project.featured_image">
-              <img class="w-100" [src]="getImagePath(project.featured_image)" [alt]="getImageAlt(project.featured_image)" (click)="chooseImage('featured')">
+              <img class="w-100" [src]="project.featured_image" [alt]="getImageAlt(project.featured_image)" (click)="chooseImage('featured')">
             </div>
           </div>
 
@@ -201,7 +201,7 @@
               </div>
 
               <div class="col-12 col-md-6" *ngIf="imageList[i]">
-                <img class="w-100" [src]="getImagePath(imageList[i])" [alt]="getImageAlt(imageList[i])" (click)="chooseImage('image', i)">
+                <img class="w-100" [src]="imageList[i]" [alt]="getImageAlt(imageList[i])" (click)="chooseImage('image', i)">
               </div>
             </div>
 
