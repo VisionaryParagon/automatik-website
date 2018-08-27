@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
     },
     {
       name: 'excited',
-      response: 'Cool! That makes 56 of&nbsp;us!'
+      response: 'Cool! That makes 32 of&nbsp;us!'
     },
     {
       name: 'annoyed',
