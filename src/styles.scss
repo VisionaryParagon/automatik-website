@@ -1180,7 +1180,13 @@ section {
   }
 
   .fadeText {
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.2) 100%);
+    -moz-animation: textFadeOut 2s;
+    -o-animation: textFadeOut 2s;
+    -webkit-animation: textFadeOut 2s;
+    animation: textFadeOut 2s;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0.2) 95%);
+    background-position: 100% center;
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -1190,6 +1196,10 @@ section {
   }
 
   .textShadow {
+    -moz-animation: shadowMove 2s;
+    -o-animation: shadowMove 2s;
+    -webkit-animation: shadowMove 2s;
+    animation: shadowMove 2s;
     color: transparent;
     font-size: 60px;
     left: 15px;
@@ -1200,6 +1210,10 @@ section {
   }
 
   #particleImg {
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    animation: fadeIn 2s;
     height: auto;
     left: 68px;
     position: absolute;
@@ -2852,7 +2866,8 @@ div.cdk-overlay-dark-backdrop {
       img {
         width: 125%;
       }
-    }}
+    }
+  }
   #home10 {
     background-image: url(https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-2560.jpg);
   }
@@ -2899,21 +2914,123 @@ div.cdk-overlay-dark-backdrop {
 
 /*~~ Animation Keyframes ~~*/
 
-@-webkit-keyframes scrollDown {
-  0% {
+@-moz-keyframes fadeIn {
+  from {
     opacity: 0;
-    -webkit-transform: translate(-50%, -150%) rotate(45deg);
-    transform: translate(-50%, -150%) rotate(45deg);
   }
-  75% {
+  to {
     opacity: 1;
-    -webkit-transform: translate(-50%, 0) rotate(45deg);
-    transform: translate(-50%, 0) rotate(45deg);
+  }
+}
+
+@-o-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes textFadeOut {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
+}
+
+@-o-keyframes textFadeOut {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
+}
+
+@-webkit-keyframes textFadeOut {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
+}
+
+@keyframes textFadeOut {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
+}
+
+@-moz-keyframes shadowMove {
+  0% {
+    -moz-transform: translateX(-25%) scale(0.75);
+    transform: translateX(-25%) scale(0.75);
   }
   100% {
-    opacity: 0;
-    -webkit-transform: translate(-50%, 0) rotate(45deg);
-    transform: translate(-50%, 0) rotate(45deg);
+    -moz-transform: translateX(0) scale(1);
+    transform: translateX(0) scale(1);
+  }
+}
+
+@-o-keyframes shadowMove {
+  0% {
+    -o-transform: translateX(-25%) scale(0.75);
+    transform: translateX(-25%) scale(0.75);
+  }
+  100% {
+    -o-transform: translateX(0) scale(1);
+    transform: translateX(0) scale(1);
+  }
+}
+
+@-webkit-keyframes shadowMove {
+  0% {
+    -webkit-transform: translateX(-25%) scale(0.75);
+    transform: translateX(-25%) scale(0.75);
+  }
+  100% {
+    -webkit-transform: translateX(0) scale(1);
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes shadowMove {
+  0% {
+    -moz-transform: translateX(-25%) scale(0.75);
+    -o-transform: translateX(-25%) scale(0.75);
+    -webkit-transform: translateX(-25%) scale(0.75);
+    transform: translateX(-25%) scale(0.75);
+  }
+  100% {
+    -moz-transform: translateX(0) scale(1);
+    -o-transform: translateX(0) scale(1);
+    -webkit-transform: translateX(0) scale(1);
+    transform: translateX(0) scale(1);
   }
 }
 
@@ -2949,6 +3066,24 @@ div.cdk-overlay-dark-backdrop {
   100% {
     opacity: 0;
     -o-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+}
+
+@-webkit-keyframes scrollDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -150%) rotate(45deg);
+    transform: translate(-50%, -150%) rotate(45deg);
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: translate(-50%, 0) rotate(45deg);
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, 0) rotate(45deg);
     transform: translate(-50%, 0) rotate(45deg);
   }
 }
