@@ -58,6 +58,7 @@ export class ServicesMainComponent implements OnInit {
   filter = '';
   hovered = '';
   filterOpen = false;
+  loading = false;
   error = '';
 
   @ViewChild('sidebar') sidebar: ElementRef;
