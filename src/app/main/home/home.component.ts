@@ -91,7 +91,12 @@ export class HomeComponent implements AfterContentInit, OnDestroy, OnInit {
 
   scrollPage() {
     if (isPlatformBrowser(this.platformId)) {
-      const scrl = window.innerHeight;
+      let scrl = window.innerHeight;
+      if (document.documentElement.classList.contains('mobile')) {
+        scrl = scrl - 50;
+      } else {
+        scrl = scrl - 60;
+      }
       window.scroll({top: scrl, left: 0, behavior: 'smooth'});
     }
   }

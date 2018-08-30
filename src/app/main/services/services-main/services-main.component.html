@@ -1,0 +1,55 @@
+<section class="tileSection" [@fade]="true">
+  <div class="container" *ngIf="loading && !error.length">
+    <mat-spinner class="mx-auto my-5"></mat-spinner>
+  </div>
+
+  <div class="filters mobile">
+    <mat-expansion-panel [expanded]="filterOpen" (opened)="openPanel()" (closed)="closePanel()">
+      <mat-expansion-panel-header>
+        <h1>Corporate Event Services</h1>
+      </mat-expansion-panel-header>
+
+      <div class="inputGroup">
+        <label for="searchMobile">
+          <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+          <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
+        </label>
+        <input type="text" class="form-control" id="searchMobile" name="searchMobile" #searchMobile="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
+      </div>
+
+      <p>Whether you need a turnkey event management partner or &agrave; la carte professional event services, autom&auml;tik has your back. From our Phoenix headquarters, autom&auml;tik serves up award-winning, professional&nbsp;services.</p>
+    </mat-expansion-panel>
+  </div>
+
+  <div class="filters" #sidebar>
+    <h1>Corporate Event Services</h1>
+
+    <div class="inputGroup">
+      <label for="search">
+        <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+        <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
+      </label>
+      <input type="text" class="form-control" id="search" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
+    </div>
+
+    <p>Whether you need a turnkey event management partner or &agrave; la carte professional event services, autom&auml;tik has your back. From our Phoenix headquarters, autom&auml;tik serves up award-winning, professional&nbsp;services.</p>
+  </div>
+
+  <div class="tileBox" [class.on]="!loading" #tileBox>
+    <div class="tile six" [@fade]="true" *ngFor="let service of services" [class.hovered]="hovered === service.title" (mouseenter)="setHover(service.title)" (mouseleave)="setHover('')" routerLink="/services/{{ service.slug }}" #tiles>
+      <img [src]="service.title_image" [alt]="service.title">
+
+      <div class="overlay"></div>
+
+      <div class="tileInfo">
+        <h2>{{ service.title }}</h2>
+
+        <p [@topDown]="true" *ngIf="hovered === service.title">{{ service.headline }}</p>
+      </div>
+    </div>
+
+    <div class="text-center" [@topDown]="true" *ngIf="error.length">
+      <p>{{ error }}</p>
+    </div>
+  </div>
+</section>

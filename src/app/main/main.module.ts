@@ -10,6 +10,13 @@ import { HomeComponent } from './home/home.component';
 
 // Services
 import { ServicesComponent } from './services/services.component';
+import { ServicesMainComponent } from './services/services-main/services-main.component';
+import { EventPlanningComponent } from './services/event-planning/event-planning.component';
+import { EventProductionComponent } from './services/event-production/event-production.component';
+import { InstructionalDesignComponent } from './services/instructional-design/instructional-design.component';
+import { GraphicDesignComponent } from './services/graphic-design/graphic-design.component';
+import { VideoProductionComponent } from './services/video-production/video-production.component';
+import { AppWebDevelopmentComponent } from './services/app-web-development/app-web-development.component';
 
 // Courses
 import { CoursesComponent } from './courses/courses.component';
@@ -46,6 +53,13 @@ import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.c
     MainComponent,
     HomeComponent,
     ServicesComponent,
+    ServicesMainComponent,
+    EventPlanningComponent,
+    EventProductionComponent,
+    InstructionalDesignComponent,
+    GraphicDesignComponent,
+    VideoProductionComponent,
+    AppWebDevelopmentComponent,
     CoursesComponent,
     PortfolioComponent,
     PortfolioMainComponent,

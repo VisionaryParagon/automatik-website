@@ -61,8 +61,8 @@
     </div>
   </section>
 
-  <section class="dark solidArrow" id="home3" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
-    <div class="container">
+  <section class="dark solidArrow" id="home3">
+    <div class="container" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
       <h3>Client Testimonial</h3>
 
       <div class="row">
@@ -242,7 +242,7 @@
     </div>
   </section>
 
-  <div id="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
+  <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
     <div class="arrowDown"></div>
   </div>
 </div>

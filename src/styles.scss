@@ -35,8 +35,7 @@ body {
 /* ~~~ Typography ~~~ */
 
 h1,
-h2,
-span.textShadow {
+h2 {
   font: {
     family: $client-font;
     size: 40px;
@@ -46,6 +45,14 @@ span.textShadow {
   line-height: 1.1;
   margin: 1.25rem 0 1rem;
   padding: 0;
+
+  .subhead {
+    font: {
+      size: 24px;
+      weight: 400;
+    }
+    letter-spacing: 0;
+  }
 }
 
 h3 {
@@ -112,6 +119,11 @@ a:not([href]):not([tabindex]):hover {
 a:hover,
 a:not([href]):not([tabindex]):hover {
   text-decoration: underline;
+}
+
+b,
+strong {
+  font-weight: 700;
 }
 
 
@@ -195,7 +207,7 @@ button {
       padding: 0 .5rem;
       text-transform: none;
 
-      &:after {
+      &::after {
         border-radius: 0;
         box-shadow: inset .25rem .25rem 1rem -.5rem;
         height: 38px;
@@ -554,7 +566,7 @@ nav {
 
       &::before {
         background: rgba(255, 255, 255, 0.5);
-        content: " ";
+        content: "";
         display: block;
         height: 1px;
       }
@@ -1069,18 +1081,18 @@ section {
   }
 
   &.imgArrow {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       background-color: $client-blue-bg;
       bottom: 0;
-      content: '';
+      content: "";
       padding-bottom: 30px;
       position: absolute;
       width: 50%;
       z-index: 1;
     }
 
-    &:before {
+    &::before {
       right: 50%;
       -ms-transform-origin: 100% 100%;
       -webkit-transform-origin: 100% 100%;
@@ -1092,7 +1104,7 @@ section {
       transform: skewX(45deg);
     }
 
-    &:after {
+    &::after {
       left: 50%;
       -ms-transform-origin: 0 100%;
       -webkit-transform-origin: 0 100%;
@@ -1110,11 +1122,11 @@ section {
     overflow: visible;
     padding: 20px 0;
 
-    &:after {
+    &::after {
       border-left: 30px solid transparent;
       border-right: 30px solid transparent;
       border-top: 30px solid $client-blue-bg;
-      content: '';
+      content: "";
       left: 50%;
       margin-left: -30px;
       position: absolute;
@@ -1129,9 +1141,10 @@ section {
   }
 }
 
-#scrollArrow {
+.scrollArrow {
   bottom: 1rem;
   color: #fff;
+  cursor: pointer;
   height: 4rem;
   position: fixed;
   right: 1rem;
@@ -1201,8 +1214,16 @@ section {
     -webkit-animation: shadowMove 2s;
     animation: shadowMove 2s;
     color: transparent;
-    font-size: 60px;
+    font: {
+      family: $client-font;
+      size: 60px;
+      weight: 700;
+    }
     left: 15px;
+    letter-spacing: -0.15rem;
+    line-height: 1.1;
+    margin: 1.25rem 0 1rem;
+    padding: 0;
     position: absolute;
     text-shadow: 0 0 .75rem rgba(0, 0, 0, 0.3);
     top: -10px;
@@ -1472,9 +1493,11 @@ section {
     -o-transition: all 500ms 250ms;
     -webkit-transition: all 500ms 250ms;
     transition: all 500ms 250ms;
+    z-index: 0;
 
     &.active {
       opacity: 1;
+      z-index: 1;
     }
 
     &.left {
@@ -1499,6 +1522,7 @@ section {
   bottom: 0;
   left: 0;
   position: absolute;
+  text-align: center;
   width: 100%;
 
   fa-icon {
@@ -1688,8 +1712,8 @@ section {
       p {
         margin: 0;
 
-        &:before {
-          content: '';
+        &::before {
+          content: "";
           display: block;
           height: 1rem;
         }
@@ -1713,18 +1737,85 @@ section {
 }
 
 
+/*~~ Services ~~*/
+
+.service {
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    font-weight: 300;
+    text-align: justify;
+  }
+
+  section {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 2rem 0;
+
+    &.hero {
+      .overlay {
+        background: rgba(0, 0, 0, 0.75);
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+
+      h1 {
+        left: 0;
+        margin: 0;
+        padding: 0 1rem;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 100%;
+        z-index: 2;
+      }
+
+      .container {
+        z-index: 2;
+      }
+    }
+  }
+
+  .imageBox {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    min-height: 200px;
+  }
+}
+
+.eventPlanning {
+  background-image: url(https://assets.automatik9dots.com/images/event-planning-hero-bg-900.jpg);
+}
+
+.eventProduction {
+  background-image: url(https://assets.automatik9dots.com/images/event-production-hero-bg-900.jpg);
+}
+
+.appWebDevelopment {
+  background-image: url(https://assets.automatik9dots.com/images/app-web-development-hero-bg-900.jpg);
+}
+
+
 /*~~ Portfolio ~~*/
 
 .project {
   background: #000;
   color: #fff;
   text-align: center;
-
-  h1 {
-    font-size: 28px;
-    margin: 0;
-    text-transform: uppercase;
-  }
 
   h2 {
     font-size: 20px;
@@ -1742,7 +1833,7 @@ section {
 
     &.headingBar::before {
       background-color: $client-blue;
-      content: ' ';
+      content: "";
       display: block;
       height: 3px;
       margin: 0 auto 1rem;
@@ -1809,9 +1900,12 @@ section {
       }
 
       h1 {
+        font-size: 28px;
         left: 0;
+        margin: 0;
         padding: 0 1rem;
         position: absolute;
+        text-transform: uppercase;
         top: 50%;
         -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -2336,7 +2430,7 @@ div.mat-progress-bar-buffer {
 }
 
 div.mat-progress-bar-fill {
-  &:after {
+  &::after {
     background-color: $client-yellow;
   }
 }
@@ -2684,14 +2778,32 @@ div.cdk-overlay-dark-backdrop {
       width: calc(100% / 2);
     }
   }
-  .project {
-    h1 {
-      font-size: 40px;
+  .service {
+    section {
+      padding: 4rem 0;
+
+      .imageBox {
+        min-height: 400px;
+      }
     }
+  }
+  .eventPlanning {
+    background-image: url(https://assets.automatik9dots.com/images/event-planning-hero-bg-1440.jpg);
+  }
+  .eventProduction {
+    background-image: url(https://assets.automatik9dots.com/images/event-production-hero-bg-1440.jpg);
+  }
+  .appWebDevelopment {
+    background-image: url(https://assets.automatik9dots.com/images/app-web-development-hero-bg-1440.jpg);
+  }
+  .project {
     section {
       padding: 4rem 0;
 
       &.hero {
+        h1 {
+          font-size: 40px;
+        }
         h3 {
           top: 7rem;
         }
@@ -2880,6 +2992,15 @@ div.cdk-overlay-dark-backdrop {
   #home14 {
     background-image: url(https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-2560.jpg);
   }
+  .eventPlanning {
+    background-image: url(https://assets.automatik9dots.com/images/event-planning-hero-bg-2560.jpg);
+  }
+  .eventProduction {
+    background-image: url(https://assets.automatik9dots.com/images/event-production-hero-bg-2560.jpg);
+  }
+  .appWebDevelopment {
+    background-image: url(https://assets.automatik9dots.com/images/app-web-development-hero-bg-2560.jpg);
+  }
   .filters {
     display: block;
     height: 100vh;
@@ -2901,9 +3022,11 @@ div.cdk-overlay-dark-backdrop {
     width: 75%;
 
     .tile {
-      height: calc((100vh - 60px) / 3);
-      position: absolute;
       width: calc(100% / 3);
+
+      &.six {
+        height: calc((100vh - 60px) / 2);
+      }
     }
   }
 }
