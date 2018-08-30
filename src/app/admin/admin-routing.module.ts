@@ -35,8 +35,8 @@ const routes: Routes = [
           title: 'automätik admin',
           metatags: [
             {
-              name: 'description',
-              content: 'automätik admin panel'
+              name: 'robots',
+              content: 'noindex,nofollow'
             }
           ]
         }
@@ -49,8 +49,8 @@ const routes: Routes = [
           title: 'automätik admin',
           metatags: [
             {
-              name: 'description',
-              content: 'automätik admin panel'
+              name: 'robots',
+              content: 'noindex,nofollow'
             }
           ]
         }
@@ -63,8 +63,8 @@ const routes: Routes = [
           title: 'automätik admin',
           metatags: [
             {
-              name: 'description',
-              content: 'automätik admin panel'
+              name: 'robots',
+              content: 'noindex,nofollow'
             }
           ]
         }
@@ -77,8 +77,8 @@ const routes: Routes = [
           title: 'automätik admin',
           metatags: [
             {
-              name: 'description',
-              content: 'automätik admin panel'
+              name: 'robots',
+              content: 'noindex,nofollow'
             }
           ]
         }
@@ -91,8 +91,8 @@ const routes: Routes = [
           title: 'automätik admin',
           metatags: [
             {
-              name: 'description',
-              content: 'automätik admin panel'
+              name: 'robots',
+              content: 'noindex,nofollow'
             }
           ]
         }
@@ -105,8 +105,8 @@ const routes: Routes = [
           title: 'automätik admin',
           metatags: [
             {
-              name: 'description',
-              content: 'automätik admin panel'
+              name: 'robots',
+              content: 'noindex,nofollow'
             }
           ]
         }
