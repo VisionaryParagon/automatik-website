@@ -51,10 +51,6 @@ export class PortfolioFormComponent implements OnInit {
     }
   }
 
-  getImageAlt(path) {
-    return this.images.filter(img => img.path === path)[0].alt;
-  }
-
   setSlug(title) {
     if (title.length) {
       this.project.slug = title.toLowerCase()
@@ -94,6 +90,8 @@ export class PortfolioFormComponent implements OnInit {
       .subscribe(
         result => {
           if (result) {
+            this.getImages();
+
             if (field === 'title_lg') {
               this.project.title_image_lg = result;
             } else if (field === 'title_md') {
@@ -111,6 +109,23 @@ export class PortfolioFormComponent implements OnInit {
         },
         error => this.setError(error)
       );
+  }
+
+  getImages() {
+    this.imageService.getImages()
+      .subscribe(
+        res => this.images = res,
+        err => this.setError(err)
+      );
+  }
+
+  getImageAlt(path) {
+    const image = this.images.filter(img => img.path === path)[0];
+    if (image) {
+      return image.alt;
+    } else {
+      return '';
+    }
   }
 
   addItem(array) {
