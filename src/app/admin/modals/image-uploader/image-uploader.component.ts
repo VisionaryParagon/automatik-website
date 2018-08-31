@@ -13,7 +13,9 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 })
 export class ImageUploaderComponent implements OnInit {
   tabId = 0;
+  filter = '';
   imageList: Image[];
+  filteredImages: Image[];
   image: Image = new Image();
   imageName = 'Choose image...';
   imageData: FileList;
@@ -32,7 +34,10 @@ export class ImageUploaderComponent implements OnInit {
   ngOnInit() {
     this.imageService.getImages()
       .subscribe(
-        res => this.imageList = this.imageSort(res),
+        res => {
+          this.imageList = this.imageSort(res);
+          this.filteredImages = [...this.imageSort(res)];
+        },
         err => this.setError(err)
       );
   }
@@ -49,6 +54,20 @@ export class ImageUploaderComponent implements OnInit {
     });
 
     return images;
+  }
+
+  updateFilter() {
+    const val = this.filter.toLowerCase();
+    let filtered = [];
+
+    filtered = this.filteredImages.filter(d => JSON.stringify(Object.values(d)).toLowerCase().indexOf(val) !== -1);
+
+    this.imageList = filtered;
+  }
+
+  clearFilter() {
+    this.filter = '';
+    this.updateFilter();
   }
 
   setTab(ev) {
