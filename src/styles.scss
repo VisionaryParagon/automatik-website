@@ -1901,7 +1901,7 @@ section {
       }
 
       h1 {
-        font-size: 28px;
+        font-size: 30px;
         left: 0;
         margin: 0;
         padding: 0 1rem;
@@ -2803,7 +2803,7 @@ div.cdk-overlay-dark-backdrop {
 
       &.hero {
         h1 {
-          font-size: 40px;
+          font-size: 50px;
         }
         h3 {
           top: 7rem;
@@ -2928,6 +2928,15 @@ div.cdk-overlay-dark-backdrop {
       }
     }
   }
+  .project {
+    section {
+      &.hero {
+        h1 {
+          font-size: 68px;
+        }
+      }
+    }
+  }
 }
 
 @media all and (min-width: 1200px) {
@@ -3027,6 +3036,15 @@ div.cdk-overlay-dark-backdrop {
 
       &.six {
         height: calc((100vh - 60px) / 2);
+      }
+    }
+  }
+  .project {
+    section {
+      &.hero {
+        h1 {
+          font-size: 86px;
+        }
       }
     }
   }

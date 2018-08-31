@@ -52,7 +52,7 @@ export class PortfolioFormComponent implements OnInit {
   }
 
   setSlug(title) {
-    if (title.length) {
+    if (title && title.length) {
       this.project.slug = title.toLowerCase()
         .replace(/&/g, 'and')
         .replace(/%/g, 'percent')
