@@ -1,7 +1,6 @@
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { Image, Project, Seo } from '../../../services/classes';
 import { ImageService } from '../../../services/image.service';
@@ -33,7 +32,6 @@ export class PortfolioProjectComponent implements OnInit {
   error = '';
 
   constructor(
-    private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
     private seoService: SeoService,

@@ -6,6 +6,7 @@ import { MainRoutingModule } from './main-routing.module';
 
 // Components
 import { MainComponent } from './main.component';
+import { IntroComponent } from './intro/intro.component';
 import { HomeComponent } from './home/home.component';
 
 // Services
@@ -51,6 +52,7 @@ import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.c
   ],
   declarations: [
     MainComponent,
+    IntroComponent,
     HomeComponent,
     ServicesComponent,
     ServicesMainComponent,

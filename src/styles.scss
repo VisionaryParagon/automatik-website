@@ -664,7 +664,7 @@ nav {
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
 }
 
 #greeting {
@@ -1037,6 +1037,7 @@ nav {
   border: 2px solid #000;
   border-radius: 15px;
   bottom: 10px;
+  cursor: pointer;
   font-family: $client-font;
   font-size: 14px;
   font-weight: normal;
@@ -1231,10 +1232,10 @@ section {
   }
 
   #particleImg {
-    -moz-animation: fadeIn 2s;
-    -o-animation: fadeIn 2s;
-    -webkit-animation: fadeIn 2s;
-    animation: fadeIn 2s;
+    -moz-animation: particleFadeIn 2s;
+    -o-animation: particleFadeIn 2s;
+    -webkit-animation: particleFadeIn 2s;
+    animation: particleFadeIn 2s;
     height: auto;
     left: 68px;
     position: absolute;
@@ -3034,74 +3035,90 @@ div.cdk-overlay-dark-backdrop {
 
 /*~~ Animation Keyframes ~~*/
 
-@-moz-keyframes fadeIn {
-  from {
+@-moz-keyframes particleFadeIn {
+  0% {
     opacity: 0;
+    -moz-transform: translateX(12%) scale(0.6);
   }
-  to {
+  100% {
     opacity: 1;
+    -moz-transform: translateX(0) scale(1);
   }
 }
 
-@-o-keyframes fadeIn {
-  from {
+@-o-keyframes particleFadeIn {
+  0% {
     opacity: 0;
+    -o-transform: translateX(12%) scale(0.6);
   }
-  to {
+  100% {
     opacity: 1;
+    -o-transform: translateX(0) scale(1);
   }
 }
 
-@-webkit-keyframes fadeIn {
-  from {
+@-webkit-keyframes particleFadeIn {
+  0% {
     opacity: 0;
+    -webkit-transform: translateX(12%) scale(0.6);
   }
-  to {
+  100% {
     opacity: 1;
+    -webkit-transform: translateX(0) scale(1);
   }
 }
 
-@keyframes fadeIn {
-  from {
+@keyframes particleFadeIn {
+  0% {
     opacity: 0;
+    -moz-transform: translateX(12%) scale(0.6);
+    -ms-transform: translateX(12%) scale(0.6);
+    -o-transform: translateX(12%) scale(0.6);
+    -webkit-transform: translateX(12%) scale(0.6);
+    transform: translateX(12%) scale(0.6);
   }
-  to {
+  100% {
     opacity: 1;
+    -moz-transform: translateX(0) scale(1);
+    -ms-transform: translateX(0) scale(1);
+    -o-transform: translateX(0) scale(1);
+    -webkit-transform: translateX(0) scale(1);
+    transform: translateX(0) scale(1);
   }
 }
 
 @-moz-keyframes textFadeOut {
-  from {
+  0% {
     background-position: 0% center;
   }
-  to {
+  100% {
     background-position: 100% center;
   }
 }
 
 @-o-keyframes textFadeOut {
-  from {
+  0% {
     background-position: 0% center;
   }
-  to {
+  100% {
     background-position: 100% center;
   }
 }
 
 @-webkit-keyframes textFadeOut {
-  from {
+  0% {
     background-position: 0% center;
   }
-  to {
+  100% {
     background-position: 100% center;
   }
 }
 
 @keyframes textFadeOut {
-  from {
+  0% {
     background-position: 0% center;
   }
-  to {
+  100% {
     background-position: 100% center;
   }
 }
