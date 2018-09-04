@@ -128,29 +128,45 @@ export class PortfolioMainComponent implements OnInit {
 
       setTimeout(() => {
         if (window.outerWidth >= 1200) {
-          this.tiles.forEach((el, idx) => {
-            const x = idx % 3;
-            const y = Math.floor(idx / 3.0);
-            const height = el.nativeElement.getBoundingClientRect().height;
-            const width = el.nativeElement.getBoundingClientRect().width;
+          if (this.tiles.length) {
+            this.tiles.forEach((el, idx) => {
+              const x = idx % 3;
+              const y = Math.floor(idx / 3.0);
+              const height = el.nativeElement.getBoundingClientRect().height;
+              const width = el.nativeElement.getBoundingClientRect().width;
 
-            el.nativeElement.style.left = x * width + 'px';
-            el.nativeElement.style.top = y * height + 'px';
-          });
+              el.nativeElement.style.left = x * width + 'px';
+              el.nativeElement.style.top = y * height + 'px';
+            });
 
-          this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 3.0) + 'px';
+            this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 3.0) + 'px';
+          } else {
+            if (document.documentElement.classList.contains('mobile')) {
+              this.tileBox.nativeElement.style.height = window.innerHeight - 50 + 'px';
+            } else {
+              this.tileBox.nativeElement.style.height = window.innerHeight - 60 + 'px';
+            }
+          }
         } else if (window.outerWidth >= 768 && window.outerWidth < 1200) {
-          this.tiles.forEach((el, idx) => {
-            const x = idx % 2;
-            const y = Math.floor(idx / 2.0);
-            const height = el.nativeElement.getBoundingClientRect().height;
-            const width = el.nativeElement.getBoundingClientRect().width;
+          if (this.tiles.length) {
+            this.tiles.forEach((el, idx) => {
+              const x = idx % 2;
+              const y = Math.floor(idx / 2.0);
+              const height = el.nativeElement.getBoundingClientRect().height;
+              const width = el.nativeElement.getBoundingClientRect().width;
 
-            el.nativeElement.style.left = x * width + 'px';
-            el.nativeElement.style.top = y * height + 'px';
-          });
+              el.nativeElement.style.left = x * width + 'px';
+              el.nativeElement.style.top = y * height + 'px';
+            });
 
-          this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 2.0) + 'px';
+            this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 2.0) + 'px';
+          } else {
+            if (document.documentElement.classList.contains('mobile')) {
+              this.tileBox.nativeElement.style.height = window.innerHeight - 50 + 'px';
+            } else {
+              this.tileBox.nativeElement.style.height = window.innerHeight - 60 + 'px';
+            }
+          }
         } else {
           this.tiles.forEach((el, idx) => {
             el.nativeElement.style.left = '0px';
