@@ -3,7 +3,7 @@
     <mat-spinner class="mx-auto my-5"></mat-spinner>
   </div>
 
-  <div class="filters mobile">
+  <div class="filters mobile" [class.open]="filterOpen">
     <mat-expansion-panel [expanded]="filterOpen" (opened)="openPanel()" (closed)="closePanel()">
       <mat-expansion-panel-header>
         <h1>Portfolio</h1>
