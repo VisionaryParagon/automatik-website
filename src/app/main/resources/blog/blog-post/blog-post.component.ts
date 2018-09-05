@@ -184,7 +184,7 @@ export class BlogPostComponent implements OnInit {
           },
           {
             property: 'og:url',
-            content: 'https://beta.automatik9dots.com/portfolio/' + data.slug
+            content: 'https://beta.automatik9dots.com/resources/blog/' + data.slug
           },
           {
             property: 'og:image',
