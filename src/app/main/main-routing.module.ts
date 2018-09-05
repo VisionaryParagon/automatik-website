@@ -671,19 +671,19 @@ const routes: Routes = [
             path: '',
             component: BlogMainComponent,
             data: {
-              title: 'automätik blog',
+              title: 'Corporate Event Services Blog | automätik',
               metatags: [
                 {
                   name: 'description',
-                  content: 'Description for Blog.'
+                  content: 'automätik’s blog for all things corporate events including planning and managing events, instructional design, graphic design, AV, and technology.'
                 },
                 {
                   name: 'keywords',
-                  content: 'blog'
+                  content: 'Corporate Event Services Blog, event planning and management, instructional design, graphic design'
                 },
                 {
                   property: 'og:title',
-                  content: 'automätik blog'
+                  content: 'Corporate Event Services Blog | automätik'
                 },
                 {
                   property: 'og:type',
@@ -699,7 +699,7 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:description',
-                  content: 'Description for Blog.'
+                  content: 'automätik’s blog for all things corporate events including planning and managing events, instructional design, graphic design, AV, and technology.'
                 },
                 {
                   name: 'twitter:card',
@@ -711,11 +711,11 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:title',
-                  content: 'automätik blog'
+                  content: 'Corporate Event Services Blog | automätik'
                 },
                 {
                   name: 'twitter:description',
-                  content: 'Description for Blog.'
+                  content: 'automätik’s blog for all things corporate events including planning and managing events, instructional design, graphic design, AV, and technology.'
                 },
                 {
                   name: 'twitter:image:src',
@@ -725,20 +725,12 @@ const routes: Routes = [
             }
           },
           {
-            path: 'author/:slug',
-            component: BlogAuthorComponent
-          },
-          {
-            path: 'category/:slug',
-            component: BlogCategoryComponent
-          },
-          {
-            path: 'post/:slug',
+            path: ':slug',
             component: BlogPostComponent
           },
           {
             path: '**',
-            redirectTo: '/blog'
+            redirectTo: '/resources/blog'
           }
         ]
       },
@@ -813,11 +805,11 @@ const routes: Routes = [
                 path: '',
                 component: BlogMainComponent,
                 data: {
-                  title: 'automätik blog',
+                  title: 'Corporate Event Services Blog | automätik',
                   metatags: [
                     {
                       name: 'description',
-                      content: 'Description for Blog.'
+                      content: 'automätik’s blog for all things corporate events including planning and managing events, instructional design, graphic design, AV, and technology.'
                     },
                     {
                       name: 'keywords',
@@ -825,7 +817,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:title',
-                      content: 'automätik blog'
+                      content: 'Corporate Event Services Blog | automätik'
                     },
                     {
                       property: 'og:type',
@@ -841,7 +833,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:description',
-                      content: 'Description for Blog.'
+                      content: 'automätik’s blog for all things corporate events including planning and managing events, instructional design, graphic design, AV, and technology.'
                     },
                     {
                       name: 'twitter:card',
@@ -853,11 +845,11 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:title',
-                      content: 'automätik blog'
+                      content: 'Corporate Event Services Blog | automätik'
                     },
                     {
                       name: 'twitter:description',
-                      content: 'Description for Blog.'
+                      content: 'automätik’s blog for all things corporate events including planning and managing events, instructional design, graphic design, AV, and technology.'
                     },
                     {
                       name: 'twitter:image:src',
@@ -885,15 +877,7 @@ const routes: Routes = [
             ]
           },
           {
-            path: 'blog/author/:slug',
-            component: BlogAuthorComponent
-          },
-          {
-            path: 'blog/category/:slug',
-            component: BlogCategoryComponent
-          },
-          {
-            path: 'blog/post/:slug',
+            path: 'blog/:slug',
             component: BlogPostComponent
           },
           {

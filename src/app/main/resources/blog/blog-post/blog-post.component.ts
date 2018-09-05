@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -16,76 +17,84 @@ import { FadeAnimation } from '../../../../animations';
 })
 export class BlogPostComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
-  metadata: Seo;
-  changingBlog = false;
   post;
-  safeHtml: SafeHtml;
-  categories;
-  tags;
-  authors;
-  media;
   blogs;
-  error;
+  media;
+  categories;
+  authors;
+  tags;
+  metadata: Seo;
+  safeHtml: SafeHtml;
+  atTop = true;
+  changingBlog = false;
+  imgHeight = 'auto';
+  imgWidth = '100%';
+  loading = true;
+  error = '';
 
   constructor(
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
     private blogService: BlogService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit() {
     if (this.blogService.dataRetrieved) {
-      this.categories = this.blogService.categories;
-      this.tags = this.blogService.tags;
-      this.authors = this.blogService.authors;
-      this.media = this.blogService.media;
       this.blogs = this.blogService.blogs;
+      this.media = this.blogService.media;
+      this.categories = this.blogService.categories;
+      this.authors = this.blogService.authors;
+      this.tags = this.blogService.tags;
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
+      this.loading = false;
     } else {
+      this.blogService.getPosts()
+        .subscribe(
+          posts => {
+            this.blogs = this.blogService.blogs;
+            console.log('Blogs: ', this.blogs);
+            this.checkData();
+          },
+          error => this.setError(error)
+        );
+      this.blogService.getMedia()
+        .subscribe(
+          media => {
+            this.media = this.blogService.media;
+            console.log('Media: ', this.media);
+            this.checkData();
+          },
+          error => this.setError(error)
+        );
       this.blogService.getCategories()
         .subscribe(
           categories => {
             this.categories = this.blogService.categories;
-            // console.log(this.categories);
-            this.blogService.getTags()
-              .subscribe(
-                tags => {
-                  this.tags = this.blogService.tags;
-                  // console.log(this.tags);
-                  this.blogService.getAuthors()
-                    .subscribe(
-                      authors => {
-                        this.authors = this.blogService.authors;
-                        // console.log(this.authors);
-                        this.blogService.getMedia()
-                          .subscribe(
-                            media => {
-                              this.media = this.blogService.media;
-                              // console.log(this.media);
-                              this.blogService.getPosts()
-                                .subscribe(
-                                  posts => {
-                                    this.blogs = this.blogService.blogs;
-                                    // console.log(this.blogs);
-                                    this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-                                    this.sanitizeHtml(this.post.content.rendered);
-                                    this.setSEO(this.post);
-                                  },
-                                  error => this.setError(error)
-                                );
-                            },
-                            error => this.setError(error)
-                          );
-                      },
-                      error => this.setError(error)
-                    );
-                },
-                error => this.setError(error)
-              );
+            // console.log('Categories: ', this.categories);
+            this.checkData();
+          },
+          error => this.setError(error)
+        );
+      this.blogService.getAuthors()
+        .subscribe(
+          authors => {
+            this.authors = this.blogService.authors;
+            // console.log('Authors: ', this.authors);
+            this.checkData();
+          },
+          error => this.setError(error)
+        );
+      this.blogService.getTags()
+        .subscribe(
+          tags => {
+            this.tags = this.blogService.tags;
+            // console.log('Tags: ', this.tags);
+            this.checkData();
           },
           error => this.setError(error)
         );
@@ -93,11 +102,11 @@ export class BlogPostComponent implements OnInit {
 
     this.router.events.subscribe((ev: any) => {
       if (ev instanceof NavigationEnd) {
-        if (ev.url.indexOf('/resources/blog/post') === 0 && ev.url.indexOf(this.slug) === -1) {
+        if (ev.url.indexOf('/resources/blog/') === 0 && ev.url.indexOf(this.slug) === -1) {
           this.changingBlog = true;
 
           setTimeout(() => {
-            this.slug = ev.url.split('/').reverse()[0];
+            this.slug = ev.url.split('/').pop();
             this.post = this.blogs.filter(post => post.slug === this.slug)[0];
             this.sanitizeHtml(this.post.content.rendered);
             this.setSEO(this.post);
@@ -109,12 +118,50 @@ export class BlogPostComponent implements OnInit {
         }
       }
     });
+
+    this.checkBanner();
+  }
+
+  @HostListener('window:resize', ['$event']) onResize(ev) {
+    this.checkBanner();
+  }
+  @HostListener('window:scroll', ['$event']) onScroll(ev) {
+    this.checkScroll();
+  }
+
+  scrollPage() {
+    if (isPlatformBrowser(this.platformId)) {
+      let scrl = window.innerHeight;
+      if (document.documentElement.classList.contains('mobile')) {
+        scrl = scrl - 50;
+      } else {
+        scrl = scrl - 60;
+      }
+      window.scroll({top: scrl, left: 0, behavior: 'smooth'});
+    }
+  }
+
+  checkScroll() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.atTop = window.scrollY > 50 ? false : true;
+    }
+  }
+
+  checkData() {
+    if (this.blogs && this.media && this.categories && this.authors && this.tags) {
+      this.post = this.blogs.filter(post => post.slug === this.slug)[0];
+      this.sanitizeHtml(this.post.content.rendered);
+      this.setSEO(this.post);
+      this.loading = false;
+    } else {
+      this.loading = true;
+    }
   }
 
   setSEO(data?) {
     if (data) {
-      const seoImg = this.getFeaturedImgSrc(data.featured_media);
-      console.log(data.yoast);
+      const seoImg = this.getImageSrc(data.featured_media);
+      // console.log(data.yoast);
 
       this.metadata = {
         title: data.yoast.title,
@@ -176,28 +223,48 @@ export class BlogPostComponent implements OnInit {
     }
   }
 
-  getFeaturedImgSrc(id) {
-    if (this.blogService.media) {
+  checkBanner() {
+    if (isPlatformBrowser(this.platformId)) {
+      if (window.innerWidth * 0.565 < window.innerHeight) {
+        this.imgHeight = '100%';
+        this.imgWidth = 'auto';
+      } else {
+        this.imgHeight = 'auto';
+        this.imgWidth = '100%';
+      }
+    }
+  }
+
+  getImageSrc(id) {
+    if (this.media) {
       return this.blogService.media.filter(media => media.id === id)[0].source_url;
     }
   }
 
-  getFeaturedImgAlt(id) {
-    if (this.blogService.media) {
+  getImageAlt(id) {
+    if (this.media) {
       return this.blogService.media.filter(media => media.id === id)[0].alt_text;
     }
   }
 
   getAuthor(id) {
-    if (this.blogService.authors) {
+    if (this.authors) {
       return this.blogService.authors.filter(author => author.id === id)[0].name;
     }
   }
 
-  getAuthorSlug(id) {
-    if (this.blogService.authors) {
-      return this.blogService.authors.filter(author => author.id === id)[0].slug;
+  goToAuthor(author) {
+    this.blogService.selectedAuthor = this.getAuthor(author);
+    this.router.navigate(['/resources/blog']);
+  }
+
+  goToCategory(cat?) {
+    if (cat) {
+      this.blogService.selectedCategory = cat;
+    } else {
+      this.blogService.selectedCategory = '';
     }
+    this.router.navigate(['/resources/blog']);
   }
 
   sanitizeHtml(data) {

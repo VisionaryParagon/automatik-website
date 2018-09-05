@@ -1145,6 +1145,61 @@ section {
     color: #fff;
     padding: 50px 0 0;
   }
+
+  &.hero {
+    -moz-transition: opacity 250ms;
+    -o-transition: opacity 250ms;
+    -webkit-transition: opacity 250ms;
+    transition: opacity 250ms;
+
+    .heroBanner {
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 0;
+
+      img {
+        height: auto;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    h1 {
+      left: 0;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 100%;
+      z-index: 2;
+    }
+  }
 }
 
 .scrollArrow {
@@ -1987,107 +2042,6 @@ section {
 
 /*~~ Blog ~~*/
 
-.blogList {
-  h2 {
-    font-size: 32px;
-    margin: 0 0 1rem;
-    text-align: left;
-  }
-}
-
-.blogPost {
-  border-bottom: 1px solid;
-  margin: 0 0 1rem;
-  padding: 0 1rem 1rem;
-
-  &:last-child {
-    border: none;
-  }
-}
-
-.blogThumb {
-  min-height: 100px;
-
-  a {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: block;
-    height: 100%;
-  }
-}
-
-.blogTitle {
-  text-align: left;
-
-  a {
-    color: inherit;
-  }
-}
-
-.blogSidebar {
-  border-left: 1px solid;
-
-  h5 {
-    border-bottom: 1px solid;
-    margin: 0 0 1rem;
-    text-transform: uppercase;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  .blogPost {
-    margin: 0 0 1rem;
-    padding: 0;
-
-    &:last-child {
-      margin-bottom: 2rem;
-    }
-
-    p {
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      .blogDate {
-        color: #999;
-        font-size: 14px;
-        text-transform: uppercase;
-      }
-    }
-  }
-}
-
-.blogHeader {
-  height: 50vh;
-  margin: 0 0 -15vh;
-  opacity: 1;
-  overflow: hidden;
-  position: relative;
-  -moz-transition: opacity 250ms;
-  -o-transition: opacity 250ms;
-  -webkit-transition: opacity 250ms;
-  transition: opacity 250ms;
-  z-index: 0;
-
-  img {
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 50%;
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-}
-
 .blogContent {
   background: #fff;
   opacity: 1;
@@ -2099,14 +2053,10 @@ section {
   transition: opacity 250ms;
   z-index: 1;
 
-  h1,
-  h2 {
-    margin: 1rem 0;
-    text-align: left;
-  }
-
   h2 {
     font-size: 32px;
+    margin: 1rem 0;
+    text-align: left;
   }
 
   ul {
@@ -2129,20 +2079,63 @@ section {
   }
 
   figure {
-    background: #ddd;
     margin: 2rem auto;
-    padding: 1rem;
+    width: 100% !important;
 
     img {
       height: auto;
       margin: 0 0 1rem;
       width: 100%;
     }
+
+    figcaption {
+      font-style: italic;
+      padding: 0 1rem;
+    }
   }
 
   iframe {
     margin: 2rem 0;
     width: 100%;
+  }
+}
+
+.blogSidebar {
+  padding: 15px;
+
+  h5 {
+    border-bottom: 1px solid;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+  }
+
+  a {
+    color: inherit !important;
+  }
+
+  .blogPost {
+    border-bottom: 1px solid;
+    margin: 0 0 1rem;
+    padding: 0;
+
+    &:last-child {
+      border: none;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      .blogDate {
+        color: #999;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+    }
   }
 }
 

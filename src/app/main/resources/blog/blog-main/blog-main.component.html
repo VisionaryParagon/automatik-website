@@ -1,50 +1,97 @@
-<div [@fade]="true">
-  <section>
-    <div class="container">
-      <h1>blog &agrave; la autom&auml;tik</h1>
+<section class="tileSection" [@fade]="true">
+  <div class="container" *ngIf="loading && !error.length">
+    <mat-spinner class="mx-auto my-5"></mat-spinner>
+  </div>
 
-      <div *ngIf="!blogs && !error">
-        <mat-spinner class="mx-auto my-5"></mat-spinner>
+  <div class="filters mobile" [class.open]="filterOpen">
+    <mat-expansion-panel [expanded]="filterOpen" (opened)="openPanel()" (closed)="closePanel()">
+      <mat-expansion-panel-header>
+        <h1>blog &agrave; la autom&auml;tik</h1>
+      </mat-expansion-panel-header>
+
+      <div class="inputGroup">
+        <label for="searchMobile">
+          <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+          <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
+        </label>
+        <input type="text" class="form-control" id="searchMobile" name="searchMobile" #searchMobile="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
       </div>
 
-      <div class="row" *ngIf="blogs && !error">
-        <div class="blogList col-12 col-lg-9">
-          <div class="blogPost" *ngFor="let blog of blogs">
-            <div class="row">
-              <div class="blogThumb col-12 col-md-4 col-lg-3">
-                <a routerLink="/resources/blog/post/{{ blog.slug }}" [style.backgroundImage]="'url(' + getFeaturedImgSrc(blog.featured_media) + ')'"></a>
-              </div>
+      <h4>Categories</h4>
 
-              <div class="blogInfo col-12 col-md-8 col-lg-9">
-                <h3 class="blogTitle"><a routerLink="/resources/blog/post/{{ blog.slug }}">{{ blog.title.rendered }}</a></h3>
-
-                <p>{{ blog.date | date: 'mediumDate' }} &nbsp;|&nbsp; {{ getAuthor(blog.author) }}</p>
-
-                <p>{{ blog.yoast.metadesc }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="blogSidebar d-none d-lg-block col-lg-3">
-          <h5>Recent Posts</h5>
-
-          <div class="recentPosts">
-            <div class="blogPost" *ngFor="let blog of blogs | slice:0:5">
-              <p><a routerLink="/resources/blog/post/{{ blog.slug }}">{{ blog.title.rendered }}
-                <br><span class="blogDate">{{ blog.date | date: 'mediumDate' }}</span></a></p>
-            </div>
-          </div>
-
-          <h5>Categories</h5>
-
-          <div class="categoryList">
-            <p *ngFor="let cat of categories"><a routerLink="/resources/blog/category/{{ cat.slug }}">{{ cat.name }}</a></p>
-          </div>
-        </div>
+      <div class="inputGroup">
+        <select name="categoryMobile" #categoryMobile="ngModel" [(ngModel)]="activeCat" (ngModelChange)="selectCategory(categoryMobile.value)">
+          <option *ngIf="!activeCat.length" value="">Select a category</option>
+          <option *ngIf="activeCat.length" value="">View All</option>
+          <option *ngFor="let cat of categories" [value]="cat.name">{{ cat.name }}</option>
+        </select>
+        <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
       </div>
 
-      <div *ngIf="error">{{ error }}</div>
+      <h4>Authors</h4>
+
+      <div class="inputGroup">
+        <select name="authorMobile" #authorMobile="ngModel" [(ngModel)]="activeAuthor" (ngModelChange)="selectAuthor(authorMobile.value)">
+          <option *ngIf="!activeAuthor.length" value="">Select an author</option>
+          <option *ngIf="activeAuthor.length" value="">View All</option>
+          <option *ngFor="let author of authors" [value]="author.name">{{ author.name }}</option>
+        </select>
+        <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+      </div>
+    </mat-expansion-panel>
+  </div>
+
+  <div class="filters" #sidebar>
+    <h1>blog &agrave; la autom&auml;tik</h1>
+
+    <div class="inputGroup">
+      <label for="search">
+        <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+        <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
+      </label>
+      <input type="text" class="form-control" id="search" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
     </div>
-  </section>
-</div>
+
+    <h4>Categories</h4>
+
+    <div class="inputGroup">
+      <select name="category" #category="ngModel" [(ngModel)]="activeCat" (ngModelChange)="selectCategory(category.value)">
+        <option *ngIf="!activeCat.length" value="">Select a category</option>
+        <option *ngIf="activeCat.length" value="">View All</option>
+        <option *ngFor="let cat of categories" [value]="cat.name">{{ cat.name }}</option>
+      </select>
+      <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+    </div>
+
+    <h4>Authors</h4>
+
+    <div class="inputGroup">
+      <select name="author" #author="ngModel" [(ngModel)]="activeAuthor" (ngModelChange)="selectAuthor(author.value)">
+        <option *ngIf="!activeAuthor.length" value="">Select an author</option>
+        <option *ngIf="activeAuthor.length" value="">View All</option>
+        <option *ngFor="let author of authors" [value]="author.name">{{ author.name }}</option>
+      </select>
+      <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+    </div>
+  </div>
+
+  <div class="tileBox" [class.on]="!loading" #tileBox>
+    <div class="tile" [@fade]="true" *ngFor="let blog of blogs" [class.hovered]="hovered === blog.slug" (mouseenter)="setHover(blog.slug)" (mouseleave)="setHover('')" routerLink="/resources/blog/{{ blog.slug }}" #tiles>
+      <img [src]="getImageSrc(blog.featured_media)" [alt]="getImageAlt(blog.featured_media)">
+
+      <div class="overlay"></div>
+
+      <div class="tileInfo">
+        <h2>{{ blog.title.rendered }}</h2>
+
+        <p>{{ blog.date | date: 'mediumDate' }} &nbsp;|&nbsp; {{ getAuthor(blog.author) }}</p>
+
+        <p [@topDown]="true" *ngIf="hovered === blog.slug">{{ truncateDesc(blog.yoast.metadesc) }}</p>
+      </div>
+    </div>
+
+    <div class="text-center" [@topDown]="true" *ngIf="error.length">
+      <p>{{ error }}</p>
+    </div>
+  </div>
+</section>

@@ -16,9 +16,12 @@ export class BlogService {
   dataRetrieved = false;
   blogs;
   media;
-  authors;
   categories;
+  authors;
   tags;
+  filter = '';
+  selectedCategory = '';
+  selectedAuthor = '';
 
   constructor(
     private http: HttpClient
@@ -30,7 +33,7 @@ export class BlogService {
         retry(3),
         tap(blogs => {
           this.blogs = blogs;
-          this.dataRetrieved = true;
+          this.checkData();
         }),
         catchError(this.handleError)
       );
@@ -40,16 +43,10 @@ export class BlogService {
     return this.http.get(this.blogUrlRoot + 'media')
       .pipe(
         retry(3),
-        tap(media => this.media = media),
-        catchError(this.handleError)
-      );
-  }
-
-  getAuthors() {
-    return this.http.get(this.blogUrlRoot + 'users')
-      .pipe(
-        retry(3),
-        tap(users => this.authors = users),
+        tap(media => {
+          this.media = media;
+          this.checkData();
+        }),
         catchError(this.handleError)
       );
   }
@@ -58,7 +55,22 @@ export class BlogService {
     return this.http.get(this.blogUrlRoot + 'categories')
       .pipe(
         retry(3),
-        tap(categories => this.categories = categories),
+        tap(categories => {
+          this.categories = categories;
+          this.checkData();
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getAuthors() {
+    return this.http.get(this.blogUrlRoot + 'users')
+      .pipe(
+        retry(3),
+        tap(users => {
+          this.authors = users;
+          this.checkData();
+        }),
         catchError(this.handleError)
       );
   }
@@ -67,9 +79,20 @@ export class BlogService {
     return this.http.get(this.blogUrlRoot + 'tags')
       .pipe(
         retry(3),
-        tap(tags => this.tags = tags),
+        tap(tags => {
+          this.tags = tags;
+          this.checkData();
+        }),
         catchError(this.handleError)
       );
+  }
+
+  private checkData() {
+    if (this.blogs && this.media && this.categories && this.authors && this.tags) {
+      this.dataRetrieved = true;
+    } else {
+      this.dataRetrieved = false;
+    }
   }
 
   private handleError(error: HttpErrorResponse) {

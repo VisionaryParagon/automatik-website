@@ -1,20 +1,23 @@
 <div [@fade]="true">
-  <section *ngIf="!post">
-    <mat-spinner class="mx-auto my-5"></mat-spinner>
+  <section *ngIf="loading && !error.length">
+    <div class="container">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
   </section>
 
-  <section *ngIf="post && !error">
-    <div class="blogHeader" [class.faded]="changingBlog">
-      <img *ngIf="post.featured_media" [src]="getFeaturedImgSrc(post.featured_media)" [alt]="getFeaturedImgAlt(post.featured_media)">
-    </div>
-    <div class="container">
-      <div class="blogContent">
-        <div [class.faded]="changingBlog">
-          <h1>{{ post.title.rendered }}</h1>
+  <div [@fade]="true" *ngIf="!loading && !error.length">
+    <section class="dark fullHeight fixed hero" [class.faded]="changingBlog" [style.backgroundImage]="'url(' + getImageSrc(post.featured_media) + ')'">
+      <div class="overlay"></div>
 
+      <h1>{{ post.title.rendered }}</h1>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="blogContent" [class.faded]="changingBlog">
           <div class="row">
-            <div class="col-12 col-lg-9">
-              <p>{{ post.date | date: 'mediumDate' }} &nbsp;|&nbsp; <a routerLink="/resources/blog/author/{{ getAuthorSlug(post.author) }}">{{ getAuthor(post.author) }}</a></p>
+            <div class="col-12 col-lg-9 border-right border-dark">
+              <h4>{{ post.date | date: 'mediumDate' }} &nbsp;|&nbsp; <a (click)="goToAuthor(post.author)">{{ getAuthor(post.author) }}</a></h4>
 
               <div [innerHtml]="safeHtml"></div>
             </div>
@@ -24,7 +27,7 @@
 
               <div class="blogList">
                 <div class="blogPost" *ngFor="let blog of blogs | slice:0:5">
-                  <p><a routerLink="/resources/blog/post/{{ blog.slug }}">{{ blog.title.rendered }}
+                  <p><a routerLink="/resources/blog/{{ blog.slug }}">{{ blog.title.rendered }}
                     <br><span class="blogDate">{{ blog.date | date: 'mediumDate' }}</span></a></p>
                 </div>
               </div>
@@ -32,17 +35,23 @@
               <h5>Categories</h5>
 
               <div class="categoryList">
-                <p *ngFor="let cat of categories"><a routerLink="/resources/blog/category/{{ cat.slug }}">{{ cat.name }}</a></p>
-                <p><a routerLink="/resources/blog">View All</a></p>
+                <p *ngFor="let cat of categories"><a (click)="goToCategory(cat.name)">{{ cat.name }}</a></p>
+                <p><a (click)="goToCategory()">View All</a></p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section *ngIf="error">
-    <div class="container">{{ error }}</div>
+    <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
+      <div class="arrowDown"></div>
+    </div>
+  </div>
+
+  <section [@topDown]="true" *ngIf="error.length">
+    <div class="container">
+      <p>{{ error }}</p>
+    </div>
   </section>
 </div>
