@@ -48,7 +48,7 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        canActivate: [IntroGuardService],
+        // canActivate: [IntroGuardService],
         data: {
           title: 'Eradicating boring corporate events from the face of the Earth | automätik',
           metatags: [
@@ -106,11 +106,11 @@ const routes: Routes = [
       {
         path: 'services',
         component: ServicesComponent,
-        canActivate: [IntroGuardService],
+        // canActivate: [IntroGuardService],
         children: [
           {
             path: '',
-            canActivateChild: [IntroGuardService],
+            // canActivateChild: [IntroGuardService],
             children: [
               {
                 path: '',
@@ -522,7 +522,7 @@ const routes: Routes = [
       {
         path: 'courses',
         component: CoursesComponent,
-        canActivate: [IntroGuardService],
+        // canActivate: [IntroGuardService],
         data: {
           title: 'automätik courses',
           metatags: [
@@ -586,11 +586,11 @@ const routes: Routes = [
       {
         path: 'portfolio',
         component: PortfolioComponent,
-        canActivate: [IntroGuardService],
+        // canActivate: [IntroGuardService],
         children: [
           {
             path: '',
-            canActivateChild: [IntroGuardService],
+            // canActivateChild: [IntroGuardService],
             children: [
               {
                 path: '',
@@ -740,7 +740,7 @@ const routes: Routes = [
           {
             path: '',
             component: ResourcesMainComponent,
-            canActivate: [IntroGuardService],
+            // canActivate: [IntroGuardService],
             data: {
               title: 'automätik resources',
               metatags: [
@@ -888,11 +888,11 @@ const routes: Routes = [
       {
         path: 'about',
         component: AboutComponent,
-        canActivate: [IntroGuardService],
+        // canActivate: [IntroGuardService],
         children: [
           {
             path: '',
-            canActivateChild: [IntroGuardService],
+            // canActivateChild: [IntroGuardService],
             children: [
               {
                 path: '',
