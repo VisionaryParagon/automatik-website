@@ -1020,6 +1020,7 @@ const routes: Routes = [
       }
     ]
   },
+  /*
   {
     path: 'intro',
     component: IntroComponent,
@@ -1033,6 +1034,7 @@ const routes: Routes = [
       ]
     }
   },
+  */
   {
     path: '**',
     redirectTo: '/'
