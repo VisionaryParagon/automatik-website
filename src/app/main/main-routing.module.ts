@@ -74,7 +74,7 @@ const routes: Routes = [
             },
             {
               property: 'og:image',
-              content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
             },
             {
               property: 'og:description',
@@ -98,7 +98,7 @@ const routes: Routes = [
             },
             {
               name: 'twitter:image:src',
-              content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
             }
           ]
         }
@@ -140,7 +140,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -164,7 +164,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -311,7 +311,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -335,7 +335,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -368,7 +368,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -392,7 +392,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -425,7 +425,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -449,7 +449,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -482,7 +482,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -506,7 +506,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -548,7 +548,7 @@ const routes: Routes = [
             },
             {
               property: 'og:image',
-              content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
             },
             {
               property: 'og:description',
@@ -572,7 +572,7 @@ const routes: Routes = [
             },
             {
               name: 'twitter:image:src',
-              content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
             }
           ]
         },
@@ -620,7 +620,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -644,7 +644,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -693,7 +693,7 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:image',
-                  content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                 },
                 {
                   property: 'og:description',
@@ -717,7 +717,7 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:image:src',
-                  content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                 }
               ]
             }
@@ -766,7 +766,7 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:image',
-                  content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                 },
                 {
                   property: 'og:description',
@@ -790,7 +790,7 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:image:src',
-                  content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                 }
               ]
             }
@@ -827,7 +827,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -851,7 +851,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -922,7 +922,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -946,7 +946,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -980,7 +980,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -1004,7 +1004,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg'
+                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
