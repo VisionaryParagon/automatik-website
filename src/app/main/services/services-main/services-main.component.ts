@@ -28,7 +28,7 @@ export class ServicesMainComponent implements OnInit {
     {
       title: 'Instructional Design',
       headline: 'Creating engaging training experiences is the heartbeat of automätik.',
-      title_image: 'https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-900.jpg',
+      title_image: 'https://assets.automatik9dots.com/images/instructional-design-hero-bg-900.jpg',
       slug: 'instructional-design',
       keywords: 'Product launch training, sales skill training, consultative sales training, parts and service training, management training, train the trainer training, instructional design, elearning, corporate learning consulting, presentation training, powerpoint training, slide design training, and executive presentation consultation'
     },
