@@ -4,13 +4,13 @@ import { Department, Image, Teammate } from '../../../services/classes';
 import { ImageService } from '../../../services/image.service';
 import { TeamService } from '../../../services/team.service';
 
-import { FadeAnimation, TeamBioAnimation } from '../../../animations';
+import { FadeAnimation, TeamBioAnimation, TopDownAnimation } from '../../../animations';
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.css'],
-  animations: [ FadeAnimation, TeamBioAnimation ]
+  animations: [ FadeAnimation, TeamBioAnimation, TopDownAnimation ]
 })
 export class TeamComponent implements OnInit {
   teammates: Teammate[] = this.teamService.team;

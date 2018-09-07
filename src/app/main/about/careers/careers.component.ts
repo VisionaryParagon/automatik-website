@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { CareerPosition } from '../../../services/classes';
 import { CareersService } from '../../../services/careers.service';
 
-import { FadeAnimation } from '../../../animations';
+import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
 import { CareerInquiryComponent } from '../../modals/career-inquiry/career-inquiry.component';
 
@@ -12,7 +12,7 @@ import { CareerInquiryComponent } from '../../modals/career-inquiry/career-inqui
   selector: 'app-careers',
   templateUrl: './careers.component.html',
   styleUrls: ['./careers.component.css'],
-  animations: [ FadeAnimation ]
+  animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class CareersComponent implements OnInit {
   positions: CareerPosition[] = this.careersService.positions;
