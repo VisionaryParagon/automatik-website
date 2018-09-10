@@ -1,7 +1,5 @@
-import { AfterContentInit, Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
-import { interval, Observable, Subscription } from 'rxjs';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
@@ -11,19 +9,8 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
   styleUrls: ['./app-web-development.component.css'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
-export class AppWebDevelopmentComponent implements AfterContentInit, OnInit, OnDestroy {
+export class AppWebDevelopmentComponent implements OnInit {
   atTop = true;
-
-  // Carousel
-  currentSlide = 0;
-  carouselDelay = 5000;
-  interval: Observable<number> = interval(this.carouselDelay);
-  slideSub: Subscription;
-  xStart: number;
-  xEnd: number;
-  swipe: Observable<number> = interval(10);
-  swipeSub: Subscription;
-  swipeTime: number;
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,
@@ -46,9 +33,6 @@ export class AppWebDevelopmentComponent implements AfterContentInit, OnInit, OnD
       copy: `As we often say, <strong>event management is not for the faint of heart</strong>. Talk to any of our event managers, and you&rsquo;ll learn that we welcome and thrive on the ever-changing range of unique tasks and challenges that drew us into this field to begin with. Quite simply, <em>we live for this</em>. And we would be grateful for the opportunity to serve you by doing what we&nbsp;love.`
     }
   ];
-  dataLength = this.slides.length - 1;
-
-  @ViewChild('carousel') carousel: ElementRef;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object
@@ -58,14 +42,6 @@ export class AppWebDevelopmentComponent implements AfterContentInit, OnInit, OnD
     this.checkScroll();
   }
 
-  ngAfterContentInit() {
-    this.setCarousel();
-    this.startCarousel();
-  }
-
-  @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.setCarousel();
-  }
   @HostListener('window:scroll', ['$event']) onScroll(ev) {
     this.checkScroll();
   }
@@ -86,111 +62,5 @@ export class AppWebDevelopmentComponent implements AfterContentInit, OnInit, OnD
     if (isPlatformBrowser(this.platformId)) {
       this.atTop = window.scrollY > 50 ? false : true;
     }
-  }
-
-  setCarousel() {
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        const el = this.carousel.nativeElement;
-        const children: Array<HTMLElement> = Array.from(el.children);
-        children.sort((a: HTMLElement, b: HTMLElement) => {
-          if (a.offsetHeight < b.offsetHeight) {
-            return -1;
-          } else if (a.offsetHeight > b.offsetHeight) {
-            return 1;
-          }
-          return 0;
-        });
-        el.style.height = children.pop().offsetHeight + 30 + 'px';
-      }, 250);
-    }
-  }
-
-  startCarousel() {
-    if (isPlatformBrowser(this.platformId)) {
-      if (!this.slideSub || this.slideSub.closed) {
-        this.slideSub = this.interval.subscribe(() => {
-          if (this.currentSlide !== this.slides.length - 1) {
-            this.currentSlide++;
-          } else {
-            this.currentSlide = 0;
-          }
-        });
-      }
-    }
-  }
-
-  stopCarousel() {
-    if (this.slideSub) {
-      this.slideSub.unsubscribe();
-    }
-  }
-
-  setSlide(idx) {
-    this.stopCarousel();
-
-    this.currentSlide = idx;
-
-    this.startCarousel();
-  }
-
-  prevSlide() {
-    this.stopCarousel();
-
-    if (this.currentSlide !== 0) {
-      this.currentSlide--;
-    } else {
-      this.currentSlide = this.slides.length - 1;
-    }
-
-    this.startCarousel();
-  }
-
-  nextSlide() {
-    this.stopCarousel();
-
-    if (this.currentSlide !== this.slides.length - 1) {
-      this.currentSlide++;
-    } else {
-      this.currentSlide = 0;
-    }
-
-    this.startCarousel();
-  }
-
-  setXStart(e) {
-    this.stopCarousel();
-
-    e.preventDefault();
-
-    this.xStart = e.changedTouches[0].pageX;
-
-    if (!this.swipeSub || this.swipeSub.closed) {
-      this.swipeSub = this.swipe.subscribe(t => this.swipeTime = t);
-    }
-  }
-
-  setXEnd(e) {
-    e.preventDefault();
-
-    this.xEnd = e.changedTouches[0].pageX;
-
-    if (this.swipeSub) {
-      this.swipeSub.unsubscribe();
-    }
-
-    if (Math.abs(this.xStart - this.xEnd) >= 50 && this.swipeTime < 200) {
-      if (this.xStart < this.xEnd) {
-        this.prevSlide();
-      } else if (this.xStart > this.xEnd) {
-        this.nextSlide();
-      }
-    }
-
-    this.startCarousel();
-  }
-
-  ngOnDestroy() {
-    this.stopCarousel();
   }
 }

@@ -1,0 +1,31 @@
+<div (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
+  <div class="container">
+    <div class="row">
+      <div class="col-1 d-none d-md-flex align-items-center justify-content-center" (click)="prevSlide()">
+        <fa-icon [icon]="['fas', 'chevron-left']" size="2x"></fa-icon>
+      </div>
+
+      <div class="col-12 col-md-10">
+        <div class="carousel" #carousel (touchstart)="setXStart($event)" (touchend)="setXEnd($event)">
+          <div class="slide" *ngFor="let item of slides; let i = index" [class.active]="i === currentSlide" [class.left]="i === currentSlide - 1 || (i === dataLength && currentSlide === 0)" [class.right]="i === currentSlide + 1 || (i === 0 && currentSlide === dataLength)" #slides>
+            <h3 *ngIf="item.heading" [innerHtml]="item.heading"></h3>
+
+            <p *ngIf="item.copy" [innerHtml]="item.copy"></p>
+
+            <p class="testimonial" *ngIf="item.quote"><span class="bigQuote">&ldquo;</span>{{ item.quote }}<span class="bigQuote">&rdquo;</span></p>
+
+            <h4 *ngIf="item.client">{{ item.client }}</h4>
+          </div>
+        </div>
+
+        <div class="pager">
+          <fa-icon [icon]="['fas', 'circle']" size="sm" *ngFor="let item of slides; let i = index" [class.active]="i === currentSlide" (click)="setSlide(i)"></fa-icon>
+        </div>
+      </div>
+
+      <div class="col-1 d-none d-md-flex align-items-center justify-content-center" (click)="nextSlide()">
+        <fa-icon [icon]="['fas', 'chevron-right']" size="2x"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>

@@ -61,34 +61,12 @@
     </div>
   </section>
 
-  <section class="dark solidArrow" id="home3" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
-    <div class="container" (touchstart)="setXStart($event)" (touchend)="setXEnd($event)">
+  <section class="dark solidArrow" id="home3">
+    <div class="container">
       <h3>Client Testimonial</h3>
-
-      <div class="row">
-        <div class="col-1 d-none d-md-flex align-items-center justify-content-center" (click)="prevSlide()">
-          <fa-icon [icon]="['fas', 'chevron-left']" size="2x"></fa-icon>
-        </div>
-
-        <div class="col-12 col-md-10">
-          <div class="carousel" #carousel>
-            <div class="slide" *ngFor="let item of randomTestimonials; let i = index" [class.active]="i === currentSlide" [class.left]="i === currentSlide - 1 || (i === dataLength && currentSlide === 0)" [class.right]="i === currentSlide + 1 || (i === 0 && currentSlide === dataLength)" #slides>
-              <p class="testimonial"><span class="bigQuote">&ldquo;</span>{{ item.copy }}<span class="bigQuote">&rdquo;</span></p>
-
-              <h4>{{ item.client }}</h4>
-            </div>
-          </div>
-
-          <div class="pager">
-            <fa-icon [icon]="['fas', 'circle']" size="sm" *ngFor="let item of randomTestimonials; let i = index" [class.active]="i === currentSlide" (click)="setSlide(i)"></fa-icon>
-          </div>
-        </div>
-
-        <div class="col-1 d-none d-md-flex align-items-center justify-content-center" (click)="nextSlide()">
-          <fa-icon [icon]="['fas', 'chevron-right']" size="2x"></fa-icon>
-        </div>
-      </div>
     </div>
+
+    <app-carousel [slides]="randomTestimonials"></app-carousel>
   </section>
 
   <section class="dark fixed" id="home4">
@@ -127,7 +105,9 @@
             <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-0">
               <button class="autoBtn my-3 w-100" *ngIf="!success" [disabled]="loading" (click)="submit(newsletter, newsletterForm.valid)">
                 <span *ngIf="!loading">Send Me The Secrets!</span>
-                <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+                <span *ngIf="loading">
+                  <mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                </span>
               </button>
             </div>
           </div>

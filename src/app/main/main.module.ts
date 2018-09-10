@@ -43,6 +43,9 @@ import { CareersComponent } from './about/careers/careers.component';
 // Modal Components
 import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.component';
 
+// Snippets
+import { CarouselComponent } from './snippets/carousel/carousel.component';
+
 @NgModule({
   imports: [
     AppSharedModule,
@@ -73,7 +76,8 @@ import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.c
     AboutMainComponent,
     TeamComponent,
     CareersComponent,
-    CareerInquiryComponent
+    CareerInquiryComponent,
+    CarouselComponent
   ],
   entryComponents: [
     CareerInquiryComponent
