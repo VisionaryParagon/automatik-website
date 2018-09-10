@@ -2170,8 +2170,8 @@ section {
     padding: 30px 0;
 
     ul {
-      column-count: 3;
-      list-style: inside;
+      column-count: 1;
+      list-style: outside;
       margin: 0;
       padding: 0 0 0 15px;
     }
@@ -2871,6 +2871,12 @@ div.cdk-overlay-dark-backdrop {
   .about {
     section {
       padding: 60px 0;
+
+      ul {
+        column-count: 2;
+        list-style: inside;
+        padding: 0;
+      }
     }
   }
   #team {
@@ -3113,6 +3119,13 @@ div.cdk-overlay-dark-backdrop {
         h1 {
           font-size: 86px;
         }
+      }
+    }
+  }
+  .about {
+    section {
+      ul {
+        column-count: 3;
       }
     }
   }
