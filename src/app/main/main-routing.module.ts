@@ -50,11 +50,11 @@ const routes: Routes = [
         component: HomeComponent,
         // canActivate: [IntroGuardService],
         data: {
-          title: 'Eradicating boring corporate events from the face of the Earth | automätik',
+          title: 'Eradicating boring training from the face of the Earth | automätik',
           metatags: [
             {
               name: 'description',
-              content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+              content: 'automätik is a certified woman-owned business committed to eradicating boring training and e-learning from the face of the earth.'
             },
             {
               name: 'keywords',
@@ -62,7 +62,7 @@ const routes: Routes = [
             },
             {
               property: 'og:title',
-              content: 'Eradicating boring corporate events from the face of the Earth | automätik'
+              content: 'Eradicating boring training from the face of the Earth | automätik'
             },
             {
               property: 'og:type',
@@ -78,7 +78,7 @@ const routes: Routes = [
             },
             {
               property: 'og:description',
-              content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+              content: 'automätik is a certified woman-owned business committed to eradicating boring training and e-learning from the face of the earth.'
             },
             {
               name: 'twitter:card',
@@ -90,11 +90,11 @@ const routes: Routes = [
             },
             {
               name: 'twitter:title',
-              content: 'Eradicating boring corporate events from the face of the Earth | automätik'
+              content: 'Eradicating boring training from the face of the Earth | automätik'
             },
             {
               name: 'twitter:description',
-              content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+              content: 'automätik is a certified woman-owned business committed to eradicating boring training and e-learning from the face of the earth.'
             },
             {
               name: 'twitter:image:src',

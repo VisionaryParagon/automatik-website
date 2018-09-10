@@ -9,11 +9,11 @@ import { Seo } from './classes';
 })
 export class SeoService {
   defaultMetadata: Seo = {
-    title: 'Eradicating boring corporate events from the face of the Earth | automätik',
+    title: 'Eradicating boring training from the face of the Earth | automätik',
     metatags: [
       {
         name: 'description',
-        content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+        content: 'automätik is a certified woman-owned business committed to eradicating boring training and e-learning from the face of the earth.'
       },
       {
         name: 'keywords',
@@ -21,7 +21,7 @@ export class SeoService {
       },
       {
         property: 'og:title',
-        content: 'Eradicating boring corporate events from the face of the Earth'
+        content: 'Eradicating boring training from the face of the Earth'
       },
       {
         property: 'og:type',
@@ -37,7 +37,7 @@ export class SeoService {
       },
       {
         property: 'og:description',
-        content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+        content: 'automätik is a certified woman-owned business committed to eradicating boring training and e-learning from the face of the earth.'
       },
       {
         name: 'twitter:card',
@@ -49,11 +49,11 @@ export class SeoService {
       },
       {
         name: 'twitter:title',
-        content: 'Eradicating boring corporate events from the face of the Earth'
+        content: 'Eradicating boring training from the face of the Earth'
       },
       {
         name: 'twitter:description',
-        content: 'automätik is a certified woman-owned business committed to eradicating boring corporate events, training, and elearning from the face of the earth.'
+        content: 'automätik is a certified woman-owned business committed to eradicating boring training and e-learning from the face of the earth.'
       },
       {
         name: 'twitter:image:src',
