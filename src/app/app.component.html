@@ -54,12 +54,12 @@
         <a routerLink="/about" routerLinkActive="active" [class.hover]="stateAbout === 'active'" (mouseover)="toggleSubNav($event, 'About')" (click)="closeSubNav()">About</a>
 
         <div class="fullSubNav" [@topDown]="true" *ngIf="stateAbout === 'active'">
-          <a routerLink="/about/history" (click)="closeSubNav()">History</a>
-          <a routerLink="/about/team" (click)="closeSubNav()">Team</a>
-          <a routerLink="/about/values" (click)="closeSubNav()">Values</a>
-          <a routerLink="/about/clients" (click)="closeSubNav()">Clients</a>
-          <a routerLink="/about/careers" (click)="closeSubNav()">Careers</a>
-          <a class="navBtn" routerLink="/about/contact" (click)="closeSubNav()">Contact</a>
+          <a routerLink="/about" fragment="history" (click)="closeSubNav()">History</a>
+          <a routerLink="/about" fragment="team" (click)="closeSubNav()">Team</a>
+          <a routerLink="/about" fragment="values" (click)="closeSubNav()">Values</a>
+          <a routerLink="/about" fragment="clients" (click)="closeSubNav()">Clients</a>
+          <a routerLink="/about" fragment="careers" (click)="closeSubNav()">Careers</a>
+          <a class="navBtn" routerLink="/about" fragment="contact" (click)="closeSubNav()">Contact</a>
         </div>
       </div>
     </div>
@@ -151,12 +151,12 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateAbout === 'active'">
-        <a routerLink="/about/history" routerLinkActive="active" (click)="closeNav()">History</a>
-        <a routerLink="/about/team" routerLinkActive="active" (click)="closeNav()">Team</a>
-        <a routerLink="/about/values" routerLinkActive="active" (click)="closeNav()">Values</a>
-        <a routerLink="/about/clients" routerLinkActive="active" (click)="closeNav()">Clients</a>
-        <a routerLink="/about/careers" routerLinkActive="active" (click)="closeNav()">Careers</a>
-        <a class="navBtn" routerLink="/about/contact" (click)="closeNav()">Contact</a>
+        <a routerLink="/about" fragment="history" routerLinkActive="active" (click)="closeNav()">History</a>
+        <a routerLink="/about" fragment="team" routerLinkActive="active" (click)="closeNav()">Team</a>
+        <a routerLink="/about" fragment="values" routerLinkActive="active" (click)="closeNav()">Values</a>
+        <a routerLink="/about" fragment="clients" routerLinkActive="active" (click)="closeNav()">Clients</a>
+        <a routerLink="/about" fragment="careers" routerLinkActive="active" (click)="closeNav()">Careers</a>
+        <a class="navBtn" routerLink="/about" fragment="contact" (click)="closeNav()">Contact</a>
       </div>
     </div>
 

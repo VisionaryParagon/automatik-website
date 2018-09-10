@@ -1,13 +1,110 @@
-<div [@fade]="true">
+<div class="about" [@fade]="true" [class.invisible]="loading">
+  <section class="dark fixed fullHeight hero">
+    <div class="overlay"></div>
+
+    <h1>about autom&auml;tik</h1>
+  </section>
+
   <section>
     <div class="container">
-      <h1>About</h1>
+      <h4 class="m-0 text-center">autom&auml;tik is an award-winning, certified National Women Business Owners corporation specializing in research, consultation, instructional design, event design and management, graphic design, digital/interactive design, event production, and facilitation management/coaching. While our roots run deep in automotive OEM, our talents cross industry borders quite nicely. We&rsquo;ve been around since 1990 and have been growing ever since. We invite you to get to know us, and how we may support your&nbsp;journey...</h4>
     </div>
   </section>
 
-  <a name="team"></a>
-  <app-team></app-team>
+  <section id="history" class="dark">
+    <div class="container">
+      <h2>History</h2>
 
-  <a name="careers"></a>
-  <app-careers></app-careers>
+      <p>autom&auml;tik was founded in 1990 by CEO Kathy Sweet and President Dave Sweet with the creed: &ldquo;Whatever you do, work at it with all your heart, as working for the Lord, not for men.&rdquo; Over the years, autom&auml;tik has been internationally recognized as one of the best, most creative, and most innovative event design companies in the automotive&nbsp;industry.</p>
+
+      <p>As a full-service &ldquo;Tier One&rdquo; event design and training provider for the OEM automotive industry, autom&auml;tik has had the honor of helping to design and/or produce over 150 unique product launch, press, consumer marketing, or sales/service training&nbsp;initiatives.</p>
+
+      <p>With offices in Tempe, AZ, Los Angeles, CA, and New York/New Jersey, autom&auml;tik has the capacity to provide unmatched in-house creative, technical, and logistical services to OEM automotive and consumer product clients&nbsp;worldwide.</p>
+    </div>
+  </section>
+
+  <section id="team" class="fullHeight">
+    <app-team [teammates]="teammates" [departments]="departments" [images]="images"></app-team>
+  </section>
+
+  <section id="values" class="dark">
+    <div class="container">
+      <h2>Values</h2>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, illo! Consectetur laborum voluptas ab, voluptates amet sint earum placeat possimus repudiandae eaque impedit deleniti ullam ut nobis aliquid, sit minima!</p>
+    </div>
+  </section>
+
+  <section id="clients">
+    <div class="container">
+      <h2>Clients</h2>
+
+      <p>Since 1990, autom&auml;tik has served clients across a broad spectrum of industries. And, while our primary focus has been on automotive, the skills we&rsquo;ve honed&mdash;namely, creating engaging consumer and training events, forward-thinking mobile classroom engineering, cutting-edge graphic and digital publishing, and personalized service&mdash;play well from industry to industry. So, if you like what you see but are from a non-automotive industry, we invite you to get in touch with us and discover the possibilities of partnering with&nbsp;autom&auml;tik.</p>
+
+      <p>autom&auml;tik has successfully completed at least one major project for each of the corporations listed below&mdash;either directly, or as a contract service provider to a vendor&nbsp;organization.</p>
+
+      <ul>
+        <li>Acura Division of American Honda</li>
+        <li>American Honda Motor Co., Inc.</li>
+        <li>Audi of America</li>
+        <li>Automotive Events, Inc.</li>
+        <li>Bent Tree Bible Fellowship</li>
+        <li>BMW Financial Services</li>
+        <li>BMW International</li>
+        <li>BMW North America</li>
+        <li>BI Performance Services</li>
+        <li>Carlson Marketing Group</li>
+        <li>Caribiner International</li>
+        <li>Caterpillar, Inc.</li>
+        <li>Chevron</li>
+        <li>Chrysler Corporation</li>
+        <li>Commonwealth Edison</li>
+        <li>Fellowship Bible Church North</li>
+        <li>Fisker Automotive</li>
+        <li>Ford Motor Company (and divisions)</li>
+        <li>General Motors (and divisions)</li>
+        <li>Hyundai Motor Sales of America</li>
+        <li>Genuine Parts Corporation</li>
+        <li>GTE</li>
+        <li>Jackson-Dawson Communications</li>
+        <li>Jaguar Land Rover, North America</li>
+        <li>J.D. Power &amp; Associates</li>
+        <li>Lanier Worldwide, Inc.</li>
+        <li>Mallinckrodt, Inc. (and divisions)</li>
+        <li>Maritz, Inc.</li>
+        <li>Martin Brinkerhoff Associates, Inc.</li>
+        <li>Maserati USA</li>
+        <li>Mazda North America</li>
+        <li>Mitsubishi Motor Sales of America</li>
+        <li>MINI International</li>
+        <li>MINI USA</li>
+        <li>National Automobile Dealer Association</li>
+        <li>Navistar</li>
+        <li>Porsche Cars North America, Inc.</li>
+        <li>Printing Resources, Inc.</li>
+        <li>Road Scholars International</li>
+        <li>Ross Roy Communications</li>
+        <li>Sandy Corp.</li>
+        <li>smart USA</li>
+        <li>Sprint / NOCUTS</li>
+        <li>Sub-Zero / Wolf / Cove</li>
+        <li>Subaru of North America</li>
+        <li>Texas Motor Speedway</li>
+        <li>Toyota Motor Sales, U.S.A., Inc.</li>
+        <li>Trio Communications</li>
+        <li>US Cellular</li>
+        <li>Visual Services, Inc.</li>
+        <li>Volkswagen of America, Inc.</li>
+        <li>Waste Management, Inc.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="careers" class="fullHeight">
+    <app-careers [positions]="positions"></app-careers>
+  </section>
+
+  <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
+    <div class="arrowDown"></div>
+  </div>
 </div>

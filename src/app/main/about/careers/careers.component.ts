@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { CareerPosition } from '../../../services/classes';
-import { CareersService } from '../../../services/careers.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
@@ -15,25 +14,14 @@ import { CareerInquiryComponent } from '../../modals/career-inquiry/career-inqui
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class CareersComponent implements OnInit {
-  positions: CareerPosition[] = this.careersService.positions;
+  @Input('positions') positions: CareerPosition[];
   inquiry: CareerPosition = new CareerPosition();
-  error = '';
 
   constructor(
-    private modalService: MatDialog,
-    private careersService: CareersService
+    private modalService: MatDialog
   ) { }
 
   ngOnInit() {
-    if (!this.positions) {
-      this.careersService.getPositions()
-        .subscribe(
-          data => this.positions = data,
-          err => this.setError(err)
-        );
-    } else {
-      this.positions = this.positions;
-    }
   }
 
   inquire(position?) {
@@ -55,10 +43,5 @@ export class CareersComponent implements OnInit {
         result => {},
         error => {}
       );
-  }
-
-  setError(err) {
-    this.error = err;
-    console.error(err);
   }
 }

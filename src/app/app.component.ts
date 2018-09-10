@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 
-  isIntro = true;
+  isIntro = false;
   isAdmin = false;
   isLogin = false;
   state = 'inactive';
@@ -61,11 +61,11 @@ export class AppComponent implements OnInit {
           ga('send', 'pageview');
 
           // set page scroll
-          if (ev.url === this.lastPoppedUrl) {
+          if (ev.url !== this.lastPoppedUrl && ev.url.indexOf('/about') === -1) {
+            window.scrollTo(0, 0);
+          } else {
             this.lastPoppedUrl = undefined;
             window.scrollTo(0, this.yScrollStack.pop());
-          } else {
-            window.scrollTo(0, 0);
           }
 
           // route checks for nav

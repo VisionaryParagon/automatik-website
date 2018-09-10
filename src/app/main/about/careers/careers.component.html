@@ -1,37 +1,29 @@
-<section [@fade]="true">
-  <div class="container">
-    <h1>Careers at autom&auml;tik</h1>
+<div [@fade]="true" class="container">
+  <h1>Careers at autom&auml;tik</h1>
 
-    <div *ngIf="!error">
-      <h3>Interested in joining our &auml;-team?</h3>
+  <h3>Interested in joining our &auml;-team?</h3>
 
-      <div *ngIf="positions">
-        <p>Check out our open positions below.</p>
+  <div *ngIf="positions">
+    <p>Check out our open positions below.</p>
 
-        <div id="openPositions" class="row">
-          <div class="col-12 col-md-6 col-xl-4 my-3" *ngFor="let position of positions">
-            <div class="position">
-              <h4>{{ position.position }}</h4>
+    <div id="openPositions" class="row">
+      <div class="col-12 col-md-6 col-xl-4 my-3" *ngFor="let position of positions">
+        <div class="position">
+          <h4>{{ position.position }}</h4>
 
-              <p>{{ position.short_description }}</p>
+          <p>{{ position.short_description }}</p>
 
-              <button class="autoBtn" (click)="inquire(position)">Learn More</button>
-            </div>
-          </div>
+          <button class="autoBtn" (click)="inquire(position)">Learn More</button>
         </div>
       </div>
-
-      <div *ngIf="!positions">
-        <p>Sorry, there are no open positions at this time.</p>
-      </div>
-
-      <h3>Don&rsquo;t See What You&rsquo;re Looking For?</h3>
-
-      <button class="autoBtn" (click)="inquire()">Contact Us Anyway</button>
-    </div>
-
-    <div class="text-center" [@topDown]="true" *ngIf="error.length">
-      <p>{{ error }}</p>
     </div>
   </div>
-</section>
+
+  <div *ngIf="!positions">
+    <p>Sorry, there are no open positions at this time.</p>
+  </div>
+
+  <h3>Don&rsquo;t See What You&rsquo;re Looking For?</h3>
+
+  <button class="autoBtn" (click)="inquire()">Contact Us Anyway</button>
+</div>

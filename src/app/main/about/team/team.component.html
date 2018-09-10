@@ -1,22 +1,14 @@
-<section [@fade]="true">
+<div [@fade]="true">
   <div class="container">
     <h2>Meet Our Team</h2>
-
-    <div *ngIf="loading && !error.length">
-      <mat-spinner class="mx-auto my-5"></mat-spinner>
-    </div>
   </div>
 
   <div id="team" [style.marginBottom]="bottomMargin" #teamBox>
     <div class="container">
-      <div class="row px-2" [@fade]="true" *ngIf="!loading && !error.length">
+      <div class="row px-2" [@fade]="true" *ngIf="teammates">
         <div class="teammate" *ngFor="let mate of teammates">
           <img [class.selected]="selected" [src]="mate.primary_image" width="100%" [alt]="mate.first_name + ' ' + mate.last_name + ' | ' + mate.title" (click)="openTeammate(mate)">
         </div>
-      </div>
-
-      <div class="text-center" [@topDown]="true" *ngIf="error.length">
-        <p>{{ error }}</p>
       </div>
     </div>
 
@@ -45,4 +37,4 @@
       </div>
     </div>
   </div>
-</section>
+</div>

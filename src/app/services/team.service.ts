@@ -24,6 +24,33 @@ export class TeamService {
     }
   }
 
+  // Sort teammates
+  getDepartmentRank(id) {
+    if (this.departments) {
+      return this.departments.filter(dept => dept._id === id)[0].rank;
+    }
+  }
+
+  teamSort(team) {
+    team.sort((a, b) => {
+      if (this.getDepartmentRank(a.department) < this.getDepartmentRank(b.department)) {
+        return -1;
+      }
+      if (this.getDepartmentRank(a.department) > this.getDepartmentRank(b.department)) {
+        return 1;
+      }
+      if (a.seniority < b.seniority) {
+        return -1;
+      }
+      if (a.seniority > b.seniority) {
+        return 1;
+      }
+      return 0;
+    });
+
+    return team;
+  }
+
   // Add new department
   createDepartment(department) {
     return this.http.post<Department>(this.teamUrlRoot + 'new-dept', department)
@@ -93,7 +120,7 @@ export class TeamService {
     return this.http.get<Teammate[]>(this.teamUrlRoot + 'teammates')
       .pipe(
         retry(3),
-        tap(res => this.team = res),
+        tap(res => this.team = this.teamSort(res)),
         catchError(this.handleError)
       );
   }
