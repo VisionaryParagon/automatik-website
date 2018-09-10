@@ -61,8 +61,8 @@
     </div>
   </section>
 
-  <section class="dark solidArrow" id="home3">
-    <div class="container" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
+  <section class="dark solidArrow" id="home3" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
+    <div class="container" (touchstart)="setXStart($event)" (touchend)="setXEnd($event)">
       <h3>Client Testimonial</h3>
 
       <div class="row">

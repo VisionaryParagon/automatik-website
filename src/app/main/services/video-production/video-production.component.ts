@@ -18,7 +18,12 @@ export class VideoProductionComponent implements AfterContentInit, OnInit, OnDes
   currentSlide = 0;
   carouselDelay = 5000;
   interval: Observable<number> = interval(this.carouselDelay);
-  subscription: Subscription;
+  slideSub: Subscription;
+  xStart: number;
+  xEnd: number;
+  swipe: Observable<number> = interval(10);
+  swipeSub: Subscription;
+  swipeTime: number;
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,
@@ -103,8 +108,8 @@ export class VideoProductionComponent implements AfterContentInit, OnInit, OnDes
 
   startCarousel() {
     if (isPlatformBrowser(this.platformId)) {
-      if (!this.subscription || this.subscription.closed) {
-        this.subscription = this.interval.subscribe(() => {
+      if (!this.slideSub || this.slideSub.closed) {
+        this.slideSub = this.interval.subscribe(() => {
           if (this.currentSlide !== this.slides.length - 1) {
             this.currentSlide++;
           } else {
@@ -116,8 +121,8 @@ export class VideoProductionComponent implements AfterContentInit, OnInit, OnDes
   }
 
   stopCarousel() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.slideSub) {
+      this.slideSub.unsubscribe();
     }
   }
 
@@ -148,6 +153,38 @@ export class VideoProductionComponent implements AfterContentInit, OnInit, OnDes
       this.currentSlide++;
     } else {
       this.currentSlide = 0;
+    }
+
+    this.startCarousel();
+  }
+
+  setXStart(e) {
+    this.stopCarousel();
+
+    e.preventDefault();
+
+    this.xStart = e.changedTouches[0].pageX;
+
+    if (!this.swipeSub || this.swipeSub.closed) {
+      this.swipeSub = this.swipe.subscribe(t => this.swipeTime = t);
+    }
+  }
+
+  setXEnd(e) {
+    e.preventDefault();
+
+    this.xEnd = e.changedTouches[0].pageX;
+
+    if (this.swipeSub) {
+      this.swipeSub.unsubscribe();
+    }
+
+    if (Math.abs(this.xStart - this.xEnd) >= 50 && this.swipeTime < 200) {
+      if (this.xStart < this.xEnd) {
+        this.prevSlide();
+      } else if (this.xStart > this.xEnd) {
+        this.nextSlide();
+      }
     }
 
     this.startCarousel();

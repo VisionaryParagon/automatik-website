@@ -76,10 +76,10 @@
     </div>
   </section>
 
-  <section class="dark fixed hero graphicDesign">
+  <section class="dark fixed hero graphicDesign" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
     <div class="overlay"></div>
 
-    <div class="container" (mouseover)="stopCarousel()" (mouseleave)="startCarousel()">
+    <div class="container" (touchstart)="setXStart($event)" (touchend)="setXEnd($event)">
       <h2>Why autom&auml;tik?</h2>
 
       <div class="row">

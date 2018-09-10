@@ -18,7 +18,12 @@ export class HomeComponent implements AfterContentInit, OnDestroy, OnInit {
   currentSlide = 0;
   carouselDelay = 5000;
   interval: Observable<number> = interval(this.carouselDelay);
-  subscription: Subscription;
+  slideSub: Subscription;
+  xStart: number;
+  xEnd: number;
+  swipe: Observable<number> = interval(10);
+  swipeSub: Subscription;
+  swipeTime: number;
   testimonials = [
     {
       copy: 'The automätik team created a script and a gorgeous slide deck that carried exactly the message our audience needed to hear, and nothing they didn\'t. All in plain English.',
@@ -148,8 +153,8 @@ export class HomeComponent implements AfterContentInit, OnDestroy, OnInit {
 
   startCarousel() {
     if (isPlatformBrowser(this.platformId)) {
-      if (!this.subscription || this.subscription.closed) {
-        this.subscription = this.interval.subscribe(() => {
+      if (!this.slideSub || this.slideSub.closed) {
+        this.slideSub = this.interval.subscribe(() => {
           if (this.currentSlide !== this.testimonials.length - 1) {
             this.currentSlide++;
           } else {
@@ -161,8 +166,8 @@ export class HomeComponent implements AfterContentInit, OnDestroy, OnInit {
   }
 
   stopCarousel() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.slideSub) {
+      this.slideSub.unsubscribe();
     }
   }
 
@@ -193,6 +198,38 @@ export class HomeComponent implements AfterContentInit, OnDestroy, OnInit {
       this.currentSlide++;
     } else {
       this.currentSlide = 0;
+    }
+
+    this.startCarousel();
+  }
+
+  setXStart(e) {
+    this.stopCarousel();
+
+    e.preventDefault();
+
+    this.xStart = e.changedTouches[0].pageX;
+
+    if (!this.swipeSub || this.swipeSub.closed) {
+      this.swipeSub = this.swipe.subscribe(t => this.swipeTime = t);
+    }
+  }
+
+  setXEnd(e) {
+    e.preventDefault();
+
+    this.xEnd = e.changedTouches[0].pageX;
+
+    if (this.swipeSub) {
+      this.swipeSub.unsubscribe();
+    }
+
+    if (Math.abs(this.xStart - this.xEnd) >= 50 && this.swipeTime < 200) {
+      if (this.xStart < this.xEnd) {
+        this.prevSlide();
+      } else if (this.xStart > this.xEnd) {
+        this.nextSlide();
+      }
     }
 
     this.startCarousel();
