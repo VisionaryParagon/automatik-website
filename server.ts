@@ -66,6 +66,8 @@ app.engine('html', (_, options, callback) => {
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
+console.log(process.env);
+
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
