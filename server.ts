@@ -14,6 +14,10 @@ import * as bodyParser from 'body-parser';
 import * as expressSession from 'express-session';
 import * as mongoose from 'mongoose';
 
+// get env vars
+const dotenv = require('dotenv');
+dotenv.config();
+
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
@@ -29,7 +33,7 @@ const projectRoute = require('./server/routes/projects');
 const teamRoute = require('./server/routes/team');
 
 // connect to db
-mongoose.connect('mongodb://admin:Automatik@ds237379.mlab.com:37379/automatik-apps', {
+mongoose.connect('mongodb://' + process.env.DBUSR + ':' + process.env.DBPWD + '@ds237379.mlab.com:37379/automatik-apps', {
   reconnectTries: Number.MAX_VALUE,
   reconnectInterval: 1000
 });
@@ -66,15 +70,13 @@ app.engine('html', (_, options, callback) => {
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
-console.log(process.env);
-
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(expressSession({
-  secret: 'automatikKey',
+  secret: process.env.AUTOMATIK_KEY,
   resave: false,
   saveUninitialized: false
 }));

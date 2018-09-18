@@ -18,56 +18,53 @@ const careers = require('../models/careers');
 const careerInquiries = require('../models/career-inquiries');
 
 // create new position
-router.post('/new', function (req, res) {
-  careers.create(req.body, function (err, position) {
+router.post('/new', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
+  careers.create(req.body, (err, data) => {
     if (err) return res.status(500).send(err);
-    return res.status(200).send(position);
+    return res.status(200).send(data);
   });
 });
 
 // get all positions
-router.get('/positions', function (req, res) {
-  careers.find({}, function (err, inquiries) {
+router.get('/positions', (req, res) => {
+  careers.find({}, (err, data) => {
     if (err) return res.status(500).send(err);
-    return res.status(200).send(inquiries);
+    return res.status(200).send(data);
   });
 });
 
 // get one position
-router.get('/positions/:id', function (req, res) {
-  careers.findById(req.params.id, function (err, position) {
-    const notFound = {
-      message: 'Position not in system'
-    }
+router.get('/positions/:id', (req, res) => {
+  careers.findById(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    if (!position) return res.status(404).send(notFound);
-    return res.status(200).send(position);
+    if (!data) return res.status(404).send({ message: 'Position not in system' });
+    return res.status(200).send(data);
   });
 });
 
 // delete position
-router.delete('/positions/:id', function (req, res) {
-  careers.findByIdAndRemove(req.params.id, function (err, position) {
-    const deleted = {
-      message: 'Position deleted'
-    }
+router.delete('/positions/:id', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
+  careers.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(deleted);
+    res.status(200).send({ message: 'Position deleted' });
   });
 });
 
 // update one position
-router.put('/positions/:id', function (req, res) {
+router.put('/positions/:id', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   careers.findByIdAndUpdate(req.params.id, req.body, {
     new: true
-  }, function (err, position) {
+  }, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(position);
+    res.status(200).send(data);
   });
 });
 
 // inquiry email
-router.post('/inquire', function (req, res) {
+router.post('/inquire', (req, res) => {
   // get contact data
   const data = req.body;
   const start_date = new Date(data.start_date).toLocaleDateString('en-US');
@@ -128,7 +125,7 @@ router.post('/inquire', function (req, res) {
 
   const mailOptionsMsg = {
     from: '"No Reply" <noreply@automatik.us>', // sender address
-    to: 'amikina@automatik.us', // list of receivers
+    to: 'jsweet@automatik.us', // list of receivers
     bcc: 'sdickens@automatik.us', // list of receivers
     replyTo: data.email, // list of replyTo's
     subject: 'Career Form Inquiry', // Subject line
@@ -137,7 +134,7 @@ router.post('/inquire', function (req, res) {
   };
 
   // send mail with defined transport object
-  transporter.sendMail(mailOptionsMsg, function (error, info) {
+  transporter.sendMail(mailOptionsMsg, (error, info) => {
     if (error) {
       return res.status(500).send(error);
       // return console.log(error);

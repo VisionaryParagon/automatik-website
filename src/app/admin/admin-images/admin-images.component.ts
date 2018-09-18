@@ -24,7 +24,7 @@ export class AdminImagesComponent implements OnInit {
   filter = '';
   image: Image = new Image();
   imageName = 'Choose image...';
-  imageData: FileList;
+  imageData: File;
   imageId: string;
   new = false;
   submitted = false;
@@ -159,7 +159,7 @@ export class AdminImagesComponent implements OnInit {
 
   setImageData(ev) {
     this.imageData = ev.target.files[0];
-    this.imageName = ev.target.files[0].name;
+    this.imageName = this.imageData.name;
     this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
     this.testImageName(this.imageName);
   }
@@ -175,14 +175,14 @@ export class AdminImagesComponent implements OnInit {
           validRes => {
             // console.log('Validate pass', validRes);
             if (validRes.isValid) {
-              this.imageService.upload(this.imageData)
-                .then(
+              this.imageService.uploadImage(this.imageData)
+                .subscribe(
                   uploadRes => {
-                    // console.log('Upload Success: ', uploadRes);
+                    // console.log('Upload Image Success: ', uploadRes);
                     this.imageService.createImage(this.image)
                       .subscribe(
-                        imageRes => {
-                          // console.log('New Image Success: ', imageRes);
+                        res => {
+                          // console.log('New Image Success: ', res);
                           this.success = true;
                           this.loading = false;
                           this.getImages();
@@ -190,7 +190,7 @@ export class AdminImagesComponent implements OnInit {
                         err => this.setError('New Image Error: ' + err)
                       );
                   },
-                  err => this.setError('Upload Error: ' + err)
+                  err => this.setError('Upload Image Error: ' + err)
                 );
             } else {
               this.invalid = true;
@@ -204,6 +204,7 @@ export class AdminImagesComponent implements OnInit {
 
   cancel() {
     this.new = false;
+    this.loading = false;
     this.reset();
     return false;
   }

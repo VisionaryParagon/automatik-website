@@ -5,23 +5,21 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { CareerInquiry, CareerPosition } from './classes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CareersService {
-  careerUrlRoot = '/careers/';
+  careerUrlRoot = environment.careers;
   positions: CareerPosition[];
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    if (!isPlatformBrowser(this.platformId)) {
-      this.careerUrlRoot = 'http://localhost/careers/';
-    }
-  }
+  ) { }
 
   createPosition(position) {
     return this.http.post<CareerPosition>(this.careerUrlRoot + 'new', position)

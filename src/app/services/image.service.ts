@@ -1,39 +1,41 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
-import { Image } from './classes';
+import { environment } from '../../environments/environment';
 
-import * as AWS from 'aws-sdk/global';
-import * as S3 from 'aws-sdk/clients/s3';
+import { Image } from './classes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
-  imageUrlRoot = '/img/';
-  bucket: S3 = new S3({
-    accessKeyId: 'AKIAIBVPXCZJF7XWOSYA',
-    secretAccessKey: '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',
-    region: 'us-west-2'
-  });
+  imageUrlRoot = environment.images;
   images: Image[];
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    if (!isPlatformBrowser(this.platformId)) {
-      this.imageUrlRoot = 'http://localhost/img/';
-    }
-  }
+  ) { }
 
   // Validate image
   validateImage(image) {
     return this.http.post<any>(this.imageUrlRoot + 'valid-image', image)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  // Upload new image
+  uploadImage(file) {
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+
+    return this.http.post<any>(this.imageUrlRoot + 'upload-image', formdata)
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -84,26 +86,6 @@ export class ImageService {
         retry(3),
         catchError(this.handleError)
       );
-  }
-
-  upload(file) {
-    const params = {
-      ACL: 'public-read',
-      Body: file,
-      Bucket: 'assets.automatik9dots.com',
-      Key: 'images/' + file.name
-    };
-
-    return this.bucket.upload(params).promise();
-  }
-
-  delete(file) {
-    const params = {
-      Bucket: 'assets.automatik9dots.com',
-      Key: 'images/' + file
-    };
-
-    return this.bucket.deleteObject(params).promise();
   }
 
   private handleError(error: HttpErrorResponse) {

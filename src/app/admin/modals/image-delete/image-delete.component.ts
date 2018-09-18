@@ -33,18 +33,14 @@ export class ImageDeleteComponent implements OnInit {
 
   delete() {
     this.loading = true;
-    this.imageService.delete(this.imageName)
-      .then(() => {
-        this.imageService.deleteImage(this.image)
-          .subscribe(
-            res => {
-              this.success = true;
-              this.loading = false;
-            },
-            err => this.setError(err)
-          );
-      })
-      .catch(err => this.setError(err));
+    this.imageService.deleteImage(this.image)
+      .subscribe(
+        res => {
+          this.success = true;
+          this.loading = false;
+        },
+        err => this.setError(err)
+      );
   }
 
   setError(err) {

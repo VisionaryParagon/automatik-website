@@ -5,24 +5,22 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { Admin } from './classes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  adminUrlRoot = '/admn/';
+  adminUrlRoot = environment.admin;
   returnUrl: string;
   loggedIn = false;
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    if (!isPlatformBrowser(this.platformId)) {
-      this.adminUrlRoot = 'http://localhost/admn/';
-    }
-  }
+  ) { }
 
   // login
   login(user) {

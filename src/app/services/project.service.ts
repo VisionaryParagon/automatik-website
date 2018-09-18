@@ -5,13 +5,15 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { Project } from './classes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  projectUrlRoot = '/prj/';
+  projectUrlRoot = environment.projects;
   projects: Project[];
   categories: string[];
   selectedCategory = '';
@@ -20,11 +22,7 @@ export class ProjectService {
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    if (!isPlatformBrowser(this.platformId)) {
-      this.projectUrlRoot = 'http://localhost/prj/';
-    }
-  }
+  ) { }
 
   // Validate project
   validateProject(project) {

@@ -5,6 +5,8 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { Department, Teammate } from './classes';
 
 @Injectable({
@@ -13,16 +15,12 @@ import { Department, Teammate } from './classes';
 export class TeamService {
   team: Teammate[];
   departments: Department[];
-  teamUrlRoot = '/tm/';
+  teamUrlRoot = environment.team;
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    if (!isPlatformBrowser(this.platformId)) {
-      this.teamUrlRoot = 'http://localhost/tm/';
-    }
-  }
+  ) { }
 
   // Sort teammates
   getDepartmentRank(id) {

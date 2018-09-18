@@ -1,16 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+const aws = require('aws-sdk');
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ID,
+  secretAccessKey: process.env.AWS_KEY,
+  region: process.env.AWS_REGION
+});
 
 // team models
 const images = require('../models/images');
 
 // validate image
-router.post('/valid-image', function (req, res) {
-  images.find({ path: req.body.path }, function (err, data) {
+router.post('/valid-image', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
+  images.find({ path: req.body.path }, (err, data) => {
     const img = {
       isValid: true,
       data: data
-    }
+    };
     if (err) return res.status(500).send(err);
     if (!data.length) return res.status(200).send(img);
     img.isValid = false;
@@ -18,49 +28,79 @@ router.post('/valid-image', function (req, res) {
   });
 });
 
+// upload new image
+router.post('/upload-image', upload.single('file'), (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
+  const params = {
+    ACL: 'public-read',
+    Body: req.file.buffer,
+    Bucket: 'assets.automatik9dots.com',
+    Key: 'images/' + req.file.originalname
+  };
+
+  s3.upload(params, (err, data) => {
+    if (err) return res.status(500).send(err);
+    return res.status(200).send(data);
+  });
+});
+
 // create new image
-router.post('/new-image', function (req, res) {
-  images.create(req.body, function (err, data) {
+router.post('/new-image', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
+  images.create(req.body, (err, data) => {
     if (err) return res.status(500).send(err);
     return res.status(200).send(data);
   });
 });
 
 // get all images
-router.get('/images', function (req, res) {
-  images.find({}, function (err, data) {
+router.get('/images', (req, res) => {
+  images.find({}, (err, data) => {
     if (err) return res.status(500).send(err);
     return res.status(200).send(data);
   });
 });
 
 // get one image
-router.get('/images/:id', function (req, res) {
-  images.findById(req.params.id, function (err, data) {
-    const notFound = {
-      message: 'Image not in system'
-    }
+router.get('/images/:id', (req, res) => {
+  images.findById(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    if (!data) return res.status(404).send(notFound);
+    if (!data) return res.status(404).send({ message: 'Image not in system' });
     return res.status(200).send(data);
   });
 });
 
 // update one image
-router.put('/images/:id', function (req, res) {
+router.put('/images/:id', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   images.findByIdAndUpdate(req.params.id, req.body, {
     new: true
-  }, function (err, data) {
+  }, (err, data) => {
     if (err) return res.status(500).send(err);
     res.status(200).send(data);
   });
 });
 
 // delete image
-router.delete('/images/:id', function (req, res) {
-  images.findByIdAndRemove(req.params.id, function (err, data) {
+router.delete('/images/:id', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
+  images.findById(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    if (!data) return res.status(404).send({ message: 'Image not in system' });
+
+    const params = {
+      Bucket: 'assets.automatik9dots.com',
+      Key: 'images/' + data.path.split('/').pop()
+    };
+
+    s3.deleteObject(params, (err, data) => {
+      if (err) return res.status(500).send(err);
+
+      images.findByIdAndRemove(req.params.id, (dberr, dbdata) => {
+        if (dberr) return res.status(500).send(dberr);
+        res.status(200).send(dbdata);
+      });
+    });
   });
 });
 

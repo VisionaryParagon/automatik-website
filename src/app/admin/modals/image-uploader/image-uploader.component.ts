@@ -18,7 +18,7 @@ export class ImageUploaderComponent implements OnInit {
   filteredImages: Image[];
   image: Image = new Image();
   imageName = 'Choose image...';
-  imageData: FileList;
+  imageData: File;
   selected: string;
   submitted = false;
   loading = false;
@@ -85,7 +85,7 @@ export class ImageUploaderComponent implements OnInit {
 
   setImageData(ev) {
     this.imageData = ev.target.files[0];
-    this.imageName = ev.target.files[0].name;
+    this.imageName = this.imageData.name;
     this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
     this.testImageName(this.imageName);
   }
@@ -101,21 +101,23 @@ export class ImageUploaderComponent implements OnInit {
           validRes => {
             // console.log('Validate pass', validRes);
             if (validRes.isValid) {
-              this.imageService.upload(this.imageData)
-                .then(uploadRes => {
-                  // console.log('Upload Success: ', uploadRes);
-                  this.imageService.createImage(this.image)
-                    .subscribe(
-                      imageRes => {
-                        // console.log('New Image Success: ', imageRes);
-                        this.selected = imageRes.path;
-                        this.success = true;
-                        this.loading = false;
-                      },
-                      err => this.setError('New Image Error: ' + err)
-                    );
-                })
-                .catch(err => this.setError('Upload Error: ' + err));
+              this.imageService.uploadImage(this.imageData)
+                .subscribe(
+                  uploadRes => {
+                    // console.log('Upload Image Success: ', uploadRes);
+                    this.imageService.createImage(this.image)
+                      .subscribe(
+                        res => {
+                          // console.log('New Image Success: ', res);
+                          this.selected = res.path;
+                          this.success = true;
+                          this.loading = false;
+                        },
+                        err => this.setError('New Image Error: ' + err)
+                      );
+                  },
+                  err => this.setError('Upload Image Error: ' + err)
+                );
             } else {
               this.invalid = true;
             }
