@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  admin: 'http://localhost/admn/',
-  careers: 'http://localhost/careers/',
-  images: 'http://localhost/img/',
-  projects: 'http://localhost/prj/',
-  secret: 'http://localhost/scrt/',
-  team: 'http://localhost/tm/'
+  admin: 'https://beta.automatik9dots.com/admn/',
+  careers: 'https://beta.automatik9dots.com/careers/',
+  images: 'https://beta.automatik9dots.com/img/',
+  projects: 'https://beta.automatik9dots.com/prj/',
+  secret: 'https://beta.automatik9dots.com/scrt/',
+  team: 'https://beta.automatik9dots.com/tm/'
 };
