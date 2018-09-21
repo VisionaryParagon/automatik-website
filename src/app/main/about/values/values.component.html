@@ -1,0 +1,23 @@
+<div [@fade]="true">
+  <div class="container">
+    <h2 class="text-center">What are our Values?</h2>
+  </div>
+
+  <div class="tileBox values" [class.on]="!loading" #tileBox>
+    <div class="tile" [@fade]="true" *ngFor="let value of values" [class.hovered]="hovered === value.title" (touchstart)="toggleHover(value.title, $event)" (mouseenter)="setHover(value.title)" (mouseleave)="setHover('')" #tiles>
+      <img [src]="value.image" [alt]="value.title">
+
+      <div class="overlay"></div>
+
+      <div class="tileInfo">
+        <h2>{{ value.title }}</h2>
+
+        <p [@topDown]="true" *ngIf="hovered === value.title">{{ value.headline }}</p>
+      </div>
+    </div>
+
+    <div class="text-center" [@topDown]="true" *ngIf="error.length">
+      <p>{{ error }}</p>
+    </div>
+  </div>
+</div>

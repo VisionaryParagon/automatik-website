@@ -1,5 +1,5 @@
 <div class="about" [@fade]="true" [class.invisible]="loading">
-  <section class="dark fixed fullHeight hero">
+  <section id="about" class="dark fixed fullHeight hero">
     <div class="overlay"></div>
 
     <h1>about autom&auml;tik</h1>
@@ -11,7 +11,7 @@
     </div>
   </section>
 
-  <section id="history" class="dark">
+  <section id="history" class="dark fixed">
     <div class="container">
       <h2>History</h2>
 
@@ -27,12 +27,8 @@
     <app-team [teammates]="teammates" [departments]="departments" [images]="images"></app-team>
   </section>
 
-  <section id="values" class="dark">
-    <div class="container">
-      <h2>Values</h2>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, illo! Consectetur laborum voluptas ab, voluptates amet sint earum placeat possimus repudiandae eaque impedit deleniti ullam ut nobis aliquid, sit minima!</p>
-    </div>
+  <section id="values" class="dark pb-0">
+    <app-values></app-values>
   </section>
 
   <section id="clients">
@@ -100,7 +96,7 @@
     </div>
   </section>
 
-  <section id="careers" class="fullHeight">
+  <section id="careers" class="fixed fullHeight">
     <app-careers [positions]="positions"></app-careers>
   </section>
 

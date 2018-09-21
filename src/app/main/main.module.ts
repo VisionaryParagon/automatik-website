@@ -38,6 +38,7 @@ import { BlogPostComponent } from './resources/blog/blog-post/blog-post.componen
 import { AboutComponent } from './about/about.component';
 import { AboutMainComponent } from './about/about-main/about-main.component';
 import { TeamComponent } from './about/team/team.component';
+import { ValuesComponent } from './about/values/values.component';
 import { CareersComponent } from './about/careers/careers.component';
 
 // Modal Components
@@ -75,6 +76,7 @@ import { CarouselComponent } from './snippets/carousel/carousel.component';
     AboutComponent,
     AboutMainComponent,
     TeamComponent,
+    ValuesComponent,
     CareersComponent,
     CareerInquiryComponent,
     CarouselComponent

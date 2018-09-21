@@ -1708,6 +1708,7 @@ section {
 }
 
 .tileBox {
+  background: #000;
   margin: 50px 0 0;
   min-height: calc(100vh - 50px);
   opacity: 0;
@@ -1717,10 +1718,6 @@ section {
   -webkit-transition: opacity 250ms;
   transition: opacity 250ms;
   width: 100%;
-
-  &.on {
-    opacity: 1;
-  }
 
   .tile {
     cursor: pointer;
@@ -1809,6 +1806,28 @@ section {
 
       h2 {
         color: $client-yellow;
+      }
+    }
+  }
+
+  &.on {
+    opacity: 1;
+  }
+
+  &.values {
+    min-height: auto;
+
+    .tile {
+      cursor: default;
+      min-height: auto;
+
+      .tileInfo {
+        padding: 3rem 1rem 1rem;
+        position: relative;
+
+        h2 {
+          font-size: 24px;
+        }
       }
     }
   }
@@ -2176,6 +2195,18 @@ section {
       padding: 0 0 0 15px;
     }
   }
+}
+
+#about {
+  background-image: url(https://images.unsplash.com/photo-1531411795835-6ef88590ba93?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=784d6680c3f841f58ee482c15fa06bb7&auto=format&fit=crop&w=1650&q=80);
+}
+
+#history {
+  background-image: url(https://images.unsplash.com/photo-1506664958676-205b41a88d0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f87d0f586096bfce4b4f0dc6d5e0729&auto=format&fit=crop&w=1650&q=80);
+}
+
+#careers {
+  background-image: url(https://images.unsplash.com/photo-1518600654093-2a24cddafa38?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=96238af4ac6e58d17d362d5b8b846eb4&auto=format&fit=crop&w=1634&q=80);
 }
 
 
@@ -2809,7 +2840,16 @@ div.cdk-overlay-dark-backdrop {
     .tile {
       height: calc((100vh - 60px) / 3);
       position: absolute;
-      width: calc(100% / 2);
+      width: 50%;
+    }
+
+    &.values {
+      .tile {
+        .tileInfo {
+          padding: 1rem;
+          position: absolute;
+        }
+      }
     }
   }
   .service {
@@ -2882,7 +2922,7 @@ div.cdk-overlay-dark-backdrop {
   #team {
     .teammate {
       height: 0px;
-      padding: .5rem .5rem calc(10% - .5rem);
+      padding: .5rem .5rem calc(11.1111% - .5rem);
       width: 11.1111%;
     }
   }
@@ -2950,6 +2990,12 @@ div.cdk-overlay-dark-backdrop {
     .tileBox {
       .tile {
         height: calc((100vh - 100px) / 3);
+      }
+
+      &.values {
+        .tile {
+          height: 225px;
+        }
       }
     }
     .project {
@@ -3100,8 +3146,7 @@ div.cdk-overlay-dark-backdrop {
     }
   }
   .tileBox {
-    margin: 0;
-    margin-left: 25%;
+    margin: 0 0 0 25%;
     min-height: calc(100vh - 60px);
     width: 75%;
 
@@ -3110,6 +3155,16 @@ div.cdk-overlay-dark-backdrop {
 
       &.six {
         height: calc((100vh - 60px) / 2);
+      }
+    }
+
+    &.values {
+      margin: 0;
+      min-height: auto;
+      width: 100%;
+
+      .tile {
+        width: 25%;
       }
     }
   }
