@@ -58,6 +58,7 @@ export class ServicesMainComponent implements OnInit {
   filter = '';
   hovered = '';
   filterOpen = false;
+  width: number;
   loading = false;
   error = '';
 
@@ -72,10 +73,19 @@ export class ServicesMainComponent implements OnInit {
 
   ngOnInit() {
     this.setTilePosition();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.width = window.outerWidth;
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.setTilePosition();
+    const w = window.outerWidth;
+
+    if (w !== this.width) {
+      this.setTilePosition();
+      this.width = w;
+    }
   }
   @HostListener('window:scroll', ['$event']) onScroll(ev) {
     const tileBoxHeight = this.tileBox.nativeElement.getBoundingClientRect().height;

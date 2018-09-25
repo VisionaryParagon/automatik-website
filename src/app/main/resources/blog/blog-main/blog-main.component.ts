@@ -24,6 +24,7 @@ export class BlogMainComponent implements OnInit {
   hovered = '';
   activeCat = '';
   activeAuthor = '';
+  width: number;
   anyVal: any;
   error = '';
 
@@ -106,10 +107,19 @@ export class BlogMainComponent implements OnInit {
           error => this.setError(error)
         );
     }
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.width = window.outerWidth;
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.setTilePosition();
+    const w = window.outerWidth;
+
+    if (w !== this.width) {
+      this.setTilePosition();
+      this.width = w;
+    }
   }
   @HostListener('window:scroll', ['$event']) onScroll(ev) {
     const tileBoxHeight = this.tileBox.nativeElement.getBoundingClientRect().height;

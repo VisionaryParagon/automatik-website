@@ -6,7 +6,7 @@
       </div>
 
       <div class="col-12 col-md-10">
-        <div class="carousel" #carousel (touchstart)="setXStart($event)" (touchend)="setXEnd($event)">
+        <div class="carousel" #carousel (touchstart)="setStart($event)" (touchend)="setEnd($event)">
           <div class="slide" *ngFor="let item of slides; let i = index" [class.active]="i === currentSlide" [class.left]="i === currentSlide - 1 || (i === dataLength && currentSlide === 0)" [class.right]="i === currentSlide + 1 || (i === 0 && currentSlide === dataLength)" #slides>
             <h3 *ngIf="item.heading" [innerHtml]="item.heading"></h3>
 

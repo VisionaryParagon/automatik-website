@@ -16,6 +16,11 @@ export class CarouselComponent implements OnInit, OnDestroy {
   slideSub: Subscription;
   xStart: number;
   xEnd: number;
+  xDiff: number;
+  yStart: number;
+  yEnd: number;
+  yDiff: number;
+  width: number;
   swipe: Observable<number> = interval(10);
   swipeSub: Subscription;
   swipeTime: number;
@@ -31,10 +36,18 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.dataLength = this.slides.length - 1;
     this.setCarousel();
     this.startCarousel();
+    if (isPlatformBrowser(this.platformId)) {
+      this.width = window.outerWidth;
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.setCarousel();
+    const w = window.outerWidth;
+
+    if (w !== this.width) {
+      this.setCarousel();
+      this.width = w;
+    }
   }
 
   setCarousel() {
@@ -107,28 +120,32 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.startCarousel();
   }
 
-  setXStart(e) {
+  setStart(e) {
     this.stopCarousel();
 
-    e.preventDefault();
+    // e.preventDefault();
 
     this.xStart = e.changedTouches[0].pageX;
+    this.yStart = e.changedTouches[0].pageY;
 
     if (!this.swipeSub || this.swipeSub.closed) {
       this.swipeSub = this.swipe.subscribe(t => this.swipeTime = t);
     }
   }
 
-  setXEnd(e) {
+  setEnd(e) {
     e.preventDefault();
-
-    this.xEnd = e.changedTouches[0].pageX;
 
     if (this.swipeSub) {
       this.swipeSub.unsubscribe();
     }
 
-    if (Math.abs(this.xStart - this.xEnd) >= 50 && this.swipeTime < 200) {
+    this.xEnd = e.changedTouches[0].pageX;
+    this.yEnd = e.changedTouches[0].pageY;
+    this.xDiff = Math.abs(this.xStart - this.xEnd);
+    this.yDiff = Math.abs(this.yStart - this.yEnd);
+
+    if (this.xDiff >= 50 && this.xDiff >= this.yDiff && this.swipeTime < 200) {
       if (this.xStart < this.xEnd) {
         this.prevSlide();
       } else if (this.xStart > this.xEnd) {

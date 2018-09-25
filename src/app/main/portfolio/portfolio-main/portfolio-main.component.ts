@@ -25,6 +25,7 @@ export class PortfolioMainComponent implements OnInit {
   imagesLoaded = false;
   loading = true;
   filterOpen = false;
+  width: number;
   error = '';
 
   @ViewChild('sidebar') sidebar: ElementRef;
@@ -63,10 +64,19 @@ export class PortfolioMainComponent implements OnInit {
           err => this.setError('Could not get images: ' + err)
         );
     }
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.width = window.outerWidth;
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.setTilePosition();
+    const w = window.outerWidth;
+
+    if (w !== this.width) {
+      this.setTilePosition();
+      this.width = w;
+    }
   }
   @HostListener('window:scroll', ['$event']) onScroll(ev) {
     const tileBoxHeight = this.tileBox.nativeElement.getBoundingClientRect().height;

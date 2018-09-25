@@ -53,6 +53,7 @@ export class ValuesComponent implements OnInit {
     }
   ];
   hovered = '';
+  width: number;
   loading = false;
   error = '';
 
@@ -65,10 +66,19 @@ export class ValuesComponent implements OnInit {
 
   ngOnInit() {
     this.setTilePosition();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.width = window.outerWidth;
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.setTilePosition();
+    const w = window.outerWidth;
+
+    if (w !== this.width) {
+      this.setTilePosition();
+      this.width = w;
+    }
   }
 
   setTilePosition() {
@@ -126,19 +136,15 @@ export class ValuesComponent implements OnInit {
     }
   }
 
-  toggleHover(id, e) {
-    if (this.hovered !== id) {
-      this.hovered = id;
-    } else {
-      this.hovered = '';
-    }
-
-    e.preventDefault();
+  toggleHover(id) {
+    this.hovered = this.hovered !== id ? id : '';
   }
 
   setHover(id) {
-    if (this.hovered !== id) {
-      this.hovered = id;
+    if (!document.documentElement.classList.contains('mobile')) {
+      if (this.hovered !== id) {
+        this.hovered = id;
+      }
     }
   }
 

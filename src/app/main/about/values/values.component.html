@@ -4,7 +4,7 @@
   </div>
 
   <div class="tileBox values" [class.on]="!loading" #tileBox>
-    <div class="tile" [@fade]="true" *ngFor="let value of values" [class.hovered]="hovered === value.title" (touchstart)="toggleHover(value.title, $event)" (mouseenter)="setHover(value.title)" (mouseleave)="setHover('')" #tiles>
+    <div class="tile" [@fade]="true" *ngFor="let value of values" [class.hovered]="hovered === value.title" (mouseenter)="setHover(value.title)" (mouseleave)="setHover('')" (click)="toggleHover(value.title)" #tiles>
       <img [src]="value.image" [alt]="value.title">
 
       <div class="overlay"></div>
