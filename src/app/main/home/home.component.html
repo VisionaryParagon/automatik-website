@@ -87,7 +87,7 @@
                 <input type="text" class="form-control" name="name" #name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="newsletter.name">
                 <label for="name">Name</label>
                 <div class="errorMsg" [@topDown]="true" *ngIf="name.errors && (name.touched || submitted)">
-                  <p *ngIf="name.errors.required">First Name is required</p>
+                  <p *ngIf="name.errors.required">Name is required</p>
                   <p *ngIf="name.errors.pattern">Numbers and special characters are not allowed</p>
                 </div>
               </div>
