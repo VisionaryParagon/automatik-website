@@ -151,12 +151,12 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateAbout === 'active'">
-        <a routerLink="/about" fragment="history" routerLinkActive="active" (click)="closeNav()">History</a>
-        <a routerLink="/about" fragment="team" routerLinkActive="active" (click)="closeNav()">Team</a>
-        <a routerLink="/about" fragment="values" routerLinkActive="active" (click)="closeNav()">Values</a>
-        <a routerLink="/about" fragment="clients" routerLinkActive="active" (click)="closeNav()">Clients</a>
-        <a routerLink="/about" fragment="careers" routerLinkActive="active" (click)="closeNav()">Careers</a>
-        <a class="navBtn" routerLink="/about" fragment="contact" (click)="closeNav()">Contact</a>
+        <a routerLink="/about" fragment="history" [class.active]="activeLink('history')" (click)="closeNav()">History</a>
+        <a routerLink="/about" fragment="team" [class.active]="activeLink('team')" (click)="closeNav()">Team</a>
+        <a routerLink="/about" fragment="values" [class.active]="activeLink('values')" (click)="closeNav()">Values</a>
+        <a routerLink="/about" fragment="clients" [class.active]="activeLink('clients')" (click)="closeNav()">Clients</a>
+        <a routerLink="/about" fragment="careers" [class.active]="activeLink('careers')" (click)="closeNav()">Careers</a>
+        <a class="navBtn" routerLink="/about/contact" (click)="closeNav()">Contact</a>
       </div>
     </div>
 

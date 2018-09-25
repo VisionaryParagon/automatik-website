@@ -221,6 +221,10 @@ export class AppComponent implements OnInit {
     this.stateAbout = 'inactive';
   }
 
+  activeLink(fragment) {
+    return fragment === this.router.url.split('#').pop() ? true : false;
+  }
+
   setPortfolio() {
     this.projectService.selectedCategory = '';
     this.projectService.filter = '';
