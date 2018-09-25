@@ -127,9 +127,14 @@ export class AboutMainComponent implements AfterViewInit, OnInit {
   getPositions() {
     this.careersService.getPositions()
       .subscribe(
-        data => this.positions = data,
-        err => this.setError(err)
+        data => this.setPositions(data),
+        err => this.setError('Could not get positions: ' + err)
       );
+  }
+
+  setPositions(data) {
+    this.positions = data;
+    this.checkData();
   }
 
   checkData() {
