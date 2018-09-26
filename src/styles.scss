@@ -2179,14 +2179,16 @@ section {
   }
 }
 
-.faded {
-  opacity: 0;
-}
-
 
 /*~~ About ~~*/
 
 .about {
+  opacity: 1;
+  -moz-transition: opacity 250ms;
+  -o-transition: opacity 250ms;
+  -webkit-transition: opacity 250ms;
+  transition: opacity 250ms;
+
   section {
     padding: 50px 0;
 
@@ -2636,6 +2638,13 @@ div.mat-paginator-container {
 
 div.cdk-overlay-dark-backdrop {
   background: rgba(0, 0, 0, 0.5);
+}
+
+
+/*~~ General Utilities ~~*/
+
+.faded {
+  opacity: 0 !important;
 }
 
 
