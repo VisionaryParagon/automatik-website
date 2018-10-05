@@ -37,7 +37,7 @@ import { BlogPostComponent } from './resources/blog/blog-post/blog-post.componen
 // About
 import { AboutComponent } from './about/about.component';
 import { AboutMainComponent } from './about/about-main/about-main.component';
-import { CareersComponent } from './about/careers/careers.component';
+import { ContactComponent } from './about/contact/contact.component';
 
 
 const routes: Routes = [
@@ -951,24 +951,23 @@ const routes: Routes = [
                   ]
                 }
               },
-              /*
               {
-                path: 'careers',
-                component: CareersComponent,
+                path: 'contact',
+                component: ContactComponent,
                 data: {
-                  title: 'careers at automätik',
+                  title: 'contact automätik',
                   metatags: [
                     {
                       name: 'description',
-                      content: 'Description for Careers.'
+                      content: 'Description for Contact.'
                     },
                     {
                       name: 'keywords',
-                      content: 'careers'
+                      content: 'contact'
                     },
                     {
                       property: 'og:title',
-                      content: 'careers at automätik'
+                      content: 'contact automätik'
                     },
                     {
                       property: 'og:type',
@@ -976,7 +975,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/careers'
+                      content: 'https://beta.automatik9dots.com/about/contact'
                     },
                     {
                       property: 'og:image',
@@ -984,7 +983,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:description',
-                      content: 'Description for Careers.'
+                      content: 'Description for Contact.'
                     },
                     {
                       name: 'twitter:card',
@@ -996,11 +995,11 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:title',
-                      content: 'careers at automätik'
+                      content: 'contact automätik'
                     },
                     {
                       name: 'twitter:description',
-                      content: 'Description for Careers.'
+                      content: 'Description for Contact.'
                     },
                     {
                       name: 'twitter:image:src',
@@ -1009,7 +1008,6 @@ const routes: Routes = [
                   ]
                 }
               }
-              */
             ]
           },
           {

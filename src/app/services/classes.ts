@@ -14,6 +14,14 @@ export class Admin {
   password: string;
 }
 
+export class Contact {
+  _id?: string;
+  name: string;
+  email: string;
+  message: string;
+  captcha: string;
+}
+
 export class CareerPosition {
   _id?: string;
   position: string;

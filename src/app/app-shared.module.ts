@@ -16,6 +16,7 @@ import {
   MatTabsModule
 } from '@angular/material';
 
+import { AgmCoreModule } from '@agm/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -40,6 +41,8 @@ import {
   faTwitter
 } from '@fortawesome/free-brands-svg-icons';
 
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { CookieModule } from 'ngx-cookie';
 
 // Directives
@@ -81,7 +84,12 @@ library.add(faTwitter);
     MatSortModule,
     MatTableModule,
     MatTabsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDulYODon5z35TgZ6tJtghStK80807Lblg'
+    }),
     FontAwesomeModule,
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule,
     CookieModule.forRoot()
   ],
   declarations: [
@@ -103,7 +111,10 @@ library.add(faTwitter);
     MatSortModule,
     MatTableModule,
     MatTabsModule,
+    AgmCoreModule,
     FontAwesomeModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     CookieModule,
     MaxValidatorDirective,
     MinValidatorDirective

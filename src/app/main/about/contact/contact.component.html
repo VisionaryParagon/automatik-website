@@ -1,0 +1,83 @@
+<div [@fade]="true">
+  <section class="dark pb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h1>contact us</h1>
+
+          <p class="address"><span><strong>auto</strong>m&auml;tik</span>
+            <br>3419 E University Dr
+            <br>Phoenix, AZ 85034</p>
+
+          <p>phone: 480.775.6216
+            <br>fax: 480.775.6221
+            <br>email: info@automatik.com</p>
+        </div>
+
+        <div class="col-12 col-md-6 d-flex align-items-center py-3">
+          <div class="w-100" *ngIf="!success && !error.length">
+            <form #contactForm="ngForm" novalidate>
+              <div class="inputGroup" [class.nope]="name.errors && (name.touched || submitted)">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" #name="ngModel" autocomplete="off" required pattern="^[A-z-.\s]+$" [(ngModel)]="contact.name">
+                <div class="errorMsg" [@topDown]="true" *ngIf="name.errors && (name.touched || submitted)">
+                  <p *ngIf="name.errors.required">Name is required</p>
+                  <p *ngIf="name.errors.pattern">Numbers and special characters are not allowed</p>
+                </div>
+              </div>
+
+              <div class="inputGroup" [class.nope]="email.errors && (email.touched || submitted)">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="contact.email">
+                <div class="errorMsg" [@topDown]="true" *ngIf="email.errors && (email.touched || submitted)">
+                  <p *ngIf="email.errors.required">Email Address is required</p>
+                  <p *ngIf="email.errors.pattern">Email Address is invalid</p>
+                </div>
+              </div>
+
+              <div class="inputGroup" [class.nope]="message.errors && (message.touched || submitted)">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" #message="ngModel" autocomplete="off" maxlength="500" rows="5" required [(ngModel)]="contact.message"></textarea>
+                <div class="errorMsg" [@topDown]="true" *ngIf="message.errors && (message.touched || submitted)">
+                  <p *ngIf="message.errors.required">Please submit a message</p>
+                </div>
+              </div>
+
+              <re-captcha siteKey="6LeZD3MUAAAAAIUonKOV_UeldhbGq2mQn2HLSxP1" theme="dark" name="captcha" #captcha="ngModel" required [(ngModel)]="contact.captcha"></re-captcha>
+              <div class="errorMsg" [@topDown]="true" *ngIf="captcha.errors && (captcha.touched || submitted)">
+                <p *ngIf="captcha.errors.required">Please confirm you are not a robot</p>
+              </div>
+
+              <button class="autoBtn w-100 mt-3" *ngIf="!success" [disabled]="loading" (click)="submit(contact, contactForm.valid)">
+                <span *ngIf="!loading">Lick the stamp and Send It!</span>
+                <span *ngIf="loading">
+                  <mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner>
+                </span>
+              </button>
+            </form>
+          </div>
+
+          <div class="text-center w-100" [@fade]="true" *ngIf="success && !error.length">
+            <h5>Thanks for contacting us!</h5>
+            <p>We&rsquo;ll be in touch soon!</p>
+          </div>
+
+          <div class="errorMsg text-center w-100" [@topDown]="true" *ngIf="error.length">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <agm-map *ngIf="isBrowser()" [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="11">
+    <agm-marker [latitude]="lat" [longitude]="lng">
+      <agm-info-window>
+        <h4>autom&auml;tik</h4>
+        <p>Where we eradicate boring training from the face of the Earth.</p>
+        <p>3419 E University Dr
+          <br>Phoenix, AZ 85034</p>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div>

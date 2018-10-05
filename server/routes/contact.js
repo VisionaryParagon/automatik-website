@@ -29,14 +29,14 @@ router.post('/contact', (req, res) => {
       <span>
       New contact form inquiry from ${data.name} (<a href="mailto:${data.email}">${data.email}</a>):<br><br>
 
-      ${data.message}
+      ${data.message.split('\n').join('<br>')}
       </span>
     </div>
   `;
 
   let mailOptionsMsg = {
     from: '"No Reply" <noreply@automatik.us>', // sender address
-    to: '"Conrad Shehan" <cshehan@automatik.us>', // list of receivers
+    to: 'jsweet@automatik.us', // list of receivers
     replyTo: data.email, // list of replyTo's
     subject: 'Contact Form Inquiry from ' + data.name, // Subject line
     text: textContentMsg, // plaintext body

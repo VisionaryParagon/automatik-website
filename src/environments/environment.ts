@@ -7,6 +7,7 @@ export const environment = {
   production: false,
   admin: '/admn/',
   careers: '/careers/',
+  contact: '/cntct/',
   images: '/img/',
   projects: '/prj/',
   secret: '/scrt/',

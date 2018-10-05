@@ -37,6 +37,7 @@ import { BlogPostComponent } from './resources/blog/blog-post/blog-post.componen
 // About
 import { AboutComponent } from './about/about.component';
 import { AboutMainComponent } from './about/about-main/about-main.component';
+import { ContactComponent } from './about/contact/contact.component';
 import { TeamComponent } from './about/team/team.component';
 import { ValuesComponent } from './about/values/values.component';
 import { CareersComponent } from './about/careers/careers.component';
@@ -75,6 +76,7 @@ import { CarouselComponent } from './snippets/carousel/carousel.component';
     BlogPostComponent,
     AboutComponent,
     AboutMainComponent,
+    ContactComponent,
     TeamComponent,
     ValuesComponent,
     CareersComponent,
