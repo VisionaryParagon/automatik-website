@@ -72,11 +72,12 @@
 
   <agm-map *ngIf="isBrowser()" [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="11">
     <agm-marker [latitude]="lat" [longitude]="lng">
-      <agm-info-window>
+      <agm-info-window [isOpen]="true" [maxWidth]="300">
         <h4>autom&auml;tik</h4>
-        <p>Where we eradicate boring training from the face of the Earth.</p>
+        <p>Where we eradicate boring training from the face of&nbsp;the&nbsp;Earth.</p>
         <p>3419 E University Dr
           <br>Phoenix, AZ 85034</p>
+          <a class="autoBtn dark" href="https://www.google.com/maps/place/autom%C3%A4tik/@33.4162443,-112.009577,17z/data=!4m5!3m4!1s0x14e39153948f08fb:0x4cdaf231cbe65ca5!8m2!3d33.4164067!4d-112.0067445" target="_blank">Get Directions</a>
       </agm-info-window>
     </agm-marker>
   </agm-map>
