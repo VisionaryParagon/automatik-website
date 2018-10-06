@@ -254,6 +254,7 @@ button {
   background: $client-yellow;
   border: none;
   box-shadow: .25rem .25rem 1rem -.25rem rgba(0, 0, 0, 0.5) !important;
+  color: initial;
   cursor: pointer;
   font-family: $client-font;
   font-weight: normal;
@@ -269,6 +270,7 @@ button {
 
   &:hover {
     opacity: 0.85;
+    text-decoration: none;
   }
 
   &:active {
