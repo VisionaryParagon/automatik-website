@@ -12,6 +12,8 @@
       <h1>{{ post.title.rendered }}</h1>
     </section>
 
+    <scroll-arrow></scroll-arrow>
+
     <section>
       <div class="container">
         <div class="blogContent" [class.faded]="changingBlog">
@@ -28,7 +30,7 @@
               <div class="blogList">
                 <div class="blogPost" *ngFor="let blog of blogs | slice:0:5">
                   <p><a routerLink="/resources/blog/{{ blog.slug }}">{{ blog.title.rendered }}
-                    <br><span class="blogDate">{{ blog.date | date: 'mediumDate' }}</span></a></p>
+                      <br><span class="blogDate">{{ blog.date | date: 'mediumDate' }}</span></a></p>
                 </div>
               </div>
 
@@ -43,10 +45,6 @@
         </div>
       </div>
     </section>
-
-    <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
-      <div class="arrowDown"></div>
-    </div>
   </div>
 
   <section [@topDown]="true" *ngIf="error.length">

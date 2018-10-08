@@ -47,6 +47,7 @@ import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.c
 
 // Snippets
 import { CarouselComponent } from './snippets/carousel/carousel.component';
+import { ScrollArrowComponent } from './snippets/scroll-arrow/scroll-arrow.component';
 
 @NgModule({
   imports: [
@@ -81,7 +82,8 @@ import { CarouselComponent } from './snippets/carousel/carousel.component';
     ValuesComponent,
     CareersComponent,
     CareerInquiryComponent,
-    CarouselComponent
+    CarouselComponent,
+    ScrollArrowComponent
   ],
   entryComponents: [
     CareerInquiryComponent

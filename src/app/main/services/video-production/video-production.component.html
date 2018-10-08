@@ -6,6 +6,8 @@
       <br><span class="subhead">Professional video and audio production&nbsp;services.</span></h1>
   </section>
 
+  <scroll-arrow></scroll-arrow>
+
   <section class="dark py-5">
     <div class="container">
       <h4 class="text-center">From conception to the finished product, the autom&auml;tik video services department delivers outstanding, hassle-free&nbsp;results.</h4>
@@ -165,8 +167,4 @@
 
     <app-carousel [slides]="slides"></app-carousel>
   </section>
-
-  <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
-    <div class="arrowDown"></div>
-  </div>
 </div>

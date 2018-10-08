@@ -1,5 +1,4 @@
-import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 import { FadeAnimation, TopDownAnimation } from '../../animations';
 
@@ -10,7 +9,6 @@ import { FadeAnimation, TopDownAnimation } from '../../animations';
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class HomeComponent implements OnInit {
-  atTop = true;
   testimonials = [
     {
       quote: 'The automätik team created a script and a gorgeous slide deck that carried exactly the message our audience needed to hear, and nothing they didn\'t. All in plain English.',
@@ -57,34 +55,9 @@ export class HomeComponent implements OnInit {
   success = false;
   error = '';
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.checkScroll();
-  }
-
-  @HostListener('window:scroll', ['$event']) onScroll(ev) {
-    this.checkScroll();
-  }
-
-  scrollPage() {
-    if (isPlatformBrowser(this.platformId)) {
-      let scrl = window.innerHeight;
-      if (document.documentElement.classList.contains('mobile')) {
-        scrl = scrl - 50;
-      } else {
-        scrl = scrl - 60;
-      }
-      window.scroll({top: scrl, left: 0, behavior: 'smooth'});
-    }
-  }
-
-  checkScroll() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.atTop = window.scrollY > 50 ? false : true;
-    }
   }
 
   shuffle(array) {

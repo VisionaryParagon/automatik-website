@@ -5,6 +5,8 @@
     <h1>about autom&auml;tik</h1>
   </section>
 
+  <scroll-arrow></scroll-arrow>
+
   <section>
     <div class="container">
       <h4 class="m-0 text-center">autom&auml;tik is an award-winning, certified National Women Business Owners corporation specializing in research, consultation, instructional design, event design and management, graphic design, digital/interactive design, event production, and facilitation management/coaching. While our roots run deep in automotive OEM, our talents cross industry borders quite nicely. We&rsquo;ve been around since 1990 and have been growing ever since. We invite you to get to know us, and how we may support your&nbsp;journey...</h4>
@@ -99,8 +101,4 @@
   <section id="careers" class="fixed fullHeight">
     <app-careers [positions]="positions"></app-careers>
   </section>
-
-  <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
-    <div class="arrowDown"></div>
-  </div>
 </div>

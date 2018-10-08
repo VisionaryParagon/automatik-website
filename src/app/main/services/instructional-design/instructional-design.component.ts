@@ -1,5 +1,4 @@
-import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
@@ -10,7 +9,6 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class InstructionalDesignComponent implements OnInit {
-  atTop = true;
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,
@@ -34,33 +32,8 @@ export class InstructionalDesignComponent implements OnInit {
     }
   ];
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.checkScroll();
-  }
-
-  @HostListener('window:scroll', ['$event']) onScroll(ev) {
-    this.checkScroll();
-  }
-
-  scrollPage() {
-    if (isPlatformBrowser(this.platformId)) {
-      let scrl = window.innerHeight;
-      if (document.documentElement.classList.contains('mobile')) {
-        scrl = scrl - 50;
-      } else {
-        scrl = scrl - 60;
-      }
-      window.scroll({top: scrl, left: 0, behavior: 'smooth'});
-    }
-  }
-
-  checkScroll() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.atTop = window.scrollY > 50 ? false : true;
-    }
   }
 }

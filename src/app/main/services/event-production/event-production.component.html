@@ -6,6 +6,8 @@
       <br><span class="subhead">Let&rsquo;s elevate your brand&nbsp;experience.</span></h1>
   </section>
 
+  <scroll-arrow></scroll-arrow>
+
   <section class="dark py-5">
     <div class="container">
       <h4 class="text-center">Our production team brings high-impact events to life. Our two-story warehouse is stocked with the latest in AV and staging collateral. Contact our Production team to discuss your needs. We&rsquo;ll be happy to recommend a right-sized solution based on your timeline and&nbsp;budget.</h4>
@@ -117,8 +119,4 @@
 
     <app-carousel [slides]="slides"></app-carousel>
   </section>
-
-  <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
-    <div class="arrowDown"></div>
-  </div>
 </div>

@@ -15,6 +15,8 @@
     </div>
   </section>
 
+  <scroll-arrow></scroll-arrow>
+
   <section class="dark fixed imgArrow" id="home2">
     <div class="container">
       <h2>Trusted by
@@ -221,8 +223,4 @@
       <button class="autoBtn my-3" routerLink="/">Take Our Web Course</button>
     </div>
   </section>
-
-  <div class="scrollArrow" [@fade]="true" *ngIf="atTop" (click)="scrollPage()">
-    <div class="arrowDown"></div>
-  </div>
 </div>

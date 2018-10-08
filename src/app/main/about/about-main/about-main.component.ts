@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,7 +16,6 @@ import { FadeAnimation } from '../../../animations';
   animations: [ FadeAnimation ]
 })
 export class AboutMainComponent implements AfterViewInit, OnInit {
-  atTop = true;
   topScroll = 0;
   teammates: Teammate[] = this.teamService.team;
   departments: Department[] = this.teamService.departments;
@@ -63,25 +62,21 @@ export class AboutMainComponent implements AfterViewInit, OnInit {
     this.route.fragment.subscribe(fragment => this.scrollTo(fragment));
   }
 
-  @HostListener('window:scroll', ['$event']) onScroll(ev) {
-    this.checkScroll();
-  }
-
-  scrollPage() {
+  scrollTo(id) {
     if (isPlatformBrowser(this.platformId)) {
-      let scrl = window.innerHeight;
-      if (document.documentElement.classList.contains('mobile')) {
-        scrl = scrl - 50;
+      if (id) {
+        const el = document.getElementById(id);
+
+        if (el) {
+          this.topScroll = el.offsetTop;
+        }
       } else {
-        scrl = scrl - 60;
+        this.topScroll = 0;
       }
-      window.scroll({top: scrl, left: 0, behavior: 'smooth'});
-    }
-  }
 
-  checkScroll() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.atTop = window.scrollY > 50 ? false : true;
+      // console.log('scroll to', id, 'at', this.topScroll);
+
+      window.scroll({top: this.topScroll, left: 0, behavior: 'smooth'});
     }
   }
 
@@ -140,24 +135,6 @@ export class AboutMainComponent implements AfterViewInit, OnInit {
   checkData() {
     if (this.teammates && this.departments && this.images && this.positions) {
       this.loading = false;
-    }
-  }
-
-  scrollTo(id) {
-    if (isPlatformBrowser(this.platformId)) {
-      if (id) {
-        const el = document.getElementById(id);
-
-        if (el) {
-          this.topScroll = el.offsetTop;
-        }
-      } else {
-        this.topScroll = 0;
-      }
-
-      // console.log('scroll to', id, 'at', this.topScroll);
-
-      window.scroll({top: this.topScroll, left: 0, behavior: 'smooth'});
     }
   }
 
