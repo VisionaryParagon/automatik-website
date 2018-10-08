@@ -26,6 +26,7 @@ export class BlogPostComponent implements OnInit {
   metadata: Seo;
   safeHtml: SafeHtml;
   atTop = true;
+  isMobile = false;
   changingBlog = false;
   imgHeight = 'auto';
   imgWidth = '100%';
@@ -57,7 +58,7 @@ export class BlogPostComponent implements OnInit {
         .subscribe(
           posts => {
             this.blogs = this.blogService.blogs;
-            console.log('Blogs: ', this.blogs);
+            // console.log('Blogs: ', this.blogs);
             this.checkData();
           },
           error => this.setError(error)
@@ -66,7 +67,7 @@ export class BlogPostComponent implements OnInit {
         .subscribe(
           media => {
             this.media = this.blogService.media;
-            console.log('Media: ', this.media);
+            // console.log('Media: ', this.media);
             this.checkData();
           },
           error => this.setError(error)
@@ -119,6 +120,8 @@ export class BlogPostComponent implements OnInit {
       }
     });
 
+    this.checkMobile();
+
     this.checkBanner();
   }
 
@@ -132,7 +135,7 @@ export class BlogPostComponent implements OnInit {
   scrollPage() {
     if (isPlatformBrowser(this.platformId)) {
       let scrl = window.innerHeight;
-      if (document.documentElement.classList.contains('mobile')) {
+      if (this.isMobile) {
         scrl = scrl - 50;
       } else {
         scrl = scrl - 60;
@@ -144,6 +147,12 @@ export class BlogPostComponent implements OnInit {
   checkScroll() {
     if (isPlatformBrowser(this.platformId)) {
       this.atTop = window.scrollY > 50 ? false : true;
+    }
+  }
+
+  checkMobile() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = document.documentElement.classList.contains('mobile') ? true : false;
     }
   }
 

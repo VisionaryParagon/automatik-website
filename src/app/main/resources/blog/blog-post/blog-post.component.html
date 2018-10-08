@@ -9,37 +9,37 @@
     <section class="dark fullHeight fixed hero" [class.faded]="changingBlog" [style.backgroundImage]="'url(' + getImageSrc(post.featured_media) + ')'">
       <div class="overlay"></div>
 
-      <h1>{{ post.title.rendered }}</h1>
+      <div class="title">
+        <h1>{{ post.title.rendered }}</h1>
+
+        <h4>{{ post.date | date: 'mediumDate' }}<span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span><hr class="d-md-none"><a (click)="goToAuthor(post.author)">{{ getAuthor(post.author) }}</a></h4>
+      </div>
     </section>
 
     <scroll-arrow></scroll-arrow>
 
     <section>
-      <div class="container">
-        <div class="blogContent" [class.faded]="changingBlog">
-          <div class="row">
-            <div class="col-12 col-lg-9 border-right border-dark">
-              <h4>{{ post.date | date: 'mediumDate' }} &nbsp;|&nbsp; <a (click)="goToAuthor(post.author)">{{ getAuthor(post.author) }}</a></h4>
+      <div class="container p-4">
+        <div class="row">
+          <div class="blogContent col-12 col-lg-9" [class.faded]="changingBlog">
+            <div [innerHtml]="safeHtml"></div>
+          </div>
 
-              <div [innerHtml]="safeHtml"></div>
+          <div class="blogSidebar col-lg-3" [class.faded]="changingBlog">
+            <h5>Recent Posts</h5>
+
+            <div class="blogList">
+              <div class="blogPost" *ngFor="let blog of blogs | slice:0:5">
+                <p><a routerLink="/resources/blog/{{ blog.slug }}">{{ blog.title.rendered }}
+                    <br><span class="blogDate">{{ blog.date | date: 'mediumDate' }}</span></a></p>
+              </div>
             </div>
 
-            <div class="blogSidebar d-none d-lg-block col-lg-3">
-              <h5>Recent Posts</h5>
+            <h5>Categories</h5>
 
-              <div class="blogList">
-                <div class="blogPost" *ngFor="let blog of blogs | slice:0:5">
-                  <p><a routerLink="/resources/blog/{{ blog.slug }}">{{ blog.title.rendered }}
-                      <br><span class="blogDate">{{ blog.date | date: 'mediumDate' }}</span></a></p>
-                </div>
-              </div>
-
-              <h5>Categories</h5>
-
-              <div class="categoryList">
-                <p *ngFor="let cat of categories"><a (click)="goToCategory(cat.name)">{{ cat.name }}</a></p>
-                <p><a (click)="goToCategory()">View All</a></p>
-              </div>
+            <div class="categoryList">
+              <p *ngFor="let cat of categories"><a (click)="goToCategory(cat.name)">{{ cat.name }}</a></p>
+              <p><a (click)="goToCategory()">View All</a></p>
             </div>
           </div>
         </div>
