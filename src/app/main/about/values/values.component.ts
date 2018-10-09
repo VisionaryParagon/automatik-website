@@ -1,5 +1,4 @@
-import { Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
@@ -57,83 +56,9 @@ export class ValuesComponent implements OnInit {
   loading = false;
   error = '';
 
-  @ViewChild('tileBox') tileBox: ElementRef;
-  @ViewChildren('tiles') tiles: QueryList<ElementRef>;
-
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.setTilePosition();
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.width = window.outerWidth;
-    }
-  }
-
-  @HostListener('window:resize', ['$event']) onResize(ev) {
-    const w = window.outerWidth;
-
-    if (w !== this.width) {
-      this.setTilePosition();
-      this.width = w;
-    }
-  }
-
-  setTilePosition() {
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        if (window.outerWidth >= 1200) {
-          if (this.tiles.length) {
-            this.tiles.forEach((el, idx) => {
-              const x = idx % 4;
-              const y = Math.floor(idx / 4.0);
-              const height = el.nativeElement.getBoundingClientRect().height;
-              const width = el.nativeElement.getBoundingClientRect().width;
-
-              el.nativeElement.style.left = x * width + 'px';
-              el.nativeElement.style.top = y * height + 'px';
-            });
-
-            this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 4.0) + 'px';
-          } else {
-            if (document.documentElement.classList.contains('mobile')) {
-              this.tileBox.nativeElement.style.height = window.innerHeight - 50 + 'px';
-            } else {
-              this.tileBox.nativeElement.style.height = window.innerHeight - 60 + 'px';
-            }
-          }
-        } else if (window.outerWidth >= 768 && window.outerWidth < 1200) {
-          if (this.tiles.length) {
-            this.tiles.forEach((el, idx) => {
-              const x = idx % 2;
-              const y = Math.floor(idx / 2.0);
-              const height = el.nativeElement.getBoundingClientRect().height;
-              const width = el.nativeElement.getBoundingClientRect().width;
-
-              el.nativeElement.style.left = x * width + 'px';
-              el.nativeElement.style.top = y * height + 'px';
-            });
-
-            this.tileBox.nativeElement.style.height = this.tiles.first.nativeElement.getBoundingClientRect().height * Math.ceil(this.tiles.length / 2.0) + 'px';
-          } else {
-            if (document.documentElement.classList.contains('mobile')) {
-              this.tileBox.nativeElement.style.height = window.innerHeight - 50 + 'px';
-            } else {
-              this.tileBox.nativeElement.style.height = window.innerHeight - 60 + 'px';
-            }
-          }
-        } else {
-          this.tiles.forEach((el, idx) => {
-            el.nativeElement.style.left = '0px';
-            el.nativeElement.style.top = '0px';
-          });
-
-          this.tileBox.nativeElement.style.height = 'auto';
-        }
-      }, 250);
-    }
   }
 
   toggleHover(id) {

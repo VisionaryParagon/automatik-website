@@ -1838,6 +1838,9 @@ section {
     .tile {
       cursor: default;
       min-height: auto;
+      padding: 0;
+      position: relative;
+      width: auto;
 
       .tileInfo {
         padding: 5rem 1rem 1rem;
@@ -3123,13 +3126,7 @@ div.cdk-overlay-dark-backdrop {
     }
 
     &.values {
-      margin: 0;
-      min-height: auto;
       width: 100%;
-
-      .tile {
-        width: 25%;
-      }
     }
   }
   .project {

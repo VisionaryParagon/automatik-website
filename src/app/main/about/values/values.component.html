@@ -3,8 +3,8 @@
     <h2 class="text-center">What are our Values?</h2>
   </div>
 
-  <div class="tileBox values" [class.on]="!loading" #tileBox>
-    <div class="tile" [@fade]="true" *ngFor="let value of values" [class.hovered]="hovered === value.title" (mouseenter)="setHover(value.title)" (mouseleave)="setHover('')" (click)="toggleHover(value.title)" #tiles>
+  <div class="row tileBox values" [class.on]="!loading">
+    <div class="col-12 col-md-6 col-xl-3 tile" *ngFor="let value of values" [class.hovered]="hovered === value.title" (mouseenter)="setHover(value.title)" (mouseleave)="setHover('')" (click)="toggleHover(value.title)">
       <img [src]="value.image" [alt]="value.title">
 
       <div class="overlay"></div>
@@ -14,10 +14,6 @@
 
         <p [@topDown]="true" *ngIf="hovered === value.title">{{ value.headline }}</p>
       </div>
-    </div>
-
-    <div class="text-center" [@topDown]="true" *ngIf="error.length">
-      <p>{{ error }}</p>
     </div>
   </div>
 </div>
