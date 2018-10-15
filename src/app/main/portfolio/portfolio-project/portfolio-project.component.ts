@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 
@@ -21,6 +21,7 @@ export class PortfolioProjectComponent implements OnInit {
   projects: Project[] = this.projectService.projects;
   project: Project;
   images: Image[] = this.imageService.images;
+  projectImages;
   projectsLoaded = false;
   imagesLoaded = false;
   lg = false;
@@ -65,12 +66,6 @@ export class PortfolioProjectComponent implements OnInit {
           err => this.setError('Could not get images: ' + err)
         );
     }
-
-    this.checkBanner();
-  }
-
-  @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.checkBanner();
   }
 
   setProjects(data) {
@@ -82,6 +77,11 @@ export class PortfolioProjectComponent implements OnInit {
       this.setSEO();
       this.setError('Sorry! This project doesn’t exist.');
     }
+    this.projectImages = {
+      sm: this.project.title_image_sm,
+      md: this.project.title_image_md,
+      lg: this.project.title_image_lg
+    };
     this.projectsLoaded = true;
     this.checkData();
   }
@@ -154,32 +154,6 @@ export class PortfolioProjectComponent implements OnInit {
         this.setError('There are currently no projects available.');
       }
       this.loading = false;
-    }
-  }
-
-  checkBanner() {
-    if (isPlatformBrowser(this.platformId)) {
-      if (window.innerWidth >= 1200) {
-        this.lg = true;
-        this.md = false;
-        this.sm = false;
-      } else if (window.innerWidth >= 768 && window.innerWidth < 1200) {
-        this.lg = false;
-        this.md = true;
-        this.sm = false;
-      } else {
-        this.lg = false;
-        this.md = false;
-        this.sm = true;
-      }
-
-      if (window.innerWidth * 0.565 < window.innerHeight) {
-        this.imgHeight = '100%';
-        this.imgWidth = 'auto';
-      } else {
-        this.imgHeight = 'auto';
-        this.imgWidth = '100%';
-      }
     }
   }
 

@@ -9,6 +9,11 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class GraphicDesignComponent implements OnInit {
+  images = {
+    sm: 'https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80',
+    md: 'https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80',
+    lg: 'https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80'
+  };
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,

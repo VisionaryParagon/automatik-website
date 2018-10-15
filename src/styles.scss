@@ -1253,13 +1253,30 @@ section {
   }
 }
 
+.parallax {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  img {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+}
+
 
 /*~~ Home ~~*/
 
 #home1 {
-  background-image: url(https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-900.jpg);
-  background-position: center 50px;
-
   .container {
     bottom: 4rem;
     left: 50%;
@@ -1330,7 +1347,6 @@ section {
 }
 
 #home2 {
-  background-image: url(https://assets.automatik9dots.com/images/home-mesh-bg-900.jpg);
   min-height: 50vh;
 
   .container {
@@ -1388,8 +1404,6 @@ section {
 }
 
 #home5 {
-  background-image: url(https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-900.jpg);
-
   .container {
     left: 50%;
     position: absolute;
@@ -1430,8 +1444,6 @@ section {
 }
 
 #home7 {
-  background-image: url(https://assets.automatik9dots.com/images/home-presentaion-hero-bg-900.jpg);
-
   .container {
     bottom: 25%;
     left: 50%;
@@ -1490,8 +1502,6 @@ section {
 }
 
 #home11 {
-  background-image: url(https://assets.automatik9dots.com/images/home-meet-in-style-bg-900.jpg);
-
   .container {
     bottom: 4rem;
     left: 50%;
@@ -1539,8 +1549,6 @@ section {
 }
 
 #home14 {
-  background-image: url(https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-900.jpg);
-
   .container {
     bottom: 25%;
     left: 50%;
@@ -1884,30 +1892,6 @@ section {
   }
 }
 
-.eventPlanning {
-  background-image: url(https://assets.automatik9dots.com/images/event-planning-hero-bg-900.jpg);
-}
-
-.eventProduction {
-  background-image: url(https://assets.automatik9dots.com/images/event-production-hero-bg-900.jpg);
-}
-
-.instructionalDesign {
-  background-image: url(https://assets.automatik9dots.com/images/instructional-design-hero-bg-900.jpg);
-}
-
-.graphicDesign {
-  background-image: url(https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80);
-}
-
-.videoProduction {
-  background-image: url(https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80);
-}
-
-.appWebDevelopment {
-  background-image: url(https://assets.automatik9dots.com/images/app-web-development-hero-bg-900.jpg);
-}
-
 
 /*~~ Portfolio ~~*/
 
@@ -2141,18 +2125,6 @@ section {
       padding: 0 0 0 15px;
     }
   }
-}
-
-#about {
-  background-image: url(https://images.unsplash.com/photo-1531411795835-6ef88590ba93?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=784d6680c3f841f58ee482c15fa06bb7&auto=format&fit=crop&w=1650&q=80);
-}
-
-#history {
-  background-image: url(https://images.unsplash.com/photo-1506664958676-205b41a88d0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f87d0f586096bfce4b4f0dc6d5e0729&auto=format&fit=crop&w=1650&q=80);
-}
-
-#careers {
-  background-image: url(https://images.unsplash.com/photo-1518600654093-2a24cddafa38?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=96238af4ac6e58d17d362d5b8b846eb4&auto=format&fit=crop&w=1634&q=80);
 }
 
 
@@ -2716,9 +2688,6 @@ div.cdk-overlay-dark-backdrop {
     }
   }
   #home1 {
-    background-image: url(https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-1440.jpg);
-    background-position: center 60px;
-
     .container {
       .textShadow {
         font-size: 74px;
@@ -2731,9 +2700,6 @@ div.cdk-overlay-dark-backdrop {
         width: 180px;
       }
     }
-  }
-  #home2 {
-    background-image: url(https://assets.automatik9dots.com/images/home-mesh-bg-1440.jpg);
   }
   #home3 {
     .container {
@@ -2754,9 +2720,6 @@ div.cdk-overlay-dark-backdrop {
       font-size: 30px;
     }
   }
-  #home5 {
-    background-image: url(https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-1440.jpg);
-  }
   #home6 {
     background-image: url(https://assets.automatik9dots.com/images/home-platimum-rule-bg-1440.jpg);
 
@@ -2765,9 +2728,6 @@ div.cdk-overlay-dark-backdrop {
         font-size: 30px;
       }
     }
-  }
-  #home7 {
-    background-image: url(https://assets.automatik9dots.com/images/home-presentaion-hero-bg-1440.jpg);
   }
   #home8 {
     background-image: url(https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-1440.jpg);
@@ -2780,17 +2740,11 @@ div.cdk-overlay-dark-backdrop {
   #home10 {
     background-image: url(https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-1440.jpg);
   }
-  #home11 {
-    background-image: url(https://assets.automatik9dots.com/images/home-meet-in-style-bg-1440.jpg);
-  }
   #home12 {
     background-image: url(https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-1440.jpg);
   }
   #home13 {
     background-image: url(https://assets.automatik9dots.com/images/home-perfect-speech-bg-1440.jpg);
-  }
-  #home14 {
-    background-image: url(https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-1440.jpg);
   }
   .filters {
     &.mobile {
@@ -2821,24 +2775,6 @@ div.cdk-overlay-dark-backdrop {
         min-height: 400px;
       }
     }
-  }
-  .eventPlanning {
-    background-image: url(https://assets.automatik9dots.com/images/event-planning-hero-bg-1440.jpg);
-  }
-  .eventProduction {
-    background-image: url(https://assets.automatik9dots.com/images/event-production-hero-bg-1440.jpg);
-  }
-  .instructionalDesign {
-    background-image: url(https://assets.automatik9dots.com/images/instructional-design-hero-bg-1440.jpg);
-  }
-  .graphicDesign {
-    background-image: url(https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80);
-  }
-  .videoProduction {
-    background-image: url(https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80);
-  }
-  .appWebDevelopment {
-    background-image: url(https://assets.automatik9dots.com/images/app-web-development-hero-bg-1440.jpg);
   }
   .project {
     section {
@@ -2940,9 +2876,6 @@ div.cdk-overlay-dark-backdrop {
         padding: 50px 0 0;
       }
     }
-    #home1 {
-      background-position: center 50px;
-    }
     .filters {
       &.mobile {
         top: 50px;
@@ -3023,8 +2956,6 @@ div.cdk-overlay-dark-backdrop {
     font-size: 86px;
   }
   #home1 {
-    background-image: url(https://assets.automatik9dots.com/images/home-eradicating-boring-corporate-events-bg-2560.jpg);
-
     .container {
       .textShadow {
         font-size: 135px;
@@ -3038,20 +2969,11 @@ div.cdk-overlay-dark-backdrop {
       }
     }
   }
-  #home2 {
-    background-image: url(https://assets.automatik9dots.com/images/home-mesh-bg-2560.jpg);
-  }
   #home4 {
     background-image: url(https://assets.automatik9dots.com/images/home-5-secrets-bg-2560.jpg);
   }
-  #home5 {
-    background-image: url(https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-2560.jpg);
-  }
   #home6 {
     background-image: url(https://assets.automatik9dots.com/images/home-platimum-rule-bg-2560.jpg);
-  }
-  #home7 {
-    background-image: url(https://assets.automatik9dots.com/images/home-presentaion-hero-bg-2560.jpg);
   }
   #home8 {
     background-image: url(https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-2560.jpg);
@@ -3068,35 +2990,11 @@ div.cdk-overlay-dark-backdrop {
   #home10 {
     background-image: url(https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-2560.jpg);
   }
-  #home11 {
-    background-image: url(https://assets.automatik9dots.com/images/home-meet-in-style-bg-2560.jpg);
-  }
   #home12 {
     background-image: url(https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-2560.jpg);
   }
   #home13 {
     background-image: url(https://assets.automatik9dots.com/images/home-perfect-speech-bg-2560.jpg);
-  }
-  #home14 {
-    background-image: url(https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-2560.jpg);
-  }
-  .eventPlanning {
-    background-image: url(https://assets.automatik9dots.com/images/event-planning-hero-bg-2560.jpg);
-  }
-  .eventProduction {
-    background-image: url(https://assets.automatik9dots.com/images/event-production-hero-bg-2560.jpg);
-  }
-  .instructionalDesign {
-    background-image: url(https://assets.automatik9dots.com/images/instructional-design-hero-bg-2560.jpg);
-  }
-  .graphicDesign {
-    background-image: url(https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80);
-  }
-  .videoProduction {
-    background-image: url(https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80);
-  }
-  .appWebDevelopment {
-    background-image: url(https://assets.automatik9dots.com/images/app-web-development-hero-bg-2560.jpg);
   }
   .filters {
     display: block;

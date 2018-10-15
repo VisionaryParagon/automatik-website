@@ -6,12 +6,8 @@
   </section>
 
   <div [@fade]="true" *ngIf="!loading && !error.length">
-    <section class="hero fullHeight">
-      <div class="heroBanner">
-        <img *ngIf="lg" [@fade]="true" [src]="project.title_image_lg" [alt]="getImageAlt(project.title_image_lg)" [style.height]="imgHeight" [style.width]="imgWidth">
-        <img *ngIf="md" [@fade]="true" [src]="project.title_image_md" [alt]="getImageAlt(project.title_image_md)" [style.height]="imgHeight" [style.width]="imgWidth">
-        <img *ngIf="sm" [@fade]="true" [src]="project.title_image_sm" [alt]="getImageAlt(project.title_image_sm)" [style.height]="imgHeight" [style.width]="imgWidth">
-      </div>
+    <section class="fullHeight hero">
+      <parallax-bg [images]="projectImages"></parallax-bg>
 
       <div class="overlay"></div>
 

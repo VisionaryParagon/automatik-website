@@ -6,7 +6,9 @@
   </section>
 
   <div [@fade]="true" *ngIf="!loading && !error.length">
-    <section class="dark fullHeight fixed hero" [class.faded]="changingBlog" [style.backgroundImage]="'url(' + getImageSrc(post.featured_media) + ')'">
+    <section class="dark fixed fullHeight hero" [class.faded]="changingBlog">
+      <parallax-bg [images]="heroImages"></parallax-bg>
+
       <div class="overlay"></div>
 
       <div class="title">

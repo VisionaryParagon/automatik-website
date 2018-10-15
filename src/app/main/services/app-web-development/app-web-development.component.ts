@@ -9,6 +9,11 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class AppWebDevelopmentComponent implements OnInit {
+  images = {
+    sm: 'https://assets.automatik9dots.com/images/app-web-development-hero-bg-900.jpg',
+    md: 'https://assets.automatik9dots.com/images/app-web-development-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik9dots.com/images/app-web-development-hero-bg-2560.jpg'
+  };
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,

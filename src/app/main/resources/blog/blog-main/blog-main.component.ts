@@ -209,13 +209,25 @@ export class BlogMainComponent implements OnInit {
 
   getImageSrc(id) {
     if (this.media) {
-      return this.media.filter(media => media.id === id)[0].media_details.sizes.medium_large.source_url;
+      const mediaData = this.media.filter(media => media.id === id);
+
+      if (mediaData.length) {
+        return mediaData[0].media_details.sizes.medium_large.source_url;
+      } else {
+        return 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg';
+      }
     }
   }
 
   getImageAlt(id) {
     if (this.media) {
-      return this.media.filter(media => media.id === id)[0].alt_text;
+      const mediaData = this.media.filter(media => media.id === id);
+
+      if (mediaData.length) {
+        return mediaData[0].alt_text;
+      } else {
+        return 'automätik';
+      }
     }
   }
 

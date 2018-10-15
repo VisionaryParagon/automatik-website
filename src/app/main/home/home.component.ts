@@ -9,6 +9,68 @@ import { FadeAnimation, TopDownAnimation } from '../../animations';
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class HomeComponent implements OnInit {
+  images = {
+    home1: {
+      sm: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-2560.jpg'
+    },
+    home2: {
+      sm: 'https://assets.automatik9dots.com/images/home-mesh-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-mesh-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-mesh-bg-2560.jpg'
+    },
+    home4: {
+      sm: 'https://assets.automatik9dots.com/images/home-5-secrets-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-5-secrets-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-5-secrets-bg-2560.jpg'
+    },
+    home5: {
+      sm: 'https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-one-stop-event-shop-bg-2560.jpg'
+    },
+    home6: {
+      sm: 'https://assets.automatik9dots.com/images/home-platimum-rule-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-platimum-rule-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-platimum-rule-bg-2560.jpg'
+    },
+    home7: {
+      sm: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-2560.jpg'
+    },
+    home8: {
+      sm: 'https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-tips-from-the-gurus-bg-2560.jpg'
+    },
+    home10: {
+      sm: 'https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-we-dont-do-boring-bg-2560.jpg'
+    },
+    home11: {
+      sm: 'https://assets.automatik9dots.com/images/home-meet-in-style-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-meet-in-style-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-meet-in-style-bg-2560.jpg'
+    },
+    home12: {
+      sm: 'https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-engage-to-the-max-bg-2560.jpg'
+    },
+    home13: {
+      sm: 'https://assets.automatik9dots.com/images/home-perfect-speech-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-perfect-speech-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-perfect-speech-bg-2560.jpg'
+    },
+    home14: {
+      sm: 'https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-900.jpg',
+      md: 'https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-1440.jpg',
+      lg: 'https://assets.automatik9dots.com/images/home-powerpoint-jedi-bg-2560.jpg'
+    }
+  };
   testimonials = [
     {
       quote: 'The automätik team created a script and a gorgeous slide deck that carried exactly the message our audience needed to hear, and nothing they didn\'t. All in plain English.',

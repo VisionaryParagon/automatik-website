@@ -18,6 +18,7 @@ import { FadeAnimation } from '../../../../animations';
 export class BlogPostComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
   post;
+  heroImages;
   blogs;
   media;
   categories;
@@ -50,6 +51,11 @@ export class BlogPostComponent implements OnInit {
       this.authors = this.blogService.authors;
       this.tags = this.blogService.tags;
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
+      this.heroImages = {
+        sm: this.getImageSrc(this.post.featured_media),
+        md: this.getImageSrc(this.post.featured_media),
+        lg: this.getImageSrc(this.post.featured_media)
+      };
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
       this.loading = false;
@@ -109,6 +115,11 @@ export class BlogPostComponent implements OnInit {
           setTimeout(() => {
             this.slug = ev.url.split('/').pop();
             this.post = this.blogs.filter(post => post.slug === this.slug)[0];
+            this.heroImages = {
+              sm: this.getImageSrc(this.post.featured_media),
+              md: this.getImageSrc(this.post.featured_media),
+              lg: this.getImageSrc(this.post.featured_media)
+            };
             this.sanitizeHtml(this.post.content.rendered);
             this.setSEO(this.post);
 
@@ -246,19 +257,31 @@ export class BlogPostComponent implements OnInit {
 
   getImageSrc(id) {
     if (this.media) {
-      return this.blogService.media.filter(media => media.id === id)[0].source_url;
+      const mediaData = this.media.filter(media => media.id === id);
+
+      if (mediaData.length) {
+        return mediaData[0].source_url;
+      } else {
+        return 'https://assets.automatik9dots.com/images/home-car-drifting-bg-2560.jpg';
+      }
     }
   }
 
   getImageAlt(id) {
     if (this.media) {
-      return this.blogService.media.filter(media => media.id === id)[0].alt_text;
+      const mediaData = this.media.filter(media => media.id === id);
+
+      if (mediaData.length) {
+        return mediaData[0].alt_text;
+      } else {
+        return 'automätik';
+      }
     }
   }
 
   getAuthor(id) {
     if (this.authors) {
-      return this.blogService.authors.filter(author => author.id === id)[0].name;
+      return this.authors.filter(author => author.id === id)[0].name;
     }
   }
 
