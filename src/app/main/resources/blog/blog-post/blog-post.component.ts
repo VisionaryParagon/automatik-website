@@ -18,7 +18,11 @@ import { FadeAnimation } from '../../../../animations';
 export class BlogPostComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
   post;
-  heroImages;
+  heroImages = {
+    sm: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg',
+    md: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-1440.jpg',
+    lg: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-2560.jpg'
+  };
   blogs;
   media;
   categories;
@@ -51,11 +55,9 @@ export class BlogPostComponent implements OnInit {
       this.authors = this.blogService.authors;
       this.tags = this.blogService.tags;
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-      this.heroImages = {
-        sm: this.getImageSrc(this.post.featured_media),
-        md: this.getImageSrc(this.post.featured_media),
-        lg: this.getImageSrc(this.post.featured_media)
-      };
+      this.heroImages.sm = this.getImageSrc(this.post.featured_media);
+      this.heroImages.md = this.getImageSrc(this.post.featured_media);
+      this.heroImages.lg = this.getImageSrc(this.post.featured_media);
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
       this.loading = false;
@@ -115,11 +117,9 @@ export class BlogPostComponent implements OnInit {
           setTimeout(() => {
             this.slug = ev.url.split('/').pop();
             this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-            this.heroImages = {
-              sm: this.getImageSrc(this.post.featured_media),
-              md: this.getImageSrc(this.post.featured_media),
-              lg: this.getImageSrc(this.post.featured_media)
-            };
+            this.heroImages.sm = this.getImageSrc(this.post.featured_media);
+            this.heroImages.md = this.getImageSrc(this.post.featured_media);
+            this.heroImages.lg = this.getImageSrc(this.post.featured_media);
             this.sanitizeHtml(this.post.content.rendered);
             this.setSEO(this.post);
 
@@ -170,6 +170,9 @@ export class BlogPostComponent implements OnInit {
   checkData() {
     if (this.blogs && this.media && this.categories && this.authors && this.tags) {
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
+      this.heroImages.sm = this.getImageSrc(this.post.featured_media);
+      this.heroImages.md = this.getImageSrc(this.post.featured_media);
+      this.heroImages.lg = this.getImageSrc(this.post.featured_media);
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
       this.loading = false;
