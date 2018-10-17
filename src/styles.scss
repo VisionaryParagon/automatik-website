@@ -1304,6 +1304,11 @@ section {
     justify-content: center;
     padding: 4rem 15px 6rem;
     text-align: center;
+
+    .imgBox {
+      height: 0;
+      padding: 0 0 100%;
+    }
   }
 }
 
