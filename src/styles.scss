@@ -32,7 +32,7 @@ body {
 }
 
 
-/* ~~~ Typography ~~~ */
+/*~~ Typography ~~*/
 
 h1,
 h2 {
@@ -1130,6 +1130,7 @@ section {
 
   &.solidArrow {
     background-color: $client-blue-bg;
+    margin: -1px 0;
     overflow: visible;
     padding: 20px 0;
 
@@ -1223,56 +1224,6 @@ section {
   }
 }
 
-.scrollArrow {
-  bottom: 1rem;
-  color: #fff;
-  cursor: pointer;
-  height: 4rem;
-  position: fixed;
-  right: 1rem;
-  width: 4rem;
-  z-index: 5;
-
-  .arrowDown {
-    -moz-animation: scrollDown 1500ms infinite;
-    -o-animation: scrollDown 1500ms infinite;
-    -webkit-animation: scrollDown 1500ms infinite;
-    animation: scrollDown 1500ms infinite;
-    border-bottom: 2px solid #fff;
-    border-right: 2px solid #fff;
-    height: 1.5rem;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    -moz-transform: translate(-50%, -50%) rotate(45deg);
-    -ms-transform: translate(-50%, -50%) rotate(45deg);
-    -o-transform: translate(-50%, -50%) rotate(45deg);
-    -webkit-transform: translate(-50%, -50%) rotate(45deg);
-    transform: translate(-50%, -50%) rotate(45deg);
-    width: 1.5rem;
-  }
-}
-
-.parallax {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-
-  img {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 100%;
-  }
-}
-
 
 /*~~ Home ~~*/
 
@@ -1347,8 +1298,6 @@ section {
 }
 
 #home2 {
-  min-height: 50vh;
-
   .container {
     display: flex;
     flex-direction: column;
@@ -1558,77 +1507,6 @@ section {
     -o-transform: translate(-50%, 25%);
     -webkit-transform: translate(-50%, 25%);
     transform: translate(-50%, 25%);
-  }
-}
-
-
-/*~~ Carousel ~~*/
-
-.carousel {
-  overflow: hidden;
-  position: relative;
-  -moz-transition: height 500ms;
-  -o-transition: height 500ms;
-  -webkit-transition: height 500ms;
-  transition: height 500ms;
-
-  .slide {
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -moz-transition: all 500ms 250ms;
-    -o-transition: all 500ms 250ms;
-    -webkit-transition: all 500ms 250ms;
-    transition: all 500ms 250ms;
-    z-index: 0;
-
-    &.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    &.left {
-      -moz-transform: translateX(-100vw);
-      -ms-transform: translateX(-100vw);
-      -o-transform: translateX(-100vw);
-      -webkit-transform: translateX(-100vw);
-      transform: translateX(-100vw);
-    }
-
-    &.right {
-      -moz-transform: translateX(100vw);
-      -ms-transform: translateX(100vw);
-      -o-transform: translateX(100vw);
-      -webkit-transform: translateX(100vw);
-      transform: translateX(100vw);
-    }
-  }
-}
-
-.pager {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-
-  fa-icon {
-    opacity: 0.5;
-    padding: .25rem;
-    -moz-transition: opacity 500ms 250ms;
-    -o-transition: opacity 500ms 250ms;
-    -webkit-transition: opacity 500ms 250ms;
-    transition: opacity 500ms 250ms;
-
-    &.active {
-      opacity: 1;
-    }
   }
 }
 
@@ -2036,6 +1914,11 @@ section {
     }
   }
 
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
   blockquote {
     color: #999;
     font-size: 22px;
@@ -2336,6 +2219,137 @@ footer {
         transform: translate(-50%, -44%);
       }
     }
+  }
+}
+
+
+/*~~ SNIPPETS ~~*/
+/*~~ Carousel ~~*/
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  -moz-transition: height 500ms;
+  -o-transition: height 500ms;
+  -webkit-transition: height 500ms;
+  transition: height 500ms;
+
+  .slide {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -moz-transition: all 500ms 250ms;
+    -o-transition: all 500ms 250ms;
+    -webkit-transition: all 500ms 250ms;
+    transition: all 500ms 250ms;
+    z-index: 0;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    &.left {
+      -moz-transform: translateX(-100vw);
+      -ms-transform: translateX(-100vw);
+      -o-transform: translateX(-100vw);
+      -webkit-transform: translateX(-100vw);
+      transform: translateX(-100vw);
+    }
+
+    &.right {
+      -moz-transform: translateX(100vw);
+      -ms-transform: translateX(100vw);
+      -o-transform: translateX(100vw);
+      -webkit-transform: translateX(100vw);
+      transform: translateX(100vw);
+    }
+  }
+}
+
+.pager {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+
+  fa-icon {
+    opacity: 0.5;
+    padding: .25rem;
+    -moz-transition: opacity 500ms 250ms;
+    -o-transition: opacity 500ms 250ms;
+    -webkit-transition: opacity 500ms 250ms;
+    transition: opacity 500ms 250ms;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+
+/*~~ Scroll Arrow ~~*/
+
+.scrollArrow {
+  bottom: 1rem;
+  color: #fff;
+  cursor: pointer;
+  height: 4rem;
+  position: fixed;
+  right: 1rem;
+  width: 4rem;
+  z-index: 5;
+
+  .arrowDown {
+    -moz-animation: scrollDown 1500ms infinite;
+    -o-animation: scrollDown 1500ms infinite;
+    -webkit-animation: scrollDown 1500ms infinite;
+    animation: scrollDown 1500ms infinite;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    height: 1.5rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%) rotate(45deg);
+    -ms-transform: translate(-50%, -50%) rotate(45deg);
+    -o-transform: translate(-50%, -50%) rotate(45deg);
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 1.5rem;
+  }
+}
+
+
+/*~~ Parallax ~~*/
+
+.parallax {
+  clip: rect(0, auto, auto, 0);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  div {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    width: 100%;
   }
 }
 

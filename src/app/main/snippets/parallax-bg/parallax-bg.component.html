@@ -1,3 +1,7 @@
 <div class="parallax" #parallax>
-  <img [src]="image" alt="automätik" [ngStyle]="{ 'height': imgHeight, 'top': top, 'width': imgWidth }">
+  <div [ngStyle]="{
+    'background-image': 'url(' + image + ')',
+    'height': height + 'px',
+    'top': top + 'px'
+  }"></div>
 </div>

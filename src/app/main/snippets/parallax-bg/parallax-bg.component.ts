@@ -1,18 +1,26 @@
-import { Component, ElementRef, HostListener, Input, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, HostListener, Input, Inject, OnChanges, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+
+export class ParallaxImages {
+  sm: string;
+  md: string;
+  lg: string;
+}
 
 @Component({
   selector: 'parallax-bg',
   templateUrl: './parallax-bg.component.html',
   styleUrls: ['./parallax-bg.component.css']
 })
-export class ParallaxBgComponent implements OnInit {
-  @Input('images') images;
+export class ParallaxBgComponent implements AfterContentInit, OnChanges, OnInit {
+  @Input() images: ParallaxImages = new ParallaxImages();
   image: string;
-  center: number;
-  imgHeight = 'auto';
-  imgWidth = '100%';
-  top = '50%';
+  top: number;
+  height: number;
+  width: number;
+  windowHeight = 0;
+  windowHeightExtra = 0;
+  speed = 4;
 
   @ViewChild('parallax') parallax: ElementRef;
 
@@ -21,31 +29,61 @@ export class ParallaxBgComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.center = this.parallax.nativeElement.offsetHeight / 2;
-    this.top = this.center + 'px';
+    if (isPlatformBrowser(this.platformId)) {
+      this.width = window.outerWidth;
+    }
+  }
 
-    this.checkBanner();
+  ngOnChanges() {
+    this.getContainer();
+  }
+
+  ngAfterContentInit() {
+    this.getContainer();
   }
 
   @HostListener('window:scroll', ['$event']) onScroll(ev) {
     if (isPlatformBrowser(this.platformId)) {
-      let y = 0;
       let el = this.parallax.nativeElement;
 
       while (el) {
-        y += (el.offsetTop - el.scrollTop + el.clientTop);
+        if (el.tagName === 'SECTION') {
+          const container = el.getBoundingClientRect();
+
+          if (container.top + container.height >= 0 && container.top <= this.windowHeight) {
+            this.setParallax(container, this.speed);
+          }
+          return;
+        }
         el = el.offsetParent;
       }
-
-      this.top = this.center + ((window.scrollY - y) * 0.75) + 'px';
     }
   }
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.checkBanner();
+    const w = window.outerWidth;
+
+    if (w !== this.width) {
+      this.getContainer();
+      this.width = w;
+    }
   }
 
-  checkBanner() {
+  getContainer() {
     if (isPlatformBrowser(this.platformId)) {
+      const safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      const mobile = /Mobi/.test(navigator.userAgent);
+      let el = this.parallax.nativeElement;
+      this.windowHeight = window.innerHeight;
+
+      if (safari && !mobile) {
+        this.windowHeightExtra = window.outerHeight - window.innerHeight;
+      }
+
+      if (mobile) {
+        this.windowHeight = window.screen.availHeight;
+        this.windowHeightExtra = (window.screen.availHeight - window.innerHeight) / 2;
+      }
+
       if (window.innerWidth >= 1200) {
         this.image = this.images.lg;
       } else if (window.innerWidth >= 768 && window.innerWidth < 1200) {
@@ -54,13 +92,24 @@ export class ParallaxBgComponent implements OnInit {
         this.image = this.images.sm;
       }
 
-      if (window.innerWidth * 0.565 < window.innerHeight) {
-        this.imgHeight = '120%';
-        this.imgWidth = 'auto';
-      } else {
-        this.imgHeight = 'auto';
-        this.imgWidth = '100%';
+      while (el) {
+        if (el.tagName === 'SECTION') {
+          const container = el.getBoundingClientRect();
+          const elemOffsetTop = (this.windowHeight - container.height) / 2;
+          const bgHeight = container.height + (elemOffsetTop - elemOffsetTop / this.speed) * 1.5;
+
+          this.parallax.nativeElement.style.height = container.height + 'px';
+          this.height = bgHeight + this.windowHeightExtra * 2;
+          this.setParallax(container, this.speed);
+          return;
+        }
+        el = el.offsetParent;
       }
     }
+  }
+
+  setParallax(container, speed) {
+    const bgScroll = container.top / speed - this.windowHeightExtra;
+    this.top = bgScroll;
   }
 }

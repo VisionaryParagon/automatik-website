@@ -55,9 +55,11 @@ export class BlogPostComponent implements OnInit {
       this.authors = this.blogService.authors;
       this.tags = this.blogService.tags;
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-      this.heroImages.sm = this.getImageSrc(this.post.featured_media);
-      this.heroImages.md = this.getImageSrc(this.post.featured_media);
-      this.heroImages.lg = this.getImageSrc(this.post.featured_media);
+      this.heroImages = {
+        sm: this.getImageSrc(this.post.featured_media),
+        md: this.getImageSrc(this.post.featured_media),
+        lg: this.getImageSrc(this.post.featured_media)
+      };
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
       this.loading = false;
@@ -116,12 +118,7 @@ export class BlogPostComponent implements OnInit {
 
           setTimeout(() => {
             this.slug = ev.url.split('/').pop();
-            this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-            this.heroImages.sm = this.getImageSrc(this.post.featured_media);
-            this.heroImages.md = this.getImageSrc(this.post.featured_media);
-            this.heroImages.lg = this.getImageSrc(this.post.featured_media);
-            this.sanitizeHtml(this.post.content.rendered);
-            this.setSEO(this.post);
+            this.checkData();
 
             setTimeout(() => {
               this.changingBlog = false;
@@ -132,13 +129,8 @@ export class BlogPostComponent implements OnInit {
     });
 
     this.checkMobile();
-
-    this.checkBanner();
   }
 
-  @HostListener('window:resize', ['$event']) onResize(ev) {
-    this.checkBanner();
-  }
   @HostListener('window:scroll', ['$event']) onScroll(ev) {
     this.checkScroll();
   }
@@ -170,9 +162,11 @@ export class BlogPostComponent implements OnInit {
   checkData() {
     if (this.blogs && this.media && this.categories && this.authors && this.tags) {
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
-      this.heroImages.sm = this.getImageSrc(this.post.featured_media);
-      this.heroImages.md = this.getImageSrc(this.post.featured_media);
-      this.heroImages.lg = this.getImageSrc(this.post.featured_media);
+      this.heroImages = {
+        sm: this.getImageSrc(this.post.featured_media),
+        md: this.getImageSrc(this.post.featured_media),
+        lg: this.getImageSrc(this.post.featured_media)
+      };
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
       this.loading = false;
@@ -243,18 +237,6 @@ export class BlogPostComponent implements OnInit {
       this.seoService.addDynamicSeoData(this.metadata);
     } else {
       this.seoService.addDynamicSeoData();
-    }
-  }
-
-  checkBanner() {
-    if (isPlatformBrowser(this.platformId)) {
-      if (window.innerWidth * 0.565 < window.innerHeight) {
-        this.imgHeight = '100%';
-        this.imgWidth = 'auto';
-      } else {
-        this.imgHeight = 'auto';
-        this.imgWidth = '100%';
-      }
     }
   }
 
