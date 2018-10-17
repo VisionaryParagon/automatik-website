@@ -31,11 +31,6 @@ export class AboutMainComponent implements AfterViewInit, OnInit {
       sm: 'https://images.unsplash.com/photo-1506664958676-205b41a88d0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f87d0f586096bfce4b4f0dc6d5e0729&auto=format&fit=crop&w=1650&q=80',
       md: 'https://images.unsplash.com/photo-1506664958676-205b41a88d0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f87d0f586096bfce4b4f0dc6d5e0729&auto=format&fit=crop&w=1650&q=80',
       lg: 'https://images.unsplash.com/photo-1506664958676-205b41a88d0d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1f87d0f586096bfce4b4f0dc6d5e0729&auto=format&fit=crop&w=1650&q=80'
-    },
-    careers: {
-      sm: 'https://images.unsplash.com/photo-1518600654093-2a24cddafa38?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=96238af4ac6e58d17d362d5b8b846eb4&auto=format&fit=crop&w=1634&q=80',
-      md: 'https://images.unsplash.com/photo-1518600654093-2a24cddafa38?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=96238af4ac6e58d17d362d5b8b846eb4&auto=format&fit=crop&w=1634&q=80',
-      lg: 'https://images.unsplash.com/photo-1518600654093-2a24cddafa38?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=96238af4ac6e58d17d362d5b8b846eb4&auto=format&fit=crop&w=1634&q=80'
     }
   };
   loading = true;
