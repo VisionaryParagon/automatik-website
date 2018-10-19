@@ -1,5 +1,5 @@
 <section class="tileSection" [@fade]="true">
-  <div class="container" *ngIf="loading && !error.length">
+  <div class="container py-5" *ngIf="loading && !error.length">
     <mat-spinner class="mx-auto my-5"></mat-spinner>
   </div>
 
@@ -75,23 +75,25 @@
     </div>
   </div>
 
-  <div class="tileBox" [class.on]="!loading" #tileBox>
+  <div class="tileBox" [class.on]="!loading || error.length" #tileBox>
     <div class="tile" [@fade]="true" *ngFor="let blog of blogs" [class.hovered]="hovered === blog.slug" (mouseenter)="setHover(blog.slug)" (mouseleave)="setHover('')" routerLink="/resources/blog/{{ blog.slug }}" #tiles>
-      <img [src]="getImageSrc(blog.featured_media)" [alt]="getImageAlt(blog.featured_media)">
+      <img [src]="getImageSrc(blog)" [alt]="getImageAlt(blog)">
 
       <div class="overlay"></div>
 
       <div class="tileInfo">
         <h2>{{ blog.title.rendered }}</h2>
 
-        <p>{{ blog.date | date: 'mediumDate' }} &nbsp;|&nbsp; {{ getAuthor(blog.author) }}</p>
+        <p>{{ blog.date | date: 'mediumDate' }} &nbsp;|&nbsp; {{ getAuthor(blog) }}</p>
 
         <p [@topDown]="true" *ngIf="hovered === blog.slug">{{ truncateDesc(blog.yoast.metadesc) }}</p>
       </div>
     </div>
 
-    <div class="text-center" [@topDown]="true" *ngIf="error.length">
-      <p>{{ error }}</p>
+    <div class="text-center py-5" [@topDown]="true" *ngIf="error.length">
+      <p>Uh oh... Something went wrong. Sorry about that!</p>
+
+      <p>Please try again later.</p>
     </div>
   </div>
 </section>

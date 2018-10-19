@@ -13,10 +13,8 @@ import { FadeAnimation, TopDownAnimation } from '../../../../animations';
 })
 export class BlogMainComponent implements OnInit {
   blogs;
-  media;
   categories;
   authors;
-  tags;
   loading = true;
   filteredBlogs;
   filterOpen = false;
@@ -41,10 +39,8 @@ export class BlogMainComponent implements OnInit {
   ngOnInit() {
     if (this.blogService.dataRetrieved) {
       this.filteredBlogs = [...this.blogService.blogs];
-      this.media = this.blogService.media;
       this.categories = this.blogService.categories;
       this.authors = this.blogService.authors;
-      this.tags = this.blogService.tags;
 
       if (this.blogService.filter.length) {
         this.filter = this.blogService.filter;
@@ -70,15 +66,7 @@ export class BlogMainComponent implements OnInit {
           },
           error => this.setError(error)
         );
-      this.blogService.getMedia()
-        .subscribe(
-          media => {
-            this.media = this.blogService.media;
-            // console.log('Media: ', this.media);
-            this.checkData();
-          },
-          error => this.setError(error)
-        );
+
       this.blogService.getCategories()
         .subscribe(
           categories => {
@@ -88,20 +76,12 @@ export class BlogMainComponent implements OnInit {
           },
           error => this.setError(error)
         );
+
       this.blogService.getAuthors()
         .subscribe(
           authors => {
             this.authors = this.blogService.authors;
             // console.log('Authors: ', this.authors);
-            this.checkData();
-          },
-          error => this.setError(error)
-        );
-      this.blogService.getTags()
-        .subscribe(
-          tags => {
-            this.tags = this.blogService.tags;
-            // console.log('Tags: ', this.tags);
             this.checkData();
           },
           error => this.setError(error)
@@ -141,7 +121,7 @@ export class BlogMainComponent implements OnInit {
   }
 
   checkData() {
-    if (this.blogs && this.media && this.categories && this.authors && this.tags) {
+    if (this.blogs && this.categories && this.authors) {
       this.loading = false;
 
       this.setTilePosition();
@@ -207,41 +187,47 @@ export class BlogMainComponent implements OnInit {
     }
   }
 
-  getImageSrc(id) {
-    if (this.media) {
-      const mediaData = this.media.filter(media => media.id === id);
+  getImageSrc(blog) {
+    if (this.blogs) {
+      const src = blog._embedded['wp:featuredmedia']['0'].source_url;
 
-      if (mediaData.length) {
-        return mediaData[0].media_details.sizes.medium_large.source_url;
+      if (src) {
+        return src;
       } else {
         return 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg';
       }
     }
   }
 
-  getImageAlt(id) {
-    if (this.media) {
-      const mediaData = this.media.filter(media => media.id === id);
+  getImageAlt(blog) {
+    if (this.blogs) {
+      const alt = blog._embedded['wp:featuredmedia'][0].alt_text;
 
-      if (mediaData.length) {
-        return mediaData[0].alt_text;
+      if (alt) {
+        return alt;
       } else {
         return 'automätik';
       }
     }
   }
 
-  getAuthor(id) {
-    if (this.authors) {
-      return this.authors.filter(author => author.id === id)[0].name;
+  getAuthor(blog) {
+    if (this.blogs) {
+      const author = blog._embedded['author'][0].name;
+
+      if (author) {
+        return author;
+      } else {
+        return 'automätik';
+      }
     }
   }
 
   truncateDesc(desc) {
     const arr = desc.split(' ');
 
-    if (arr.length > 30) {
-      return arr.slice(0, 30).join(' ') + '...';
+    if (arr.length > 20) {
+      return arr.slice(0, 20).join(' ') + '...';
     }
     return desc;
   }

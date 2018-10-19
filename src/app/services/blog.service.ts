@@ -15,10 +15,8 @@ export class BlogService {
   blogUrlRoot = 'https://automatikblog.us/wp-json/wp/v2/';
   dataRetrieved = false;
   blogs;
-  media;
   categories;
   authors;
-  tags;
   filter = '';
   selectedCategory = '';
   selectedAuthor = '';
@@ -28,23 +26,12 @@ export class BlogService {
   ) { }
 
   getPosts() {
-    return this.http.get(this.blogUrlRoot + 'posts')
+    return this.http.get(this.blogUrlRoot + 'posts?per_page=100&_embed')
       .pipe(
         retry(3),
         tap(blogs => {
           this.blogs = blogs;
-          this.checkData();
-        }),
-        catchError(this.handleError)
-      );
-  }
-
-  getMedia() {
-    return this.http.get(this.blogUrlRoot + 'media')
-      .pipe(
-        retry(3),
-        tap(media => {
-          this.media = media;
+          // console.log(this.blogs);
           this.checkData();
         }),
         catchError(this.handleError)
@@ -52,11 +39,12 @@ export class BlogService {
   }
 
   getCategories() {
-    return this.http.get(this.blogUrlRoot + 'categories')
+    return this.http.get(this.blogUrlRoot + 'categories?per_page=100')
       .pipe(
         retry(3),
         tap(categories => {
           this.categories = categories;
+          // console.log(this.categories);
           this.checkData();
         }),
         catchError(this.handleError)
@@ -64,31 +52,20 @@ export class BlogService {
   }
 
   getAuthors() {
-    return this.http.get(this.blogUrlRoot + 'users')
+    return this.http.get(this.blogUrlRoot + 'users?per_page=100')
       .pipe(
         retry(3),
         tap(users => {
           this.authors = users;
+          // console.log(this.authors);
           this.checkData();
         }),
         catchError(this.handleError)
       );
   }
 
-  getTags() {
-    return this.http.get(this.blogUrlRoot + 'tags')
-      .pipe(
-        retry(3),
-        tap(tags => {
-          this.tags = tags;
-          this.checkData();
-        }),
-        catchError(this.handleError)
-      );
-  }
-
-  private checkData() {
-    if (this.blogs && this.media && this.categories && this.authors && this.tags) {
+  checkData() {
+    if (this.blogs && this.categories && this.authors) {
       this.dataRetrieved = true;
     } else {
       this.dataRetrieved = false;

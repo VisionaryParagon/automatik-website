@@ -1,6 +1,6 @@
 <div [@fade]="true">
   <section *ngIf="loading && !error.length">
-    <div class="container">
+    <div class="container py-5">
       <mat-spinner class="mx-auto my-5"></mat-spinner>
     </div>
   </section>
@@ -14,7 +14,7 @@
       <div class="title">
         <h1>{{ post.title.rendered }}</h1>
 
-        <h4>{{ post.date | date: 'mediumDate' }}<span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span><hr class="d-md-none"><a (click)="goToAuthor(post.author)">{{ getAuthor(post.author) }}</a></h4>
+        <h4>{{ post.date | date: 'mediumDate' }}<span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span><hr class="d-md-none"><a (click)="goToAuthor(post)">{{ getAuthor(post) }}</a></h4>
       </div>
     </section>
 

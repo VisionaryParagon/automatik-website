@@ -24,10 +24,7 @@ export class BlogPostComponent implements OnInit {
     lg: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-2560.jpg'
   };
   blogs;
-  media;
   categories;
-  authors;
-  tags;
   metadata: Seo;
   safeHtml: SafeHtml;
   atTop = true;
@@ -50,15 +47,13 @@ export class BlogPostComponent implements OnInit {
   ngOnInit() {
     if (this.blogService.dataRetrieved) {
       this.blogs = this.blogService.blogs;
-      this.media = this.blogService.media;
       this.categories = this.blogService.categories;
-      this.authors = this.blogService.authors;
-      this.tags = this.blogService.tags;
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
+      // console.log(this.post);
       this.heroImages = {
-        sm: this.getImageSrc(this.post.featured_media),
-        md: this.getImageSrc(this.post.featured_media),
-        lg: this.getImageSrc(this.post.featured_media)
+        sm: this.getImageSrc(this.post),
+        md: this.getImageSrc(this.post),
+        lg: this.getImageSrc(this.post)
       };
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
@@ -73,38 +68,12 @@ export class BlogPostComponent implements OnInit {
           },
           error => this.setError(error)
         );
-      this.blogService.getMedia()
-        .subscribe(
-          media => {
-            this.media = this.blogService.media;
-            // console.log('Media: ', this.media);
-            this.checkData();
-          },
-          error => this.setError(error)
-        );
+
       this.blogService.getCategories()
         .subscribe(
           categories => {
             this.categories = this.blogService.categories;
             // console.log('Categories: ', this.categories);
-            this.checkData();
-          },
-          error => this.setError(error)
-        );
-      this.blogService.getAuthors()
-        .subscribe(
-          authors => {
-            this.authors = this.blogService.authors;
-            // console.log('Authors: ', this.authors);
-            this.checkData();
-          },
-          error => this.setError(error)
-        );
-      this.blogService.getTags()
-        .subscribe(
-          tags => {
-            this.tags = this.blogService.tags;
-            // console.log('Tags: ', this.tags);
             this.checkData();
           },
           error => this.setError(error)
@@ -160,12 +129,13 @@ export class BlogPostComponent implements OnInit {
   }
 
   checkData() {
-    if (this.blogs && this.media && this.categories && this.authors && this.tags) {
+    if (this.blogs && this.categories) {
       this.post = this.blogs.filter(post => post.slug === this.slug)[0];
+      // console.log(this.post);
       this.heroImages = {
-        sm: this.getImageSrc(this.post.featured_media),
-        md: this.getImageSrc(this.post.featured_media),
-        lg: this.getImageSrc(this.post.featured_media)
+        sm: this.getImageSrc(this.post),
+        md: this.getImageSrc(this.post),
+        lg: this.getImageSrc(this.post)
       };
       this.sanitizeHtml(this.post.content.rendered);
       this.setSEO(this.post);
@@ -177,11 +147,10 @@ export class BlogPostComponent implements OnInit {
 
   setSEO(data?) {
     if (data) {
-      const seoImg = this.getImageSrc(data.featured_media);
-      // console.log(data.yoast);
+      // console.log(data);
 
       this.metadata = {
-        title: data.yoast.title,
+        title: data.yoast.title || data.title.rendered + ' | automätik',
         metatags: [
           {
             name: 'description',
@@ -193,7 +162,7 @@ export class BlogPostComponent implements OnInit {
           },
           {
             property: 'og:title',
-            content: data.yoast.title
+            content: data.yoast.title || data.title.rendered + ' | automätik'
           },
           {
             property: 'og:type',
@@ -205,7 +174,7 @@ export class BlogPostComponent implements OnInit {
           },
           {
             property: 'og:image',
-            content: seoImg
+            content: data.yoast['opengraph-image'] || this.getImageSrc(data)
           },
           {
             property: 'og:description',
@@ -221,7 +190,7 @@ export class BlogPostComponent implements OnInit {
           },
           {
             name: 'twitter:title',
-            content: data.yoast.title
+            content: data.yoast.title || data.title.rendered + ' | automätik'
           },
           {
             name: 'twitter:description',
@@ -229,7 +198,7 @@ export class BlogPostComponent implements OnInit {
           },
           {
             name: 'twitter:image:src',
-            content: seoImg
+            content: data.yoast['twitter-image'] || this.getImageSrc(data)
           }
         ]
       };
@@ -240,33 +209,39 @@ export class BlogPostComponent implements OnInit {
     }
   }
 
-  getImageSrc(id) {
-    if (this.media) {
-      const mediaData = this.media.filter(media => media.id === id);
+  getImageSrc(blog) {
+    if (this.blogs) {
+      const src = blog._embedded['wp:featuredmedia']['0'].source_url;
 
-      if (mediaData.length) {
-        return mediaData[0].source_url;
+      if (src) {
+        return src;
       } else {
-        return 'https://assets.automatik9dots.com/images/home-car-drifting-bg-2560.jpg';
+        return 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg';
       }
     }
   }
 
-  getImageAlt(id) {
-    if (this.media) {
-      const mediaData = this.media.filter(media => media.id === id);
+  getImageAlt(blog) {
+    if (this.blogs) {
+      const alt = blog._embedded['wp:featuredmedia'][0].alt_text;
 
-      if (mediaData.length) {
-        return mediaData[0].alt_text;
+      if (alt) {
+        return alt;
       } else {
         return 'automätik';
       }
     }
   }
 
-  getAuthor(id) {
-    if (this.authors) {
-      return this.authors.filter(author => author.id === id)[0].name;
+  getAuthor(blog) {
+    if (this.blogs) {
+      const author = blog._embedded['author'][0].name;
+
+      if (author) {
+        return author;
+      } else {
+        return 'automätik';
+      }
     }
   }
 
