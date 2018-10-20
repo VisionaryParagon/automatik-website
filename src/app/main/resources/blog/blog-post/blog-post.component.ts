@@ -27,8 +27,6 @@ export class BlogPostComponent implements OnInit {
   categories;
   metadata: Seo;
   safeHtml: SafeHtml;
-  atTop = true;
-  isMobile = false;
   changingBlog = false;
   imgHeight = 'auto';
   imgWidth = '100%';
@@ -96,36 +94,6 @@ export class BlogPostComponent implements OnInit {
         }
       }
     });
-
-    this.checkMobile();
-  }
-
-  @HostListener('window:scroll', ['$event']) onScroll(ev) {
-    this.checkScroll();
-  }
-
-  scrollPage() {
-    if (isPlatformBrowser(this.platformId)) {
-      let scrl = window.innerHeight;
-      if (this.isMobile) {
-        scrl = scrl - 50;
-      } else {
-        scrl = scrl - 60;
-      }
-      window.scroll({top: scrl, left: 0, behavior: 'smooth'});
-    }
-  }
-
-  checkScroll() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.atTop = window.scrollY > 50 ? false : true;
-    }
-  }
-
-  checkMobile() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = document.documentElement.classList.contains('mobile') ? true : false;
-    }
   }
 
   checkData() {

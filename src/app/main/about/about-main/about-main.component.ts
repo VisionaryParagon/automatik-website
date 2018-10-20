@@ -88,7 +88,7 @@ export class AboutMainComponent implements AfterViewInit, OnInit {
 
       // console.log('scroll to', id, 'at', this.topScroll);
 
-      window.scroll({top: this.topScroll, left: 0, behavior: 'smooth'});
+      window.scrollTo({top: this.topScroll, left: 0, behavior: 'smooth'});
     }
   }
 

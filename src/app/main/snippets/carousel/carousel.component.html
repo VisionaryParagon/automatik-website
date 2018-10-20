@@ -16,10 +16,10 @@
 
             <h4 *ngIf="item.client">{{ item.client }}</h4>
           </div>
-        </div>
 
-        <div class="pager">
-          <fa-icon [icon]="['fas', 'circle']" size="sm" *ngFor="let item of slides; let i = index" [class.active]="i === currentSlide" (click)="setSlide(i)"></fa-icon>
+          <div class="pager">
+            <fa-icon [icon]="['fas', 'circle']" size="sm" *ngFor="let item of slides; let i = index" [class.active]="i === currentSlide" (click)="setSlide(i)"></fa-icon>
+          </div>
         </div>
       </div>
 

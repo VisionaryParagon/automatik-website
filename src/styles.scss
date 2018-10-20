@@ -1347,7 +1347,7 @@ section {
 #home4 {
   background-image: url(https://assets.automatik9dots.com/images/home-5-secrets-bg-900.jpg);
   padding: 60px 0;
-  position: static;
+  position: inherit;
   text-align: center;
 
   h3 {
@@ -2237,6 +2237,7 @@ footer {
 
 .carousel {
   overflow: hidden;
+  padding: 0 0 30px;
   position: relative;
   -moz-transition: height 500ms;
   -o-transition: height 500ms;

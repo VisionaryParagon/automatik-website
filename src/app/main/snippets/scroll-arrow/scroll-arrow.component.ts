@@ -32,7 +32,7 @@ export class ScrollArrowComponent implements OnInit {
       } else {
         scrl = scrl - 60;
       }
-      window.scroll({top: scrl, left: 0, behavior: 'smooth'});
+      window.scrollTo({top: scrl, left: 0, behavior: 'smooth'});
     }
   }
 

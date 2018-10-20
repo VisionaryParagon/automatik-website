@@ -128,7 +128,7 @@ export class ServicesMainComponent implements OnInit {
 
   setTilePosition() {
     if (isPlatformBrowser(this.platformId)) {
-      window.scroll({top: 0, left: 0, behavior: 'smooth'});
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
       setTimeout(() => {
         if (window.outerWidth >= 1200) {

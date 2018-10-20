@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ScrollArrowComponent } from '../snippets/scroll-arrow/scroll-arrow.component';
+
 import { FadeAnimation, TopDownAnimation } from '../../animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  animations: [ FadeAnimation, TopDownAnimation ]
+  animations: [ FadeAnimation, TopDownAnimation ],
+  providers: [ ScrollArrowComponent ]
 })
 export class HomeComponent implements OnInit {
   images = {
@@ -117,9 +120,15 @@ export class HomeComponent implements OnInit {
   success = false;
   error = '';
 
-  constructor() { }
+  constructor(
+    private scroller: ScrollArrowComponent
+  ) { }
 
   ngOnInit() {
+  }
+
+  scrollPage() {
+    this.scroller.scrollPage();
   }
 
   shuffle(array) {

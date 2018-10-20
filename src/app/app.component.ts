@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser, Location, PopStateEvent } from '@angular/common';
 
@@ -17,10 +17,11 @@ declare let ga: Function;
   styleUrls: ['./app.component.css'],
   animations: [ MobileNavAnimation, FadeAnimation, TopDownAnimation ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit, OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 
+  contentLoaded = false;
   isIntro = false;
   isAdmin = false;
   isLogin = false;
@@ -97,6 +98,12 @@ export class AppComponent implements OnInit {
     this.seoService.addSeoData();
 
     this.testMobile();
+  }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.contentLoaded = true;
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(event) {
