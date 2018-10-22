@@ -1,4 +1,4 @@
-<header *ngIf="contentLoaded" (mouseover)="toggleSubNav($event, 'close')">
+<header [class.loaded]="contentLoaded" (mouseover)="toggleSubNav($event, 'close')">
   <nav>
     <a id="navLogo" routerLink="/" [@fade]="true" [class.introLogo]="isIntro" (click)="closeNav(); closeSubNav()"><img src="https://assets.automatik9dots.com/images/automatik-navigation-logo.png" alt="automätik logo"></a>
 
@@ -171,11 +171,11 @@
   </nav>
 </header>
 
-<div *ngIf="contentLoaded" (mouseover)="closeSubNav()">
+<div id="main" [class.loaded]="contentLoaded" (mouseover)="closeSubNav()">
   <router-outlet></router-outlet>
 </div>
 
-<footer *ngIf="contentLoaded" (mouseover)="closeSubNav()">
+<footer [class.loaded]="contentLoaded" (mouseover)="closeSubNav()">
   <div class="container" [@fade]="true" *ngIf="!isIntro">
     <div class="socialMedia">
       <a class="smIcon facebook" href="https://www.facebook.com/automatikus/" target="_blank">
