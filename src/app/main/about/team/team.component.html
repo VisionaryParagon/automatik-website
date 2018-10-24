@@ -3,7 +3,7 @@
     <h2>Meet Our Team</h2>
   </div>
 
-  <div id="team" [style.marginBottom]="bottomMargin" #teamBox>
+  <div class="team" [style.marginBottom]="bottomMargin" #teamBox>
     <div class="container">
       <div class="row px-2" [@fade]="true" *ngIf="teammates">
         <div class="teammate" *ngFor="let mate of teammates">
@@ -12,28 +12,38 @@
       </div>
     </div>
 
-    <div id="bio" [@teamBio]="true" *ngIf="selected" [style.minHeight]="teamHeight" #bioBox>
+    <div class="bio" [@teamBio]="true" *ngIf="selected" [style.minHeight]="teamHeight" #bioBox>
       <div class="container">
-        <div class="d-flex justify-content-between">
-          <h6 class="d-none d-md-block"><strong>{{ selected.first_name }} {{ selected.last_name }}</strong> &nbsp;|&nbsp; {{ selected.title }}&nbsp; &nbsp; &nbsp;<span>{{ selected.pseudoname }}</span></h6>
-
-          <h6 class="d-md-none"><strong>{{ selected.first_name }} {{ selected.last_name }}</strong>
-            <br>{{ selected.title }}
-            <br><span>{{ selected.pseudoname }}</span></h6>
-
-          <fa-icon [icon]="['fas', 'times']" size="2x" (click)="closeTeammate()"></fa-icon>
+        <div class="arrow left d-none d-md-block" (click)="prevTeammate()">
+          <fa-icon [icon]="['fas', 'chevron-left']" size="2x"></fa-icon>
         </div>
 
-        <div class="d-flex">
-          <div class="primary">
-            <img [src]="selected.primary_image" [alt]="selected.first_name + ' ' + selected.last_name + ' | ' + selected.title">
-          </div>
-          <div class="secondary">
-            <img [src]="selected.secondary_image" [alt]="selected.first_name + ' ' + selected.last_name + ' | ' + selected.title">
-          </div>
+        <div class="exit" (click)="closeTeammate()">
+          <fa-icon [icon]="['fas', 'times']" size="2x"></fa-icon>
         </div>
 
-        <p>{{ selected.bio }}</p>
+        <div class="info" [class.faded]="changingTeammate">
+          <div class="d-flex justify-content-between">
+            <h6 class="d-none d-md-block"><strong>{{ selected.first_name }} {{ selected.last_name }}</strong> &nbsp;|&nbsp; {{ selected.title }}&nbsp; &nbsp; &nbsp;<span>{{ selected.pseudoname }}</span></h6>
+
+            <h6 class="d-md-none"><strong>{{ selected.first_name }} {{ selected.last_name }}</strong>
+              <br>{{ selected.title }}
+              <br><span>{{ selected.pseudoname }}</span></h6>
+          </div>
+
+          <div class="d-flex mb-4">
+            <div class="primary">
+              <img [src]="selected.primary_image" [alt]="selected.first_name + ' ' + selected.last_name + ' | ' + selected.title">
+            </div>
+            <div class="secondary" [style.backgroundImage]="'url(' + selected.secondary_image + ')'"></div>
+          </div>
+
+          <p>{{ selected.bio }}</p>
+        </div>
+
+        <div class="arrow right d-none d-md-block" (click)="nextTeammate()">
+          <fa-icon [icon]="['fas', 'chevron-right']" size="2x"></fa-icon>
+        </div>
       </div>
     </div>
   </div>

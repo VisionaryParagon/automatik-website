@@ -30,7 +30,7 @@ export class ParallaxBgComponent implements AfterContentInit, OnChanges, OnInit 
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.width = window.outerWidth;
+      this.width = window.innerWidth;
     }
   }
 
@@ -60,7 +60,7 @@ export class ParallaxBgComponent implements AfterContentInit, OnChanges, OnInit 
     }
   }
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    const w = window.outerWidth;
+    const w = window.innerWidth;
 
     if (w !== this.width) {
       this.getContainer();

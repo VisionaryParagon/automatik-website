@@ -898,19 +898,19 @@ const routes: Routes = [
                 path: '',
                 component: AboutMainComponent,
                 data: {
-                  title: 'about automätik',
+                  title: 'About automätik | automätik',
                   metatags: [
                     {
                       name: 'description',
-                      content: 'Description for About.'
+                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
                     },
                     {
                       name: 'keywords',
-                      content: 'about'
+                      content: 'event research, consultation, instructional design, event design, event management, graphic design, digital design, interactive design, event production, facilitation management, facilitation coaching, OEM automotive'
                     },
                     {
                       property: 'og:title',
-                      content: 'about automätik'
+                      content: 'About automätik | automätik'
                     },
                     {
                       property: 'og:type',
@@ -926,7 +926,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:description',
-                      content: 'Description for About.'
+                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
                     },
                     {
                       name: 'twitter:card',
@@ -938,11 +938,11 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:title',
-                      content: 'about automätik'
+                      content: 'About automätik | automätik'
                     },
                     {
                       name: 'twitter:description',
-                      content: 'Description for About.'
+                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
                     },
                     {
                       name: 'twitter:image:src',
@@ -955,11 +955,11 @@ const routes: Routes = [
                 path: 'contact',
                 component: ContactComponent,
                 data: {
-                  title: 'contact automätik',
+                  title: 'Contact automätik | automätik',
                   metatags: [
                     {
                       name: 'description',
-                      content: 'Description for Contact.'
+                      content: 'Contact automätik today to learn how we can take your event to the next level with our full service, in-house events and training team.'
                     },
                     {
                       name: 'keywords',
@@ -967,7 +967,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:title',
-                      content: 'contact automätik'
+                      content: 'Contact automätik | automätik'
                     },
                     {
                       property: 'og:type',
@@ -983,7 +983,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:description',
-                      content: 'Description for Contact.'
+                      content: 'Contact automätik today to learn how we can take your event to the next level with our full service, in-house events and training team.'
                     },
                     {
                       name: 'twitter:card',
@@ -995,11 +995,11 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:title',
-                      content: 'contact automätik'
+                      content: 'Contact automätik | automätik'
                     },
                     {
                       name: 'twitter:description',
-                      content: 'Description for Contact.'
+                      content: 'Contact automätik today to learn how we can take your event to the next level with our full service, in-house events and training team.'
                     },
                     {
                       name: 'twitter:image:src',

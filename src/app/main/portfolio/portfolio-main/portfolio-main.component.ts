@@ -66,12 +66,12 @@ export class PortfolioMainComponent implements OnInit {
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      this.width = window.outerWidth;
+      this.width = window.innerWidth;
     }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    const w = window.outerWidth;
+    const w = window.innerWidth;
 
     if (w !== this.width) {
       this.setTilePosition();
@@ -144,7 +144,7 @@ export class PortfolioMainComponent implements OnInit {
       window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
       setTimeout(() => {
-        if (window.outerWidth >= 1200) {
+        if (window.innerWidth >= 1200) {
           if (this.tiles.length) {
             this.tiles.forEach((el, idx) => {
               const x = idx % 3;
@@ -164,7 +164,7 @@ export class PortfolioMainComponent implements OnInit {
               this.tileBox.nativeElement.style.height = window.innerHeight - 60 + 'px';
             }
           }
-        } else if (window.outerWidth >= 768 && window.outerWidth < 1200) {
+        } else if (window.innerWidth >= 768 && window.innerWidth < 1200) {
           if (this.tiles.length) {
             this.tiles.forEach((el, idx) => {
               const x = idx % 2;

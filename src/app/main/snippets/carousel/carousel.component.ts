@@ -37,12 +37,12 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.setCarousel();
     this.startCarousel();
     if (isPlatformBrowser(this.platformId)) {
-      this.width = window.outerWidth;
+      this.width = window.innerWidth;
     }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
-    const w = window.outerWidth;
+    const w = window.innerWidth;
 
     if (w !== this.width) {
       this.setCarousel();

@@ -1,4 +1,4 @@
-<div class="about" [@fade]="true" [class.faded]="loading">
+<div class="about" [@fade]="true">
   <section id="about" class="dark fixed fullHeight hero">
     <parallax-bg [images]="heroImages.main"></parallax-bg>
 
@@ -13,12 +13,14 @@
 
   <section>
     <div class="container">
-      <h4 class="m-0 text-center">autom&auml;tik is an award-winning, certified National Women Business Owners corporation specializing in research, consultation, instructional design, event design and management, graphic design, digital/interactive design, event production, and facilitation management/coaching. While our roots run deep in automotive OEM, our talents cross industry borders quite nicely. We&rsquo;ve been around since 1990 and have been growing ever since. We invite you to get to know us, and how we may support your&nbsp;journey...</h4>
+      <h4 class="m-0 text-center">autom&auml;tik is an award-winning, certified National Women Business Owners corporation specializing in research, consultation, <a href="/services/instructional-design">instructional design</a>, <a routerLink="/services/event-planning">event design and management</a>, <a href="/services/graphic-design">graphic design</a>, <a href="/services/app-and-web-development">digital/interactive design</a>, <a routerLink="/services/event-production">event production</a>, and facilitation management/coaching. While our roots run deep in automotive OEM, our talents cross industry borders quite nicely. We&rsquo;ve been around since 1990 and have been growing ever since. We invite you to get to know us, and how we may support your&nbsp;journey...</h4>
     </div>
   </section>
 
-  <section id="history" class="dark fixed">
+  <section id="history" class="dark fixed hero">
     <parallax-bg [images]="heroImages.history"></parallax-bg>
+
+    <div class="overlay"></div>
 
     <div class="container">
       <h2>History</h2>
@@ -43,7 +45,7 @@
     <div class="container">
       <h2>Clients</h2>
 
-      <p>Since 1990, autom&auml;tik has served clients across a broad spectrum of industries. And, while our primary focus has been on automotive, the skills we&rsquo;ve honed&mdash;namely, creating engaging consumer and training events, forward-thinking mobile classroom engineering, cutting-edge graphic and digital publishing, and personalized service&mdash;play well from industry to industry. So, if you like what you see but are from a non-automotive industry, we invite you to get in touch with us and discover the possibilities of partnering with&nbsp;autom&auml;tik.</p>
+      <p>Since 1990, autom&auml;tik has served clients across a broad spectrum of industries. And, while our primary focus has been on automotive, the skills we&rsquo;ve honed&mdash;namely, creating engaging consumer and training events, forward-thinking mobile classroom engineering, cutting-edge graphic and digital publishing, and personalized service&mdash;play well from industry to industry. So, if you like what you see but are from a non-automotive industry, we invite you to <a routerLink="/about/contact">get in touch with us</a> and discover the possibilities of partnering with&nbsp;autom&auml;tik.</p>
 
       <p>autom&auml;tik has successfully completed at least one major project for each of the corporations listed below&mdash;either directly, or as a contract service provider to a vendor&nbsp;organization.</p>
 

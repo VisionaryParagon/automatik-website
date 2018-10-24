@@ -13,7 +13,7 @@ export class ValuesComponent implements OnInit {
     {
       title: 'People First',
       headline: 'Our highest priority is honoring, encouraging, and developing the people we work with and for, because we believe that people—not money, not things, not ideas—can change the world.',
-      image: 'https://images.unsplash.com/photo-1525856326341-8adeed4c8b8b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=664eca9d03a5be8e34786a5222862411&auto=format&fit=crop&w=1665&q=80'
+      image: 'https://images.unsplash.com/photo-1525422847952-7f91db09a364?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ce6622924dae3b9be067e1778a6b8707&auto=format&fit=crop&w=1665&q=80'
     },
     {
       title: 'Excellence',

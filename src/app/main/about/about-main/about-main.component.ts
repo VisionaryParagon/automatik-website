@@ -16,7 +16,6 @@ import { FadeAnimation } from '../../../animations';
   animations: [ FadeAnimation ]
 })
 export class AboutMainComponent implements AfterViewInit, OnInit {
-  topScroll = 0;
   teammates: Teammate[] = this.teamService.team;
   departments: Department[] = this.teamService.departments;
   images: Image[] = this.imageService.images;
@@ -76,19 +75,29 @@ export class AboutMainComponent implements AfterViewInit, OnInit {
 
   scrollTo(id) {
     if (isPlatformBrowser(this.platformId)) {
+      const moz = /Firefox/.test(navigator.userAgent);
+      const ms = /Edge|Trident/.test(navigator.userAgent);
+
       if (id) {
         const el = document.getElementById(id);
 
-        if (el) {
-          this.topScroll = el.offsetTop;
+        if (ms) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else if (moz) {
+          setTimeout(() => {
+            window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' });
+          }, 50);
+        } else {
+          window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' });
         }
       } else {
-        this.topScroll = 0;
+        if (moz) {
+          setTimeout(() => {
+            window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+          }, 50);
+        }
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
       }
-
-      // console.log('scroll to', id, 'at', this.topScroll);
-
-      window.scrollTo({top: this.topScroll, left: 0, behavior: 'smooth'});
     }
   }
 
