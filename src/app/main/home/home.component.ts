@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { ScrollArrowComponent } from '../snippets/scroll-arrow/scroll-arrow.component';
 
@@ -12,6 +13,7 @@ import { FadeAnimation, TopDownAnimation } from '../../animations';
   providers: [ ScrollArrowComponent ]
 })
 export class HomeComponent implements OnInit {
+  isIE = false;
   images = {
     home1: {
       sm: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg',
@@ -121,10 +123,14 @@ export class HomeComponent implements OnInit {
   error = '';
 
   constructor(
-    private scroller: ScrollArrowComponent
+    private scroller: ScrollArrowComponent,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isIE = /Trident/.test(navigator.userAgent);
+    }
   }
 
   scrollPage() {
