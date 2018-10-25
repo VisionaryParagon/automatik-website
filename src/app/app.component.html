@@ -24,12 +24,12 @@
         <a routerLink="/courses" routerLinkActive="active" [class.hover]="stateCourses === 'active'" (mouseover)="toggleSubNav($event, 'Courses')" (click)="closeSubNav()">Courses</a>
 
         <div class="fullSubNav" [@topDown]="true" *ngIf="stateCourses === 'active'">
-          <a routerLink="/courses/workshops" (click)="closeSubNav()">Workshops</a>
+          <a routerLink="/courses" fragment="workshops" (click)="closeSubNav()">Workshops</a>
+          <a routerLink="/courses" fragment="customtraining" (click)="closeSubNav()">Custom Training</a>
           <!--
           <a routerLink="/courses/e-learning" (click)="closeSubNav()">E-Learning</a>
           <a routerLink="/courses/e-books" (click)="closeSubNav()">E-Books</a>
           -->
-          <a routerLink="/courses/custom-training" (click)="closeSubNav()">Custom Training</a>
         </div>
       </div>
       <div class="col">
@@ -119,12 +119,12 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateCourses === 'active'">
-        <a routerLink="/courses/workshops" routerLinkActive="active" (click)="closeNav()">Workshops</a>
+        <a routerLink="/courses" fragment="workshops" [class.active]="activeLink('workshops')" (click)="closeNav()">Workshops</a>
+        <a routerLink="/courses" fragment="customtraining" [class.active]="activeLink('customtraining')" (click)="closeNav()">Custom Training</a>
         <!--
         <a routerLink="/courses/e-learning" routerLinkActive="active" (click)="closeNav()">E-Learning</a>
         <a routerLink="/courses/e-books" routerLinkActive="active" (click)="closeNav()">E-Books</a>
         -->
-        <a routerLink="/courses/custom-training" routerLinkActive="active" (click)="closeNav()">Custom Training</a>
       </div>
 
       <a routerLink="/portfolio" routerLinkActive="active" (click)="closeNav(); setPortfolio()">Portfolio</a>

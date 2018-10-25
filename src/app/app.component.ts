@@ -62,7 +62,7 @@ export class AppComponent implements AfterViewInit, OnInit {
           ga('send', 'pageview');
 
           // set page scroll
-          if (ev.url !== this.lastPoppedUrl && (ev.url.indexOf('/about') === -1 || ev.url.indexOf('/about/') !== -1)) {
+          if (ev.url !== this.lastPoppedUrl && ev.url.indexOf('/courses') === -1 && (ev.url.indexOf('/about') === -1 || ev.url.indexOf('/about/') !== -1)) {
             window.scrollTo(0, 0);
           } else {
             this.lastPoppedUrl = undefined;

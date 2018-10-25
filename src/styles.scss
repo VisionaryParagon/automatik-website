@@ -1748,9 +1748,10 @@ section {
 }
 
 
-/*~~ Services ~~*/
+/*~~ Services / Courses ~~*/
 
-.service {
+.service,
+.courses {
   h2 {
     text-align: center;
   }
@@ -1762,10 +1763,11 @@ section {
   }
 
   section {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     padding: 2rem 0;
+
+    &:nth-child(2n) {
+      background-color: #eee;
+    }
   }
 
   .imageBox {
@@ -2832,7 +2834,8 @@ footer {
       }
     }
   }
-  .service {
+  .service,
+  .courses {
     section {
       padding: 4rem 0;
 

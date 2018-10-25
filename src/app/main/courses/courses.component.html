@@ -1,7 +1,62 @@
-<div [@fade]="true">
-  <section>
-    <div class="container">
+<div class="courses" [@fade]="true">
+  <section class="dark fixed fullHeight hero">
+    <parallax-bg [images]="heroImages"></parallax-bg>
+
+    <div class="overlay"></div>
+
+    <div class="title">
       <h1>Courses</h1>
+    </div>
+  </section>
+
+  <scroll-arrow></scroll-arrow>
+
+  <section id="workshops">
+    <div class="container">
+      <h2>Workshops</h2>
+
+      <div class="row">
+        <div class="col-12 col-md-7 order-md-last">
+          <div class="imageBox" [style.backgroundImage]="'url(https://assets.automatik9dots.com/images/courses-workshops.jpg)'"></div>
+        </div>
+
+        <div class="col-12 col-md-5 d-flex flex-column justify-content-center">
+          <h3>Looking to elevate your training skills?</h3>
+
+          <p>autom&auml;tik offers a number of proprietary half, full, and multi-day learning workshops designed to radically change your paradigm and come out on the other side a better&nbsp;trainer.</p>
+
+          <p>We currently offer:</p>
+
+          <ul>
+            <li><a href="http://meetingmastery.us/" target="_blank">MeetingMastery</a></li>
+            <li>MeetingMastery Too</li>
+            <li>PreMeetingMastery</li>
+            <li>Power PowerPoint</li>
+          </ul>
+
+          <p>Please <a routerLink="/about/contact">CONTACT US</a> for workshop schedules and&nbsp;details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="customtraining">
+    <div class="container">
+      <h2>Custom Training</h2>
+
+      <div class="row">
+        <div class="col-12 col-md-7">
+          <div class="imageBox" [style.backgroundImage]="'url(https://assets.automatik9dots.com/images/courses-custom-training.jpg)'"></div>
+        </div>
+
+        <div class="col-12 col-md-5 d-flex flex-column justify-content-center">
+          <h3>Got something specific in mind?</h3>
+
+          <p>Let&rsquo;s <strong>eradicate boring training</strong> in your field. From one-hour modules to multi-day corporate events and everything in between, our in-house team can help you design effective, informative, and impactful learning experiences for your&nbsp;participants.</p>
+
+          <p>Please <a routerLink="/about/contact">CONTACT US</a> with more specifics and we&rsquo;ll get back to you with some ideas, post&nbsp;haste.</p>
+        </div>
+      </div>
     </div>
   </section>
 </div>

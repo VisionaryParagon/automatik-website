@@ -521,62 +521,65 @@ const routes: Routes = [
       },
       {
         path: 'courses',
-        component: CoursesComponent,
         // canActivate: [IntroGuardService],
-        data: {
-          title: 'automätik courses',
-          metatags: [
-            {
-              name: 'description',
-              content: 'Description for Courses.'
-            },
-            {
-              name: 'keywords',
-              content: 'courses'
-            },
-            {
-              property: 'og:title',
-              content: 'automätik courses'
-            },
-            {
-              property: 'og:type',
-              content: 'website'
-            },
-            {
-              property: 'og:url',
-              content: 'https://beta.automatik9dots.com/courses'
-            },
-            {
-              property: 'og:image',
-              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
-            },
-            {
-              property: 'og:description',
-              content: 'Description for Courses.'
-            },
-            {
-              name: 'twitter:card',
-              content: 'summary_large_image'
-            },
-            {
-              name: 'twitter:site',
-              content: '@automatikEvents'
-            },
-            {
-              name: 'twitter:title',
-              content: 'automätik courses'
-            },
-            {
-              name: 'twitter:description',
-              content: 'Description for Courses.'
-            },
-            {
-              name: 'twitter:image:src',
-              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
-            }
-          ]
-        },
         children: [
+          {
+            path: '',
+            component: CoursesComponent,
+            data: {
+              title: 'automätik courses',
+              metatags: [
+                {
+                  name: 'description',
+                  content: 'Description for Courses.'
+                },
+                {
+                  name: 'keywords',
+                  content: 'courses'
+                },
+                {
+                  property: 'og:title',
+                  content: 'automätik courses'
+                },
+                {
+                  property: 'og:type',
+                  content: 'website'
+                },
+                {
+                  property: 'og:url',
+                  content: 'https://beta.automatik9dots.com/courses'
+                },
+                {
+                  property: 'og:image',
+                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                },
+                {
+                  property: 'og:description',
+                  content: 'Description for Courses.'
+                },
+                {
+                  name: 'twitter:card',
+                  content: 'summary_large_image'
+                },
+                {
+                  name: 'twitter:site',
+                  content: '@automatikEvents'
+                },
+                {
+                  name: 'twitter:title',
+                  content: 'automätik courses'
+                },
+                {
+                  name: 'twitter:description',
+                  content: 'Description for Courses.'
+                },
+                {
+                  name: 'twitter:image:src',
+                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                }
+              ]
+            }
+          },
           {
             path: '**',
             redirectTo: '/courses'
