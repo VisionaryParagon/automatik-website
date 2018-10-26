@@ -905,7 +905,7 @@ const routes: Routes = [
                   metatags: [
                     {
                       name: 'description',
-                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
+                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
                     },
                     {
                       name: 'keywords',
@@ -929,7 +929,7 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:description',
-                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
+                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
                     },
                     {
                       name: 'twitter:card',
@@ -945,7 +945,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:description',
-                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
+                      content: 'automätik has decades of experience ranging as a Tier One event design and training provider. We provide a complete range of services from instructional design and event planning to event production and graphics.'
                     },
                     {
                       name: 'twitter:image:src',
