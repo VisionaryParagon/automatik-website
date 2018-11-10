@@ -10,10 +10,11 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 })
 export class GraphicDesignComponent implements OnInit {
   images = {
-    sm: 'https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80',
-    md: 'https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80',
-    lg: 'https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80'
+    sm: 'https://assets.automatik9dots.com/images/graphic-design-hero-bg-900.jpg',
+    md: 'https://assets.automatik9dots.com/images/graphic-design-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik9dots.com/images/graphic-design-hero-bg-2560.jpg'
   };
+  /*
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,
@@ -36,6 +37,7 @@ export class GraphicDesignComponent implements OnInit {
       copy: `As we often say, <strong>event management is not for the faint of heart</strong>. Talk to any of our event managers, and you&rsquo;ll learn that we welcome and thrive on the ever-changing range of unique tasks and challenges that drew us into this field to begin with. Quite simply, <em>we live for this</em>. And we would be grateful for the opportunity to serve you by doing what we&nbsp;love.`
     }
   ];
+  */
 
   constructor() { }
 

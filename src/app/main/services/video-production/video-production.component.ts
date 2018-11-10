@@ -13,7 +13,11 @@ export class VideoProductionComponent implements OnInit {
     sm: 'https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80',
     md: 'https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80',
     lg: 'https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80'
+    // sm: 'https://assets.automatik9dots.com/images/video-production-hero-bg-900.jpg',
+    // md: 'https://assets.automatik9dots.com/images/video-production-hero-bg-1440.jpg',
+    // lg: 'https://assets.automatik9dots.com/images/video-production-hero-bg-2560.jpg'
   };
+  /*
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,
@@ -36,6 +40,7 @@ export class VideoProductionComponent implements OnInit {
       copy: `As we often say, <strong>event management is not for the faint of heart</strong>. Talk to any of our event managers, and you&rsquo;ll learn that we welcome and thrive on the ever-changing range of unique tasks and challenges that drew us into this field to begin with. Quite simply, <em>we live for this</em>. And we would be grateful for the opportunity to serve you by doing what we&nbsp;love.`
     }
   ];
+  */
 
   constructor() { }
 

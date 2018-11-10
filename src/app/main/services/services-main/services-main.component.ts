@@ -35,7 +35,7 @@ export class ServicesMainComponent implements OnInit {
     {
       title: 'Graphic Design',
       headline: 'Award-winning, graphic design strategy and production.',
-      title_image: 'https://images.unsplash.com/photo-1535376472810-5d229c65da09?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cc1d828c4fc7199de9416a4f3e78ff06&auto=format&fit=crop&w=1000&q=80',
+      title_image: 'https://assets.automatik9dots.com/images/graphic-design-hero-bg-900.jpg',
       slug: 'graphic-design',
       keywords: 'Visual identity, packaging, digital advertising, graphic design, logo design, layout, large format graphic design, banner design, environmental design, CAD, website design'
     },
@@ -43,6 +43,7 @@ export class ServicesMainComponent implements OnInit {
       title: 'Video Production',
       headline: 'Full-service video and audio production.',
       title_image: 'https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80',
+      // title_image: 'https://assets.automatik9dots.com/images/video-production-hero-bg-900.jpg',
       slug: 'video-production',
       keywords: 'Onsite videography, post production, motion graphic design, audio recording and mixing, corporate video production, opening videos, closing videos, royalty-free videos'
     },

@@ -14,6 +14,7 @@ export class InstructionalDesignComponent implements OnInit {
     md: 'https://assets.automatik9dots.com/images/instructional-design-hero-bg-1440.jpg',
     lg: 'https://assets.automatik9dots.com/images/instructional-design-hero-bg-2560.jpg'
   };
+  /*
   slides = [
     {
       heading: `Can&rsquo;t beat experience...`,
@@ -36,6 +37,7 @@ export class InstructionalDesignComponent implements OnInit {
       copy: `As we often say, <strong>event management is not for the faint of heart</strong>. Talk to any of our event managers, and you&rsquo;ll learn that we welcome and thrive on the ever-changing range of unique tasks and challenges that drew us into this field to begin with. Quite simply, <em>we live for this</em>. And we would be grateful for the opportunity to serve you by doing what we&nbsp;love.`
     }
   ];
+  */
 
   constructor() { }
 
