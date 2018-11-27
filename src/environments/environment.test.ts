@@ -6,5 +6,6 @@ export const environment = {
   images: '/img/',
   projects: '/prj/',
   secret: '/scrt/',
+  subscriber: '/sub/',
   team: '/tm/'
 };

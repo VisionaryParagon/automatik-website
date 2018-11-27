@@ -14,11 +14,20 @@ export class Admin {
   password: string;
 }
 
+export class Subscriber {
+  _id?: string;
+  name: string;
+  email_address: string;
+  status: string;
+  timestamp_signup: Date;
+}
+
 export class Contact {
   _id?: string;
   name: string;
   email: string;
   message: string;
+  optin: boolean;
   captcha: string;
 }
 

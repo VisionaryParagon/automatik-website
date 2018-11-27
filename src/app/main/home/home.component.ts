@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+import { Subscriber } from '../../services/classes';
+import { SubscriberService } from '../../services/subscriber.service';
+
 import { ScrollArrowComponent } from '../snippets/scroll-arrow/scroll-arrow.component';
 
 import { FadeAnimation, TopDownAnimation } from '../../animations';
@@ -113,16 +116,14 @@ export class HomeComponent implements OnInit {
   randomTestimonials = this.shuffle(this.testimonials);
 
   // Newsletter
-  newsletter = {
-    name: '',
-    email: ''
-  };
+  subscriber: Subscriber = new Subscriber();
   submitted = false;
   loading = false;
   success = false;
   error = '';
 
   constructor(
+    private subscriberService: SubscriberService,
     private scroller: ScrollArrowComponent,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
@@ -163,12 +164,28 @@ export class HomeComponent implements OnInit {
 
     if (isValid) {
       this.loading = true;
+      this.subscriber.status = 'subscribed';
+      this.subscriber.timestamp_signup = new Date();
 
-      setTimeout(() => {
-        this.success = true;
-        this.loading = false;
-      }, 2000);
+      this.subscriberService.createSubscriber(this.subscriber)
+        .subscribe(
+          res => {
+            this.subscriberService.sendConfirmation(res)
+              .subscribe(
+                res2 => {
+                  this.success = true;
+                  this.loading = false;
+                },
+                err => this.setError(err)
+              );
+          },
+          err => this.setError(err)
+        );
     }
+  }
+
+  hideError() {
+    this.error = '';
   }
 
   setError(err) {

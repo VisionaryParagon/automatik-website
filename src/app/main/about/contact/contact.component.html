@@ -43,6 +43,12 @@
                 </div>
               </div>
 
+              <div class="inputGroup">
+                <label for="optin">
+                  <input type="checkbox" id="optin" name="optin" #optin="ngModel" [(ngModel)]="contact.optin"> Subscribe to newsletter
+                </label>
+              </div>
+
               <re-captcha siteKey="6LeZD3MUAAAAAIUonKOV_UeldhbGq2mQn2HLSxP1" theme="dark" name="captcha" #captcha="ngModel" required [(ngModel)]="contact.captcha"></re-captcha>
               <div class="errorMsg" [@topDown]="true" *ngIf="captcha.errors && (captcha.touched || submitted)">
                 <p *ngIf="captcha.errors.required">Please confirm you are not a robot</p>

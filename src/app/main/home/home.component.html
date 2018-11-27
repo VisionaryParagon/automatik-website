@@ -114,7 +114,7 @@
           <div class="row">
             <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-0">
               <div class="inputGroup" [class.nope]="name.errors && (name.touched || submitted)">
-                <input type="text" class="form-control" name="name" #name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="newsletter.name">
+                <input type="text" class="form-control" name="name" #name="ngModel" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="subscriber.name" (ngModelChange)="hideError()">
                 <label for="name">Name</label>
                 <div class="errorMsg" [@topDown]="true" *ngIf="name.errors && (name.touched || submitted)">
                   <p *ngIf="name.errors.required">Name is required</p>
@@ -124,7 +124,7 @@
             </div>
             <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-0">
               <div class="inputGroup" [class.nope]="email.errors && (email.touched || submitted)">
-                <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="newsletter.email">
+                <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="subscriber.email_address" (ngModelChange)="hideError()">
                 <label for="email">Email</label>
                 <div class="errorMsg" [@topDown]="true" *ngIf="email.errors && (email.touched || submitted)">
                   <p *ngIf="email.errors.required">Email Address is required</p>
@@ -133,7 +133,7 @@
               </div>
             </div>
             <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-0">
-              <button class="autoBtn my-3 w-100" *ngIf="!success" [disabled]="loading" (click)="submit(newsletter, newsletterForm.valid)">
+              <button class="autoBtn my-3 w-100" *ngIf="!success" [disabled]="loading" (click)="submit(subscriber, newsletterForm.valid)">
                 <span *ngIf="!loading">Send Me The Secrets!</span>
                 <span *ngIf="loading">
                   <mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner>
