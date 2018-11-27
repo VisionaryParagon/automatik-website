@@ -21,14 +21,14 @@
         </div>
       </div>
       <div class="col">
-        <a routerLink="/courses" routerLinkActive="active" [class.hover]="stateCourses === 'active'" (mouseover)="toggleSubNav($event, 'Courses')" (click)="closeSubNav()">Courses</a>
+        <a routerLink="/education" routerLinkActive="active" [class.hover]="stateEducation === 'active'" (mouseover)="toggleSubNav($event, 'Education')" (click)="closeSubNav()">Education</a>
 
-        <div class="fullSubNav" [@topDown]="true" *ngIf="stateCourses === 'active'">
-          <a routerLink="/courses" fragment="workshops" (click)="closeSubNav()">Workshops</a>
-          <a routerLink="/courses" fragment="customtraining" (click)="closeSubNav()">Custom Training</a>
+        <div class="fullSubNav" [@topDown]="true" *ngIf="stateEducation === 'active'">
+          <a routerLink="/education" fragment="workshops" (click)="closeSubNav()">Workshops</a>
+          <a routerLink="/education" fragment="customdevelopment" (click)="closeSubNav()">Custom Development</a>
           <!--
-          <a routerLink="/courses/e-learning" (click)="closeSubNav()">E-Learning</a>
-          <a routerLink="/courses/e-books" (click)="closeSubNav()">E-Books</a>
+          <a routerLink="/education/e-learning" (click)="closeSubNav()">E-Learning</a>
+          <a routerLink="/education/e-books" (click)="closeSubNav()">E-Books</a>
           -->
         </div>
       </div>
@@ -113,17 +113,17 @@
         <a routerLink="/services/app-and-web-development" routerLinkActive="active" (click)="closeNav()">App/Web Development</a>
       </div>
 
-      <a [class.active]="activePage.indexOf('/courses') === 0" (click)="toggleMobileSubNav('Courses')">
-        <span>Courses</span>
-        <fa-icon [icon]="['fas', 'chevron-down']" [class.open]="stateCourses === 'active'"></fa-icon>
+      <a [class.active]="activePage.indexOf('/education') === 0" (click)="toggleMobileSubNav('Education')">
+        <span>Education</span>
+        <fa-icon [icon]="['fas', 'chevron-down']" [class.open]="stateEducation === 'active'"></fa-icon>
       </a>
 
-      <div class="mobileSubNav" [@topDown]="true" *ngIf="stateCourses === 'active'">
-        <a routerLink="/courses" fragment="workshops" [class.active]="activeLink('workshops')" (click)="closeNav()">Workshops</a>
-        <a routerLink="/courses" fragment="customtraining" [class.active]="activeLink('customtraining')" (click)="closeNav()">Custom Training</a>
+      <div class="mobileSubNav" [@topDown]="true" *ngIf="stateEducation === 'active'">
+        <a routerLink="/education" fragment="workshops" [class.active]="activeLink('workshops')" (click)="closeNav()">Workshops</a>
+        <a routerLink="/education" fragment="customdevelopment" [class.active]="activeLink('customdevelopment')" (click)="closeNav()">Custom Development</a>
         <!--
-        <a routerLink="/courses/e-learning" routerLinkActive="active" (click)="closeNav()">E-Learning</a>
-        <a routerLink="/courses/e-books" routerLinkActive="active" (click)="closeNav()">E-Books</a>
+        <a routerLink="/education/e-learning" routerLinkActive="active" (click)="closeNav()">E-Learning</a>
+        <a routerLink="/education/e-books" routerLinkActive="active" (click)="closeNav()">E-Books</a>
         -->
       </div>
 
@@ -218,7 +218,7 @@
 
       <div class="col-12 col-xl-5 align-self-end mt-5 mt-lg-0 text-center text-xl-right">
         <a routerLink="/services">Services</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
-        <a routerLink="/courses">Courses</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
+        <a routerLink="/education">Education</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
         <a routerLink="/portfolio">Portfolio</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
         <a routerLink="/resources/blog">Blog</a> <span class="d-none d-md-inline-block">&nbsp; | &nbsp;</span>
         <a routerLink="/about">About</a>

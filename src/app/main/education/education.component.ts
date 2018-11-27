@@ -5,12 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FadeAnimation } from '../../animations';
 
 @Component({
-  selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css'],
+  selector: 'app-education',
+  templateUrl: './education.component.html',
+  styleUrls: ['./education.component.css'],
   animations: [ FadeAnimation ]
 })
-export class CoursesComponent implements AfterViewInit, OnInit {
+export class EducationComponent implements AfterViewInit, OnInit {
   heroImages = {
     sm: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-900.jpg',
     md: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-1440.jpg',

@@ -19,8 +19,8 @@ import { GraphicDesignComponent } from './services/graphic-design/graphic-design
 import { VideoProductionComponent } from './services/video-production/video-production.component';
 import { AppWebDevelopmentComponent } from './services/app-web-development/app-web-development.component';
 
-// Courses
-import { CoursesComponent } from './courses/courses.component';
+// Education
+import { EducationComponent } from './education/education.component';
 
 // Portfolio
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -520,26 +520,26 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'courses',
+        path: 'education',
         // canActivate: [IntroGuardService],
         children: [
           {
             path: '',
-            component: CoursesComponent,
+            component: EducationComponent,
             data: {
-              title: 'automätik courses',
+              title: 'automätik education',
               metatags: [
                 {
                   name: 'description',
-                  content: 'Description for Courses.'
+                  content: 'Description for Education.'
                 },
                 {
                   name: 'keywords',
-                  content: 'courses'
+                  content: 'education'
                 },
                 {
                   property: 'og:title',
-                  content: 'automätik courses'
+                  content: 'automätik education'
                 },
                 {
                   property: 'og:type',
@@ -547,7 +547,7 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:url',
-                  content: 'https://beta.automatik9dots.com/courses'
+                  content: 'https://beta.automatik9dots.com/education'
                 },
                 {
                   property: 'og:image',
@@ -555,7 +555,7 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:description',
-                  content: 'Description for Courses.'
+                  content: 'Description for Education.'
                 },
                 {
                   name: 'twitter:card',
@@ -567,11 +567,11 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:title',
-                  content: 'automätik courses'
+                  content: 'automätik education'
                 },
                 {
                   name: 'twitter:description',
-                  content: 'Description for Courses.'
+                  content: 'Description for Education.'
                 },
                 {
                   name: 'twitter:image:src',
