@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   isLogin = false;
   state = 'inactive';
   stateServices = 'inactive';
-  stateEducation = 'inactive';
+  stateTraining = 'inactive';
   stateResources = 'inactive';
   stateAbout = 'inactive';
   activePage = '';
@@ -62,7 +62,7 @@ export class AppComponent implements AfterViewInit, OnInit {
           ga('send', 'pageview');
 
           // set page scroll
-          if (ev.url !== this.lastPoppedUrl && ev.url.indexOf('/education') === -1 && (ev.url.indexOf('/about') === -1 || ev.url.indexOf('/about/') !== -1)) {
+          if (ev.url !== this.lastPoppedUrl && ev.url.indexOf('/training') === -1 && (ev.url.indexOf('/about') === -1 || ev.url.indexOf('/about/') !== -1)) {
             window.scrollTo(0, 0);
           } else {
             this.lastPoppedUrl = undefined;
@@ -128,7 +128,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
     this.state = 'inactive';
     this.stateServices = 'inactive';
-    this.stateEducation = 'inactive';
+    this.stateTraining = 'inactive';
     this.stateResources = 'inactive';
     this.stateAbout = 'inactive';
   }
@@ -161,12 +161,12 @@ export class AppComponent implements AfterViewInit, OnInit {
     if (e.target.tagName === 'A') {
       if (id === 'Services') {
         this.stateServices = 'active';
-        this.stateEducation = 'inactive';
+        this.stateTraining = 'inactive';
         this.stateResources = 'inactive';
         this.stateAbout = 'inactive';
-      } else if (id === 'Education') {
+      } else if (id === 'Training') {
         this.stateServices = 'inactive';
-        this.stateEducation = 'active';
+        this.stateTraining = 'active';
         this.stateResources = 'inactive';
         this.stateAbout = 'inactive';
       } else if (id === 'Portfolio') {
@@ -176,13 +176,13 @@ export class AppComponent implements AfterViewInit, OnInit {
         /*
       } else if (id === 'Resources') {
         this.stateServices = 'inactive';
-        this.stateEducation = 'inactive';
+        this.stateTraining = 'inactive';
         this.stateResources = 'active';
         this.stateAbout = 'inactive';
         */
       } else if (id === 'About') {
         this.stateServices = 'inactive';
-        this.stateEducation = 'inactive';
+        this.stateTraining = 'inactive';
         this.stateResources = 'inactive';
         this.stateAbout = 'active';
       }
@@ -194,12 +194,12 @@ export class AppComponent implements AfterViewInit, OnInit {
   toggleMobileSubNav(id) {
     if (id === 'Services') {
       this.stateServices = (this.stateServices === 'active' ? 'inactive' : 'active');
-      this.stateEducation = 'inactive';
+      this.stateTraining = 'inactive';
       this.stateResources = 'inactive';
       this.stateAbout = 'inactive';
-    } else if (id === 'Education') {
+    } else if (id === 'Training') {
       this.stateServices = 'inactive';
-      this.stateEducation = (this.stateEducation === 'active' ? 'inactive' : 'active');
+      this.stateTraining = (this.stateTraining === 'active' ? 'inactive' : 'active');
       this.stateResources = 'inactive';
       this.stateAbout = 'inactive';
     } else if (id === 'Portfolio') {
@@ -209,13 +209,13 @@ export class AppComponent implements AfterViewInit, OnInit {
       /*
     } else if (id === 'Resources') {
       this.stateServices = 'inactive';
-      this.stateEducation = 'inactive';
+      this.stateTraining = 'inactive';
       this.stateResources = (this.stateResources === 'active' ? 'inactive' : 'active');
       this.stateAbout = 'inactive';
       */
     } else if (id === 'About') {
       this.stateServices = 'inactive';
-      this.stateEducation = 'inactive';
+      this.stateTraining = 'inactive';
       this.stateResources = 'inactive';
       this.stateAbout = (this.stateAbout === 'active' ? 'inactive' : 'active');
     }
@@ -223,7 +223,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   closeSubNav() {
     this.stateServices = 'inactive';
-    this.stateEducation = 'inactive';
+    this.stateTraining = 'inactive';
     this.stateResources = 'inactive';
     this.stateAbout = 'inactive';
   }

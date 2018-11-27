@@ -19,8 +19,8 @@ import { GraphicDesignComponent } from './services/graphic-design/graphic-design
 import { VideoProductionComponent } from './services/video-production/video-production.component';
 import { AppWebDevelopmentComponent } from './services/app-web-development/app-web-development.component';
 
-// Education
-import { EducationComponent } from './education/education.component';
+// Training
+import { TrainingComponent } from './training/training.component';
 
 // Portfolio
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -181,6 +181,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'keywords',
+                      // tslint:disable-next-line:max-line-length
                       content: 'Event Planning, agenda planning, hotel sourcing and contracting, site procurement, OEM automotive training tour routing, OEM automotive press drives, shuttle sourcing, food and beverage planning, contract staffing, vehicle acquisition, vehicle transportation, uniform sourcing, gifts and premiums sourcing'
                     },
                     {
@@ -295,6 +296,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'keywords',
+                      // tslint:disable-next-line:max-line-length
                       content: 'Instructional Design, Product launch training, sales skill training, consultative sales training, parts and service training, management training, train the trainer training, instructional design, elearning, corporate learning consulting, presentation training, powerpoint training, slide design training, and executive presentation consultation'
                     },
                     {
@@ -520,26 +522,26 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'education',
+        path: 'training',
         // canActivate: [IntroGuardService],
         children: [
           {
             path: '',
-            component: EducationComponent,
+            component: TrainingComponent,
             data: {
-              title: 'automätik education',
+              title: 'automätik training',
               metatags: [
                 {
                   name: 'description',
-                  content: 'Description for Education.'
+                  content: 'Description for Training.'
                 },
                 {
                   name: 'keywords',
-                  content: 'education'
+                  content: 'training'
                 },
                 {
                   property: 'og:title',
-                  content: 'automätik education'
+                  content: 'automätik training'
                 },
                 {
                   property: 'og:type',
@@ -547,7 +549,7 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:url',
-                  content: 'https://beta.automatik9dots.com/education'
+                  content: 'https://beta.automatik9dots.com/training'
                 },
                 {
                   property: 'og:image',
@@ -555,7 +557,7 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:description',
-                  content: 'Description for Education.'
+                  content: 'Description for Training.'
                 },
                 {
                   name: 'twitter:card',
@@ -567,11 +569,11 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:title',
-                  content: 'automätik education'
+                  content: 'automätik training'
                 },
                 {
                   name: 'twitter:description',
-                  content: 'Description for Education.'
+                  content: 'Description for Training.'
                 },
                 {
                   name: 'twitter:image:src',

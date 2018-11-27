@@ -19,8 +19,8 @@ import { GraphicDesignComponent } from './services/graphic-design/graphic-design
 import { VideoProductionComponent } from './services/video-production/video-production.component';
 import { AppWebDevelopmentComponent } from './services/app-web-development/app-web-development.component';
 
-// Education
-import { EducationComponent } from './education/education.component';
+// Training
+import { TrainingComponent } from './training/training.component';
 
 // Portfolio
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -67,7 +67,7 @@ import { ScrollArrowComponent } from './snippets/scroll-arrow/scroll-arrow.compo
     GraphicDesignComponent,
     VideoProductionComponent,
     AppWebDevelopmentComponent,
-    EducationComponent,
+    TrainingComponent,
     PortfolioComponent,
     PortfolioMainComponent,
     PortfolioProjectComponent,
