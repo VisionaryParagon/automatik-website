@@ -91,8 +91,8 @@ passport.deserializeUser(admin.deserializeUser());
 
 // https redirect
 app.all('*', (req, res, next) => {
-  // if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.us' && req.headers.host !== 'www.automatik.us')) {
-  if (req.headers['x-forwarded-proto'] === 'https' || req.headers.host !== 'beta.automatik9dots.com') {
+  // if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.com' && req.headers.host !== 'www.automatik.com')) {
+  if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'beta.automatik.com' && req.headers.host !== 'beta.automatik9dots.com')) {
     next();
   } else {
     if (req.headers.host.indexOf('www.') === 0) {
