@@ -10,8 +10,8 @@ const smtpConfig = {
   host: 'smtp.office365.com',
   port: 587,
   auth: {
-    user: 'noreply@automatik.us',
-    pass: 'Automatik2point0'
+    user: process.env.NORPLY_EML,
+    pass: process.env.NORPLY_PWD
   }
 };
 
@@ -102,6 +102,44 @@ router.post('/subscribe', (req, res) => {
 
   // send external mail with defined transport object
   transporter.sendMail(mailOptionsMsg, (error, info) => {
+    if (error) {
+      return res.status(500).send(error);
+      // return console.log(error);
+    } else {
+      return res.status(250).send(info);
+      // return console.log('Message sent: ', info.response);
+    }
+  });
+
+  // Internal response
+  let textContentMsgInt = `
+    New 5 Secrets to De-borifying Your Next Event subscription:
+
+    Name: ${data.name}
+    Email: ${data.email_address}
+  `;
+
+  let htmlContentMsgInt = `
+    <div style="font-size:14px; margin:30px auto 60px; width:640px;">
+      <span>
+        New 5 Secrets to De-borifying Your Next Event subscription:<br><br>
+        Name: ${data.name}<br>
+        Email: ${data.email_address}
+      </span>
+    </div>
+  `;
+
+  let mailOptionsMsgInt = {
+    from: '"Website Subscription Form" <noreply@automatik.us>', // sender address
+    to: '"Johnny Sweet" <jsweet@automatik.us>', // list of receivers
+    replyTo: data.email_address, // list of replyTo's
+    subject: 'New Email Subscription!', // Subject line
+    text: textContentMsgInt, // plaintext body
+    html: htmlContentMsgInt // html body
+  };
+
+  // send external mail with defined transport object
+  transporter.sendMail(mailOptionsMsgInt, (error, info) => {
     if (error) {
       return res.status(500).send(error);
       // return console.log(error);

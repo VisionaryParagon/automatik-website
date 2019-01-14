@@ -26,7 +26,6 @@ export class AdminService {
   login(user) {
     return this.http.post<any>(this.adminUrlRoot + 'login', user)
       .pipe(
-        retry(3),
         tap(res => this.loggedIn = true),
         catchError(this.handleError)
       );
@@ -36,7 +35,6 @@ export class AdminService {
   logout() {
     return this.http.get<any>(this.adminUrlRoot + 'logout')
       .pipe(
-        retry(3),
         tap(res => this.loggedIn = false),
         catchError(this.handleError)
       );
