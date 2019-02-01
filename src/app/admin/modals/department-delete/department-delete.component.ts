@@ -9,7 +9,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-department-delete',
   templateUrl: './department-delete.component.html',
-  styleUrls: ['./department-delete.component.css'],
+  styleUrls: ['./department-delete.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class DepartmentDeleteComponent implements OnInit {

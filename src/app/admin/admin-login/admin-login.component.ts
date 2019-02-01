@@ -10,7 +10,7 @@ import { FadeAnimation, TopDownAnimation } from '../../animations';
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.css'],
+  styleUrls: ['./admin-login.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class AdminLoginComponent implements OnInit {

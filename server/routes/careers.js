@@ -7,10 +7,11 @@ const smtpConfig = {
   host: 'smtp.office365.com',
   port: 587,
   auth: {
-    user: 'noreply@automatik.us',
-    pass: 'Automatik2point0'
+    user: process.env.NORPLY_EML,
+    pass: process.env.NORPLY_PWD
   }
 };
+
 const transporter = nodemailer.createTransport(smtpConfig);
 
 // career models
@@ -126,7 +127,7 @@ router.post('/inquire', (req, res) => {
   const mailOptionsMsg = {
     from: '"No Reply" <noreply@automatik.us>', // sender address
     to: 'jsweet@automatik.us', // list of receivers
-    bcc: 'sdickens@automatik.us', // list of receivers
+    // bcc: 'sdickens@automatik.us', // list of receivers
     replyTo: data.email, // list of replyTo's
     subject: 'Career Form Inquiry', // Subject line
     text: textContentMsg, // plaintext body

@@ -12,7 +12,7 @@ import { DepartmentDeleteComponent } from '../../modals/department-delete/depart
 @Component({
   selector: 'app-department-data',
   templateUrl: './department-data.component.html',
-  styleUrls: ['./department-data.component.css'],
+  styleUrls: ['./department-data.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class DepartmentDataComponent implements OnInit {

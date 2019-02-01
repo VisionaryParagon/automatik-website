@@ -70,11 +70,11 @@ const routes: Routes = [
             },
             {
               property: 'og:url',
-              content: 'https://beta.automatik9dots.com/'
+              content: 'https://automatik.com/'
             },
             {
               property: 'og:image',
-              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+              content: 'https://assets.automatik.com/images/home-share-1200.jpg'
             },
             {
               property: 'og:description',
@@ -98,7 +98,7 @@ const routes: Routes = [
             },
             {
               name: 'twitter:image:src',
-              content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+              content: 'https://assets.automatik.com/images/home-share-1200.jpg'
             }
           ]
         }
@@ -136,11 +136,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/services'
+                      content: 'https://automatik.com/services'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -164,7 +164,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -194,11 +194,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/services/event-planning'
+                      content: 'https://automatik.com/services/event-planning'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/event-planning-hero-bg-2560.jpg'
+                      content: 'https://assets.automatik.com/images/event-planning-hero-bg-2560.jpg'
                     },
                     {
                       property: 'og:description',
@@ -222,7 +222,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/event-planning-hero-bg-2560.jpg'
+                      content: 'https://assets.automatik.com/images/event-planning-hero-bg-2560.jpg'
                     }
                   ]
                 }
@@ -251,11 +251,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/services/event-production'
+                      content: 'https://automatik.com/services/event-production'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/event-production-hero-bg-2560.jpg'
+                      content: 'https://assets.automatik.com/images/event-production-hero-bg-2560.jpg'
                     },
                     {
                       property: 'og:description',
@@ -279,7 +279,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/event-production-hero-bg-2560.jpg'
+                      content: 'https://assets.automatik.com/images/event-production-hero-bg-2560.jpg'
                     }
                   ]
                 }
@@ -309,11 +309,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/services/instructional-design'
+                      content: 'https://automatik.com/services/instructional-design'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -337,7 +337,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -366,11 +366,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/services/graphic-design'
+                      content: 'https://automatik.com/services/graphic-design'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -394,7 +394,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -423,11 +423,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/services/video-production'
+                      content: 'https://automatik.com/services/video-production'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -451,7 +451,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -480,11 +480,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/services/app-and-web-development'
+                      content: 'https://automatik.com/services/app-and-web-development'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -508,7 +508,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -549,11 +549,11 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:url',
-                  content: 'https://beta.automatik9dots.com/training'
+                  content: 'https://automatik.com/training'
                 },
                 {
                   property: 'og:image',
-                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                 },
                 {
                   property: 'og:description',
@@ -577,7 +577,7 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:image:src',
-                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                 }
               ]
             }
@@ -621,11 +621,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/portfolio'
+                      content: 'https://automatik.com/portfolio'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -649,7 +649,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -694,11 +694,11 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:url',
-                  content: 'https://beta.automatik9dots.com/resources/blog'
+                  content: 'https://automatik.com/resources/blog'
                 },
                 {
                   property: 'og:image',
-                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                 },
                 {
                   property: 'og:description',
@@ -722,7 +722,7 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:image:src',
-                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                 }
               ]
             }
@@ -767,11 +767,11 @@ const routes: Routes = [
                 },
                 {
                   property: 'og:url',
-                  content: 'https://beta.automatik9dots.com/resources'
+                  content: 'https://automatik.com/resources'
                 },
                 {
                   property: 'og:image',
-                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                 },
                 {
                   property: 'og:description',
@@ -795,7 +795,7 @@ const routes: Routes = [
                 },
                 {
                   name: 'twitter:image:src',
-                  content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                 }
               ]
             }
@@ -828,11 +828,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/resources/blog'
+                      content: 'https://automatik.com/resources/blog'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -856,7 +856,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -923,11 +923,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/about'
+                      content: 'https://automatik.com/about'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -951,7 +951,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }
@@ -980,11 +980,11 @@ const routes: Routes = [
                     },
                     {
                       property: 'og:url',
-                      content: 'https://beta.automatik9dots.com/about/contact'
+                      content: 'https://automatik.com/about/contact'
                     },
                     {
                       property: 'og:image',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     },
                     {
                       property: 'og:description',
@@ -1008,7 +1008,7 @@ const routes: Routes = [
                     },
                     {
                       name: 'twitter:image:src',
-                      content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
                     }
                   ]
                 }

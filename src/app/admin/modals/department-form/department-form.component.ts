@@ -12,7 +12,7 @@ import { MinValidatorDirective } from '../../../directives/min-validator.directi
 @Component({
   selector: 'app-department-form',
   templateUrl: './department-form.component.html',
-  styleUrls: ['./department-form.component.css'],
+  styleUrls: ['./department-form.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class DepartmentFormComponent implements OnInit {

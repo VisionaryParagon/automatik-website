@@ -8,7 +8,7 @@ import { DepartmentDataComponent } from './department-data/department-data.compo
 @Component({
   selector: 'app-admin-team',
   templateUrl: './admin-team.component.html',
-  styleUrls: ['./admin-team.component.css'],
+  styleUrls: ['./admin-team.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class AdminTeamComponent implements OnInit {

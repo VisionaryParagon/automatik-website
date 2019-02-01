@@ -12,7 +12,7 @@ import { ImageDeleteComponent } from '../modals/image-delete/image-delete.compon
 @Component({
   selector: 'app-admin-images',
   templateUrl: './admin-images.component.html',
-  styleUrls: ['./admin-images.component.css'],
+  styleUrls: ['./admin-images.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class AdminImagesComponent implements OnInit {
@@ -160,7 +160,7 @@ export class AdminImagesComponent implements OnInit {
   setImageData(ev) {
     this.imageData = ev.target.files[0];
     this.imageName = this.imageData.name;
-    this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
+    this.image.path = 'https://assets.automatik.com/images/' + this.imageName;
     this.testImageName(this.imageName);
   }
 

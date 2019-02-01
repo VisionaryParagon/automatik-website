@@ -1,33 +1,63 @@
-import { Component, ElementRef, HostListener, Input, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Department, Image, Teammate } from '../../../services/classes';
+import { ImageService } from '../../../services/image.service';
+import { TeamService } from '../../../services/team.service';
 
 import { FadeAnimation, TeamBioAnimation, TopDownAnimation } from '../../../animations';
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.css'],
+  styleUrls: ['./team.component.scss'],
   animations: [ FadeAnimation, TeamBioAnimation, TopDownAnimation ]
 })
 export class TeamComponent implements OnInit {
-  @Input('teammates') teammates: Teammate[];
-  @Input('departments') departments: Department[];
-  @Input('images') images: Image[];
+  teammates: Teammate[] = this.teamService.team;
+  departments: Department[] = this.teamService.departments;
+  images: Image[] = this.imageService.images;
   teamHeight = 'auto';
   bottomMargin = '0px';
   selected: Teammate;
   changingTeammate = false;
+  error = '';
 
   @ViewChild('teamBox') teamBox: ElementRef;
   @ViewChild('bioBox') bioBox: ElementRef;
 
   constructor(
+    private imageService: ImageService,
+    private teamService: TeamService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit() {
+    if (!this.teammates || !this.departments || !this.images) {
+      this.imageService.getImages()
+        .subscribe(
+          imgRes => {
+            this.images = imgRes;
+
+            this.teamService.getDepartments()
+              .subscribe(
+                deptRes => {
+                  this.departments = deptRes;
+
+                  this.teamService.getTeammates()
+                    .subscribe(
+                      tmRes => {
+                        this.teammates = this.teamService.teamSort(tmRes);
+                      },
+                      err => this.setError('Could not get team: ' + err)
+                    );
+                },
+                err => this.setError('Could not get departments: ' + err)
+              );
+          },
+          err => this.setError('Could not get images: ' + err)
+        );
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(ev) {
@@ -118,5 +148,10 @@ export class TeamComponent implements OnInit {
   closeTeammate() {
     this.selected = null;
     this.bottomMargin = '0px';
+  }
+
+  setError(err) {
+    this.error = err;
+    console.error(err);
   }
 }

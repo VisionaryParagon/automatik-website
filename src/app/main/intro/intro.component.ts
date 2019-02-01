@@ -11,7 +11,7 @@ import { IntroAnimation, FadeAnimation } from '../../animations';
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.component.html',
-  styleUrls: ['./intro.component.css'],
+  styleUrls: ['./intro.component.scss'],
   animations: [ IntroAnimation, FadeAnimation ]
 })
 export class IntroComponent implements OnInit {

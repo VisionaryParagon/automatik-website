@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
-  admin: 'https://beta.automatik9dots.com/admn/',
-  careers: 'https://beta.automatik9dots.com/careers/',
-  contact: 'https://beta.automatik9dots.com/cntct/',
-  images: 'https://beta.automatik9dots.com/img/',
-  projects: 'https://beta.automatik9dots.com/prj/',
-  secret: 'https://beta.automatik9dots.com/scrt/',
-  subscriber: 'https://beta.automatik9dots.com/sub/',
-  team: 'https://beta.automatik9dots.com/tm/'
+  admin: 'https://automatik.com/admn/',
+  careers: 'https://automatik.com/careers/',
+  contact: 'https://automatik.com/cntct/',
+  images: 'https://automatik.com/img/',
+  projects: 'https://automatik.com/prj/',
+  secret: 'https://automatik.com/scrt/',
+  subscriber: 'https://automatik.com/sub/',
+  team: 'https://automatik.com/tm/'
 };

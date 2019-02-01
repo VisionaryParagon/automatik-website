@@ -9,7 +9,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-image-delete',
   templateUrl: './image-delete.component.html',
-  styleUrls: ['./image-delete.component.css'],
+  styleUrls: ['./image-delete.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class ImageDeleteComponent implements OnInit {

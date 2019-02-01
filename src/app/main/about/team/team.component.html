@@ -10,6 +10,14 @@
           <img [class.selected]="selected" [src]="mate.primary_image" width="100%" [alt]="mate.first_name + ' ' + mate.last_name + ' | ' + mate.title" (click)="openTeammate(mate)">
         </div>
       </div>
+
+      <div class="py-5" *ngIf="!teammates && !error.length">
+        <mat-spinner class="mx-auto my-5"></mat-spinner>
+      </div>
+      
+      <div class="text-center" [@topDown]="true" *ngIf="error.length">
+        <p>{{ error }}</p>
+      </div>
     </div>
 
     <div class="bio" [@teamBio]="true" *ngIf="selected" [style.minHeight]="teamHeight" #bioBox>

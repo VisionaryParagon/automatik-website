@@ -29,11 +29,11 @@ export class SeoService {
       },
       {
         property: 'og:url',
-        content: 'https://beta.automatik9dots.com/'
+        content: 'https://automatik.com/'
       },
       {
         property: 'og:image',
-        content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+        content: 'https://assets.automatik.com/images/home-share-1200.jpg'
       },
       {
         property: 'og:description',
@@ -57,7 +57,7 @@ export class SeoService {
       },
       {
         name: 'twitter:image:src',
-        content: 'https://assets.automatik9dots.com/images/home-share-1200.jpg'
+        content: 'https://assets.automatik.com/images/home-share-1200.jpg'
       }
     ]
   };

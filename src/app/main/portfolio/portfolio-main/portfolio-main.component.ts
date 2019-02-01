@@ -10,7 +10,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-portfolio-main',
   templateUrl: './portfolio-main.component.html',
-  styleUrls: ['./portfolio-main.component.css'],
+  styleUrls: ['./portfolio-main.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class PortfolioMainComponent implements OnInit {

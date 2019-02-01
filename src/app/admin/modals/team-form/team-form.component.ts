@@ -12,7 +12,7 @@ import { ImageUploaderComponent } from '../image-uploader/image-uploader.compone
 @Component({
   selector: 'app-team-form',
   templateUrl: './team-form.component.html',
-  styleUrls: ['./team-form.component.css'],
+  styleUrls: ['./team-form.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class TeamFormComponent implements OnInit {

@@ -10,7 +10,7 @@ export class ParallaxImages {
 @Component({
   selector: 'parallax-bg',
   templateUrl: './parallax-bg.component.html',
-  styleUrls: ['./parallax-bg.component.css']
+  styleUrls: ['./parallax-bg.component.scss']
 })
 export class ParallaxBgComponent implements AfterContentInit, OnChanges, OnInit {
   @Input() images: ParallaxImages = new ParallaxImages();
@@ -60,9 +60,10 @@ export class ParallaxBgComponent implements AfterContentInit, OnChanges, OnInit 
     }
   }
   @HostListener('window:resize', ['$event']) onResize(ev) {
+    const mobile = /Mobi/.test(navigator.userAgent);
     const w = window.innerWidth;
 
-    if (w !== this.width) {
+    if (!mobile || w !== this.width) {
       this.getContainer();
       this.width = w;
     }

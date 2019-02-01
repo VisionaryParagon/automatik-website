@@ -5,14 +5,14 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-event-production',
   templateUrl: './event-production.component.html',
-  styleUrls: ['./event-production.component.css'],
+  styleUrls: ['./event-production.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class EventProductionComponent implements OnInit {
   images = {
-    sm: 'https://assets.automatik9dots.com/images/event-production-hero-bg-900.jpg',
-    md: 'https://assets.automatik9dots.com/images/event-production-hero-bg-1440.jpg',
-    lg: 'https://assets.automatik9dots.com/images/event-production-hero-bg-2560.jpg'
+    sm: 'https://assets.automatik.com/images/event-production-hero-bg-900.jpg',
+    md: 'https://assets.automatik.com/images/event-production-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik.com/images/event-production-hero-bg-2560.jpg'
   };
   /*
   slides = [

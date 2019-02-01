@@ -5,7 +5,7 @@ import { FadeAnimation } from '../../../animations';
 @Component({
   selector: 'app-resources-main',
   templateUrl: './resources-main.component.html',
-  styleUrls: ['./resources-main.component.css'],
+  styleUrls: ['./resources-main.component.scss'],
   animations: [ FadeAnimation ]
 })
 export class ResourcesMainComponent implements OnInit {

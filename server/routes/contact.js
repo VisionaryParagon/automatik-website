@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+
+// email config
 const smtpConfig = {
   host: 'smtp.office365.com',
   port: 587,
@@ -76,6 +78,7 @@ router.post('/contact', (req, res) => {
   let mailOptionsMsgInt = {
     from: '"Website Contact Form" <noreply@automatik.us>', // sender address
     to: '"Shaundra Boone" <sboone@automatik.us>', // list of receivers
+    bcc: '"Johnny Sweet" <jsweet@automatik.us>', // list of receivers
     replyTo: data.email, // list of replyTo's
     subject: 'Contact Form Inquiry from ' + data.name, // Subject line
     text: textContentMsgInt, // plaintext body

@@ -34,10 +34,21 @@ const subscriberRoute = require('./server/routes/subscriber');
 const teamRoute = require('./server/routes/team');
 
 // connect to db
+/*
 mongoose.connect('mongodb://' + process.env.DBUSR + ':' + process.env.DBPWD + '@ds237379.mlab.com:37379/automatik-apps', {
   reconnectTries: Number.MAX_VALUE,
   reconnectInterval: 1000
-});
+})
+  .then(dbRes => console.log('Connected to DB:', dbRes.connections[0].name))
+  .catch(dbErr => console.log('Error connecting to DB:', dbErr));
+*/
+
+mongoose.connect('mongodb://' + process.env.DBUSR + ':' + encodeURIComponent(process.env.DBPWDPROD) + '@ds219175-a0.mlab.com:19175,ds219175-a1.mlab.com:19175/automatik-apps?replicaSet=rs-ds219175', {
+  reconnectTries: Number.MAX_VALUE,
+  reconnectInterval: 1000
+})
+  .then(dbRes => console.log('Connected to DB:', dbRes.connections[0].name))
+  .catch(dbErr => console.log('Error connecting to DB:', dbErr));
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -91,8 +102,8 @@ passport.deserializeUser(admin.deserializeUser());
 
 // https redirect
 app.all('*', (req, res, next) => {
-  // if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.com' && req.headers.host !== 'www.automatik.com')) {
-  if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'beta.automatik.com' && req.headers.host !== 'beta.automatik9dots.com')) {
+  if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.com' && req.headers.host !== 'www.automatik.com')) {
+  // if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'beta.automatik.com' && req.headers.host !== 'beta.automatik9dots.com')) {
     next();
   } else {
     if (req.headers.host.indexOf('www.') === 0) {

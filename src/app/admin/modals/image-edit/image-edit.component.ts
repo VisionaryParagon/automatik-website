@@ -9,7 +9,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-image-edit',
   templateUrl: './image-edit.component.html',
-  styleUrls: ['./image-edit.component.css'],
+  styleUrls: ['./image-edit.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class ImageEditComponent implements OnInit {

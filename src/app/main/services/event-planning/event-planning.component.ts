@@ -5,14 +5,14 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-event-planning',
   templateUrl: './event-planning.component.html',
-  styleUrls: ['./event-planning.component.css'],
+  styleUrls: ['./event-planning.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class EventPlanningComponent implements OnInit {
   images = {
-    sm: 'https://assets.automatik9dots.com/images/event-planning-hero-bg-900.jpg',
-    md: 'https://assets.automatik9dots.com/images/event-planning-hero-bg-1440.jpg',
-    lg: 'https://assets.automatik9dots.com/images/event-planning-hero-bg-2560.jpg'
+    sm: 'https://assets.automatik.com/images/event-planning-hero-bg-900.jpg',
+    md: 'https://assets.automatik.com/images/event-planning-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik.com/images/event-planning-hero-bg-2560.jpg'
   };
   slides = [
     {

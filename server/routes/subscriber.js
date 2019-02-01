@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-// subscriber model
-const subscribers = require('../models/subscriber');
-
-// nodemailer
 const nodemailer = require('nodemailer');
+
+// email config
 const smtpConfig = {
   host: 'smtp.office365.com',
   port: 587,
@@ -16,6 +13,9 @@ const smtpConfig = {
 };
 
 const transporter = nodemailer.createTransport(smtpConfig);
+
+// subscriber model
+const subscribers = require('../models/subscriber');
 
 // create new subscriber
 router.post('/new', (req, res) => {

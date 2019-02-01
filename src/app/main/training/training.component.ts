@@ -7,14 +7,14 @@ import { FadeAnimation } from '../../animations';
 @Component({
   selector: 'app-training',
   templateUrl: './training.component.html',
-  styleUrls: ['./training.component.css'],
+  styleUrls: ['./training.component.scss'],
   animations: [ FadeAnimation ]
 })
 export class TrainingComponent implements AfterViewInit, OnInit {
   heroImages = {
-    sm: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-900.jpg',
-    md: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-1440.jpg',
-    lg: 'https://assets.automatik9dots.com/images/home-presentaion-hero-bg-2560.jpg'
+    sm: 'https://assets.automatik.com/images/home-presentaion-hero-bg-900.jpg',
+    md: 'https://assets.automatik.com/images/home-presentaion-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik.com/images/home-presentaion-hero-bg-2560.jpg'
   };
 
   constructor(

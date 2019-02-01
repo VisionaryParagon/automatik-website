@@ -10,7 +10,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-team-delete',
   templateUrl: './team-delete.component.html',
-  styleUrls: ['./team-delete.component.css'],
+  styleUrls: ['./team-delete.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class TeamDeleteComponent implements OnInit {

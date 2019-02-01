@@ -13,7 +13,7 @@ import { PortfolioDeleteComponent } from '../modals/portfolio-delete/portfolio-d
 @Component({
   selector: 'app-admin-portfolio',
   templateUrl: './admin-portfolio.component.html',
-  styleUrls: ['./admin-portfolio.component.css'],
+  styleUrls: ['./admin-portfolio.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class AdminPortfolioComponent implements OnInit {

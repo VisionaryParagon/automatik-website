@@ -9,7 +9,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-career-delete',
   templateUrl: './career-delete.component.html',
-  styleUrls: ['./career-delete.component.css'],
+  styleUrls: ['./career-delete.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class CareerDeleteComponent implements OnInit {

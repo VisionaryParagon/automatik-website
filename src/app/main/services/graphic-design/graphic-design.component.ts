@@ -5,14 +5,14 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-graphic-design',
   templateUrl: './graphic-design.component.html',
-  styleUrls: ['./graphic-design.component.css'],
+  styleUrls: ['./graphic-design.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class GraphicDesignComponent implements OnInit {
   images = {
-    sm: 'https://assets.automatik9dots.com/images/graphic-design-hero-bg-900.jpg',
-    md: 'https://assets.automatik9dots.com/images/graphic-design-hero-bg-1440.jpg',
-    lg: 'https://assets.automatik9dots.com/images/graphic-design-hero-bg-2560.jpg'
+    sm: 'https://assets.automatik.com/images/graphic-design-hero-bg-900.jpg',
+    md: 'https://assets.automatik.com/images/graphic-design-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik.com/images/graphic-design-hero-bg-2560.jpg'
   };
   /*
   slides = [

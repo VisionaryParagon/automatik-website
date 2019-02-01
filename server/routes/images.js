@@ -34,7 +34,7 @@ router.post('/upload-image', upload.single('file'), (req, res) => {
   const params = {
     ACL: 'public-read',
     Body: req.file.buffer,
-    Bucket: 'assets.automatik9dots.com',
+    Bucket: 'assets.automatik.com',
     Key: 'images/' + req.file.originalname
   };
 
@@ -89,7 +89,7 @@ router.delete('/images/:id', (req, res) => {
     if (!data) return res.status(404).send({ message: 'Image not in system' });
 
     const params = {
-      Bucket: 'assets.automatik9dots.com',
+      Bucket: 'assets.automatik.com',
       Key: 'images/' + data.path.split('/').pop()
     };
 

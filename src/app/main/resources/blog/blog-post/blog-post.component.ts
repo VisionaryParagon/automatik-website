@@ -12,16 +12,16 @@ import { FadeAnimation } from '../../../../animations';
 @Component({
   selector: 'app-blog-post',
   templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.css'],
+  styleUrls: ['./blog-post.component.scss'],
   animations: [ FadeAnimation ]
 })
 export class BlogPostComponent implements OnInit {
   slug = this.route.snapshot.params.slug;
   post;
   heroImages = {
-    sm: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg',
-    md: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-1440.jpg',
-    lg: 'https://assets.automatik9dots.com/images/home-car-drifting-bg-2560.jpg'
+    sm: 'https://assets.automatik.com/images/home-car-drifting-bg-900.jpg',
+    md: 'https://assets.automatik.com/images/home-car-drifting-bg-1440.jpg',
+    lg: 'https://assets.automatik.com/images/home-car-drifting-bg-2560.jpg'
   };
   blogs;
   categories;
@@ -138,7 +138,7 @@ export class BlogPostComponent implements OnInit {
           },
           {
             property: 'og:url',
-            content: 'https://beta.automatik9dots.com/resources/blog/' + data.slug
+            content: 'https://automatik.com/resources/blog/' + data.slug
           },
           {
             property: 'og:image',
@@ -184,7 +184,7 @@ export class BlogPostComponent implements OnInit {
       if (src) {
         return src;
       } else {
-        return 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg';
+        return 'https://assets.automatik.com/images/home-car-drifting-bg-900.jpg';
       }
     }
   }

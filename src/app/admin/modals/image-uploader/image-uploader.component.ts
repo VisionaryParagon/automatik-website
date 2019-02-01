@@ -8,7 +8,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-image-uploader',
   templateUrl: './image-uploader.component.html',
-  styleUrls: ['./image-uploader.component.css'],
+  styleUrls: ['./image-uploader.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class ImageUploaderComponent implements OnInit {
@@ -86,7 +86,7 @@ export class ImageUploaderComponent implements OnInit {
   setImageData(ev) {
     this.imageData = ev.target.files[0];
     this.imageName = this.imageData.name;
-    this.image.path = 'https://assets.automatik9dots.com/images/' + this.imageName;
+    this.image.path = 'https://assets.automatik.com/images/' + this.imageName;
     this.testImageName(this.imageName);
   }
 

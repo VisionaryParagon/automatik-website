@@ -8,7 +8,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../../animations';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog-main.component.html',
-  styleUrls: ['./blog-main.component.css'],
+  styleUrls: ['./blog-main.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class BlogMainComponent implements OnInit {
@@ -194,7 +194,7 @@ export class BlogMainComponent implements OnInit {
       if (src) {
         return src;
       } else {
-        return 'https://assets.automatik9dots.com/images/home-car-drifting-bg-900.jpg';
+        return 'https://assets.automatik.com/images/home-car-drifting-bg-900.jpg';
       }
     }
   }

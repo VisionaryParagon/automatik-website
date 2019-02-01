@@ -13,7 +13,7 @@ import { TeamDeleteComponent } from '../../modals/team-delete/team-delete.compon
 @Component({
   selector: 'app-team-data',
   templateUrl: './team-data.component.html',
-  styleUrls: ['./team-data.component.css'],
+  styleUrls: ['./team-data.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class TeamDataComponent implements OnInit {

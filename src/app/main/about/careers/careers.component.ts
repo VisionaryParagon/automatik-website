@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { CareerPosition } from '../../../services/classes';
+import { CareersService } from '../../../services/careers.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
@@ -10,18 +11,27 @@ import { CareerInquiryComponent } from '../../modals/career-inquiry/career-inqui
 @Component({
   selector: 'app-careers',
   templateUrl: './careers.component.html',
-  styleUrls: ['./careers.component.css'],
+  styleUrls: ['./careers.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class CareersComponent implements OnInit {
-  @Input('positions') positions: CareerPosition[];
+  positions: CareerPosition[] = this.careersService.positions;
   inquiry: CareerPosition = new CareerPosition();
+  error = '';
 
   constructor(
+    private careersService: CareersService,
     private modalService: MatDialog
   ) { }
 
   ngOnInit() {
+    if (!this.positions) {
+      this.careersService.getPositions()
+        .subscribe(
+          res => this.positions = res,
+          err => this.setError('Could not get positions: ' + err)
+        );
+    }
   }
 
   inquire(position?) {
@@ -43,5 +53,10 @@ export class CareersComponent implements OnInit {
         result => {},
         error => {}
       );
+  }
+
+  setError(err) {
+    this.error = err;
+    console.error(err);
   }
 }

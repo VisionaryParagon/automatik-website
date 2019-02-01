@@ -5,7 +5,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-video-production',
   templateUrl: './video-production.component.html',
-  styleUrls: ['./video-production.component.css'],
+  styleUrls: ['./video-production.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class VideoProductionComponent implements OnInit {
@@ -13,9 +13,9 @@ export class VideoProductionComponent implements OnInit {
     sm: 'https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80',
     md: 'https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80',
     lg: 'https://images.unsplash.com/photo-1534351594065-55bd7f5f75d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac1f6086a14195985ea4d32644f9d90d&auto=format&fit=crop&w=934&q=80'
-    // sm: 'https://assets.automatik9dots.com/images/video-production-hero-bg-900.jpg',
-    // md: 'https://assets.automatik9dots.com/images/video-production-hero-bg-1440.jpg',
-    // lg: 'https://assets.automatik9dots.com/images/video-production-hero-bg-2560.jpg'
+    // sm: 'https://assets.automatik.com/images/video-production-hero-bg-900.jpg',
+    // md: 'https://assets.automatik.com/images/video-production-hero-bg-1440.jpg',
+    // lg: 'https://assets.automatik.com/images/video-production-hero-bg-2560.jpg'
   };
   /*
   slides = [

@@ -10,7 +10,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css'],
+  styleUrls: ['./contact.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class ContactComponent implements OnInit {

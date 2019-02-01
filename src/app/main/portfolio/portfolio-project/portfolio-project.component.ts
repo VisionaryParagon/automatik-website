@@ -12,7 +12,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-portfolio-project',
   templateUrl: './portfolio-project.component.html',
-  styleUrls: ['./portfolio-project.component.css'],
+  styleUrls: ['./portfolio-project.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class PortfolioProjectComponent implements OnInit {
@@ -109,7 +109,7 @@ export class PortfolioProjectComponent implements OnInit {
           },
           {
             property: 'og:url',
-            content: 'https://beta.automatik9dots.com/portfolio/' + data.slug
+            content: 'https://automatik.com/portfolio/' + data.slug
           },
           {
             property: 'og:image',

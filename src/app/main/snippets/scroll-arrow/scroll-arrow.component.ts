@@ -6,7 +6,7 @@ import { FadeAnimation } from '../../../animations';
 @Component({
   selector: 'scroll-arrow',
   templateUrl: './scroll-arrow.component.html',
-  styleUrls: ['./scroll-arrow.component.css'],
+  styleUrls: ['./scroll-arrow.component.scss'],
   animations: [ FadeAnimation ]
 })
 export class ScrollArrowComponent implements OnInit {

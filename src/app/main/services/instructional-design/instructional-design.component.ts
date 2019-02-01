@@ -5,14 +5,14 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-instructional-design',
   templateUrl: './instructional-design.component.html',
-  styleUrls: ['./instructional-design.component.css'],
+  styleUrls: ['./instructional-design.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class InstructionalDesignComponent implements OnInit {
   images = {
-    sm: 'https://assets.automatik9dots.com/images/instructional-design-hero-bg-900.jpg',
-    md: 'https://assets.automatik9dots.com/images/instructional-design-hero-bg-1440.jpg',
-    lg: 'https://assets.automatik9dots.com/images/instructional-design-hero-bg-2560.jpg'
+    sm: 'https://assets.automatik.com/images/instructional-design-hero-bg-900.jpg',
+    md: 'https://assets.automatik.com/images/instructional-design-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik.com/images/instructional-design-hero-bg-2560.jpg'
   };
   /*
   slides = [

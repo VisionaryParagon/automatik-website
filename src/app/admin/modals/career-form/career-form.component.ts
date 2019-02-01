@@ -11,7 +11,7 @@ import { ImageUploaderComponent } from '../image-uploader/image-uploader.compone
 @Component({
   selector: 'app-career-form',
   templateUrl: './career-form.component.html',
-  styleUrls: ['./career-form.component.css'],
+  styleUrls: ['./career-form.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class CareerFormComponent implements OnInit {

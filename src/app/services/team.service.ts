@@ -31,6 +31,11 @@ export class TeamService {
 
   teamSort(team) {
     team.sort((a, b) => {
+      const xd = this.getDepartmentRank(a.department);
+      const yd = this.getDepartmentRank(b.department);
+      const xs = a.seniority;
+      const ys = b.seniority;
+      /*
       if (this.getDepartmentRank(a.department) < this.getDepartmentRank(b.department)) {
         return -1;
       }
@@ -44,6 +49,8 @@ export class TeamService {
         return 1;
       }
       return 0;
+      */
+      return ((xd < yd) ? -1 : ((xd > yd) ? 1 : ((xs < ys) ? -1 : ((xs > ys) ? 1 : 0))));
     });
 
     return team;

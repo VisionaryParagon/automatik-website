@@ -12,7 +12,7 @@ import { CareerDeleteComponent } from '../modals/career-delete/career-delete.com
 @Component({
   selector: 'app-admin-careers',
   templateUrl: './admin-careers.component.html',
-  styleUrls: ['./admin-careers.component.css'],
+  styleUrls: ['./admin-careers.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class AdminCareersComponent implements OnInit {

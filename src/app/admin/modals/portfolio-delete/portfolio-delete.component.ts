@@ -9,7 +9,7 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 @Component({
   selector: 'app-portfolio-delete',
   templateUrl: './portfolio-delete.component.html',
-  styleUrls: ['./portfolio-delete.component.css'],
+  styleUrls: ['./portfolio-delete.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
 export class PortfolioDeleteComponent implements OnInit {
