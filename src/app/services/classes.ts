@@ -48,6 +48,7 @@ export class CareerInquiry {
   start_date: Date;
   status: string;
   awesome: string;
+  captcha: string;
 }
 
 export class Department {

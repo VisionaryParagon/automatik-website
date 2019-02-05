@@ -41,6 +41,7 @@ export class CareerInquiryComponent implements OnInit {
 
     if (isValid) {
       this.loading = true;
+
       this.careersService.inquire(info)
         .subscribe(
           data => {

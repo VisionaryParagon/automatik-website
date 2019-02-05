@@ -98,7 +98,14 @@
           </div>
         </div>
 
-        <div class="text-center">
+        <div style="transform: scale(0.8); transform-origin: 0;">
+          <re-captcha siteKey="6Lf-J48UAAAAAGJ7fArK0STIdp7JcGiRpN-KRvbV" name="captcha" #captcha="ngModel" required [(ngModel)]="inquiry.captcha"></re-captcha>
+        </div>
+        <div class="errorMsg" [@topDown]="true" *ngIf="captcha.errors && (captcha.touched || submitted)">
+          <p *ngIf="captcha.errors.required">Please confirm you are not a robot</p>
+        </div>
+
+        <div class="text-center my-3">
           <p class="disclaimer">* Required field</p>
 
           <div class="errorMsg" [@topDown]="true" *ngIf="error.length">

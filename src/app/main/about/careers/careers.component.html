@@ -3,7 +3,7 @@
 
   <h3>Interested in joining our &auml;&#8209;team?</h3>
 
-  <div *ngIf="positions">
+  <div *ngIf="positions && positions.length > 0">
     <p>Check out our Phoenix-based open positions below.</p>
 
     <div id="openPositions" class="row">
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div *ngIf="!positions">
+  <div *ngIf="!positions || !positions.length">
     <p>Sorry, there are no open positions at this time.</p>
   </div>
 

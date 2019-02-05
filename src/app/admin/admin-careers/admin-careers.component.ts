@@ -27,7 +27,7 @@ export class AdminCareersComponent implements OnInit {
   modalOptions = {
     maxHeight: '90%',
     maxWidth: '768px',
-    width: '80%'
+    width: '90%'
   };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -104,7 +104,7 @@ export class AdminCareersComponent implements OnInit {
       data: career,
       maxHeight: '90%',
       maxWidth: '768px',
-      width: '80%'
+      width: '90%'
     });
     modal.afterClosed()
       .subscribe(
@@ -118,7 +118,7 @@ export class AdminCareersComponent implements OnInit {
       data: career,
       maxHeight: '90%',
       maxWidth: '768px',
-      width: '80%'
+      width: '90%'
     });
     modal.afterClosed()
       .subscribe(

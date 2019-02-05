@@ -26,7 +26,7 @@ export class DepartmentDataComponent implements OnInit {
   modalOptions = {
     maxHeight: '90%',
     maxWidth: '768px',
-    width: '80%'
+    width: '90%'
   };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -107,7 +107,7 @@ export class DepartmentDataComponent implements OnInit {
       data: data,
       maxHeight: '90%',
       maxWidth: '768px',
-      width: '80%'
+      width: '90%'
     });
     modal.afterClosed()
       .subscribe(
@@ -121,7 +121,7 @@ export class DepartmentDataComponent implements OnInit {
       data: data,
       maxHeight: '90%',
       maxWidth: '768px',
-      width: '80%'
+      width: '90%'
     });
     modal.afterClosed()
       .subscribe(

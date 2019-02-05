@@ -125,7 +125,7 @@ export class AdminImagesComponent implements OnInit {
       data: img,
       maxHeight: '90%',
       maxWidth: '768px',
-      width: '80%'
+      width: '90%'
     });
     modal.afterClosed()
       .subscribe(
@@ -139,7 +139,7 @@ export class AdminImagesComponent implements OnInit {
       data: img,
       maxHeight: '90%',
       maxWidth: '768px',
-      width: '80%'
+      width: '90%'
     });
     modal.afterClosed()
       .subscribe(

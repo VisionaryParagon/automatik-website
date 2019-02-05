@@ -30,7 +30,7 @@ export class DepartmentFormComponent implements OnInit {
   modalOptions = {
     maxHeight: '90%',
     maxWidth: '768px',
-    width: '80%'
+    width: '90%'
   };
 
   constructor(
