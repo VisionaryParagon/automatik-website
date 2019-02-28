@@ -25,6 +25,7 @@
 
         <div class="fullSubNav" [@topDown]="true" *ngIf="stateTraining === 'active'">
           <a routerLink="/training" fragment="workshops" (click)="closeSubNav()">Workshops</a>
+          <a routerLink="/training" fragment="mentoring" (click)="closeSubNav()">Private Mentoring</a>
           <a routerLink="/training" fragment="customdevelopment" (click)="closeSubNav()">Custom Development</a>
           <!--
           <a routerLink="/training/e-learning" (click)="closeSubNav()">E-Learning</a>
@@ -120,6 +121,7 @@
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateTraining === 'active'">
         <a routerLink="/training" fragment="workshops" [class.active]="activeLink('workshops')" (click)="closeNav()">Workshops</a>
+        <a routerLink="/training" fragment="mentoring" [class.active]="activeLink('mentoring')" (click)="closeNav()">Private Mentoring</a>
         <a routerLink="/training" fragment="customdevelopment" [class.active]="activeLink('customdevelopment')" (click)="closeNav()">Custom Development</a>
         <!--
         <a routerLink="/training/e-learning" routerLinkActive="active" (click)="closeNav()">E-Learning</a>
