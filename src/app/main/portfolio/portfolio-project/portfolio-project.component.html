@@ -1,10 +1,4 @@
-<div class="project" [@fade]="true" #container>
-  <section *ngIf="loading && !error.length">
-    <div class="container py-5">
-      <mat-spinner class="mx-auto my-5"></mat-spinner>
-    </div>
-  </section>
-
+<div class="project" [@fade]="true">
   <div [@fade]="true" *ngIf="!loading && !error.length">
     <section class="fullHeight hero">
       <parallax-bg [images]="projectImages"></parallax-bg>
@@ -50,6 +44,12 @@
       </div>
     </section>
   </div>
+
+  <section *ngIf="loading && !error.length">
+    <div class="container py-5">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
+  </section>
 
   <section [@topDown]="true" *ngIf="error.length">
     <div class="container my-5 text-center">
