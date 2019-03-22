@@ -38,7 +38,7 @@ export class ScrollArrowComponent implements OnInit {
 
   checkScroll() {
     if (isPlatformBrowser(this.platformId)) {
-      this.atTop = window.scrollY > 50 ? false : true;
+      this.atTop = window.scrollY > 50 || document.documentElement.classList.contains('cdk-global-scrollblock') ? false : true;
     }
   }
 }
