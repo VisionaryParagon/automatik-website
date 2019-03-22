@@ -1,12 +1,6 @@
 <div [@fade]="true">
-  <section *ngIf="loading && !error.length">
-    <div class="container py-5">
-      <mat-spinner class="mx-auto my-5"></mat-spinner>
-    </div>
-  </section>
-
   <div [@fade]="true" *ngIf="!loading && !error.length">
-    <section class="dark fixed fullHeight hero" [class.faded]="changingBlog">
+    <section class="dark fixed fullHeight hero">
       <parallax-bg [images]="heroImages"></parallax-bg>
 
       <div class="overlay"></div>
@@ -23,11 +17,11 @@
     <section>
       <div class="container p-4">
         <div class="row">
-          <div class="blogContent col-12 col-lg-9" [class.faded]="changingBlog">
+          <div class="blogContent col-12 col-lg-9">
             <div [innerHtml]="safeHtml"></div>
           </div>
 
-          <div class="blogSidebar col-lg-3" [class.faded]="changingBlog">
+          <div class="blogSidebar col-lg-3">
             <h5>Recent Posts</h5>
 
             <div class="blogList">
@@ -49,6 +43,12 @@
     </section>
   </div>
 
+  <section *ngIf="loading && !error.length">
+    <div class="container py-5">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
+  </section>
+  
   <section [@topDown]="true" *ngIf="error.length">
     <div class="container">
       <p>{{ error }}</p>

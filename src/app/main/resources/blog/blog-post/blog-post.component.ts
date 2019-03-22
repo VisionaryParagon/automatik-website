@@ -80,17 +80,13 @@ export class BlogPostComponent implements OnInit {
 
     this.router.events.subscribe((ev: any) => {
       if (ev instanceof NavigationEnd) {
-        if (ev.url.indexOf('/resources/blog/') === 0 && ev.url.indexOf(this.slug) === -1) {
-          this.changingBlog = true;
+        const newSlug = ev.url.split('/').pop();
 
-          setTimeout(() => {
-            this.slug = ev.url.split('/').pop();
-            this.checkData();
+        if (ev.url.indexOf('/resources/blog/') === 0 && newSlug !== this.slug) {
+          this.loading = true;
+          this.slug = newSlug;
 
-            setTimeout(() => {
-              this.changingBlog = false;
-            }, 250);
-          }, 250);
+          setTimeout(() => this.checkData(), 250);
         }
       }
     });
