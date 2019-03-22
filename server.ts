@@ -102,7 +102,7 @@ passport.deserializeUser(admin.deserializeUser());
 
 // https redirect
 app.all('*', (req, res, next) => {
-  if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.com' && req.headers.host !== 'www.automatik.com')) {
+  if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.com' && req.headers.host !== 'www.automatik.com') || req.headers.host !== 'beta.automatik.com') {
   // if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'beta.automatik.com' && req.headers.host !== 'beta.automatik9dots.com')) {
     next();
   } else {
@@ -123,7 +123,7 @@ app.use('/prj', projectRoute);
 app.use('/sub', subscriberRoute);
 app.use('/tm', teamRoute);
 
-// Server static files from /browser
+// Serve static files from /browser
 app.all('*.*', express.static(join(DIST_FOLDER, 'browser'), {
   maxAge: '1y'
 }));
