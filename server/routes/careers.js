@@ -16,7 +16,6 @@ const transporter = nodemailer.createTransport(smtpConfig);
 
 // career models
 const careers = require('../models/careers');
-const careerInquiries = require('../models/career-inquiries');
 
 // create new position
 router.post('/new', (req, res) => {
@@ -49,7 +48,7 @@ router.delete('/positions/:id', (req, res) => {
   if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   careers.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send({ message: 'Position deleted' });
+    return res.status(200).send({ message: 'Position deleted' });
   });
 });
 
@@ -60,7 +59,7 @@ router.put('/positions/:id', (req, res) => {
     new: true
   }, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 

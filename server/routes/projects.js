@@ -4,21 +4,6 @@ const router = express.Router();
 // project models
 const projects = require('../models/projects');
 
-// validate project
-router.post('/valid-project', (req, res) => {
-  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
-  projects.find({ path: req.body.slug }, (err, data) => {
-    const prj = {
-      isValid: true,
-      data: data
-    };
-    if (err) return res.status(500).send(err);
-    if (!data.length) return res.status(200).send(prj);
-    prj.isValid = false;
-    return res.status(200).send(prj);
-  });
-});
-
 // create new project
 router.post('/new-project', (req, res) => {
   if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
@@ -52,7 +37,7 @@ router.put('/projects/:id', (req, res) => {
     new: true
   }, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 
@@ -61,7 +46,7 @@ router.delete('/projects/:id', (req, res) => {
   if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   projects.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 

@@ -77,7 +77,7 @@ router.put('/images/:id', (req, res) => {
     new: true
   }, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 
@@ -98,7 +98,7 @@ router.delete('/images/:id', (req, res) => {
 
       images.findByIdAndRemove(req.params.id, (dberr, dbdata) => {
         if (dberr) return res.status(500).send(dberr);
-        res.status(200).send(dbdata);
+        return res.status(200).send(dbdata);
       });
     });
   });

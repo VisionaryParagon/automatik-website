@@ -38,7 +38,7 @@ router.put('/depts/:id', (req, res) => {
     new: true
   }, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 
@@ -60,7 +60,7 @@ router.delete('/depts/:id', (req, res) => {
   if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   departments.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 
@@ -97,7 +97,7 @@ router.put('/teammates/:id', (req, res) => {
     new: true
   }, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 
@@ -106,7 +106,7 @@ router.delete('/teammates/:id', (req, res) => {
   if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   team.findByIdAndRemove(req.params.id, (err, data) => {
     if (err) return res.status(500).send(err);
-    res.status(200).send(data);
+    return res.status(200).send(data);
   });
 });
 
