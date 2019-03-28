@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// team models
+// project models
 const projects = require('../models/projects');
 
 // validate project
