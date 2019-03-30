@@ -2,10 +2,12 @@ import { AfterViewInit, Component, HostListener, Inject, OnInit, PLATFORM_ID, Re
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser, Location, PopStateEvent } from '@angular/common';
 
+import { Workshop } from './services/classes';
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service';
 import { AdminService } from './services/admin.service';
 import { ProjectService } from './services/project.service';
 import { SeoService } from './services/seo.service';
+import { WorkshopsService } from './services/workshops.service';
 
 import { MobileNavAnimation, FadeAnimation, TopDownAnimation } from './animations';
 
@@ -30,8 +32,10 @@ export class AppComponent implements AfterViewInit, OnInit {
   stateTraining = 'inactive';
   stateResources = 'inactive';
   stateAbout = 'inactive';
+  secondSubState = '';
   activePage = '';
   currentYear = new Date().getFullYear();
+  workshops: Workshop[] = this.workshopsService.workshops;
 
   constructor(
     public googleAnalyticsEventsService: GoogleAnalyticsEventsService,
@@ -41,6 +45,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     private adminService: AdminService,
     private projectService: ProjectService,
     private seoService: SeoService,
+    private workshopsService: WorkshopsService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -62,7 +67,7 @@ export class AppComponent implements AfterViewInit, OnInit {
           ga('send', 'pageview');
 
           // set page scroll
-          if (ev.url !== this.lastPoppedUrl && ev.url.indexOf('/training') === -1 && (ev.url.indexOf('/about') === -1 || ev.url.indexOf('/about/') !== -1)) {
+          if (ev.url !== this.lastPoppedUrl && (ev.url.indexOf('/training') === -1 || ev.url.indexOf('/training/') !== -1) && (ev.url.indexOf('/about') === -1 || ev.url.indexOf('/about/') !== -1)) {
             window.scrollTo(0, 0);
           } else {
             this.lastPoppedUrl = undefined;
@@ -96,6 +101,11 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
 
     this.seoService.addSeoData();
+
+    // Get workshops
+    if (!this.workshops) {
+      this.workshops = this.workshopsService.getWorkshops();
+    }
 
     this.testMobile();
   }
@@ -131,6 +141,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.stateTraining = 'inactive';
     this.stateResources = 'inactive';
     this.stateAbout = 'inactive';
+    this.secondSubState = '';
   }
 
   toggleNav() {
@@ -191,6 +202,18 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
   }
 
+  closeSubNav() {
+    this.stateServices = 'inactive';
+    this.stateTraining = 'inactive';
+    this.stateResources = 'inactive';
+    this.stateAbout = 'inactive';
+    this.secondSubState = '';
+  }
+
+  toggleSecondSubNav(id) {
+    this.secondSubState = id;
+  }
+
   toggleMobileSubNav(id) {
     if (id === 'Services') {
       this.stateServices = (this.stateServices === 'active' ? 'inactive' : 'active');
@@ -219,13 +242,6 @@ export class AppComponent implements AfterViewInit, OnInit {
       this.stateResources = 'inactive';
       this.stateAbout = (this.stateAbout === 'active' ? 'inactive' : 'active');
     }
-  }
-
-  closeSubNav() {
-    this.stateServices = 'inactive';
-    this.stateTraining = 'inactive';
-    this.stateResources = 'inactive';
-    this.stateAbout = 'inactive';
   }
 
   activeLink(fragment) {

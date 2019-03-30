@@ -21,6 +21,11 @@ import { AppWebDevelopmentComponent } from './services/app-web-development/app-w
 
 // Training
 import { TrainingComponent } from './training/training.component';
+import { TrainingMainComponent } from './training/training-main/training-main.component';
+import { WorkshopsComponent } from './training/workshops/workshops.component';
+import { WorkshopsMainComponent } from './training/workshops/workshops-main/workshops-main.component';
+import { WorkshopsEventComponent } from './training/workshops/workshops-event/workshops-event.component';
+import { MentoringComponent } from './training/mentoring/mentoring.component';
 
 // Portfolio
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -44,6 +49,7 @@ import { CareersComponent } from './about/careers/careers.component';
 
 // Modal Components
 import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.component';
+import { WorkshopRegistrationComponent } from './modals/workshop-registration/workshop-registration.component';
 
 // Snippets
 import { CarouselComponent } from './snippets/carousel/carousel.component';
@@ -68,6 +74,11 @@ import { ScrollArrowComponent } from './snippets/scroll-arrow/scroll-arrow.compo
     VideoProductionComponent,
     AppWebDevelopmentComponent,
     TrainingComponent,
+    TrainingMainComponent,
+    WorkshopsComponent,
+    WorkshopsMainComponent,
+    WorkshopsEventComponent,
+    MentoringComponent,
     PortfolioComponent,
     PortfolioMainComponent,
     PortfolioProjectComponent,
@@ -83,12 +94,14 @@ import { ScrollArrowComponent } from './snippets/scroll-arrow/scroll-arrow.compo
     ValuesComponent,
     CareersComponent,
     CareerInquiryComponent,
+    WorkshopRegistrationComponent,
     CarouselComponent,
     ParallaxBgComponent,
     ScrollArrowComponent
   ],
   entryComponents: [
-    CareerInquiryComponent
+    CareerInquiryComponent,
+    WorkshopRegistrationComponent
   ]
 })
 export class MainModule { }

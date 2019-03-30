@@ -21,6 +21,11 @@ import { AppWebDevelopmentComponent } from './services/app-web-development/app-w
 
 // Training
 import { TrainingComponent } from './training/training.component';
+import { TrainingMainComponent } from './training/training-main/training-main.component';
+import { WorkshopsComponent } from './training/workshops/workshops.component';
+import { WorkshopsMainComponent } from './training/workshops/workshops-main/workshops-main.component';
+import { WorkshopsEventComponent } from './training/workshops/workshops-event/workshops-event.component';
+import { MentoringComponent } from './training/mentoring/mentoring.component';
 
 // Portfolio
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -523,68 +528,210 @@ const routes: Routes = [
       },
       {
         path: 'training',
+        component: TrainingComponent,
         // canActivate: [IntroGuardService],
         children: [
           {
             path: '',
-            component: TrainingComponent,
-            data: {
-              title: 'automätik training',
-              metatags: [
-                {
-                  name: 'description',
-                  content: 'Description for Training.'
-                },
-                {
-                  name: 'keywords',
-                  content: 'training'
-                },
-                {
-                  property: 'og:title',
-                  content: 'automätik training'
-                },
-                {
-                  property: 'og:type',
-                  content: 'website'
-                },
-                {
-                  property: 'og:url',
-                  content: 'https://automatik.com/training'
-                },
-                {
-                  property: 'og:image',
-                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
-                },
-                {
-                  property: 'og:description',
-                  content: 'Description for Training.'
-                },
-                {
-                  name: 'twitter:card',
-                  content: 'summary_large_image'
-                },
-                {
-                  name: 'twitter:site',
-                  content: '@automatikEvents'
-                },
-                {
-                  name: 'twitter:title',
-                  content: 'automätik training'
-                },
-                {
-                  name: 'twitter:description',
-                  content: 'Description for Training.'
-                },
-                {
-                  name: 'twitter:image:src',
-                  content: 'https://assets.automatik.com/images/home-share-1200.jpg'
+            // canActivateChild: [IntroGuardService],
+            children: [
+              {
+                path: '',
+                component: TrainingMainComponent,
+                data: {
+                  title: 'automätik training',
+                  metatags: [
+                    {
+                      name: 'description',
+                      content: 'Description for Training.'
+                    },
+                    {
+                      name: 'keywords',
+                      content: 'training'
+                    },
+                    {
+                      property: 'og:title',
+                      content: 'automätik training'
+                    },
+                    {
+                      property: 'og:type',
+                      content: 'website'
+                    },
+                    {
+                      property: 'og:url',
+                      content: 'https://automatik.com/training'
+                    },
+                    {
+                      property: 'og:image',
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
+                    },
+                    {
+                      property: 'og:description',
+                      content: 'Description for Training.'
+                    },
+                    {
+                      name: 'twitter:card',
+                      content: 'summary_large_image'
+                    },
+                    {
+                      name: 'twitter:site',
+                      content: '@automatikEvents'
+                    },
+                    {
+                      name: 'twitter:title',
+                      content: 'automätik training'
+                    },
+                    {
+                      name: 'twitter:description',
+                      content: 'Description for Training.'
+                    },
+                    {
+                      name: 'twitter:image:src',
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
+                    }
+                  ]
                 }
-              ]
-            }
+              },
+              {
+                path: 'workshops',
+                component: WorkshopsComponent,
+                // canActivate: [IntroGuardService],
+                children: [
+                  {
+                    path: '',
+                    // canActivateChild: [IntroGuardService],
+                    children: [
+                      {
+                        path: '',
+                        component: WorkshopsMainComponent,
+                        data: {
+                          title: 'automätik workshops',
+                          metatags: [
+                            {
+                              name: 'description',
+                              content: 'Description for Workshops.'
+                            },
+                            {
+                              name: 'keywords',
+                              content: 'workshops'
+                            },
+                            {
+                              property: 'og:title',
+                              content: 'automätik workshops'
+                            },
+                            {
+                              property: 'og:type',
+                              content: 'website'
+                            },
+                            {
+                              property: 'og:url',
+                              content: 'https://automatik.com/training/workshops'
+                            },
+                            {
+                              property: 'og:image',
+                              content: 'https://assets.automatik.com/images/home-share-1200.jpg'
+                            },
+                            {
+                              property: 'og:description',
+                              content: 'Description for Workshops.'
+                            },
+                            {
+                              name: 'twitter:card',
+                              content: 'summary_large_image'
+                            },
+                            {
+                              name: 'twitter:site',
+                              content: '@automatikEvents'
+                            },
+                            {
+                              name: 'twitter:title',
+                              content: 'automätik workshops'
+                            },
+                            {
+                              name: 'twitter:description',
+                              content: 'Description for Workshops.'
+                            },
+                            {
+                              name: 'twitter:image:src',
+                              content: 'https://assets.automatik.com/images/home-share-1200.jpg'
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        path: ':slug',
+                        component: WorkshopsEventComponent
+                      },
+                      {
+                        path: '**',
+                        redirectTo: '/training/workshops'
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                path: 'mentoring',
+                component: MentoringComponent,
+                data: {
+                  title: 'Private Communications Mentoring | automätik',
+                  metatags: [
+                    {
+                      name: 'description',
+                      content: 'Description for Mentoring.'
+                    },
+                    {
+                      name: 'keywords',
+                      content: 'Mentoring'
+                    },
+                    {
+                      property: 'og:title',
+                      content: 'Private Communications Mentoring | automätik'
+                    },
+                    {
+                      property: 'og:type',
+                      content: 'website'
+                    },
+                    {
+                      property: 'og:url',
+                      content: 'https://automatik.com/training/mentoring'
+                    },
+                    {
+                      property: 'og:image',
+                      content: 'https://assets.automatik.com/images/event-production-hero-bg-2560.jpg'
+                    },
+                    {
+                      property: 'og:description',
+                      content: 'Description for Mentoring.'
+                    },
+                    {
+                      name: 'twitter:card',
+                      content: 'summary_large_image'
+                    },
+                    {
+                      name: 'twitter:site',
+                      content: '@automatikEvents'
+                    },
+                    {
+                      name: 'twitter:title',
+                      content: 'Private Communications Mentoring | automätik'
+                    },
+                    {
+                      name: 'twitter:description',
+                      content: 'Description for Mentoring.'
+                    },
+                    {
+                      name: 'twitter:image:src',
+                      content: 'https://assets.automatik.com/images/event-production-hero-bg-2560.jpg'
+                    }
+                  ]
+                }
+              }
+            ]
           },
           {
             path: '**',
-            redirectTo: '/courses'
+            redirectTo: '/training'
           }
         ]
       },

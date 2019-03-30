@@ -1,0 +1,175 @@
+<div class="training" [@fade]="true">
+  <section class="dark fullHeight hero">
+    <parallax-bg [images]="heroImages"></parallax-bg>
+
+    <div class="overlay"></div>
+
+    <div class="title">
+      <h1>Workshops</h1>
+    </div>
+  </section>
+
+  <scroll-arrow></scroll-arrow>
+
+  <section>
+    <div class="container text-center">
+      <h3>Looking to elevate your training skills?</h3>
+
+      <h4>autom&auml;tik offers a number of proprietary half, full, and multi-day learning workshops designed to radically change your paradigm and come out on the other side a better&nbsp;communicator.</h4>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Workshops We Offer</h2>
+    </div>
+  </section>
+
+  <section class="dark py-0">
+    <div class="row" *ngFor="let workshop of workshops; let i = index">
+      <div class="col-12 col-md-6 px-0" [class.order-md-last]="i % 2 === 0">
+        <div class="imageBox" [style.backgroundImage]="'url(' + workshop.title_image_sm + ')'"></div>
+      </div>
+
+      <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+          <div class="p-5">
+          <h3>{{ workshop.title }}</h3>
+
+          <p>{{ workshop.description }}</p>
+
+          <button class="autoBtn my-4" routerLink="/training/workshops/{{ workshop.slug }}">Learn More &amp; Register</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div *ngIf="events.length > 0">
+    <section class="pb-4">
+      <div class="container">
+        <h2>Sign Up Today!</h2>
+
+        <div class="row">
+          <div class="col-12 col-md-5">
+            <div class="d-flex">
+              <h3 class="mr-3 mb-0 py-2">Filter by:</h3>
+
+              <div class="inputGroup flex-grow-1 m-0 pt-4">
+                <select name="filter" [(ngModel)]="filter" (ngModelChange)="changeFilter($event)">
+                  <option [value]="anyVal" selected disabled>Select Filter</option>
+                  <option value="Workshop">Workshop</option>
+                  <option value="Date">Date</option>
+                  <option value="Location">Location</option>
+                </select>
+                <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-7">
+            <div class="row">
+              <div class="col-12 col-md-8">
+                <div class="inputGroup m-0 pt-4" *ngIf="filter === 'Workshop'">
+                  <select name="workshop" [(ngModel)]="filters.workshop" (ngModelChange)="filterByWorkshop($event)">
+                    <option [value]="anyVal" selected disabled>Select Workshop</option>
+                    <option *ngFor="let workshop of workshops" [value]="workshop.title">{{ workshop.title }}</option>
+                  </select>
+                  <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                </div>
+
+                <div class="inputGroup m-0 pt-4" *ngIf="filter === 'Date'">
+                  <select name="date" [(ngModel)]="filters.date" (ngModelChange)="filterByDate($event)">
+                    <option [value]="anyVal" selected disabled>Select Date</option>
+                    <option *ngFor="let event of events" [value]="event.start_date">{{ event.start_date | date:'fullDate' }}</option>
+                  </select>
+                  <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                </div>
+
+                <div class="inputGroup m-0 pt-4" *ngIf="filter === 'Location'">
+                  <select name="location" [(ngModel)]="filters.location" (ngModelChange)="filterByLocation($event)">
+                    <option [value]="anyVal" selected disabled>Select Location</option>
+                    <option *ngFor="let location of locations" [value]="location.city">{{ location.city }}, {{ location.state }}</option>
+                  </select>
+                  <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 text-center">
+                <button class="autoBtn mb-0 mt-3 mt-md-4" *ngIf="filter" (click)="resetFilters()">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-center" *ngIf="filteredEvents.length === 0">Sorry, there are currently no workshops available for the selected filters.</h3>
+      </div>
+    </section>
+
+    <section class="py-0">
+      <div class="event" *ngFor="let event of filteredEvents; let i = index">
+        <div class="eventMain" [style.backgroundColor]="getColor(event.workshop)" (click)="toggleEvent(i, $event.target)">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-6 eventInfo">
+                <div class="d-flex align-items-start">
+                  <fa-icon [icon]="['fas', 'chevron-right']" size="lg" [class.open]="selectedEvent === i"></fa-icon>
+
+                  <div class="ml-4">
+                    <h3>{{ event.workshop }}</h3>
+
+                    <h4 class="m-0">{{ event.start_date | date:'MMMM d' }}<span *ngIf="event.end_date > event.start_date"> &ndash; <span *ngIf="event.start_date.getMonth() !== event.end_date.getMonth()">{{ event.end_date | date:'MMMM' }} </span>{{ event.end_date | date:'d' }}</span></h4>
+
+                    <p class="mb-5 mb-md-0">{{ event.location.city }}, {{ event.location.state }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-3 text-center text-md-right eventPrice">
+                <h3>{{ event.price | currency }}</h3>
+              </div>
+
+              <div class="col-12 col-md-3 text-center text-md-right eventRegister">
+                <button class="autoBtn" (click)="register(event)">Register</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="eventMore" [@topDown]="true" *ngIf="selectedEvent === i">
+          <div class="container py-3">
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <h3>Overview:</h3>
+
+                <p>{{ getDesc(event.workshop) }}</p>
+              </div>
+  
+              <div class="col-12 col-lg-3">
+                <h3>Schedule:</h3>
+
+                <p class="my-0" *ngFor="let day of event.schedule; let idx = index">Day {{ idx + 1 }}: {{ day.start | date:'h:mm a' }} to {{ day.end | date:'h:mm a' }}</p>
+              </div>
+
+              <div class="col-12 col-lg-3">
+                <h3>Location:</h3>
+    
+                <p><strong>{{ event.location.name }}</strong><br>
+                {{ event.location.address }}<br>
+                {{ event.location.city }}, {{ event.location.state }} {{ event.location.zip }}</p>
+              </div>
+            </div>
+
+            <div class="text-center py-3">
+              <button class="autoBtn" routerLink="/training/workshops/{{ getSlug(event.workshop) }}">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section *ngIf="events.length === 0">
+    <div class="container">
+      <h2>More event dates coming soon!</h2>
+    </div>
+  </section>
+</div>

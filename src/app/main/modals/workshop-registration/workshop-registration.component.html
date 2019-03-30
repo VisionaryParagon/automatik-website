@@ -1,0 +1,170 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title>{{ registrant.workshop }} Registration</h2>
+  <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
+</div>
+
+<form #workshopForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success">
+        <mat-horizontal-stepper [selectedIndex]="stepId" #stepper>
+          <mat-step>
+            <h4>Workshop selection:</h4>
+
+            <div class="inputGroup" [class.nope]="email.errors && (email.touched || step1Checked)">
+              <label for="email">Email Address*</label>
+              <input type="text" id="email" name="email" #email="ngModel" autocomplete="off" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="registrant.email" (ngModelChange)="hideError()">
+              <div class="errorMsg" [@topDown]="true" *ngIf="email.errors && (email.touched || step1Checked)">
+                <p *ngIf="email.errors.required">Email Address is required</p>
+                <p *ngIf="email.errors.pattern">Email Address is invalid</p>
+              </div>
+            </div>
+
+            <div class="inputGroup" [class.nope]="workshop.errors && (workshop.touched || step1Checked)">
+              <label for="workshop">Workshop*</label>
+              <select id="workshop" name="workshop" #workshop="ngModel" required [(ngModel)]="registrant.workshop" (ngModelChange)="updateWorkshop(workshop.value); hideError()">
+                <option [value]="anyVal" selected disabled>Select a Workshop</option>
+                <option *ngFor="let workshop of workshops" [value]="workshop.title">{{ workshop.title }}</option>
+              </select>
+              <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+              <div class="errorMsg" [@topDown]="true" *ngIf="workshop.errors && (workshop.touched || step1Checked)">
+                <p *ngIf="workshop.errors.required">Please select an option</p>
+              </div>
+            </div>
+
+            <div class="inputGroup" [class.nope]="workshop_date.errors && (workshop_date.touched || step1Checked)">
+              <label for="workshop_date">Date*</label>
+              <select id="workshop_date" name="workshop_date" #workshop_date="ngModel" required [(ngModel)]="registrant.workshop_date" (ngModelChange)="hideError()">
+                <option [value]="anyVal" selected disabled>Select a Date</option>
+                <option *ngFor="let date of dates" [value]="date">{{ date | date:'fullDate' }}</option>
+              </select>
+              <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+              <div class="errorMsg" [@topDown]="true" *ngIf="workshop_date.errors && (workshop_date.touched || step1Checked)">
+                <p *ngIf="workshop_date.errors.required">Please select an option</p>
+              </div>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <h4>Billing information:</h4>
+
+            <div class="inputGroup" [class.nope]="(first_name.errors && (first_name.touched || step2Checked)) || (last_name.errors && (last_name.touched || step2Checked))">
+              <label for="first_name">Name*</label>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <input type="text" id="first_name" name="first_name" #first_name="ngModel" placeholder="First" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="registrant.first_name" (ngModelChange)="hideError()">
+                  <div class="errorMsg" [@topDown]="true" *ngIf="first_name.errors && (first_name.touched || step2Checked)">
+                    <p *ngIf="first_name.errors.required">First Name is required</p>
+                    <p *ngIf="first_name.errors.pattern">Numbers and special characters are not allowed</p>
+                  </div>
+                </div>
+  
+                <div class="col-12 col-md-6">
+                  <input type="text" id="last_name" name="last_name" #last_name="ngModel" placeholder="Last" autocomplete="off" required pattern="^[A-z-.]+$" [(ngModel)]="registrant.last_name" (ngModelChange)="hideError()">
+                  <div class="errorMsg" [@topDown]="true" *ngIf="last_name.errors && (last_name.touched || step2Checked)">
+                    <p *ngIf="last_name.errors.required">Last Name is required</p>
+                    <p *ngIf="last_name.errors.pattern">Numbers and special characters are not allowed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="inputGroup" [class.nope]="address.errors && (address.touched || step2Checked)">
+              <label for="address">Billing Address*</label>
+              <div class="row">
+                <div class="col-12 col-md-8">
+                  <input type="text" id="address" name="address" #address="ngModel" placeholder="Street/PO Box" autocomplete="off" required [(ngModel)]="registrant.address" (ngModelChange)="hideError()">
+                </div>
+
+                <div class="col-12 col-md-4">
+                  <input type="text" id="address_2" name="address_2" #address_2="ngModel" placeholder="Apt/Unit" autocomplete="off" [(ngModel)]="registrant.address_2" (ngModelChange)="hideError()">
+                </div>
+              </div>
+              <div class="errorMsg" [@topDown]="true" *ngIf="address.errors && (address.touched || step2Checked)">
+                <p *ngIf="address.errors.required">Address is required</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <div class="inputGroup mb-3 mt-0 m-md-0" [class.nope]="city.errors && (city.touched || step2Checked)">
+                  <label for="city">City*</label>
+                  <input type="text" id="city" name="city" #city="ngModel" autocomplete="off" required [(ngModel)]="registrant.city" (ngModelChange)="hideError()">
+                  <div class="errorMsg" [@topDown]="true" *ngIf="city.errors && (city.touched || step2Checked)">
+                    <p *ngIf="city.errors.required">City is required</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="inputGroup my-3 m-md-0" [class.nope]="state.errors && (state.touched || step2Checked)">
+                  <label for="state">State*</label>
+                  <input type="text" id="state" name="state" #state="ngModel" autocomplete="off" required [(ngModel)]="registrant.state" (ngModelChange)="hideError()">
+                  <div class="errorMsg" [@topDown]="true" *ngIf="state.errors && (state.touched || step2Checked)">
+                    <p *ngIf="state.errors.required">State is required</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <div class="inputGroup my-3 m-md-0" [class.nope]="zip.errors && (zip.touched || step2Checked)">
+                  <label for="zip">Zip Code*</label>
+                  <input type="text" id="zip" name="zip" #zip="ngModel" autocomplete="off" required [(ngModel)]="registrant.zip" (ngModelChange)="hideError()">
+                  <div class="errorMsg" [@topDown]="true" *ngIf="zip.errors && (zip.touched || step2Checked)">
+                    <p *ngIf="zip.errors.required">Zip Code is required</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <h4>Payment information</h4>
+
+            <p>Total: {{ registrant.price | currency }}</p>
+
+            <div class="inputGroup" [class.nope]="cardError">
+              <label for="card-info">Card Info*</label>
+              <div id="card-info" #cardInfo></div>
+
+              <div id="card-errors" role="alert" [@topDown]="true" *ngIf="cardError">
+                <p>{{ cardError }}</p>
+              </div>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+
+        <div class="text-center my-3">
+          <p class="disclaimer">* Required field</p>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div [@fade]="true" *ngIf="success">
+        <h4>Success!</h4>
+
+        <p>You have successfully registered for <strong>{{ registrant.workshop }}</strong> on <strong>{{ registrant.workshop_date | date:"fullDate" }}</strong>. A confirmation email with more details has been sent to <strong>{{ registrant.email }}</strong>.</p>
+
+        <pre>{{ registrant | json }}</pre>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success && stepId === 0" mat-dialog-close>Cancel</button>
+    <button class="autoBtn secondary" *ngIf="!success && stepId > 0" (click)="prevStep()">Back</button>
+    <button class="autoBtn" *ngIf="!success && stepId < 2" [disabled]="loading" (click)="nextStep()">
+      <span *ngIf="!loading">Next</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn" *ngIf="!success && stepId === 2" [disabled]="loading" (click)="submit(registrant, workshopForm.valid)">
+      <span *ngIf="!loading">Register</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</form>
+  

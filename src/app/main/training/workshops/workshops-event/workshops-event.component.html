@@ -1,0 +1,175 @@
+<div class="training" [@fade]="true">
+  <div [@fade]="true" *ngIf="!loading && !error.length">
+    <section class="fullHeight hero">
+      <parallax-bg [images]="heroImages"></parallax-bg>
+
+      <div class="overlay"></div>
+
+      <div class="logo">
+        <img [src]="workshop.logo" [alt]="getImageAlt(workshop.logo)">
+      </div>
+    </section>
+
+    <scroll-arrow></scroll-arrow>
+
+    <section>
+      <div class="container text-center">
+        <div [innerHtml]="workshop.subhead"></div>
+
+        <button class="autoBtn" (click)="scrollTo('register')">Register</button>
+      </div>
+    </section>
+
+    <section class="highlights" *ngIf="workshop.highlights.length > 0">
+      <div class="row" *ngFor="let highlight of workshop.highlights; let i = index">
+        <div class="col-12 col-md-6 px-0" [class.order-md-last]="i % 2 === 0">
+          <div class="imageBox" [style.backgroundImage]="'url(' + highlight.image + ')'"></div>
+        </div>
+  
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+          <div class="p-5">
+            <div class="highlightBorder" [style.backgroundColor]="workshop.color"></div>
+
+            <div [innerHtml]="highlight.content"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark" *ngIf="workshop.quotes.length > 0" [style.backgroundColor]="workshop.color">
+      <app-carousel [slides]="workshop.quotes"></app-carousel>
+    </section>
+
+    <div id="register">
+      <div *ngIf="events.length > 0">
+        <section class="pb-4">
+          <div class="container">
+            <h2>Sign Up Today!</h2>
+    
+            <div class="row">
+              <div class="col-12 col-md-5">
+                <div class="d-flex">
+                  <h3 class="mr-3 mb-0 py-2">Filter by:</h3>
+    
+                  <div class="inputGroup flex-grow-1 m-0 pt-4">
+                    <select name="filter" [(ngModel)]="filter" (ngModelChange)="changeFilter($event)">
+                      <option [value]="anyVal" selected disabled>Select Filter</option>
+                      <option value="Date">Date</option>
+                      <option value="Location">Location</option>
+                    </select>
+                    <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-12 col-md-7">
+                <div class="row">
+                  <div class="col-12 col-md-8">
+                    <div class="inputGroup m-0 pt-4" *ngIf="filter === 'Date'">
+                      <select name="date" [(ngModel)]="filters.date" (ngModelChange)="filterByDate($event)">
+                        <option [value]="anyVal" selected disabled>Select Date</option>
+                        <option *ngFor="let event of events" [value]="event.start_date">{{ event.start_date | date:'fullDate' }}</option>
+                      </select>
+                      <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                    </div>
+    
+                    <div class="inputGroup m-0 pt-4" *ngIf="filter === 'Location'">
+                      <select name="location" [(ngModel)]="filters.location" (ngModelChange)="filterByLocation($event)">
+                        <option [value]="anyVal" selected disabled>Select Location</option>
+                        <option *ngFor="let location of locations" [value]="location.city">{{ location.city }}, {{ location.state }}</option>
+                      </select>
+                      <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                    </div>
+                  </div>
+    
+                  <div class="col-12 col-md-4 text-center">
+                    <button class="autoBtn mb-0 mt-3 mt-md-4" *ngIf="filter" (click)="resetFilters()">Reset</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <h3 class="text-center" *ngIf="filteredEvents.length === 0">Sorry, there are currently no workshops available for the selected filters.</h3>
+          </div>
+        </section>
+    
+        <section class="py-0">
+          <div class="event" *ngFor="let event of filteredEvents; let i = index">
+            <div class="eventMain" [style.backgroundColor]="workshop.color" (click)="toggleEvent(i, $event.target)">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-md-6 eventInfo">
+                    <div class="d-flex align-items-start">
+                      <fa-icon [icon]="['fas', 'chevron-right']" size="lg" [class.open]="selectedEvent === i"></fa-icon>
+    
+                      <div class="ml-4">
+                        <h3>{{ event.workshop }}</h3>
+    
+                        <h4 class="m-0">{{ event.start_date | date:'MMMM d' }}<span *ngIf="event.end_date > event.start_date"> &ndash; <span *ngIf="event.start_date.getMonth() !== event.end_date.getMonth()">{{ event.end_date | date:'MMMM' }} </span>{{ event.end_date | date:'d' }}</span></h4>
+    
+                        <p class="mb-5 mb-md-0">{{ event.location.city }}, {{ event.location.state }}</p>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="col-12 col-md-3 text-center text-md-right eventPrice">
+                    <h3>{{ event.price | currency }}</h3>
+                  </div>
+    
+                  <div class="col-12 col-md-3 text-center text-md-right eventRegister">
+                    <button class="autoBtn" (click)="register(event)">Register</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="eventMore" [@topDown]="true" *ngIf="selectedEvent === i">
+              <div class="container py-3">
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <h3>Overview:</h3>
+    
+                    <p>{{ workshop.description }}</p>
+                  </div>
+      
+                  <div class="col-12 col-lg-3">
+                    <h3>Schedule:</h3>
+    
+                    <p class="my-0" *ngFor="let day of event.schedule; let idx = index">Day {{ idx + 1 }}: {{ day.start | date:'h:mm a' }} to {{ day.end | date:'h:mm a' }}</p>
+                  </div>
+    
+                  <div class="col-12 col-lg-3">
+                    <h3>Location:</h3>
+        
+                    <p><strong>{{ event.location.name }}</strong><br>
+                    {{ event.location.address }}<br>
+                    {{ event.location.city }}, {{ event.location.state }} {{ event.location.zip }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    
+      <section *ngIf="events.length === 0">
+        <div class="container">
+          <h2>More event dates coming soon!</h2>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section *ngIf="loading && !error.length">
+    <div class="container py-5">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
+  </section>
+
+  <section [@topDown]="true" *ngIf="error.length">
+    <div class="container my-5 text-center">
+      <p>{{ error }}</p>
+    </div>
+  </section>
+</div>
+  

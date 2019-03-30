@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDatepickerModule,
   MatNativeDateModule,
@@ -12,6 +12,7 @@ import {
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSortModule,
+  MatStepperModule,
   MatTableModule,
   MatTabsModule
 } from '@angular/material';
@@ -73,6 +74,7 @@ library.add(faTwitter);
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDatepickerModule,
     MatExpansionModule,
     MatNativeDateModule,
@@ -82,6 +84,7 @@ library.add(faTwitter);
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatStepperModule,
     MatTableModule,
     MatTabsModule,
     AgmCoreModule.forRoot({
@@ -100,6 +103,7 @@ library.add(faTwitter);
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDatepickerModule,
     MatExpansionModule,
     MatNativeDateModule,
@@ -109,6 +113,7 @@ library.add(faTwitter);
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatStepperModule,
     MatTableModule,
     MatTabsModule,
     AgmCoreModule,

@@ -7,5 +7,6 @@ export const environment = {
   projects: 'http://localhost/prj/',
   secret: 'http://localhost/scrt/',
   subscriber: 'http://localhost/sub/',
-  team: 'http://localhost/tm/'
+  team: 'http://localhost/tm/',
+  workshop: 'http://localhost/wrkshp/'
 };

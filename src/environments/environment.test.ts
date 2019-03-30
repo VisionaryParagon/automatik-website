@@ -7,5 +7,6 @@ export const environment = {
   projects: '/prj/',
   secret: '/scrt/',
   subscriber: '/sub/',
-  team: '/tm/'
+  team: '/tm/',
+  workshop: '/wrkshp/'
 };

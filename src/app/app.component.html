@@ -12,21 +12,26 @@
         <a routerLink="/services" routerLinkActive="active" [class.hover]="stateServices === 'active'" (mouseover)="toggleSubNav($event, 'Services')" (click)="closeSubNav()">Services</a>
 
         <div class="fullSubNav" [@topDown]="true" *ngIf="stateServices === 'active'">
-          <a routerLink="/services/event-planning" (click)="closeSubNav()">Event Planning</a>
-          <a routerLink="/services/event-production" (click)="closeSubNav()">Event Production</a>
-          <a routerLink="/services/instructional-design" (click)="closeSubNav()">Instructional Design</a>
-          <a routerLink="/services/graphic-design" (click)="closeSubNav()">Graphic Design</a>
-          <a routerLink="/services/video-production" (click)="closeSubNav()">Video Production</a>
-          <a routerLink="/services/app-and-web-development" (click)="closeSubNav()">App/Web Development</a>
+          <a routerLink="/services/event-planning" routerLinkActive="active" (click)="closeSubNav()">Event Planning</a>
+          <a routerLink="/services/event-production" routerLinkActive="active" (click)="closeSubNav()">Event Production</a>
+          <a routerLink="/services/instructional-design" routerLinkActive="active" (click)="closeSubNav()">Instructional Design</a>
+          <a routerLink="/services/graphic-design" routerLinkActive="active" (click)="closeSubNav()">Graphic Design</a>
+          <a routerLink="/services/video-production" routerLinkActive="active" (click)="closeSubNav()">Video Production</a>
+          <a routerLink="/services/app-and-web-development" routerLinkActive="active" (click)="closeSubNav()">App/Web Development</a>
         </div>
       </div>
       <div class="col">
         <a routerLink="/training" routerLinkActive="active" [class.hover]="stateTraining === 'active'" (mouseover)="toggleSubNav($event, 'Training')" (click)="closeSubNav()">Training</a>
 
         <div class="fullSubNav" [@topDown]="true" *ngIf="stateTraining === 'active'">
-          <a routerLink="/training" fragment="workshops" (click)="closeSubNav()">Workshops</a>
-          <a routerLink="/training" fragment="mentoring" (click)="closeSubNav()">Private Mentoring</a>
-          <a routerLink="/training" fragment="customdevelopment" (click)="closeSubNav()">Custom Development</a>
+          <a routerLink="/training/workshops" routerLinkActive="active" (click)="closeSubNav()">Workshops</a>
+
+          <div class="secondSubNav">
+            <a *ngFor="let workshop of workshops" routerLink="/training/workshops/{{ workshop.slug }}" routerLinkActive="active" (click)="closeSubNav()">{{ workshop.title }}</a>
+          </div>
+
+          <a routerLink="/training" fragment="mentoring" [class.active]="activeLink('mentoring')" (click)="closeSubNav()">Private Mentoring</a>
+          <a routerLink="/training" fragment="customdevelopment" [class.active]="activeLink('customdevelopment')" (click)="closeSubNav()">Custom Development</a>
           <!--
           <a routerLink="/training/e-learning" (click)="closeSubNav()">E-Learning</a>
           <a routerLink="/training/e-books" (click)="closeSubNav()">E-Books</a>
@@ -55,11 +60,11 @@
         <a routerLink="/about" routerLinkActive="active" [class.hover]="stateAbout === 'active'" (mouseover)="toggleSubNav($event, 'About')" (click)="closeSubNav()">About</a>
 
         <div class="fullSubNav" [@topDown]="true" *ngIf="stateAbout === 'active'">
-          <a routerLink="/about" fragment="history" (click)="closeSubNav()">History</a>
-          <a routerLink="/about" fragment="team" (click)="closeSubNav()">Team</a>
-          <a routerLink="/about" fragment="values" (click)="closeSubNav()">Values</a>
-          <a routerLink="/about" fragment="clients" (click)="closeSubNav()">Clients</a>
-          <a routerLink="/about" fragment="careers" (click)="closeSubNav()">Careers</a>
+          <a routerLink="/about" fragment="history" [class.active]="activeLink('history')" (click)="closeSubNav()">History</a>
+          <a routerLink="/about" fragment="team" [class.active]="activeLink('team')" (click)="closeSubNav()">Team</a>
+          <a routerLink="/about" fragment="values" [class.active]="activeLink('values')" (click)="closeSubNav()">Values</a>
+          <a routerLink="/about" fragment="clients" [class.active]="activeLink('clients')" (click)="closeSubNav()">Clients</a>
+          <a routerLink="/about" fragment="careers" [class.active]="activeLink('careers')" (click)="closeSubNav()">Careers</a>
           <a class="navBtn" routerLink="/about/contact" (click)="closeSubNav()">Contact</a>
         </div>
       </div>
@@ -120,7 +125,12 @@
       </a>
 
       <div class="mobileSubNav" [@topDown]="true" *ngIf="stateTraining === 'active'">
-        <a routerLink="/training" fragment="workshops" [class.active]="activeLink('workshops')" (click)="closeNav()">Workshops</a>
+        <a routerLink="/training/workshops" routerLinkActive="active" (click)="closeNav()">Workshops</a>
+
+        <div class="mobileSecondSubNav">
+          <a *ngFor="let workshop of workshops" routerLink="/training/workshops/{{ workshop.slug }}" routerLinkActive="active" (click)="closeNav()">{{ workshop.title }}</a>
+        </div>
+
         <a routerLink="/training" fragment="mentoring" [class.active]="activeLink('mentoring')" (click)="closeNav()">Private Mentoring</a>
         <a routerLink="/training" fragment="customdevelopment" [class.active]="activeLink('customdevelopment')" (click)="closeNav()">Custom Development</a>
         <!--

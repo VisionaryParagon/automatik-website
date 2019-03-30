@@ -32,6 +32,7 @@ const imageRoute = require('./server/routes/images');
 const projectRoute = require('./server/routes/projects');
 const subscriberRoute = require('./server/routes/subscriber');
 const teamRoute = require('./server/routes/team');
+const workshopRoute = require('./server/routes/workshops');
 
 // connect to db
 /*
@@ -122,6 +123,7 @@ app.use('/img', imageRoute);
 app.use('/prj', projectRoute);
 app.use('/sub', subscriberRoute);
 app.use('/tm', teamRoute);
+app.use('/wrkshp', workshopRoute);
 
 // Serve static files from /browser
 app.all('*.*', express.static(join(DIST_FOLDER, 'browser'), {

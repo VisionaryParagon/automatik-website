@@ -64,6 +64,10 @@ h3 {
   letter-spacing: -1px;
   margin: 1.25rem 0 1rem;
   padding: 0;
+
+  span {
+    font-weight: 400;
+  }
 }
 
 h4 {
@@ -142,7 +146,8 @@ button {
   }
 
   input:not([type=checkbox]):not([type=radio]),
-  select {
+  select,
+  .StripeElement {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -241,7 +246,8 @@ button {
 
     input:not(:focus),
     select:not(:focus),
-    textarea:not(:focus) {
+    textarea:not(:focus),
+    .StripeElement {
       border-bottom: 1px solid rgba(255, 0, 0, 0.25);
       border-right: 1px solid rgba(255, 0, 0, 0.25);
       box-shadow: inset .25rem .25rem 1rem -.5rem $error-color;
@@ -510,6 +516,15 @@ nav {
       padding: 10px 30px;
       text-transform: none;
     }
+
+    .mobileSecondSubNav {
+      padding: 0 0 0 30px;
+
+      a {
+        font-size: .9rem;
+        letter-spacing: .15rem;
+      }
+    }
   }
 }
 
@@ -586,6 +601,16 @@ nav {
         content: none;
       }
 
+      &.active {
+        color: $client-yellow !important;
+        font-weight: bold;
+        letter-spacing: .155rem;
+
+        &::after {
+          content: none;
+        }
+      }
+
       &.navBtn {
         background: $client-yellow;
         box-shadow: .25rem .25rem 1rem -.25rem rgba(0, 0, 0, 0.5) !important;
@@ -611,6 +636,46 @@ nav {
         &:active {
           box-shadow: .25rem .25rem 1rem -.35rem rgba(0, 0, 0, 0.5) !important;
           opacity: 1;
+        }
+      }
+    }
+
+    .secondSubNav {
+      background: rgba(255, 255, 255, 0.85);
+
+      a {
+        color: #000;
+        font-size: .9rem;
+        height: 45px;
+        letter-spacing: .15rem;
+        line-height: 45px;
+        text-transform: none;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.85);
+          color: $client-yellow;
+          letter-spacing: .1rem;
+        }
+  
+        &::before {
+          background: rgba(0, 0, 0, 0.5);
+          content: "";
+          display: block;
+          height: 1px;
+        }
+
+        &:first-child::before {
+          content: none;
+        }
+
+        &.active {
+          background: rgba(255, 255, 255, 0.85);
+          color: $client-yellow !important;
+          letter-spacing: .1rem;
+
+          &::after {
+            content: none;
+          }
         }
       }
     }
@@ -1223,6 +1288,24 @@ section {
       }
     }
 
+    .logo {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 80%;
+      z-index: 2;
+
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+
     .container {
       z-index: 2;
     }
@@ -1321,7 +1404,6 @@ section {
 #home3 {
   .container {
     padding: 0 15px 2rem;
-    text-align: center;
 
     h3 {
       font-size: 16px;
@@ -1329,23 +1411,6 @@ section {
       letter-spacing: 0.05rem;
       text-align: center;
       text-transform: uppercase;
-    }
-
-    h4 {
-      font-size: 18px;
-      white-space: pre-line;
-      text-align: center;
-    }
-
-    p {
-      font-size: 24px;
-      font-weight: 300;
-
-      .bigQuote {
-        font-size: 40px;
-        line-height: 24px;
-        vertical-align: sub;
-      }
     }
   }
 }
@@ -1774,6 +1839,26 @@ section {
     &:nth-child(2n) {
       background-color: #eee;
     }
+
+    &.highlights {
+      background-color: #000;
+      color: #fff;
+      padding: 0;
+
+      h3 {
+        margin: 0 0 1rem;
+      }
+
+      ul {
+        padding: 0 0 0 1rem;
+      }
+
+      .highlightBorder {
+        height: 2px;
+        margin: 0 0 1rem;
+        width: 100px;
+      }
+    }
   }
 
   .imageBox {
@@ -1782,6 +1867,54 @@ section {
     background-size: cover;
     height: 100%;
     min-height: 200px;
+  }
+}
+
+.event {
+  p {
+    text-align: left;
+  }
+
+  .eventMain {
+    color: #fff;
+    padding: 2rem 0;
+    position: relative;
+
+    h3 {
+      line-height: 40px;
+      margin: 0;
+    }
+  
+    fa-icon {
+      color: $client-yellow;
+      line-height: 38px;
+      -moz-transition: transform 250ms;
+      -o-transition: transform 250ms;
+      -webkit-transition: transform 250ms;
+      transition: transform 250ms;
+
+      &.open {
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  &:nth-child(2n) {
+    .eventMain {
+      &::before {
+        background: rgba(0,0,0,0.15);
+        bottom: 0;
+        content: ' ';
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
   }
 }
 
@@ -2294,6 +2427,24 @@ footer {
     -webkit-transition: all 500ms 250ms;
     transition: all 500ms 250ms;
     z-index: 0;
+  
+    h4 {
+      font-size: 18px;
+      white-space: pre-line;
+      text-align: center;
+    }
+
+    .testimonial {
+      font-size: 24px;
+      font-weight: 300;
+      text-align: center;
+
+      .bigQuote {
+        font-size: 40px;
+        line-height: 24px;
+        vertical-align: sub;
+      }
+    }
 
     &.active {
       opacity: 1;
@@ -2592,6 +2743,20 @@ button[mat-dialog-close]:not(.autoBtn),
   padding: 0 0 0 .5rem;
 }
 
+mat-horizontal-stepper.mat-stepper-horizontal,
+mat-vertical-stepper.mat-stepper-vertical {
+  background: none;
+  font: 300 16px/1.5em $client-font;
+
+  div.mat-horizontal-stepper-header-container {
+    display: none;
+  }
+
+  div.mat-horizontal-content-container {
+    padding: 0;
+  }
+}
+
 mat-tab-group.mat-tab-group.mat-primary .mat-ink-bar {
   background-color: $client-yellow;
 }
@@ -2679,6 +2844,13 @@ footer {
 }
 
 @media all and (max-width: 991px) and (orientation: landscape) {
+  section {
+    &.hero {
+      .logo {
+        width: 60%;
+      }
+    }
+  }
   #home1,
   #home11,
   #home13 {
@@ -2762,6 +2934,12 @@ footer {
     &.tileSection {
       padding: 60px 0 0;
     }
+
+    &.hero {
+      .logo {
+        width: 60%;
+      }
+    }
   }
   #home1 {
     .container {
@@ -2774,17 +2952,6 @@ footer {
       #particleImg {
         left: 90px;
         width: 180px;
-      }
-    }
-  }
-  #home3 {
-    .container {
-      p {
-        font-size: 30px;
-
-        .bigQuote {
-          font-size: 50px;
-        }
       }
     }
   }
@@ -2915,6 +3082,17 @@ footer {
       margin: 2.75rem 0 1rem 3rem;
     }
   }
+  .carousel {
+    .slide {
+      p {
+        font-size: 30px;
+
+        .bigQuote {
+          font-size: 50px;
+        }
+      }
+    }
+  }
   .imageSelection {
     .imageBox {
       padding-bottom: calc(25% - 2px) !important;
@@ -2996,6 +3174,13 @@ footer {
   h1,
   h2 {
     font-size: 68px;
+  }
+  section {
+    &.hero {
+      .logo {
+        width: 40%;
+      }
+    }
   }
   #home1 {
     .container {
