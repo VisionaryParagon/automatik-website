@@ -1343,8 +1343,8 @@ section {
     -o-animation: textFadeOut 2s;
     -webkit-animation: textFadeOut 2s;
     animation: textFadeOut 2s;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0.2) 95%);
-    background-position: 100% center;
+    background: linear-gradient(to right, rgba(255, 193, 26, 1) 65%, rgba(255, 193, 26, 0.2) 95%);
+    background-position: 85% center;
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -1373,7 +1373,7 @@ section {
     padding: 0;
     position: absolute;
     text-shadow: 0 0 .75rem rgba(0, 0, 0, 0.3);
-    top: -10px;
+    top: 36px;
     z-index: 0;
   }
 
@@ -1383,9 +1383,9 @@ section {
     -webkit-animation: particleFadeIn 2s;
     animation: particleFadeIn 2s;
     height: auto;
-    left: 68px;
+    left: 130px;
     position: absolute;
-    top: -2px;
+    top: 48px;
     width: 160px;
     z-index: 1;
   }
@@ -2951,11 +2951,11 @@ footer {
       .textShadow {
         font-size: 74px;
         left: 40px;
-        top: -14px;
+        top: 40px;
       }
 
       #particleImg {
-        left: 90px;
+        left: 190px;
         width: 180px;
       }
     }
@@ -3192,11 +3192,11 @@ footer {
       .textShadow {
         font-size: 105px;
         left: 45px;
-        top: -25px;
+        top: 54px;
       }
       #particleImg {
-        left: 110px;
-        top: -15px;
+        left: 230px;
+        top: 62px;
         width: 275px;
       }
     }
@@ -3228,11 +3228,11 @@ footer {
       .textShadow {
         font-size: 135px;
         left: 68px;
-        top: -32px;
+        top: 68px;
       }
       #particleImg {
-        left: 148px;
-        top: -23px;
+        left: 300px;
+        top: 68px;
         width: 342px;
       }
     }
@@ -3376,7 +3376,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
@@ -3385,7 +3385,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
@@ -3394,7 +3394,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
@@ -3403,7 +3403,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
