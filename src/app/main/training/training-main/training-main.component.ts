@@ -15,9 +15,9 @@ import { FadeAnimation } from '../../../animations';
 })
 export class TrainingMainComponent implements AfterViewInit, OnInit {
   heroImages = {
-    sm: 'https://assets.automatik.com/images/home-presentaion-hero-bg-900.jpg',
-    md: 'https://assets.automatik.com/images/home-presentaion-hero-bg-1440.jpg',
-    lg: 'https://assets.automatik.com/images/home-presentaion-hero-bg-2560.jpg'
+    sm: 'https://assets.automatik.com/images/training-hero-bg-900.jpg',
+    md: 'https://assets.automatik.com/images/training-hero-bg-1440.jpg',
+    lg: 'https://assets.automatik.com/images/training-hero-bg-2560.jpg'
   };
   workshops: Workshop[] = this.workshopsService.workshops;
 
