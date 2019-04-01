@@ -8,5 +8,5 @@ export const environment = {
   secret: 'https://automatik.com/scrt/',
   subscriber: 'https://automatik.com/sub/',
   team: 'https://automatik.com/tm/',
-  workshop: 'https://beta.automatik.com/wrkshp/'
+  workshop: 'https://automatik.com/wrkshp/'
 };
