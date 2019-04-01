@@ -42,8 +42,14 @@ const WorkshopRegistrantsSchema = new mongoose.Schema({
   charge_id: String,
   reg_status: String,
   pmt_status: String,
-  enrolled: Date,
-  modified: Date
+  enrolled: {
+    type: Date,
+    default: Date.now
+  },
+  modified: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('workshops', WorkshopsSchema);

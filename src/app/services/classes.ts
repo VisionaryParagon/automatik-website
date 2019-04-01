@@ -76,7 +76,7 @@ export class WorkshopRegistration {
   first_name: string;
   last_name: string;
   address: string;
-  address_2: string;
+  address_2?: string;
   city: string;
   state: string;
   zip: string;

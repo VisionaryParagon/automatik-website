@@ -158,14 +158,22 @@ export class WorkshopRegistrationComponent implements AfterViewInit, OnInit, OnD
       if (!error) {
         this.workshopsService.processPayment({ registrant: this.registrant, token: token })
           .subscribe(
-            res => {
-              this.registrant.charge_id = res.id;
+            pmtRes => {
+              this.registrant.charge_id = pmtRes.id;
+              this.registrant.pmt_status = 'Paid';
+              this.registrant.reg_status = 'Registered';
 
               this.workshopsService.createRegistrant(this.registrant)
                 .subscribe(
-                  data => {
-                    this.success = true;
-                    this.loading = false;
+                  regRes => {
+                    this.workshopsService.confirmation(regRes)
+                      .subscribe(
+                        emlRes => {
+                          this.success = true;
+                          this.loading = false;
+                        },
+                        err => this.setError(err)
+                      );
                   },
                   err => this.setError(err)
                 );

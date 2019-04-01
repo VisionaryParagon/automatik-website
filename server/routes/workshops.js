@@ -2,6 +2,21 @@ const express = require('express');
 const router = express.Router();
 // const stripe = require('stripe')(process.env.STRIPE_KEY); // Stripe Prod Key
 const stripe = require('stripe')(process.env.STRIPE_TEST_KEY); // Stripe Test Key
+const nodemailer = require('nodemailer');
+
+// email config
+const smtpConfig = {
+  host: 'smtp.office365.com',
+  port: 587,
+  auth: {
+    user: process.env.NORPLY_EML,
+    pass: process.env.NORPLY_PWD
+  }
+};
+
+const transporter = nodemailer.createTransport(smtpConfig);
+
+const moment = require('moment');
 
 // workshop models
 const workshops = require('../models/workshops');
@@ -10,7 +25,7 @@ const workshopRegistrants = require('../models/workshops');
 
 /*~~~ Workshops ~~~*/
 // create new workshop
-router.post('/workshops/new', (req, res) => {
+router.post('/workshops/create', (req, res) => {
   if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   workshops.create(req.body, (err, data) => {
     if (err) return res.status(500).send(err);
@@ -57,7 +72,7 @@ router.delete('/workshops/:id', (req, res) => {
 
 /*~~~ Workshop Events ~~~*/
 // create new workshop event
-router.post('/workshop-events/new', (req, res) => {
+router.post('/workshop-events/create', (req, res) => {
   if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   workshopEvents.create(req.body, (err, data) => {
     if (err) return res.status(500).send(err);
@@ -104,8 +119,7 @@ router.delete('/workshop-events/:id', (req, res) => {
 
 /*~~~ Workshop Registrants ~~~*/
 // create new workshop registrant
-router.post('/workshop-registrants/new', (req, res) => {
-  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
+router.post('/workshop-registrants/create', (req, res) => {
   workshopRegistrants.create(req.body, (err, data) => {
     if (err) return res.status(500).send(err);
     return res.status(200).send(data);
@@ -114,6 +128,7 @@ router.post('/workshop-registrants/new', (req, res) => {
 
 // get all workshop registrants
 router.get('/workshop-registrants', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).send({ message: 'User is not authenticated' });
   workshopRegistrants.find({}, (err, data) => {
     if (err) return res.status(500).send(err);
     return res.status(200).send(data);
@@ -150,18 +165,65 @@ router.delete('/workshop-registrants/:id', (req, res) => {
 });
 
 /*~~~ Payment Processing ~~~*/
-router.post('/workshop-payments/create', (req, res) => {
+router.post('/workshop-payments/charge', (req, res) => {
   const token = req.body.token;
   const registrant = req.body.registrant;
 
   stripe.charges.create({
-    amount: registrant.price,
+    amount: registrant.price * 100,
     currency: 'usd',
-    source: token,
+    source: token.id,
     description: `Charge to ${registrant.first_name} ${registrant.last_name} for ${registrant.workshop}`
   }, (err, charge) => {
     if (err) return res.status(500).send(err);
     return res.status(200).send(charge);
+  });
+});
+
+/*~~~ Emails ~~~*/
+// confirmation email
+router.post('/workshops/confirmation', (req, res) => {
+  // get registrant data
+  const data = req.body;
+  const workshopDate = moment(data.workshop_date).format('dddd, MMMM D, YYYY');
+
+  // External response
+  let textContentMsg = `
+    Hello ${data.first_name},
+    
+    You have successfully registered for ${data.workshop} on ${workshopDate}!
+
+    automätik
+  `;
+
+  let htmlContentMsg = `
+    <div style="font-size:14px; margin:30px auto 60px; width:640px;">
+      <span>
+        Hello ${data.first_name},<br><br>
+        You have successfully registered for <strong>${data.workshop}</strong> on <strong>${workshopDate}</strong>!<br><br>
+        <strong>auto</strong>mätik
+      </span>
+    </div>
+  `;
+
+  let mailOptionsMsg = {
+    from: '"No Reply" <noreply@automatik.us>', // sender address
+    to: data.email, // list of receivers
+    // replyTo: data.email, // list of replyTo's
+    subject: 'Registration Confirmed for ' + data.workshop, // Subject line
+    text: textContentMsg, // plaintext body
+    html: htmlContentMsg // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptionsMsg, (error, info) => {
+    if (error) {
+      return res.status(500).send(error);
+      // return console.log(error);
+    } else {
+      return res.status(250).send(info);
+      // return console.log('Message sent: ', info.response);
+    }
   });
 });
 

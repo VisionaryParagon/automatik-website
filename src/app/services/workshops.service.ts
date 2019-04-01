@@ -80,7 +80,7 @@ export class WorkshopsService {
       title_image_md: 'https://assets.automatik.com/images/premeetingmastery-header-bg-1440.jpg',
       title_image_sm: 'https://assets.automatik.com/images/premeetingmastery-header-bg-900.jpg',
       color: '#a40025',
-      order: 5,
+      order: 3,
       subhead: '<h3>What is PreMeetingMastery?</h3><h4>PreMeetingMastery is a half-day immersion that experientially teaches participants how to mitigate some of the most common meeting and training tensions.</h4>',
       highlights: [
         {
@@ -163,7 +163,7 @@ export class WorkshopsService {
       title_image_md: 'https://assets.automatik.com/images/pro-workplace-etiquette-header-bg-1440.jpg',
       title_image_sm: 'https://assets.automatik.com/images/pro-workplace-etiquette-header-bg-900.jpg',
       color: '#6699cc',
-      order: 3,
+      order: 4,
       subhead: '<h3>What is Pro<span>Workplace</span>Etiquette?</h3><h4><strong>Pro</strong>Workplace<strong>Etiquette</strong> is a full-day, live workshop that equips participants with workplace best practices and helps them elevate their professional game.</h4>',
       highlights: [
         {
@@ -188,7 +188,7 @@ export class WorkshopsService {
       title_image_md: 'https://assets.automatik.com/images/powerpowerpoint-header-bg-1440.jpg',
       title_image_sm: 'https://assets.automatik.com/images/powerpowerpoint-header-bg-900.jpg',
       color: '#d81e00',
-      order: 4,
+      order: 5,
       subhead: '<h3>What is PowerPowerPoint?</h3><h4>PowerPowerPoint is a combined half-day 101 and full-day 102 workshop intensive for anyone looking to learn foundational PowerPoint skills, useful shortcuts and hacks, and general design principles that will help turn them into a “Power” PowerPoint user.</h4>',
       highlights: [
         {
@@ -212,9 +212,9 @@ export class WorkshopsService {
   events: WorkshopEvent[] = [
     {
       workshop: 'MeetingMastery',
-      price: 1500,
-      start_date: new Date('March 31, 2019'),
-      end_date: new Date('April 1, 2019'),
+      price: 1395,
+      start_date: new Date('May 31, 2019'),
+      end_date: new Date('June 1, 2019'),
       location: {
         name: 'Location Name',
         address: '123 1st St',
@@ -224,18 +224,18 @@ export class WorkshopsService {
       },
       schedule: [
         {
-          start: new Date('March 31, 2019 8:00 AM UTC-0700'),
-          end: new Date('March 31, 2019 4:00 PM UTC-0700')
+          start: new Date('May 31, 2019 8:00 AM UTC-0700'),
+          end: new Date('May 31, 2019 4:00 PM UTC-0700')
         },
         {
-          start: new Date('April 1, 2019 8:00 AM UTC-0700'),
-          end: new Date('April 1, 2019 4:00 PM UTC-0700')
+          start: new Date('June 1, 2019 8:00 AM UTC-0700'),
+          end: new Date('June 1, 2019 4:00 PM UTC-0700')
         }
       ]
     },
     {
       workshop: 'MeetingMastery',
-      price: 1500,
+      price: 1395,
       start_date: new Date('April 15, 2019'),
       end_date: new Date('April 16, 2019'),
       location: {
@@ -258,7 +258,7 @@ export class WorkshopsService {
     },
     {
       workshop: 'PreMeetingMastery',
-      price: 500,
+      price: 595,
       start_date: new Date('April 14, 2019'),
       end_date: new Date('April 14, 2019'),
       location: {
@@ -276,8 +276,46 @@ export class WorkshopsService {
       ]
     },
     {
+      workshop: 'PreMeetingMastery',
+      price: 595,
+      start_date: new Date('May 30, 2019'),
+      end_date: new Date('May 30, 2019'),
+      location: {
+        name: 'Location Name',
+        address: '123 1st St',
+        city: 'Phoenix',
+        state: 'AZ',
+        zip: '85034'
+      },
+      schedule: [
+        {
+          start: new Date('May 30, 2019 8:00 AM UTC-0700'),
+          end: new Date('May 30, 2019 12:00 PM UTC-0700')
+        }
+      ]
+    },
+    {
       workshop: 'MeetingMasteryToo',
-      price: 1000,
+      price: 795,
+      start_date: new Date('June 2, 2019'),
+      end_date: new Date('June 2, 2019'),
+      location: {
+        name: 'Location Name',
+        address: '123 1st St',
+        city: 'Phoenix',
+        state: 'AZ',
+        zip: '85034'
+      },
+      schedule: [
+        {
+          start: new Date('June 2, 2019 8:00 AM UTC-0700'),
+          end: new Date('June 2, 2019 4:00 PM UTC-0700')
+        }
+      ]
+    },
+    {
+      workshop: 'MeetingMasteryToo',
+      price: 795,
       start_date: new Date('April 17, 2019'),
       end_date: new Date('April 17, 2019'),
       location: {
@@ -296,7 +334,7 @@ export class WorkshopsService {
     },
     {
       workshop: 'ProWorkplaceEtiquette',
-      price: 1000,
+      price: 795,
       start_date: new Date('March 11, 2019'),
       end_date: new Date('March 11, 2019'),
       location: {
@@ -315,7 +353,26 @@ export class WorkshopsService {
     },
     {
       workshop: 'ProWorkplaceEtiquette',
-      price: 1000,
+      price: 795,
+      start_date: new Date('May 11, 2019'),
+      end_date: new Date('May 11, 2019'),
+      location: {
+        name: 'Location Name 2',
+        address: '123 2nd St',
+        city: 'Blahville',
+        state: 'CA',
+        zip: '12345'
+      },
+      schedule: [
+        {
+          start: new Date('May 11, 2019 8:00 AM UTC-0700'),
+          end: new Date('May 11, 2019 4:00 PM UTC-0700')
+        }
+      ]
+    },
+    {
+      workshop: 'ProWorkplaceEtiquette',
+      price: 795,
       start_date: new Date('April 2, 2019'),
       end_date: new Date('April 2, 2019'),
       location: {
@@ -334,7 +391,7 @@ export class WorkshopsService {
     },
     {
       workshop: 'PowerPowerPoint',
-      price: 1000,
+      price: 795,
       start_date: new Date('May 1, 2019'),
       end_date: new Date('May 1, 2019'),
       location: {
@@ -348,6 +405,25 @@ export class WorkshopsService {
         {
           start: new Date('May 1, 2019 8:00 AM UTC-0700'),
           end: new Date('May 1, 2019 4:00 PM UTC-0700')
+        }
+      ]
+    },
+    {
+      workshop: 'PowerPowerPoint',
+      price: 795,
+      start_date: new Date('May 15, 2019'),
+      end_date: new Date('May 15, 2019'),
+      location: {
+        name: 'Location Name',
+        address: '123 1st St',
+        city: 'Phoenix',
+        state: 'AZ',
+        zip: '85034'
+      },
+      schedule: [
+        {
+          start: new Date('May 15, 2019 8:00 AM UTC-0700'),
+          end: new Date('May 15, 2019 4:00 PM UTC-0700')
         }
       ]
     }
@@ -364,7 +440,7 @@ export class WorkshopsService {
 
   // Add new workshop
   createWorkshop(workshop) {
-    return this.http.post<Workshop>(this.workshopUrlRoot + 'workshops/new', workshop)
+    return this.http.post<Workshop>(this.workshopUrlRoot + 'workshops/create', workshop)
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -415,7 +491,7 @@ export class WorkshopsService {
 
   // Add new workshop event
   createWorkshopEvent(event) {
-    return this.http.post<WorkshopEvent>(this.workshopUrlRoot + 'workshop-events/new', event)
+    return this.http.post<WorkshopEvent>(this.workshopUrlRoot + 'workshop-events/create', event)
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -468,7 +544,7 @@ export class WorkshopsService {
 
   // Add new registrant
   createRegistrant(registrant) {
-    return this.http.post<WorkshopRegistration>(this.workshopUrlRoot + 'workshop-registrants/new', registrant)
+    return this.http.post<WorkshopRegistration>(this.workshopUrlRoot + 'workshop-registrants/create', registrant)
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -513,7 +589,16 @@ export class WorkshopsService {
 
   // Process Payment
   processPayment(data) {
-    return this.http.post<any>(this.workshopUrlRoot + 'workshop-payments/create', data)
+    return this.http.post<any>(this.workshopUrlRoot + 'workshop-payments/charge', data)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  // Confirmation Email
+  confirmation(data) {
+    return this.http.post<any>(this.workshopUrlRoot + 'workshops/confirmation', data)
       .pipe(
         retry(3),
         catchError(this.handleError)

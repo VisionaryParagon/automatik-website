@@ -121,7 +121,7 @@
           <mat-step>
             <h4>Payment information</h4>
 
-            <p>Total: {{ registrant.price | currency }}</p>
+            <p>Total: <strong>{{ registrant.price | currency }}</strong></p>
 
             <div class="inputGroup" [class.nope]="cardError">
               <label for="card-info">Card Info*</label>
@@ -147,8 +147,6 @@
         <h4>Success!</h4>
 
         <p>You have successfully registered for <strong>{{ registrant.workshop }}</strong> on <strong>{{ registrant.workshop_date | date:"fullDate" }}</strong>. A confirmation email with more details has been sent to <strong>{{ registrant.email }}</strong>.</p>
-
-        <pre>{{ registrant | json }}</pre>
       </div>
     </div>
   </mat-dialog-content>
