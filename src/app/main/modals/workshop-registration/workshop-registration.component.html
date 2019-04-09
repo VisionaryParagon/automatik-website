@@ -134,7 +134,7 @@
 
             <div class="inputGroup" [class.nope]="!terms && submitted">
               <label for="tandc">
-                <input type="checkbox" id="tandc" name="tandc" #tandc="ngModel" required [(ngModel)]="terms"> I have read and agree to the <a href="#">Terms and Conditions</a>.
+                <input type="checkbox" id="tandc" name="tandc" #tandc="ngModel" required [(ngModel)]="terms"> I have read and agree to the <a routerLink="#" target="_blank">Terms and Conditions</a>.
                 <div class="errorMsg" [@topDown]="true" *ngIf="!terms && submitted">
                   <p>Please read and agree to our Terms and Conditions to proceed</p>
                 </div>
