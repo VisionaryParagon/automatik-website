@@ -30,6 +30,7 @@ export class WorkshopRegistrationComponent implements AfterViewInit, OnInit, OnD
   card: any;
   cardHandler = this.onChange.bind(this);
   cardError: string;
+  terms = false;
 
   @ViewChild('workshop') workshop;
   @ViewChild('workshop_date') workshop_date;
@@ -143,7 +144,7 @@ export class WorkshopRegistrationComponent implements AfterViewInit, OnInit, OnD
   async submit(isValid) {
     this.submitted = true;
 
-    if (isValid) {
+    if (this.terms && isValid) {
       this.loading = true;
 
       const { token, error } = await stripe.createToken(this.card, {
@@ -181,7 +182,7 @@ export class WorkshopRegistrationComponent implements AfterViewInit, OnInit, OnD
             err => this.setError('Payment error: ' + err)
           );
       } else {
-        this.setError('Please fix the error above');
+        this.setError('Please fix the error(s) above');
       }
     }
 

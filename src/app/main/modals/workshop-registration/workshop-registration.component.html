@@ -131,6 +131,15 @@
                 <p>{{ cardError }}</p>
               </div>
             </div>
+
+            <div class="inputGroup" [class.nope]="!terms && submitted">
+              <label for="tandc">
+                <input type="checkbox" id="tandc" name="tandc" #tandc="ngModel" required [(ngModel)]="terms"> I have read and agree to the <a href="#">Terms and Conditions</a>.
+                <div class="errorMsg" [@topDown]="true" *ngIf="!terms && submitted">
+                  <p>Please read and agree to our Terms and Conditions to proceed</p>
+                </div>
+              </label>
+            </div>
           </mat-step>
         </mat-horizontal-stepper>
 
@@ -158,7 +167,7 @@
       <span *ngIf="!loading">Next</span>
       <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
     </button>
-    <button class="autoBtn" *ngIf="!success && stepId === 2" [disabled]="loading" (click)="submit(registrant, workshopForm.valid)">
+    <button class="autoBtn" *ngIf="!success && stepId === 2" [disabled]="loading" (click)="submit(workshopForm.valid)">
       <span *ngIf="!loading">Register</span>
       <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
     </button>
