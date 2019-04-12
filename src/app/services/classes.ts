@@ -84,6 +84,7 @@ export class WorkshopRegistration {
   workshop_date: Date;
   price: number;
   charge_id: string;
+  refund_id: string;
   reg_status: string;
   pmt_status: string;
   enrolled: Date;

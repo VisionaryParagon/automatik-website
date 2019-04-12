@@ -14,6 +14,7 @@ import { Workshop, WorkshopEvent, WorkshopRegistration } from './classes';
 })
 export class WorkshopsService {
   workshopUrlRoot = environment.workshop;
+  paymentUrlRoot = environment.stripe;
   workshops: Workshop[] = [
     {
       title: 'MeetingMastery',
@@ -589,7 +590,16 @@ export class WorkshopsService {
 
   // Process Payment
   processPayment(data) {
-    return this.http.post<any>(this.workshopUrlRoot + 'workshop-payments/charge', data)
+    return this.http.post<any>(this.paymentUrlRoot + 'charge', data)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  // Process Refund
+  processRefund(data) {
+    return this.http.post<any>(this.paymentUrlRoot + 'refund', data)
       .pipe(
         retry(3),
         catchError(this.handleError)

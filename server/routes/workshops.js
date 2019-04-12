@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const stripe = require('stripe')(process.env.STRIPE_KEY); // Stripe Prod Key
-const stripe = require('stripe')(process.env.STRIPE_TEST_KEY); // Stripe Test Key
 const nodemailer = require('nodemailer');
 
 // email config
@@ -22,6 +20,7 @@ const moment = require('moment');
 const workshops = require('../models/workshops');
 const workshopEvents = require('../models/workshops');
 const workshopRegistrants = require('../models/workshops');
+
 
 /*~~~ Workshops ~~~*/
 // create new workshop
@@ -70,6 +69,7 @@ router.delete('/workshops/:id', (req, res) => {
   });
 });
 
+
 /*~~~ Workshop Events ~~~*/
 // create new workshop event
 router.post('/workshop-events/create', (req, res) => {
@@ -116,6 +116,7 @@ router.delete('/workshop-events/:id', (req, res) => {
     return res.status(200).send(data);
   });
 });
+
 
 /*~~~ Workshop Registrants ~~~*/
 // create new workshop registrant
@@ -164,21 +165,6 @@ router.delete('/workshop-registrants/:id', (req, res) => {
   });
 });
 
-/*~~~ Payment Processing ~~~*/
-router.post('/workshop-payments/charge', (req, res) => {
-  const token = req.body.token;
-  const registrant = req.body.registrant;
-
-  stripe.charges.create({
-    amount: registrant.price * 100,
-    currency: 'usd',
-    source: token.id,
-    description: `Charge to ${registrant.first_name} ${registrant.last_name} for ${registrant.workshop}`
-  }, (err, charge) => {
-    if (err) return res.status(500).send(err);
-    return res.status(200).send(charge);
-  });
-});
 
 /*~~~ Emails ~~~*/
 // confirmation email

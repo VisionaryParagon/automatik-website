@@ -6,6 +6,7 @@ export const environment = {
   images: 'http://localhost/img/',
   projects: 'http://localhost/prj/',
   secret: 'http://localhost/scrt/',
+  stripe: 'http://localhost/strp/',
   subscriber: 'http://localhost/sub/',
   team: 'http://localhost/tm/',
   workshop: 'http://localhost/wrkshp/'

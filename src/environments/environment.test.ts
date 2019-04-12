@@ -6,6 +6,7 @@ export const environment = {
   images: '/img/',
   projects: '/prj/',
   secret: '/scrt/',
+  stripe: '/strp/',
   subscriber: '/sub/',
   team: '/tm/',
   workshop: '/wrkshp/'

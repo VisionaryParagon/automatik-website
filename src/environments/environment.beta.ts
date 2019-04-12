@@ -6,6 +6,7 @@ export const environment = {
   images: 'https://beta.automatik.com/img/',
   projects: 'https://beta.automatik.com/prj/',
   secret: 'https://beta.automatik.com/scrt/',
+  stripe: 'https://beta.automatik.com/strp/',
   subscriber: 'https://beta.automatik.com/sub/',
   team: 'https://beta.automatik.com/tm/',
   workshop: 'https://beta.automatik.com/wrkshp/'

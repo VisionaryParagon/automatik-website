@@ -40,6 +40,7 @@ const WorkshopRegistrantsSchema = new mongoose.Schema({
   workshop_date: Date,
   price: Number,
   charge_id: String,
+  refund_id: String,
   reg_status: String,
   pmt_status: String,
   enrolled: {
