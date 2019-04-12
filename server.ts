@@ -102,7 +102,7 @@ passport.deserializeUser(admin.deserializeUser());
 
 // https redirect
 app.all('*', (req, res, next) => {
-  if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.com' && req.headers.host !== 'www.automatik.com') || req.headers.host !== 'beta.automatik.com') {
+  if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'automatik.com' && req.headers.host !== 'www.automatik.com' && req.headers.host !== 'beta.automatik.com')) {
   // if (req.headers['x-forwarded-proto'] === 'https' || (req.headers.host !== 'beta.automatik.com' && req.headers.host !== 'beta.automatik9dots.com')) {
     next();
   } else {
