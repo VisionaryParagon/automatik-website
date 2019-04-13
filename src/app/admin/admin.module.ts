@@ -9,8 +9,10 @@ import { AdminComponent } from './admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 
-// Images
-import { AdminImagesComponent } from './admin-images/admin-images.component';
+// Training
+import { AdminTrainingComponent } from './admin-training/admin-training.component';
+import { WorkshopsComponent } from './admin-training/workshops/workshops.component';
+import { RegistrantsComponent } from './admin-training/registrants/registrants.component';
 
 // Portfolio
 import { AdminPortfolioComponent } from './admin-portfolio/admin-portfolio.component';
@@ -21,10 +23,18 @@ import { AdminTeamComponent } from './admin-team/admin-team.component';
 // Careers
 import { AdminCareersComponent } from './admin-careers/admin-careers.component';
 
+// Images
+import { AdminImagesComponent } from './admin-images/admin-images.component';
+
 // Modal Components
 import { ImageUploaderComponent } from './modals/image-uploader/image-uploader.component';
 import { ImageEditComponent } from './modals/image-edit/image-edit.component';
 import { ImageDeleteComponent } from './modals/image-delete/image-delete.component';
+import { WorkshopFormComponent } from './modals/workshop-form/workshop-form.component';
+import { WorkshopDeleteComponent } from './modals/workshop-delete/workshop-delete.component';
+import { WorkshopRegistrantFormComponent } from './modals/workshop-registrant-form/workshop-registrant-form.component';
+import { WorkshopRegistrantDeleteComponent } from './modals/workshop-registrant-delete/workshop-registrant-delete.component';
+import { WorkshopRegistrantRefundComponent } from './modals/workshop-registrant-refund/workshop-registrant-refund.component';
 import { PortfolioFormComponent } from './modals/portfolio-form/portfolio-form.component';
 import { PortfolioDeleteComponent } from './modals/portfolio-delete/portfolio-delete.component';
 import { TeamFormComponent } from './modals/team-form/team-form.component';
@@ -45,13 +55,21 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     AdminComponent,
     AdminLoginComponent,
     AdminHomeComponent,
-    AdminImagesComponent,
+    AdminTrainingComponent,
+    WorkshopsComponent,
+    RegistrantsComponent,
     AdminPortfolioComponent,
     AdminTeamComponent,
     AdminCareersComponent,
+    AdminImagesComponent,
     ImageUploaderComponent,
     ImageEditComponent,
     ImageDeleteComponent,
+    WorkshopFormComponent,
+    WorkshopDeleteComponent,
+    WorkshopRegistrantFormComponent,
+    WorkshopRegistrantDeleteComponent,
+    WorkshopRegistrantRefundComponent,
     PortfolioFormComponent,
     PortfolioDeleteComponent,
     TeamFormComponent,
@@ -67,6 +85,11 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     ImageUploaderComponent,
     ImageEditComponent,
     ImageDeleteComponent,
+    WorkshopFormComponent,
+    WorkshopDeleteComponent,
+    WorkshopRegistrantFormComponent,
+    WorkshopRegistrantDeleteComponent,
+    WorkshopRegistrantRefundComponent,
     PortfolioFormComponent,
     PortfolioDeleteComponent,
     TeamFormComponent,

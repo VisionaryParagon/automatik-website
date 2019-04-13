@@ -27,12 +27,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   isIntro = false;
   isAdmin = false;
   isLogin = false;
-  state = 'inactive';
-  stateServices = 'inactive';
-  stateTraining = 'inactive';
-  stateResources = 'inactive';
-  stateAbout = 'inactive';
-  secondSubState = '';
+  mobileNav = false;
+  subNav = '';
   activePage = '';
   currentYear = new Date().getFullYear();
   workshops: Workshop[] = this.workshopsService.workshops;
@@ -136,112 +132,37 @@ export class AppComponent implements AfterViewInit, OnInit {
         }
       }
     }
-    this.state = 'inactive';
-    this.stateServices = 'inactive';
-    this.stateTraining = 'inactive';
-    this.stateResources = 'inactive';
-    this.stateAbout = 'inactive';
-    this.secondSubState = '';
+    this.mobileNav = false;
+    this.subNav = '';
   }
 
   toggleNav() {
-    if (this.state === 'active') {
-      this.state = 'inactive';
+    if (this.mobileNav) {
+      this.mobileNav = false;
 
       this.renderer.removeClass(document.documentElement, 'modal-open');
     } else {
-      this.state = 'active';
+      this.mobileNav = true;
 
       this.renderer.addClass(document.documentElement, 'modal-open');
     }
   }
 
   closeNav() {
-    this.state = 'inactive';
+    this.mobileNav = false;
     this.renderer.removeClass(document.documentElement, 'modal-open');
   }
 
-  outsideNav() {
-    if (this.state === 'active') {
-      this.state = 'inactive';
-      this.renderer.removeClass(document.documentElement, 'modal-open');
-    }
-  }
-
-  toggleSubNav(e, id) {
-    if (e.target.tagName === 'A') {
-      if (id === 'Services') {
-        this.stateServices = 'active';
-        this.stateTraining = 'inactive';
-        this.stateResources = 'inactive';
-        this.stateAbout = 'inactive';
-      } else if (id === 'Training') {
-        this.stateServices = 'inactive';
-        this.stateTraining = 'active';
-        this.stateResources = 'inactive';
-        this.stateAbout = 'inactive';
-      } else if (id === 'Portfolio') {
-        this.closeSubNav();
-      } else if (id === 'Blog') {
-        this.closeSubNav();
-        /*
-      } else if (id === 'Resources') {
-        this.stateServices = 'inactive';
-        this.stateTraining = 'inactive';
-        this.stateResources = 'active';
-        this.stateAbout = 'inactive';
-        */
-      } else if (id === 'About') {
-        this.stateServices = 'inactive';
-        this.stateTraining = 'inactive';
-        this.stateResources = 'inactive';
-        this.stateAbout = 'active';
-      }
-    } else {
-      this.closeSubNav();
-    }
+  toggleSubNav(id) {
+    this.subNav = id;
   }
 
   closeSubNav() {
-    this.stateServices = 'inactive';
-    this.stateTraining = 'inactive';
-    this.stateResources = 'inactive';
-    this.stateAbout = 'inactive';
-    this.secondSubState = '';
-  }
-
-  toggleSecondSubNav(id) {
-    this.secondSubState = id;
+    this.subNav = '';
   }
 
   toggleMobileSubNav(id) {
-    if (id === 'Services') {
-      this.stateServices = (this.stateServices === 'active' ? 'inactive' : 'active');
-      this.stateTraining = 'inactive';
-      this.stateResources = 'inactive';
-      this.stateAbout = 'inactive';
-    } else if (id === 'Training') {
-      this.stateServices = 'inactive';
-      this.stateTraining = (this.stateTraining === 'active' ? 'inactive' : 'active');
-      this.stateResources = 'inactive';
-      this.stateAbout = 'inactive';
-    } else if (id === 'Portfolio') {
-      this.closeSubNav();
-    } else if (id === 'Blog') {
-      this.closeSubNav();
-      /*
-    } else if (id === 'Resources') {
-      this.stateServices = 'inactive';
-      this.stateTraining = 'inactive';
-      this.stateResources = (this.stateResources === 'active' ? 'inactive' : 'active');
-      this.stateAbout = 'inactive';
-      */
-    } else if (id === 'About') {
-      this.stateServices = 'inactive';
-      this.stateTraining = 'inactive';
-      this.stateResources = 'inactive';
-      this.stateAbout = (this.stateAbout === 'active' ? 'inactive' : 'active');
-    }
+    this.subNav = this.subNav === id ? '' : id;
   }
 
   activeLink(fragment) {

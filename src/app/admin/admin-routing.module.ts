@@ -10,8 +10,10 @@ import { AdminComponent } from './admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 
-// Images
-import { AdminImagesComponent } from './admin-images/admin-images.component';
+// Training
+import { AdminTrainingComponent } from './admin-training/admin-training.component';
+import { WorkshopsComponent } from './admin-training/workshops/workshops.component';
+import { RegistrantsComponent } from './admin-training/registrants/registrants.component';
 
 // Portfolio
 import { AdminPortfolioComponent } from './admin-portfolio/admin-portfolio.component';
@@ -21,6 +23,9 @@ import { AdminTeamComponent } from './admin-team/admin-team.component';
 
 // Careers
 import { AdminCareersComponent } from './admin-careers/admin-careers.component';
+
+// Images
+import { AdminImagesComponent } from './admin-images/admin-images.component';
 
 const routes: Routes = [
   {
@@ -56,18 +61,38 @@ const routes: Routes = [
         }
       },
       {
-        path: 'images',
-        component: AdminImagesComponent,
-        canActivate: [AdminGuardService],
-        data: {
-          title: 'automätik admin',
-          metatags: [
-            {
-              name: 'robots',
-              content: 'noindex,nofollow'
+        path: 'training',
+        component: AdminTrainingComponent,
+        children: [
+          {
+            path: 'workshops',
+            component: WorkshopsComponent,
+            canActivate: [AdminGuardService],
+            data: {
+              title: 'automätik admin',
+              metatags: [
+                {
+                  name: 'robots',
+                  content: 'noindex,nofollow'
+                }
+              ]
             }
-          ]
-        }
+          },
+          {
+            path: 'registrants',
+            component: RegistrantsComponent,
+            canActivate: [AdminGuardService],
+            data: {
+              title: 'automätik admin',
+              metatags: [
+                {
+                  name: 'robots',
+                  content: 'noindex,nofollow'
+                }
+              ]
+            }
+          }
+        ]
       },
       {
         path: 'portfolio',
@@ -100,6 +125,20 @@ const routes: Routes = [
       {
         path: 'careers',
         component: AdminCareersComponent,
+        canActivate: [AdminGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'robots',
+              content: 'noindex,nofollow'
+            }
+          ]
+        }
+      },
+      {
+        path: 'images',
+        component: AdminImagesComponent,
         canActivate: [AdminGuardService],
         data: {
           title: 'automätik admin',
