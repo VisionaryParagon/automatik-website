@@ -213,7 +213,7 @@ export class WorkshopsService {
   events: WorkshopEvent[] = [
     {
       workshop: 'MeetingMastery',
-      price: 1395,
+      price: 5,
       start_date: new Date('May 31, 2019'),
       end_date: new Date('June 1, 2019'),
       location: {

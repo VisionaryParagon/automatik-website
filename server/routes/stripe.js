@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// const stripe = require('stripe')(process.env.STRIPE_KEY); // Stripe Prod Key
-const stripe = require('stripe')(process.env.STRIPE_TEST_KEY); // Stripe Test Key
+const stripe = require('stripe')(process.env.STRIPE_KEY); // Stripe Prod Key
+// const stripe = require('stripe')(process.env.STRIPE_TEST_KEY); // Stripe Test Key
 
 
 /*~~~ Payment Processing ~~~*/
