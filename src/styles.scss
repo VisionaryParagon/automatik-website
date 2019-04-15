@@ -1343,8 +1343,8 @@ section {
     -o-animation: textFadeOut 2s;
     -webkit-animation: textFadeOut 2s;
     animation: textFadeOut 2s;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 65%, rgba(255, 255, 255, 0.2) 95%);
-    background-position: 100% center;
+    background: linear-gradient(to right, rgba(255, 193, 26, 1) 65%, rgba(255, 193, 26, 0.2) 95%);
+    background-position: 85% center;
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -1383,7 +1383,7 @@ section {
     -webkit-animation: particleFadeIn 2s;
     animation: particleFadeIn 2s;
     height: auto;
-    left: 15px;
+    left: 140px;
     position: absolute;
     top: 48px;
     width: 160px;
@@ -2955,8 +2955,8 @@ footer {
       }
 
       #particleImg {
-        left: 30px;
-        width: 180px;
+        left: 170px;
+        width: 220px;
       }
     }
   }
@@ -3195,6 +3195,7 @@ footer {
         top: 54px;
       }
       #particleImg {
+        left: 245px;
         top: 62px;
         width: 275px;
       }
@@ -3230,7 +3231,8 @@ footer {
         top: 68px;
       }
       #particleImg {
-        top: 68px;
+        left: 325px;
+        top: 75px;
         width: 342px;
       }
     }
@@ -3374,7 +3376,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
@@ -3383,7 +3385,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
@@ -3392,7 +3394,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
@@ -3401,7 +3403,7 @@ footer {
     background-position: 0% center;
   }
   100% {
-    background-position: 100% center;
+    background-position: 85% center;
   }
 }
 
