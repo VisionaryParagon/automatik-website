@@ -273,6 +273,7 @@ button {
   text-transform: uppercase;
 
   &:hover {
+    color: initial;
     opacity: 0.85;
     text-decoration: none;
   }
