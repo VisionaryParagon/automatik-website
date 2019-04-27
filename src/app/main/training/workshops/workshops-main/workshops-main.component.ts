@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { MatDialog } from '@angular/material';
 
 import { Workshop, WorkshopEvent, Location } from '../../../../services/classes';
@@ -24,7 +25,7 @@ export class WorkshopsMainComponent implements OnInit {
     lg: 'https://assets.automatik.com/images/home-presentaion-hero-bg-2560.jpg'
   };
   workshops: Workshop[] = this.workshopsService.workshops;
-  events: WorkshopEvent[] = this.workshopsService.events;
+  events: WorkshopEvent[] = this.workshopsService.events.filter(event => new Date(event.start_date) > new Date());
   filteredEvents: WorkshopEvent[];
   selectedEvent: number;
   locations: Location[];
@@ -38,12 +39,43 @@ export class WorkshopsMainComponent implements OnInit {
 
   constructor(
     private workshopsService: WorkshopsService,
-    private modalService: MatDialog
+    private modalService: MatDialog,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit() {
     this.setWorkshops();
     this.setEvents();
+  }
+
+  scrollTo(id) {
+    if (isPlatformBrowser(this.platformId)) {
+      const moz = /Firefox/.test(navigator.userAgent);
+      const ms = /Edge|Trident/.test(navigator.userAgent);
+
+      if (id) {
+        const el = document.getElementById(id);
+
+        if (el) {
+          if (ms) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else if (moz) {
+            setTimeout(() => {
+              window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' });
+            }, 50);
+          } else {
+            window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' });
+          }
+        }
+      } else {
+        if (moz) {
+          setTimeout(() => {
+            window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+          }, 50);
+        }
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+      }
+    }
   }
 
   setWorkshops() {
@@ -54,7 +86,7 @@ export class WorkshopsMainComponent implements OnInit {
 
   setEvents() {
     if (!this.events) {
-      this.events = this.workshopsService.getWorkshopEvents();
+      this.events = this.workshopsService.getWorkshopEvents().filter(event => new Date(event.start_date) > new Date());
     }
     this.filteredEvents = [...this.events];
     this.setLocations();
