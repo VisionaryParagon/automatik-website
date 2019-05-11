@@ -45,9 +45,18 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { CookieModule } from 'ngx-cookie';
 
+// Snippets
+import { CarouselComponent } from './snippets/carousel/carousel.component';
+import { ParallaxBgComponent } from './snippets/parallax-bg/parallax-bg.component';
+import { ScrollArrowComponent } from './snippets/scroll-arrow/scroll-arrow.component';
+import { NewsArticleComponent } from './snippets/news-article/news-article.component';
+
 // Directives
 import { MaxValidatorDirective } from './directives/max-validator.directive';
 import { MinValidatorDirective } from './directives/min-validator.directive';
+
+// Pipes
+import { NoBreakSpacePipe } from './pipes/no-break-space.pipe';
 
 // Icons for fontawesome library
 library.add(faCaretDown);
@@ -93,8 +102,13 @@ library.add(faTwitter);
     CookieModule.forRoot()
   ],
   declarations: [
+    CarouselComponent,
+    ParallaxBgComponent,
+    ScrollArrowComponent,
+    NewsArticleComponent,
     MaxValidatorDirective,
-    MinValidatorDirective
+    MinValidatorDirective,
+    NoBreakSpacePipe
   ],
   exports: [
     CommonModule,
@@ -116,8 +130,13 @@ library.add(faTwitter);
     RecaptchaModule,
     RecaptchaFormsModule,
     CookieModule,
+    CarouselComponent,
+    ParallaxBgComponent,
+    ScrollArrowComponent,
+    NewsArticleComponent,
     MaxValidatorDirective,
-    MinValidatorDirective
+    MinValidatorDirective,
+    NoBreakSpacePipe
   ]
 })
 export class AppSharedModule { }

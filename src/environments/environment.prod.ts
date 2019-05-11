@@ -3,6 +3,7 @@ export const environment = {
   admin: 'https://automatik.com/admn/',
   careers: 'https://automatik.com/careers/',
   contact: 'https://automatik.com/cntct/',
+  news: 'https://automatik.com/nws/',
   images: 'https://automatik.com/img/',
   projects: 'https://automatik.com/prj/',
   secret: 'https://automatik.com/scrt/',

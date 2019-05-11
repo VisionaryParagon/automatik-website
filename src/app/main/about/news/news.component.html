@@ -1,0 +1,41 @@
+<div id="news" [@fade]="true">
+  <section class="dark halfHeight hero">
+    <parallax-bg [images]="heroImages"></parallax-bg>
+
+    <div class="title">
+      <h1>In The News</h1>
+    </div>
+  </section>
+
+  <section class="pt-3 pb-5" [@fade]="true" *ngIf="!loading && !error.length">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 offset-md-6 offset-lg-8">
+          <div class="inputGroup">
+            <label for="search">
+              <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+              <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
+            </label>
+            <input type="text" class="form-control" id="search" name="search" #search="ngModel" autocomplete="off" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
+          </div>
+        </div>
+      </div>
+
+      <div class="newsArticle" *ngFor="let article of news">
+        <news-article [article]="article"></news-article>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="loading && !error.length">
+    <div class="container py-5">
+      <mat-spinner class="mx-auto my-5"></mat-spinner>
+    </div>
+  </section>
+
+  <section [@topDown]="true" *ngIf="error.length">
+    <div class="container my-5 text-center">
+      <p>{{ error }}</p>
+    </div>
+  </section>
+</div>

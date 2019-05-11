@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { FadeAnimation } from '../../../animations';
+import { FadeAnimation } from '../../animations';
 
 @Component({
   selector: 'scroll-arrow',

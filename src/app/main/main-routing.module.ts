@@ -38,6 +38,7 @@ import { BlogPostComponent } from './resources/blog/blog-post/blog-post.componen
 import { AboutComponent } from './about/about.component';
 import { AboutMainComponent } from './about/about-main/about-main.component';
 import { ContactComponent } from './about/contact/contact.component';
+import { NewsComponent } from './about/news/news.component';
 
 
 const routes: Routes = [
@@ -1005,6 +1006,63 @@ const routes: Routes = [
                     {
                       name: 'twitter:description',
                       content: 'Contact automätik today to learn how we can take your event to the next level with our full service, in-house events and training team.'
+                    },
+                    {
+                      name: 'twitter:image:src',
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
+                    }
+                  ]
+                }
+              },
+              {
+                path: 'news',
+                component: NewsComponent,
+                data: {
+                  title: 'In The News | automätik',
+                  metatags: [
+                    {
+                      name: 'description',
+                      content: 'Check out all of the recent press featuring automätik!'
+                    },
+                    {
+                      name: 'keywords',
+                      content: 'news, article, press'
+                    },
+                    {
+                      property: 'og:title',
+                      content: 'In The News | automätik'
+                    },
+                    {
+                      property: 'og:type',
+                      content: 'website'
+                    },
+                    {
+                      property: 'og:url',
+                      content: 'https://automatik.com/about/news'
+                    },
+                    {
+                      property: 'og:image',
+                      content: 'https://assets.automatik.com/images/home-share-1200.jpg'
+                    },
+                    {
+                      property: 'og:description',
+                      content: 'Check out all of the recent press featuring automätik!'
+                    },
+                    {
+                      name: 'twitter:card',
+                      content: 'summary_large_image'
+                    },
+                    {
+                      name: 'twitter:site',
+                      content: '@automatikEvents'
+                    },
+                    {
+                      name: 'twitter:title',
+                      content: 'In The News | automätik'
+                    },
+                    {
+                      name: 'twitter:description',
+                      content: 'Check out all of the recent press featuring automätik!'
                     },
                     {
                       name: 'twitter:image:src',
