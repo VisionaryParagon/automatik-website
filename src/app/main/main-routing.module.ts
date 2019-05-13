@@ -585,7 +585,7 @@ const routes: Routes = [
           },
           {
             path: '**',
-            redirectTo: '/courses'
+            redirectTo: '/training'
           }
         ]
       },
