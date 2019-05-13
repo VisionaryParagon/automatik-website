@@ -1,0 +1,13 @@
+<div class="row align-items-center">
+  <div class="col-12 col-md-4">
+    <a [href]="article.url" target="_blank"><img [src]="article.image" width="100%" [alt]="article.title"></a>
+  </div>
+
+  <div class="col-12 col-md-8">
+    <h3><a class="text-body" [href]="article.url" target="_blank">{{ article.title }}</a></h3>
+
+    <p><strong>{{ article.date | date:'longDate' }}<span *ngIf="article.source && article.source.length"><span class="d-none d-sm-inline-block">&nbsp;|&nbsp;</span><br class="d-sm-none">{{ article.source }}</span></strong></p>
+
+    <p>{{ article.description }}</p>
+  </div>
+</div>

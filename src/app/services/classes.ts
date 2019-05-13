@@ -31,6 +31,16 @@ export class Contact {
   captcha: string;
 }
 
+export class NewsArticle {
+  _id?: string;
+  url: string;
+  title: string;
+  description: string;
+  image: string;
+  date: Date;
+  source: string;
+}
+
 export class CareerPosition {
   _id?: string;
   position: string;

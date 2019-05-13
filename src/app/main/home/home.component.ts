@@ -4,7 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Subscriber } from '../../services/classes';
 import { SubscriberService } from '../../services/subscriber.service';
 
-import { ScrollArrowComponent } from '../snippets/scroll-arrow/scroll-arrow.component';
+import { ScrollArrowComponent } from '../../snippets/scroll-arrow/scroll-arrow.component';
 
 import { FadeAnimation, TopDownAnimation } from '../../animations';
 

@@ -41,14 +41,10 @@ import { ContactComponent } from './about/contact/contact.component';
 import { TeamComponent } from './about/team/team.component';
 import { ValuesComponent } from './about/values/values.component';
 import { CareersComponent } from './about/careers/careers.component';
+import { NewsComponent } from './about/news/news.component';
 
 // Modal Components
 import { CareerInquiryComponent } from './modals/career-inquiry/career-inquiry.component';
-
-// Snippets
-import { CarouselComponent } from './snippets/carousel/carousel.component';
-import { ParallaxBgComponent } from './snippets/parallax-bg/parallax-bg.component';
-import { ScrollArrowComponent } from './snippets/scroll-arrow/scroll-arrow.component';
 
 @NgModule({
   imports: [
@@ -82,10 +78,8 @@ import { ScrollArrowComponent } from './snippets/scroll-arrow/scroll-arrow.compo
     TeamComponent,
     ValuesComponent,
     CareersComponent,
-    CareerInquiryComponent,
-    CarouselComponent,
-    ParallaxBgComponent,
-    ScrollArrowComponent
+    NewsComponent,
+    CareerInquiryComponent
   ],
   entryComponents: [
     CareerInquiryComponent

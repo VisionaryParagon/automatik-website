@@ -28,6 +28,7 @@ const admin = require('./server/models/admin');
 const adminRoute = require('./server/routes/admin');
 const careersRoute = require('./server/routes/careers');
 const contactRoute = require('./server/routes/contact');
+const newsRoute = require('./server/routes/news');
 const imageRoute = require('./server/routes/images');
 const projectRoute = require('./server/routes/projects');
 const subscriberRoute = require('./server/routes/subscriber');
@@ -118,6 +119,7 @@ app.all('*', (req, res, next) => {
 app.use('/admn', adminRoute);
 app.use('/careers', careersRoute);
 app.use('/cntct', contactRoute);
+app.use('/nws', newsRoute);
 app.use('/img', imageRoute);
 app.use('/prj', projectRoute);
 app.use('/sub', subscriberRoute);

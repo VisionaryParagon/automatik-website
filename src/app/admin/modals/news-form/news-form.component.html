@@ -1,0 +1,110 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title *ngIf="new">New Article</h2>
+  <h2 mat-dialog-title *ngIf="!new">Edit Article</h2>
+  <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
+</div>
+
+<form #teamForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success">
+        <div class="inputGroup" [class.nope]="url.errors && (url.touched || submitted)">
+          <label for="url">URL*</label>
+          <input type="text" class="form-control" name="url" #url="ngModel" autocomplete="off" required [(ngModel)]="article.url" (ngModelChange)="fetchData()">
+          <div class="errorMsg" [@topDown]="true" *ngIf="url.errors && (url.touched || submitted)">
+            <p *ngIf="url.errors.required">URL is required</p>
+          </div>
+        </div>
+
+        <div class="container py-5" *ngIf="dataLoading">
+          <mat-spinner class="mx-auto my-5"></mat-spinner>
+        </div>
+
+        <div *ngIf="hasData && !dataLoading">
+          <news-article [article]="article"></news-article>
+
+          <div class="text-center my-3">
+            <button class="autoBtn" *ngIf="!manualEdit" (click)="editData()">Edit Article Data</button>
+          </div>
+        </div>
+
+        <div *ngIf="manualEdit">
+          <div class="inputGroup" [class.nope]="title.errors && (title.touched || submitted)">
+            <label for="title">Title*</label>
+            <input type="text" class="form-control" name="title" #title="ngModel" autocomplete="off" required [(ngModel)]="article.title">
+            <div class="errorMsg" [@topDown]="true" *ngIf="title.errors && (title.touched || submitted)">
+              <p *ngIf="title.errors.required">Title is required</p>
+            </div>
+          </div>
+
+          <div class="inputGroup" [class.nope]="description.errors && (description.touched || submitted)">
+            <label for="description">Description*</label>
+            <textarea class="form-control" name="description" #description="ngModel" autocomplete="off" rows="5" required [(ngModel)]="article.description"></textarea>
+            <div class="errorMsg" [@topDown]="true" *ngIf="description.errors && (description.touched || submitted)">
+              <p *ngIf="description.errors.required">Description is required</p>
+            </div>
+          </div>
+
+          <div class="inputGroup" [class.nope]="image.errors && submitted">
+            <label for="image">Image*</label>
+            <input type="text" class="form-control" name="image" #image="ngModel" autocomplete="off" required [(ngModel)]="article.image" (click)="chooseImage('image')">
+            <div class="errorMsg" [@topDown]="true" *ngIf="image.errors && submitted">
+              <p *ngIf="image.errors.required">Image is required</p>
+            </div>
+          </div>
+
+          <div class="inputGroup" [class.nope]="date.errors && submitted">
+            <label for="date">Published Date*</label>
+            <input type="text" class="form-control" name="date" #date="ngModel" autocomplete="off" required [(ngModel)]="article.date" [matDatepicker]="myDatepicker" (focus)="myDatepicker.open()" (click)="myDatepicker.open()">
+            <mat-datepicker #myDatepicker></mat-datepicker>
+            <div class="errorMsg" [@topDown]="true" *ngIf="date.errors && submitted">
+              <p *ngIf="date.errors.required">Please select a date</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="disclaimer">* Required field</p>
+
+          <div class="errorMsg" [@topDown]="true" *ngIf="error.length">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="success">
+        <div class="text-center">
+          <h3>Success!</h3>
+
+          <p>This article has been <span *ngIf="new">added</span><span *ngIf="!new">updated</span>.</p>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-12 col-md-4">
+            <a [href]="article.url" target="_blank"><img [src]="article.image" width="100%" [alt]="article.title"></a>
+          </div>
+
+          <div class="col-12 col-md-8">
+            <h3><a class="text-body" [href]="article.url" target="_blank">{{ article.title }}</a></h3>
+
+            <p><strong>{{ article.date | date:'fullDate' }}</strong></p>
+
+            <p>{{ article.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(article, teamForm.valid)">
+      <span *ngIf="!loading">Submit</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn secondary" *ngIf="success && new" (click)="addAnother()">Add Another</button>
+    <button class="autoBtn secondary" *ngIf="success && !new" (click)="editAgain()">Edit Again</button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Done</button>
+  </mat-dialog-actions>
+</form>
+  

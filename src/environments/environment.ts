@@ -8,6 +8,7 @@ export const environment = {
   admin: '/admn/',
   careers: '/careers/',
   contact: '/cntct/',
+  news: '/nws/',
   images: '/img/',
   projects: '/prj/',
   secret: '/scrt/',

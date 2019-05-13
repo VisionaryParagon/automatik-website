@@ -15,11 +15,10 @@ import { AdminImagesComponent } from './admin-images/admin-images.component';
 // Portfolio
 import { AdminPortfolioComponent } from './admin-portfolio/admin-portfolio.component';
 
-// Team
+// About
 import { AdminTeamComponent } from './admin-team/admin-team.component';
-
-// Careers
 import { AdminCareersComponent } from './admin-careers/admin-careers.component';
+import { AdminNewsComponent } from './admin-news/admin-news.component';
 
 // Modal Components
 import { ImageUploaderComponent } from './modals/image-uploader/image-uploader.component';
@@ -35,6 +34,8 @@ import { DepartmentDataComponent } from './admin-team/department-data/department
 import { TeamDataComponent } from './admin-team/team-data/team-data.component';
 import { CareerFormComponent } from './modals/career-form/career-form.component';
 import { CareerDeleteComponent } from './modals/career-delete/career-delete.component';
+import { NewsFormComponent } from './modals/news-form/news-form.component';
+import { NewsDeleteComponent } from './modals/news-delete/news-delete.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     AdminPortfolioComponent,
     AdminTeamComponent,
     AdminCareersComponent,
+    AdminNewsComponent,
     ImageUploaderComponent,
     ImageEditComponent,
     ImageDeleteComponent,
@@ -61,7 +63,9 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     DepartmentDataComponent,
     TeamDataComponent,
     CareerFormComponent,
-    CareerDeleteComponent
+    CareerDeleteComponent,
+    NewsFormComponent,
+    NewsDeleteComponent
   ],
   entryComponents: [
     ImageUploaderComponent,
@@ -74,7 +78,9 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     DepartmentFormComponent,
     DepartmentDeleteComponent,
     CareerFormComponent,
-    CareerDeleteComponent
+    CareerDeleteComponent,
+    NewsFormComponent,
+    NewsDeleteComponent
   ]
 })
 export class AdminModule { }

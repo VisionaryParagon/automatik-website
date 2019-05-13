@@ -16,11 +16,10 @@ import { AdminImagesComponent } from './admin-images/admin-images.component';
 // Portfolio
 import { AdminPortfolioComponent } from './admin-portfolio/admin-portfolio.component';
 
-// Team
+// About
 import { AdminTeamComponent } from './admin-team/admin-team.component';
-
-// Careers
 import { AdminCareersComponent } from './admin-careers/admin-careers.component';
+import { AdminNewsComponent } from './admin-news/admin-news.component';
 
 const routes: Routes = [
   {
@@ -100,6 +99,20 @@ const routes: Routes = [
       {
         path: 'careers',
         component: AdminCareersComponent,
+        canActivate: [AdminGuardService],
+        data: {
+          title: 'automätik admin',
+          metatags: [
+            {
+              name: 'robots',
+              content: 'noindex,nofollow'
+            }
+          ]
+        }
+      },
+      {
+        path: 'news',
+        component: AdminNewsComponent,
         canActivate: [AdminGuardService],
         data: {
           title: 'automätik admin',
