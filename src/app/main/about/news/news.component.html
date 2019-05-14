@@ -21,8 +21,16 @@
         </div>
       </div>
 
-      <div class="newsArticle" *ngFor="let article of news">
-        <news-article [article]="article"></news-article>
+      <div *ngIf="news.length">
+        <div class="newsArticle" *ngFor="let article of news">
+          <news-article [article]="article"></news-article>
+        </div>
+      </div>
+
+      <div class="py-5 text-center" *ngIf="!news.length">
+        <p>No articles found.</p>
+
+        <button class="autoBtn" (click)="clearFilter()">Clear Filter</button>
       </div>
     </div>
   </section>
