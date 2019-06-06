@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Image } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Asset } from '../../../services/classes';
+import { AssetService } from '../../../services/asset.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
@@ -14,9 +14,9 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 export class ImageUploaderComponent implements OnInit {
   tabId = 0;
   filter = '';
-  imageList: Image[];
-  filteredImages: Image[];
-  image: Image = new Image();
+  imageList: Asset[];
+  filteredImages: Asset[];
+  image: Asset = new Asset();
   imageName = 'Choose image...';
   imageData: File;
   selected: string;
@@ -28,11 +28,11 @@ export class ImageUploaderComponent implements OnInit {
   error = '';
 
   constructor(
-    private imageService: ImageService
+    private assetService: AssetService
   ) { }
 
   ngOnInit() {
-    this.imageService.getImages()
+    this.assetService.getAssets()
       .subscribe(
         res => {
           this.imageList = this.imageSort(res);
@@ -87,6 +87,7 @@ export class ImageUploaderComponent implements OnInit {
     this.imageData = ev.target.files[0];
     this.imageName = this.imageData.name;
     this.image.path = 'https://assets.automatik.com/images/' + this.imageName;
+    this.image.type = 'image';
     this.testImageName(this.imageName);
   }
 
@@ -96,16 +97,16 @@ export class ImageUploaderComponent implements OnInit {
     if (this.imageData && !this.rename) {
       this.loading = true;
 
-      this.imageService.validateImage(this.image)
+      this.assetService.validateAsset(this.image)
         .subscribe(
           validRes => {
             // console.log('Validate pass', validRes);
             if (validRes.isValid) {
-              this.imageService.uploadImage(this.imageData)
+              this.assetService.uploadImage(this.imageData)
                 .subscribe(
                   uploadRes => {
                     // console.log('Upload Image Success: ', uploadRes);
-                    this.imageService.createImage(this.image)
+                    this.assetService.createAsset(this.image)
                       .subscribe(
                         res => {
                           // console.log('New Image Success: ', res);
@@ -131,7 +132,7 @@ export class ImageUploaderComponent implements OnInit {
   }
 
   reset() {
-    this.image = new Image();
+    this.image = new Asset();
     this.imageName = 'Choose image...';
     this.selected = '';
     this.submitted = false;

@@ -10,8 +10,8 @@ import { AdminComponent } from './admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 
-// Images
-import { AdminImagesComponent } from './admin-images/admin-images.component';
+// Assets
+import { AdminAssetsComponent } from './admin-assets/admin-assets.component';
 
 // Portfolio
 import { AdminPortfolioComponent } from './admin-portfolio/admin-portfolio.component';
@@ -55,8 +55,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'images',
-        component: AdminImagesComponent,
+        path: 'assets',
+        component: AdminAssetsComponent,
         canActivate: [AdminGuardService],
         data: {
           title: 'automätik admin',
@@ -83,46 +83,51 @@ const routes: Routes = [
         }
       },
       {
-        path: 'team',
-        component: AdminTeamComponent,
-        canActivate: [AdminGuardService],
-        data: {
-          title: 'automätik admin',
-          metatags: [
-            {
-              name: 'robots',
-              content: 'noindex,nofollow'
+        path: 'about',
+        children: [
+          {
+            path: 'team',
+            component: AdminTeamComponent,
+            canActivate: [AdminGuardService],
+            data: {
+              title: 'automätik admin',
+              metatags: [
+                {
+                  name: 'robots',
+                  content: 'noindex,nofollow'
+                }
+              ]
             }
-          ]
-        }
-      },
-      {
-        path: 'careers',
-        component: AdminCareersComponent,
-        canActivate: [AdminGuardService],
-        data: {
-          title: 'automätik admin',
-          metatags: [
-            {
-              name: 'robots',
-              content: 'noindex,nofollow'
+          },
+          {
+            path: 'careers',
+            component: AdminCareersComponent,
+            canActivate: [AdminGuardService],
+            data: {
+              title: 'automätik admin',
+              metatags: [
+                {
+                  name: 'robots',
+                  content: 'noindex,nofollow'
+                }
+              ]
             }
-          ]
-        }
-      },
-      {
-        path: 'news',
-        component: AdminNewsComponent,
-        canActivate: [AdminGuardService],
-        data: {
-          title: 'automätik admin',
-          metatags: [
-            {
-              name: 'robots',
-              content: 'noindex,nofollow'
+          },
+          {
+            path: 'news',
+            component: AdminNewsComponent,
+            canActivate: [AdminGuardService],
+            data: {
+              title: 'automätik admin',
+              metatags: [
+                {
+                  name: 'robots',
+                  content: 'noindex,nofollow'
+                }
+              ]
             }
-          ]
-        }
+          }
+        ]
       }
     ]
   },

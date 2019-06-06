@@ -27,6 +27,8 @@ import {
   faCircle,
   faEdit,
   faEye,
+  faFile,
+  faPlayCircle,
   faPlus,
   faSearch,
   faTimes,
@@ -66,6 +68,8 @@ library.add(faChevronRight);
 library.add(faCircle);
 library.add(faEdit);
 library.add(faEye);
+library.add(faFile);
+library.add(faPlayCircle);
 library.add(faPlus);
 library.add(faSearch);
 library.add(faTimes);

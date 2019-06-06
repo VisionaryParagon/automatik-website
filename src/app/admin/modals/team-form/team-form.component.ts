@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Image, Department, Teammate } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Asset, Department, Teammate } from '../../../services/classes';
+import { AssetService } from '../../../services/asset.service';
 import { TeamService } from '../../../services/team.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
@@ -17,7 +17,7 @@ import { ImageUploaderComponent } from '../image-uploader/image-uploader.compone
 })
 export class TeamFormComponent implements OnInit {
   teammate: Teammate = new Teammate();
-  images: Image[] = this.imageService.images;
+  assets: Asset[] = this.assetService.assets;
   departments: Department[] = this.teamService.departments;
   new = true;
   anyVal: any;
@@ -35,7 +35,7 @@ export class TeamFormComponent implements OnInit {
 
   constructor(
     private modalService: MatDialog,
-    private imageService: ImageService,
+    private assetService: AssetService,
     private teamService: TeamService,
     @Inject(MAT_DIALOG_DATA) public data: Teammate
   ) { }
@@ -48,7 +48,7 @@ export class TeamFormComponent implements OnInit {
   }
 
   getImageAlt(path) {
-    return this.images.filter(img => img.path === path)[0].alt;
+    return this.assets.filter(img => img.path === path)[0].alt;
   }
 
   chooseImage(field) {

@@ -4,7 +4,7 @@ export const environment = {
   careers: 'http://localhost/careers/',
   contact: 'http://localhost/cntct/',
   news: 'http://localhost/nws/',
-  images: 'http://localhost/img/',
+  assets: 'http://localhost/asst/',
   projects: 'http://localhost/prj/',
   secret: 'http://localhost/scrt/',
   subscriber: 'http://localhost/sub/',

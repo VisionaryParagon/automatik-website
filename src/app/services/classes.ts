@@ -80,10 +80,12 @@ export class Teammate {
   secondary_image: string;
 }
 
-export class Image {
+export class Asset {
   _id?: string;
   path: string;
-  alt: string;
+  type: string;
+  alt?: string;
+  poster?: string;
   date: Date;
 }
 

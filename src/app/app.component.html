@@ -84,16 +84,16 @@
         <a routerLink="/admin/blog" routerLinkActive="active" (mouseenter)="toggleSubNav('Blog')">Blog</a>
       </div>
       <div class="col">
-        <a href="/admin" [class.active]="activePage.indexOf('/about') === 0" [class.hover]="subNav === 'About'" (mouseenter)="toggleSubNav('About')">About</a>
+        <a routerLink="/admin/about" routerLinkActive="active" [class.hover]="subNav === 'About'" (mouseenter)="toggleSubNav('About')" (click)="closeSubNav()">About</a>
 
         <div class="fullSubNav" [@topDown]="true" *ngIf="subNav === 'About'">
-          <a routerLink="/admin/team" routerLinkActive="active" (click)="closeSubNav()">Team</a>
-          <a routerLink="/admin/careers" routerLinkActive="active" (click)="closeSubNav()">Careers</a>
-          <a routerLink="/admin/news" routerLinkActive="active" (click)="closeSubNav()">News</a>
+          <a routerLink="/admin/about/team" routerLinkActive="active" (click)="closeSubNav()">Team</a>
+          <a routerLink="/admin/about/careers" routerLinkActive="active" (click)="closeSubNav()">Careers</a>
+          <a routerLink="/admin/about/news" routerLinkActive="active" (click)="closeSubNav()">News</a>
         </div>
       </div>
       <div class="col">
-        <a routerLink="/admin/images" routerLinkActive="active" (mouseenter)="toggleSubNav('Images')">Images</a>
+        <a routerLink="/admin/assets" routerLinkActive="active" (mouseenter)="toggleSubNav('Assets')">Assets</a>
       </div>
     </div>
 
@@ -203,7 +203,7 @@
         <a routerLink="/admin/news" routerLinkActive="active" (click)="closeNav()">News</a>
       </div>
 
-      <a routerLink="/admin/images" routerLinkActive="active" (click)="closeNav(); closeSubNav()">Images</a>
+      <a routerLink="/admin/assets" routerLinkActive="active" (click)="closeNav(); closeSubNav()">Assets</a>
 
       <a class="navBtn" (click)="closeNav(); closeSubNav(); logoutAdmin()">Logout</a>
     </div>

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Image, Project } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Asset, Project } from '../../../services/classes';
+import { AssetService } from '../../../services/asset.service';
 import { ProjectService } from '../../../services/project.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
@@ -17,7 +17,7 @@ import { ImageUploaderComponent } from '../image-uploader/image-uploader.compone
 })
 export class PortfolioFormComponent implements OnInit {
   project: Project = new Project();
-  images: Image[] = this.imageService.images;
+  assets: Asset[] = this.assetService.assets;
   categories: string[] = this.projectService.categories;
   highlightList: Array<string> = new Array<string>(3).fill('');
   imageList: Array<string> = new Array<string>(3).fill('');
@@ -37,7 +37,7 @@ export class PortfolioFormComponent implements OnInit {
 
   constructor(
     private modalService: MatDialog,
-    private imageService: ImageService,
+    private assetService: AssetService,
     private projectService: ProjectService,
     @Inject(MAT_DIALOG_DATA) public data: Project
   ) { }
@@ -112,15 +112,15 @@ export class PortfolioFormComponent implements OnInit {
   }
 
   getImages() {
-    this.imageService.getImages()
+    this.assetService.getAssets()
       .subscribe(
-        res => this.images = res,
+        res => this.assets = res,
         err => this.setError(err)
       );
   }
 
   getImageAlt(path) {
-    const image = this.images.filter(img => img.path === path)[0];
+    const image = this.assets.filter(img => img.path === path)[0];
     if (image) {
       return image.alt;
     } else {

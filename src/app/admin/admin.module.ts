@@ -9,8 +9,8 @@ import { AdminComponent } from './admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 
-// Images
-import { AdminImagesComponent } from './admin-images/admin-images.component';
+// Assets
+import { AdminAssetsComponent } from './admin-assets/admin-assets.component';
 
 // Portfolio
 import { AdminPortfolioComponent } from './admin-portfolio/admin-portfolio.component';
@@ -22,8 +22,8 @@ import { AdminNewsComponent } from './admin-news/admin-news.component';
 
 // Modal Components
 import { ImageUploaderComponent } from './modals/image-uploader/image-uploader.component';
-import { ImageEditComponent } from './modals/image-edit/image-edit.component';
-import { ImageDeleteComponent } from './modals/image-delete/image-delete.component';
+import { AssetEditComponent } from './modals/asset-edit/asset-edit.component';
+import { AssetDeleteComponent } from './modals/asset-delete/asset-delete.component';
 import { PortfolioFormComponent } from './modals/portfolio-form/portfolio-form.component';
 import { PortfolioDeleteComponent } from './modals/portfolio-delete/portfolio-delete.component';
 import { TeamFormComponent } from './modals/team-form/team-form.component';
@@ -46,14 +46,14 @@ import { NewsDeleteComponent } from './modals/news-delete/news-delete.component'
     AdminComponent,
     AdminLoginComponent,
     AdminHomeComponent,
-    AdminImagesComponent,
+    AdminAssetsComponent,
     AdminPortfolioComponent,
     AdminTeamComponent,
     AdminCareersComponent,
     AdminNewsComponent,
     ImageUploaderComponent,
-    ImageEditComponent,
-    ImageDeleteComponent,
+    AssetEditComponent,
+    AssetDeleteComponent,
     PortfolioFormComponent,
     PortfolioDeleteComponent,
     TeamFormComponent,
@@ -69,8 +69,8 @@ import { NewsDeleteComponent } from './modals/news-delete/news-delete.component'
   ],
   entryComponents: [
     ImageUploaderComponent,
-    ImageEditComponent,
-    ImageDeleteComponent,
+    AssetEditComponent,
+    AssetDeleteComponent,
     PortfolioFormComponent,
     PortfolioDeleteComponent,
     TeamFormComponent,

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-import { Image, Teammate } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Asset, Teammate } from '../../../services/classes';
+import { AssetService } from '../../../services/asset.service';
 import { TeamService } from '../../../services/team.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
@@ -15,13 +15,13 @@ import { FadeAnimation, TopDownAnimation } from '../../../animations';
 })
 export class TeamDeleteComponent implements OnInit {
   teammate: Teammate = new Teammate();
-  images: Image[] = this.imageService.images;
+  assets: Asset[] = this.assetService.assets;
   loading = false;
   success = false;
   error = '';
 
   constructor(
-    private imageService: ImageService,
+    private assetService: AssetService,
     private teamService: TeamService,
     @Inject(MAT_DIALOG_DATA) public data: Teammate
   ) { }
@@ -33,7 +33,7 @@ export class TeamDeleteComponent implements OnInit {
   }
 
   getImageAlt(path) {
-    return this.images.filter(img => img.path === path)[0].alt;
+    return this.assets.filter(img => img.path === path)[0].alt;
   }
 
   delete() {

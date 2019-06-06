@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { Department, Image, Teammate } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Department, Asset, Teammate } from '../../../services/classes';
+import { AssetService } from '../../../services/asset.service';
 import { TeamService } from '../../../services/team.service';
 
 import { FadeAnimation, TeamBioAnimation, TopDownAnimation } from '../../../animations';
@@ -16,7 +16,7 @@ import { FadeAnimation, TeamBioAnimation, TopDownAnimation } from '../../../anim
 export class TeamComponent implements OnInit {
   teammates: Teammate[] = this.teamService.team;
   departments: Department[] = this.teamService.departments;
-  images: Image[] = this.imageService.images;
+  assets: Asset[] = this.assetService.assets;
   teamHeight = 'auto';
   bottomMargin = '0px';
   selected: Teammate;
@@ -27,17 +27,17 @@ export class TeamComponent implements OnInit {
   @ViewChild('bioBox') bioBox: ElementRef;
 
   constructor(
-    private imageService: ImageService,
+    private assetService: AssetService,
     private teamService: TeamService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit() {
-    if (!this.teammates || !this.departments || !this.images) {
-      this.imageService.getImages()
+    if (!this.teammates || !this.departments || !this.assets) {
+      this.assetService.getAssets()
         .subscribe(
           imgRes => {
-            this.images = imgRes;
+            this.assets = imgRes;
 
             this.teamService.getDepartments()
               .subscribe(

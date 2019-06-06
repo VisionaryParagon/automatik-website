@@ -59,9 +59,9 @@
             </div>
           </div>
 
-          <div class="imageSelection">
-            <div class="imageBox" *ngFor="let item of imageList" (click)="select(item.path)">
-              <div class="image" [class.selected]="this.selected === item.path" [style.backgroundImage]="'url(' + item.path + ')'"></div>
+          <div class="assetSelection">
+            <div class="assetBox" *ngFor="let item of imageList" (click)="select(item.path)">
+              <div class="asset" [class.selected]="this.selected === item.path" [style.backgroundImage]="'url(' + item.path + ')'"></div>
             </div>
           </div>
         </ng-template>

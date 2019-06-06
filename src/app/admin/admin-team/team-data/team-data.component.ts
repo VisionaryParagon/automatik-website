@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
-import { Department, Image, Teammate } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Department, Asset, Teammate } from '../../../services/classes';
+import { AssetService } from '../../../services/asset.service';
 import { TeamService } from '../../../services/team.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
@@ -19,7 +19,7 @@ import { TeamDeleteComponent } from '../../modals/team-delete/team-delete.compon
 export class TeamDataComponent implements OnInit {
   teammates: Teammate[] = this.teamService.team;
   departments: Department[] = this.teamService.departments;
-  images: Image[] = this.imageService.images;
+  assets: Asset[] = this.assetService.assets;
   dataSource: MatTableDataSource<Teammate>;
   displayedColumns: string[] = ['primary_image', 'first_name', 'last_name', 'edit', 'delete'];
   teamLoaded = false;
@@ -40,7 +40,7 @@ export class TeamDataComponent implements OnInit {
 
   constructor(
     private modalService: MatDialog,
-    private imageService: ImageService,
+    private assetService: AssetService,
     private teamService: TeamService
   ) { }
 
@@ -57,10 +57,10 @@ export class TeamDataComponent implements OnInit {
       this.getDepartments();
     }
 
-    if (this.images) {
-      this.setImages(this.images);
+    if (this.assets) {
+      this.setAssets(this.assets);
     } else {
-      this.getImages();
+      this.getAssets();
     }
   }
 
@@ -121,16 +121,16 @@ export class TeamDataComponent implements OnInit {
     return team;
   }
 
-  getImages() {
-    this.imageService.getImages()
+  getAssets() {
+    this.assetService.getAssets()
       .subscribe(
-        res => this.setImages(res),
+        res => this.setAssets(res),
         err => this.setError('Could not get images: ' + err)
       );
   }
 
-  setImages(data) {
-    this.images = data;
+  setAssets(data) {
+    this.assets = data;
     this.imagesLoaded = true;
     this.checkData();
   }
@@ -146,8 +146,8 @@ export class TeamDataComponent implements OnInit {
   }
 
   getImageAlt(path) {
-    if (this.images) {
-      return this.images.filter(img => img.path === path)[0].alt;
+    if (this.assets) {
+      return this.assets.filter(img => img.path === path)[0].alt;
     }
   }
 
@@ -170,7 +170,7 @@ export class TeamDataComponent implements OnInit {
       .subscribe(
         result => {
           this.getTeam();
-          this.getImages();
+          this.getAssets();
         },
         error => this.setError(error)
       );
@@ -187,7 +187,7 @@ export class TeamDataComponent implements OnInit {
       .subscribe(
         result => {
           this.getTeam();
-          this.getImages();
+          this.getAssets();
         },
         error => this.setError(error)
       );
@@ -204,7 +204,7 @@ export class TeamDataComponent implements OnInit {
       .subscribe(
         result => {
           this.getTeam();
-          this.getImages();
+          this.getAssets();
         },
         error => this.setError(error)
       );

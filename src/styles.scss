@@ -2486,9 +2486,9 @@ footer {
   }
 }
 
-/*~~ Image Uploader ~~*/
+/*~~ Asset Uploader ~~*/
 
-.imageSelection {
+.assetSelection {
   background: #ddd;
   border: 1px dotted;
   display: flex;
@@ -2496,7 +2496,7 @@ footer {
   margin: 1rem 0 0;
   min-height: 100%;
 
-  .imageBox {
+  .assetBox {
     border: 1px dotted;
     height: 0;
     overflow: hidden;
@@ -2504,7 +2504,7 @@ footer {
     position: relative;
     width: 50%;
 
-    .image {
+    .asset {
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -2512,6 +2512,7 @@ footer {
       cursor: pointer;
       height: 0;
       padding-bottom: calc(100% - 1rem) !important;
+      position: relative;
       -moz-transition: border 250ms;
       -o-transition: border 250ms;
       -webkit-transition: border 250ms;
@@ -2521,10 +2522,21 @@ footer {
       &.selected {
         border-color: $client-yellow !important;
       }
+
+      fa-icon {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
     }
 
     &:hover {
-      .image {
+      .asset {
         border-color: #aaa;
       }
     }
@@ -2534,11 +2546,15 @@ footer {
       border: .5rem solid #aaa;
       border-top: none;
       bottom: 0;
-      display: flex;
-      justify-content: center;
       left: 0;
       position: absolute;
       width: 100%;
+
+      p {
+        margin: 0;
+        overflow-wrap: break-word;
+        padding: 1rem;
+      }
     }
   }
 }
@@ -3041,8 +3057,8 @@ footer {
       margin: 2.75rem 0 1rem 3rem;
     }
   }
-  .imageSelection {
-    .imageBox {
+  .assetSelection {
+    .assetBox {
       padding-bottom: calc(25% - 2px) !important;
       width: 25%;
     }

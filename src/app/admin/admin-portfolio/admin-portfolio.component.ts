@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
-import { Image, Project } from '../../services/classes';
-import { ImageService } from '../../services/image.service';
+import { Asset, Project } from '../../services/classes';
+import { AssetService } from '../../services/asset.service';
 import { ProjectService } from '../../services/project.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../animations';
@@ -20,7 +20,7 @@ export class AdminPortfolioComponent implements OnInit {
   dataSource: MatTableDataSource<Project>;
   displayedColumns: string[] = ['title', 'date', 'view', 'edit', 'delete'];
   projects: Project[] = this.projectService.projects;
-  images: Image[] = this.imageService.images;
+  assets: Asset[] = this.assetService.assets;
   projectsLoaded = false;
   imagesLoaded = false;
   loading = true;
@@ -38,7 +38,7 @@ export class AdminPortfolioComponent implements OnInit {
 
   constructor(
     private modalService: MatDialog,
-    private imageService: ImageService,
+    private assetService: AssetService,
     private projectService: ProjectService
   ) { }
 
@@ -49,14 +49,14 @@ export class AdminPortfolioComponent implements OnInit {
       this.getProjects();
     }
 
-    if (this.images) {
+    if (this.assets) {
       this.imagesLoaded = true;
       this.checkData();
     } else {
-      this.imageService.getImages()
+      this.assetService.getAssets()
         .subscribe(
           res => {
-            this.images = res;
+            this.assets = res;
             this.imagesLoaded = true;
             this.checkData();
           },

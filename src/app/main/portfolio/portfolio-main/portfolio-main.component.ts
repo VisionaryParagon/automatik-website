@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { Image, Project } from '../../../services/classes';
-import { ImageService } from '../../../services/image.service';
+import { Asset, Project } from '../../../services/classes';
+import { AssetService } from '../../../services/asset.service';
 import { ProjectService } from '../../../services/project.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
@@ -17,7 +17,7 @@ export class PortfolioMainComponent implements OnInit {
   projects: Project[] = this.projectService.projects;
   filteredProjects: Project[];
   categories: string[];
-  images: Image[] = this.imageService.images;
+  assets: Asset[] = this.assetService.assets;
   filter = '';
   hovered = '';
   activeCat = '';
@@ -34,7 +34,7 @@ export class PortfolioMainComponent implements OnInit {
 
   constructor(
     private renderer: Renderer2,
-    private imageService: ImageService,
+    private assetService: AssetService,
     private projectService: ProjectService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
@@ -50,14 +50,14 @@ export class PortfolioMainComponent implements OnInit {
         );
     }
 
-    if (this.images) {
+    if (this.assets) {
       this.imagesLoaded = true;
       this.checkData();
     } else {
-      this.imageService.getImages()
+      this.assetService.getAssets()
         .subscribe(
           res => {
-            this.images = res;
+            this.assets = res;
             this.imagesLoaded = true;
             this.checkData();
           },
@@ -197,8 +197,8 @@ export class PortfolioMainComponent implements OnInit {
   }
 
   getImageAlt(path) {
-    if (this.images) {
-      return this.images.filter(img => img.path === path)[0].alt;
+    if (this.assets) {
+      return this.assets.filter(img => img.path === path)[0].alt;
     }
   }
 
