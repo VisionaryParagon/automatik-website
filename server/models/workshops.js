@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const WorkshopsSchema = new mongoose.Schema({
   title: String,
   meta_title: String,
-  description: String,
   slug: String,
   description: String,
   keywords: String,
@@ -24,7 +23,12 @@ const WorkshopEventsSchema = new mongoose.Schema({
   start_date: Date,
   end_date: Date,
   location: Object,
-  schedule: Array
+  schedule: Array,
+  private: Boolean,
+  code: String,
+  discount: Number,
+  cap: Number,
+  active: Boolean
 });
 
 const WorkshopRegistrantsSchema = new mongoose.Schema({
@@ -39,10 +43,10 @@ const WorkshopRegistrantsSchema = new mongoose.Schema({
   workshop: String,
   workshop_date: Date,
   price: Number,
-  charge_id: String,
-  refund_id: String,
   reg_status: String,
   pmt_status: String,
+  charge_id: String,
+  refund_id: String,
   enrolled: {
     type: Date,
     default: Date.now

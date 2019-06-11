@@ -33,8 +33,9 @@ import { ImageDeleteComponent } from './modals/image-delete/image-delete.compone
 import { WorkshopFormComponent } from './modals/workshop-form/workshop-form.component';
 import { WorkshopDeleteComponent } from './modals/workshop-delete/workshop-delete.component';
 import { WorkshopRegistrantFormComponent } from './modals/workshop-registrant-form/workshop-registrant-form.component';
-import { WorkshopRegistrantDeleteComponent } from './modals/workshop-registrant-delete/workshop-registrant-delete.component';
+import { WorkshopRegistrantCancelComponent } from './modals/workshop-registrant-cancel/workshop-registrant-cancel.component';
 import { WorkshopRegistrantRefundComponent } from './modals/workshop-registrant-refund/workshop-registrant-refund.component';
+import { WorkshopRegistrantDeleteComponent } from './modals/workshop-registrant-delete/workshop-registrant-delete.component';
 import { PortfolioFormComponent } from './modals/portfolio-form/portfolio-form.component';
 import { PortfolioDeleteComponent } from './modals/portfolio-delete/portfolio-delete.component';
 import { TeamFormComponent } from './modals/team-form/team-form.component';
@@ -45,6 +46,9 @@ import { DepartmentDataComponent } from './admin-team/department-data/department
 import { TeamDataComponent } from './admin-team/team-data/team-data.component';
 import { CareerFormComponent } from './modals/career-form/career-form.component';
 import { CareerDeleteComponent } from './modals/career-delete/career-delete.component';
+
+// CSV components
+import { RegistrantCsvComponent } from './csv/registrant-csv/registrant-csv.component';
 
 @NgModule({
   imports: [
@@ -68,8 +72,9 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     WorkshopFormComponent,
     WorkshopDeleteComponent,
     WorkshopRegistrantFormComponent,
-    WorkshopRegistrantDeleteComponent,
+    WorkshopRegistrantCancelComponent,
     WorkshopRegistrantRefundComponent,
+    WorkshopRegistrantDeleteComponent,
     PortfolioFormComponent,
     PortfolioDeleteComponent,
     TeamFormComponent,
@@ -79,7 +84,8 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     DepartmentDataComponent,
     TeamDataComponent,
     CareerFormComponent,
-    CareerDeleteComponent
+    CareerDeleteComponent,
+    RegistrantCsvComponent
   ],
   entryComponents: [
     ImageUploaderComponent,
@@ -88,8 +94,9 @@ import { CareerDeleteComponent } from './modals/career-delete/career-delete.comp
     WorkshopFormComponent,
     WorkshopDeleteComponent,
     WorkshopRegistrantFormComponent,
-    WorkshopRegistrantDeleteComponent,
+    WorkshopRegistrantCancelComponent,
     WorkshopRegistrantRefundComponent,
+    WorkshopRegistrantDeleteComponent,
     PortfolioFormComponent,
     PortfolioDeleteComponent,
     TeamFormComponent,

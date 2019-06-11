@@ -12,6 +12,7 @@ import {
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSortModule,
+  MatSnackBarModule,
   MatStepperModule,
   MatTableModule,
   MatTabsModule
@@ -26,12 +27,16 @@ import {
   faChevronLeft,
   faChevronRight,
   faCircle,
+  faDollarSign,
   faEdit,
+  faEnvelope,
   faEye,
+  faFileExport,
   faPlus,
   faSearch,
   faTimes,
-  faTrashAlt
+  faTrashAlt,
+  faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
@@ -50,18 +55,25 @@ import { CookieModule } from 'ngx-cookie';
 import { MaxValidatorDirective } from './directives/max-validator.directive';
 import { MinValidatorDirective } from './directives/min-validator.directive';
 
+// Pipes
+import { NoBreakSpacePipe } from './pipes/no-break-space.pipe';
+
 // Icons for fontawesome library
 library.add(faCaretDown);
 library.add(faChevronDown);
 library.add(faChevronLeft);
 library.add(faChevronRight);
 library.add(faCircle);
+library.add(faDollarSign);
 library.add(faEdit);
+library.add(faEnvelope);
 library.add(faEye);
+library.add(faFileExport);
 library.add(faPlus);
 library.add(faSearch);
 library.add(faTimes);
 library.add(faTrashAlt);
+library.add(faUserPlus);
 library.add(faFacebookF);
 library.add(faGooglePlusG);
 library.add(faInstagram);
@@ -84,6 +96,7 @@ library.add(faTwitter);
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatSnackBarModule,
     MatStepperModule,
     MatTableModule,
     MatTabsModule,
@@ -97,7 +110,8 @@ library.add(faTwitter);
   ],
   declarations: [
     MaxValidatorDirective,
-    MinValidatorDirective
+    MinValidatorDirective,
+    NoBreakSpacePipe
   ],
   exports: [
     CommonModule,
@@ -113,6 +127,7 @@ library.add(faTwitter);
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatSnackBarModule,
     MatStepperModule,
     MatTableModule,
     MatTabsModule,
@@ -122,7 +137,8 @@ library.add(faTwitter);
     RecaptchaFormsModule,
     CookieModule,
     MaxValidatorDirective,
-    MinValidatorDirective
+    MinValidatorDirective,
+    NoBreakSpacePipe
   ]
 })
 export class AppSharedModule { }

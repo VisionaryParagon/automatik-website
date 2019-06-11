@@ -9,7 +9,8 @@ sans-serif;
 $client-yellow: #ffc11a;
 $client-blue: #00aeef;
 $client-blue-bg: #11679b;
-$error-color: #f00;
+$error-color: #dc3545;
+$success-color: #28a745;
 
 * {
   box-sizing: border-box;
@@ -167,6 +168,10 @@ button {
     padding: .25rem .5rem 0;
     width: 100%;
 
+    &.prefix {
+      padding-left: 1.5rem;
+    }
+
     &:focus {
       border-bottom: 1px solid $client-yellow !important;
       box-shadow: inset .25rem .25rem 1rem -.5rem !important;
@@ -180,6 +185,12 @@ button {
   input[type=checkbox],
   input[type=radio] {
     margin: 0 .5rem 0 0;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   select {
@@ -234,6 +245,13 @@ button {
         padding: 0 .75rem;
       }
     }
+  }
+
+  .inputPrefix {
+    height: 40px;
+    line-height: 40px;
+    padding: .15rem .5rem 0;
+    position: absolute;
   }
 
   .custom-file-input:focus ~ .custom-file-label {
@@ -1313,6 +1331,40 @@ section {
 
     .container {
       z-index: 2;
+    }
+  }
+
+  &.admin {
+    padding-bottom: 1rem !important;
+  
+    .filter {
+      position: relative;
+    
+      button {
+        position: absolute;
+        right: 15px;
+        top: 0;
+      }
+    }
+    
+    .adminTable {
+      background: #fff;
+      overflow: auto;
+      width: 100%;
+    
+      tr.mat-row {
+        &:nth-child(2n) {
+          background: #f0f0f0;
+        }
+    
+        &.selectedRow {
+          background: rgba(255, 193, 26, 0.5);
+        }
+    
+        td.mat-cell {
+          border-radius: 0 !important;
+        }
+      }
     }
   }
 }
@@ -2774,20 +2826,77 @@ div.mat-tab-label {
   }
 }
 
-div.mat-paginator-container {
-  padding: 0;
+table.mat-table {
+  border-radius: .25rem;
+  font-family: $client-font;
+  width: 100%;
 
-  .mat-paginator-page-size {
-    margin: 0;
+  tr.mat-header-row {
+    height: 2rem;
 
-    .mat-paginator-range-label {
-      margin: 0 15px 0 25px;
-    }
+    th.mat-header-cell {
+      border-bottom: 2px solid $client-yellow;
+      border-right: 1px solid #ccc;
+      border-radius: .25rem;
+      padding: .25rem .5rem !important;
 
-    .mat-paginator-page-size-select {
-      width: 40px;
+      &:last-of-type {
+        border-right: none;
+      }
     }
   }
+
+  tr.mat-row,
+  tr.mat-footer-row {
+    height: 2.5rem;
+
+    td.mat-cell,
+    td.mat-footer-cell {
+      border-bottom-color: transparent;
+      border-right: 1px solid #ccc;
+      border-radius: .25rem;
+      padding: .25rem .5rem !important;
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+  }
+}
+
+mat-paginator.mat-paginator {
+  border-top: 2px solid $client-yellow;
+  bottom: 0;
+  left: 0;
+  position: sticky;
+
+  .mat-paginator-container {
+    padding: 0;
+  
+    .mat-paginator-page-size {
+      margin: 0;
+  
+      .mat-paginator-page-size-select {
+        width: 40px;
+      }
+    }
+  
+    .mat-paginator-range-label {
+      margin: 0 15px;
+    }
+  }
+}
+
+.snackError {
+  background: $error-color;
+  color: #fff;
+  font-weight: 700;
+}
+
+.snackSuccess {
+  background: $success-color;
+  color: #fff;
+  font-weight: 700;
 }
 
 div.cdk-overlay-dark-backdrop {
@@ -2872,6 +2981,16 @@ footer {
   }
 }
 
+@media all and (min-width: 576px) {
+  section {
+    &.admin {
+      .container {
+        max-width: 90% !important;
+      }
+    }
+  }
+}
+
 @media all and (min-width: 768px) {
   h1,
   h2 {
@@ -2935,15 +3054,16 @@ footer {
     &:first-child {
       padding: 60px 0;
     }
-
     &.tileSection {
       padding: 60px 0 0;
     }
-
     &.hero {
       .logo {
         width: 60%;
       }
+    }
+    &.admin {
+      padding-bottom: 2rem !important;
     }
   }
   #home1 {

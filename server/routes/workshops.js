@@ -168,7 +168,7 @@ router.delete('/workshop-registrants/:id', (req, res) => {
 
 /*~~~ Emails ~~~*/
 // confirmation email
-router.post('/workshops/confirmation', (req, res) => {
+router.post('/workshops/confirmation-email', (req, res) => {
   // get registrant data
   const data = req.body;
   const workshopDate = moment(data.workshop_date).format('dddd, MMMM D, YYYY');
@@ -197,6 +197,101 @@ router.post('/workshops/confirmation', (req, res) => {
     to: data.email, // list of receivers
     // replyTo: data.email, // list of replyTo's
     subject: 'Registration Confirmed for ' + data.workshop, // Subject line
+    text: textContentMsg, // plaintext body
+    html: htmlContentMsg // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptionsMsg, (error, info) => {
+    if (error) {
+      return res.status(500).send(error);
+      // return console.log(error);
+    } else {
+      return res.status(250).send(info);
+      // return console.log('Message sent: ', info.response);
+    }
+  });
+});
+
+// updated email
+router.post('/workshops/updated-email', (req, res) => {
+  // get registrant data
+  const data = req.body;
+  const workshopDate = moment(data.workshop_date).format('dddd, MMMM D, YYYY');
+
+  // External response
+  let textContentMsg = `
+    Hello ${data.first_name},
+    
+    Your registration for ${data.workshop} on ${workshopDate} has been updated.
+
+    automätik
+  `;
+
+  let htmlContentMsg = `
+    <div style="font-size:14px; margin:30px auto 60px; width:640px;">
+      <span>
+        Hello ${data.first_name},<br><br>
+        Your registration for <strong>${data.workshop}</strong> on <strong>${workshopDate}</strong> has been updated.<br><br>
+        <strong>auto</strong>mätik
+      </span>
+    </div>
+  `;
+
+  let mailOptionsMsg = {
+    from: '"No Reply" <noreply@automatik.us>', // sender address
+    to: data.email, // list of receivers
+    // replyTo: data.email, // list of replyTo's
+    subject: 'Registration Updated for ' + data.workshop, // Subject line
+    text: textContentMsg, // plaintext body
+    html: htmlContentMsg // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptionsMsg, (error, info) => {
+    if (error) {
+      return res.status(500).send(error);
+      // return console.log(error);
+    } else {
+      return res.status(250).send(info);
+      // return console.log('Message sent: ', info.response);
+    }
+  });
+});
+
+// cancelation email
+router.post('/workshops/cancelation-email', (req, res) => {
+  // get registrant data
+  const data = req.body;
+  const workshopDate = moment(data.workshop_date).format('dddd, MMMM D, YYYY');
+
+  // External response
+  let textContentMsg = `
+    Hello ${data.first_name},
+    
+    Your registration for ${data.workshop} on ${workshopDate} has been canceled.
+    
+    If you did not request this cancelation or believe it is an error, please contact us at your earliest convenience.
+
+    automätik
+  `;
+
+  let htmlContentMsg = `
+    <div style="font-size:14px; margin:30px auto 60px; width:640px;">
+      <span>
+        Hello ${data.first_name},<br><br>
+        Your registration for <strong>${data.workshop}</strong> on <strong>${workshopDate}</strong> has been canceled.<br><br>
+        If you did not request this cancelation or believe it is an error, please contact us at your earliest convenience.<br><br>
+        <strong>auto</strong>mätik
+      </span>
+    </div>
+  `;
+
+  let mailOptionsMsg = {
+    from: '"No Reply" <noreply@automatik.us>', // sender address
+    to: data.email, // list of receivers
+    // replyTo: data.email, // list of replyTo's
+    subject: 'Registration Canceled for ' + data.workshop, // Subject line
     text: textContentMsg, // plaintext body
     html: htmlContentMsg // html body
   };

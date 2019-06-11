@@ -83,10 +83,10 @@ export class WorkshopRegistration {
   workshop: string;
   workshop_date: Date;
   price: number;
-  charge_id: string;
-  refund_id: string;
   reg_status: string;
   pmt_status: string;
+  charge_id: string;
+  refund_id: string;
   enrolled: Date;
   modified: Date;
 }
@@ -176,4 +176,5 @@ export class Contact {
 export class Admin {
   username: string;
   password: string;
+  permissions: string;
 }

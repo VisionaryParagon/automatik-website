@@ -428,7 +428,8 @@ export class WorkshopsService {
         }
       ]
     }
-  ].filter(event => new Date(event.start_date) > new Date()).sort((a, b) => {
+  // ].filter(event => new Date(event.start_date) > new Date()).sort((a, b) => {
+  ].sort((a, b) => {
     const aDate = new Date(a.start_date);
     const bDate = new Date(b.start_date);
     return aDate < bDate ? -1 : aDate > bDate ? 1 : 0;
@@ -572,7 +573,10 @@ export class WorkshopsService {
 
   // Update registrant
   updateRegistrant(registrant) {
-    return this.http.put<WorkshopRegistration>(this.workshopUrlRoot + 'workshop-registrants/' + registrant._id, registrant)
+    const idUrl = this.workshopUrlRoot + 'workshop-registrants/' + registrant._id;
+    const updated = registrant;
+    updated.modified = new Date();
+    return this.http.put<WorkshopRegistration>(idUrl, updated)
       .pipe(
         retry(3),
         catchError(this.handleError)
@@ -608,7 +612,25 @@ export class WorkshopsService {
 
   // Confirmation Email
   confirmation(data) {
-    return this.http.post<any>(this.workshopUrlRoot + 'workshops/confirmation', data)
+    return this.http.post<any>(this.workshopUrlRoot + 'workshops/confirmation-email', data)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  // Updated Email
+  updateConfirmation(data) {
+    return this.http.post<any>(this.workshopUrlRoot + 'workshops/updated-email', data)
+      .pipe(
+        retry(3),
+        catchError(this.handleError)
+      );
+  }
+
+  // Cancelation Email
+  cancelation(data) {
+    return this.http.post<any>(this.workshopUrlRoot + 'workshops/cancelation-email', data)
       .pipe(
         retry(3),
         catchError(this.handleError)

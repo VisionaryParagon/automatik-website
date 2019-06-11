@@ -1,3 +1,61 @@
-<p>
-  workshop-registrant-refund works!
-</p>
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title>Confirm Refund</h2>
+  <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
+</div>
+
+<form #refundForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div class="dialogScroll">
+      <div *ngIf="!success">
+        <p>Are you sure you want to send a refund to <strong>{{ registrant.first_name }} {{ registrant.last_name }}</strong> for <strong>{{ registrant.workshop }}</strong> on <strong>{{ registrant.workshop_date | date:"fullDate" }}</strong>?</p>
+
+        <p class="text-danger"><strong>This cannot be undone.</strong></p>
+
+        <div class="inputGroup" [class.nope]="amount.errors && (amount.touched || submitted)">
+          <label for="amount">Refund Amount*</label>
+          <div class="inputPrefix">$</div>
+          <input type="number" class="prefix" id="amount" name="amount" #amount="ngModel" [min]="0" [max]="registrant.price" [minVal]="0" [maxVal]="registrant.price" required [(ngModel)]="refundAmount" (ngModelChange)="hideError()">
+          <div class="errorMsg" [@topDown]="true" *ngIf="amount.errors && (amount.touched || submitted)">
+            <p *ngIf="amount.errors.minVal">Refund amount must be more than $0.00</p>
+            <p *ngIf="amount.errors.maxVal">Refund amount must be less than {{ registrant.price | currency }}</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="reason.errors && (reason.touched || submitted)">
+          <label for="reason">Refund Reason*</label>
+          <select id="reason" name="reason" #reason="ngModel" required [(ngModel)]="refundReason" (ngModelChange)="hideError()">
+            <option [value]="anyVal" selected disabled>Select a Reason</option>
+            <option value="requested_by_customer">Customer Request</option>
+            <option value="fraudulent">Fraud</option>
+            <option value="duplicate">Duplicate</option>
+          </select>
+          <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+          <div class="errorMsg" [@topDown]="true" *ngIf="reason.errors && (reason.touched || submitted)">
+            <p *ngIf="reason.errors.required">Please select an option</p>
+          </div>
+        </div>
+
+        <p class="disclaimer">* Required field</p>
+
+        <div class="errorMsg" [@topDown]="true" *ngIf="error.length">
+          <p>{{ error }}</p>
+        </div>
+      </div>
+
+      <div [@fade]="true" *ngIf="success">
+        <h4>Success!</h4>
+
+        <p>A refund in the amount of <strong>{{ refundAmount | currency }}</strong> has been sent back to <strong>{{ registrant.first_name }}</strong>’s original payment method.</p>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(refundForm.valid)">
+      <span *ngIf="!loading">Submit</span>
+      <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+    </button>
+    <button class="autoBtn" *ngIf="success" mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</form>

@@ -7,12 +7,12 @@ import { WorkshopsService } from '../../../services/workshops.service';
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
 @Component({
-  selector: 'app-workshop-registrant-delete',
-  templateUrl: './workshop-registrant-delete.component.html',
-  styleUrls: ['./workshop-registrant-delete.component.scss'],
+  selector: 'app-workshop-registrant-cancel',
+  templateUrl: './workshop-registrant-cancel.component.html',
+  styleUrls: ['./workshop-registrant-cancel.component.scss'],
   animations: [ FadeAnimation, TopDownAnimation ]
 })
-export class WorkshopRegistrantDeleteComponent implements OnInit {
+export class WorkshopRegistrantCancelComponent implements OnInit {
   registrant: WorkshopRegistration = new WorkshopRegistration();
   anyVal: any;
   submitted = false;
@@ -21,7 +21,6 @@ export class WorkshopRegistrantDeleteComponent implements OnInit {
   sendRefund = true;
   refundAmount = 0;
   refundReason: 'duplicate'|'fraudulent'|'requested_by_customer';
-  refundSuccess: boolean;
   error = '';
 
   constructor(
@@ -59,7 +58,6 @@ export class WorkshopRegistrantDeleteComponent implements OnInit {
         })
           .subscribe(
             res => {
-              this.refundSuccess = true;
               this.registrant.refund_id = res.id;
               this.registrant.price -= this.refundAmount;
               this.registrant.reg_status = 'Canceled';
