@@ -2,12 +2,10 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-
-import { Admin } from './classes';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +13,32 @@ import { Admin } from './classes';
 export class AdminService {
   adminUrlRoot = environment.admin;
   returnUrl: string;
-  loggedIn = false;
+  state = {
+    loggedIn: false,
+    permissions: ''
+  };
 
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
+  // get loggedIn status
+  getLoginStatus() {
+    return this.state;
+  }
+
+  // set loggedIn status
+  setLoginStatus(state) {
+    this.state.loggedIn = state.auth;
+    this.state.permissions = state.permissions;
+  }
+
   // login
   login(user) {
     return this.http.post<any>(this.adminUrlRoot + 'login', user)
       .pipe(
-        tap(res => this.loggedIn = true),
+        tap(res => this.setLoginStatus({ auth: true, permissions: res.permissions })),
         catchError(this.handleError)
       );
   }
@@ -35,7 +47,7 @@ export class AdminService {
   logout() {
     return this.http.get<any>(this.adminUrlRoot + 'logout')
       .pipe(
-        tap(res => this.loggedIn = false),
+        tap(res => this.setLoginStatus({ auth: false, permissions: '' })),
         catchError(this.handleError)
       );
   }
@@ -45,7 +57,7 @@ export class AdminService {
     return this.http.get<any>(this.adminUrlRoot + 'status')
       .pipe(
         retry(3),
-        tap(res => this.loggedIn = res.auth),
+        tap(res => this.setLoginStatus(res)),
         catchError(this.handleError)
       );
   }
