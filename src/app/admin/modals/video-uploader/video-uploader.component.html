@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-between mb-3">
+  <h2 mat-dialog-title>Videos</h2>
+  <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
+</div>
+
+<mat-dialog-content>
+  <mat-tab-group [selectedIndex]="tabId" (selectedIndexChange)="setTab($event)">
+    <mat-tab label="Upload">
+      <div *ngIf="!success">
+        <div class="inputGroup" [class.nope]="required || rename || invalid">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="video" name="video" accept="video/mp4" (change)="setVideoData($event)">
+            <label class="custom-file-label" for="video">{{ assetName }}</label>
+          </div>
+          <div class="errorMsg" [@topDown]="true" *ngIf="required">
+            <p>Please choose a video to upload</p>
+          </div>
+          <div class="errorMsg" [@topDown]="true" *ngIf="rename">
+            <p>Please rename video to meet standards and try again:</p>
+            <ul>
+              <li>All lowercase letters</li>
+              <li>No special characters</li>
+              <li>Dashes for spaces</li>
+            </ul>
+          </div>
+          <div class="errorMsg" [@topDown]="true" *ngIf="invalid">
+            <p>A video already exists with this file name</p>
+          </div>
+        </div>
+
+        <div class="inputGroup" [class.nope]="requiredPoster || renamePoster">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="poster" name="poster" accept="image/*" (change)="setPosterData($event)">
+            <label class="custom-file-label" for="poster">{{ posterName }}</label>
+          </div>
+          <div class="errorMsg" [@topDown]="true" *ngIf="requiredPoster">
+            <p>Please choose a fallback image to upload</p>
+          </div>
+          <div class="errorMsg" [@topDown]="true" *ngIf="renamePoster">
+            <p>Please rename poster image to meet standards and try again:</p>
+            <ul>
+              <li>All lowercase letters</li>
+              <li>No special characters</li>
+              <li>Dashes for spaces</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="errorMsg text-center" [@topDown]="true" *ngIf="error.length">
+          <p>{{ error }}</p>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="success">
+        <h3>Success!</h3>
+
+        <p>Your video has successfully been uploaded to the database and is currently selected:</p>
+
+        <video controls width="60%" [poster]="asset.poster">
+          <source [src]="asset.path" type="video/mp4">
+        </video>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Select">
+      <ng-template matTabContent>
+        <div class="adminFilter">
+          <div class="inputGroup">
+            <label for="search">
+              <fa-icon [icon]="['fas', 'search']" size="lg" *ngIf="!filter.length"></fa-icon>
+              <fa-icon [icon]="['fas', 'times']" size="lg" *ngIf="filter.length" (click)="clearFilter()"></fa-icon>
+            </label>
+            <input type="text" class="form-control" id="search" name="search" #search="ngModel" autocomplete="off" placeholder="Search" [(ngModel)]="filter" (ngModelChange)="updateFilter()">
+          </div>
+        </div>
+
+        <div class="assetSelection">
+          <div class="assetBox" *ngFor="let item of videoList" (click)="select(item)">
+            <div class="asset" [class.selected]="selected.path === item.path" [style.backgroundImage]="'url(' + item.poster + ')'"></div>
+          </div>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="autoBtn secondary" *ngIf="(!success && tabId === 0) || tabId === 1" mat-dialog-close>Cancel</button>
+  <button class="autoBtn" *ngIf="!success && tabId === 0" [disabled]="loading" (click)="upload()">
+    <span *ngIf="!loading">Upload</span>
+    <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
+  </button>
+  <button class="autoBtn secondary" *ngIf="success && tabId === 0" (click)="reset()">Upload Another</button>
+  <button class="autoBtn" *ngIf="success && tabId === 0" [mat-dialog-close]="selected">Done</button>
+  <button class="autoBtn" *ngIf="tabId === 1" [mat-dialog-close]="selected">Select</button>
+</mat-dialog-actions>

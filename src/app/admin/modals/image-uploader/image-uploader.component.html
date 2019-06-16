@@ -8,13 +8,13 @@
     <mat-tab-group [selectedIndex]="tabId" (selectedIndexChange)="setTab($event)">
       <mat-tab label="Upload">
         <div *ngIf="!success">
-          <div class="inputGroup" [class.nope]="invalid || rename || (img.errors && (img.touched || submitted))">
+          <div class="inputGroup" [class.nope]="required || rename || invalid">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" #img required (change)="setImageData($event)">
+              <input type="file" class="custom-file-input" id="img" name="img" accept="image/*" (change)="setImageData($event)">
               <label class="custom-file-label" for="img">{{ imageName }}</label>
             </div>
-            <div class="errorMsg" [@topDown]="true" *ngIf="img.errors && (img.touched || submitted)">
-              <p *ngIf="img.errors.required">Please choose an image to upload</p>
+            <div class="errorMsg" [@topDown]="true" *ngIf="required">
+              <p>Please choose an image to upload</p>
             </div>
             <div class="errorMsg" [@topDown]="true" *ngIf="rename">
               <p>Please rename image to meet standards and try again:</p>
@@ -61,7 +61,7 @@
 
           <div class="assetSelection">
             <div class="assetBox" *ngFor="let item of imageList" (click)="select(item.path)">
-              <div class="asset" [class.selected]="this.selected === item.path" [style.backgroundImage]="'url(' + item.path + ')'"></div>
+              <div class="asset" [class.selected]="selected === item.path" [style.backgroundImage]="'url(' + item.path + ')'"></div>
             </div>
           </div>
         </ng-template>

@@ -22,17 +22,18 @@ export class AdminAssetsComponent implements OnInit {
   totalLength = 0;
   currentPage = 0;
   filter = '';
+  asset: Asset = new Asset();
   assetId: string;
   assetData: File;
-  asset: Asset = new Asset();
   assetName = 'Choose asset...';
   assetType = '';
+  required = false;
   rename = false;
   invalid = false;
   posterData: File;
-  posterName = 'Choose fallback image...';
+  posterName = '';
+  requiredPoster = false;
   renamePoster = false;
-  invalidPoster = false;
   new = false;
   submitted = false;
   loading = false;
@@ -163,21 +164,31 @@ export class AdminAssetsComponent implements OnInit {
   }
 
   setAssetData(ev) {
+    this.clearError();
     this.asset = new Asset();
+    this.posterName = 'Choose fallback image...';
     this.assetData = ev.target.files[0];
-    this.assetName = this.assetData.name;
-    this.assetType = this.assetData['type'].split('/')[0];
-    if (this.assetType === 'image') {
-      this.asset.path = 'https://assets.automatik.com/images/' + this.assetName;
-      this.asset.type = 'image';
-    } else if (this.assetType === 'video') {
-      this.asset.path = 'https://assets.automatik.com/videos/' + this.assetName;
-      this.asset.type = 'video';
+
+    if (this.assetData) {
+      this.assetName = this.assetData.name;
+      this.assetType = this.assetData['type'].split('/')[0];
+
+      if (this.assetType === 'image') {
+        this.asset.path = 'https://assets.automatik.com/images/' + this.assetName;
+        this.asset.type = 'image';
+      } else if (this.assetType === 'video') {
+        this.asset.path = 'https://assets.automatik.com/videos/' + this.assetName;
+        this.asset.type = 'video';
+      } else {
+        this.asset.path = 'https://assets.automatik.com/files/' + this.assetName;
+        this.asset.type = 'file';
+      }
+      this.testAssetName(this.assetName);
     } else {
-      this.asset.path = 'https://assets.automatik.com/files/' + this.assetName;
-      this.asset.type = 'file';
+      this.assetName = 'Choose asset...';
+      this.assetType = '';
+      this.required = true;
     }
-    this.testAssetName(this.assetName);
   }
 
   testPosterName(name) {
@@ -186,92 +197,102 @@ export class AdminAssetsComponent implements OnInit {
   }
 
   setPosterData(ev) {
+    this.clearError();
     this.posterData = ev.target.files[0];
     this.posterName = this.posterData.name;
     this.asset.poster = 'https://assets.automatik.com/images/' + this.posterName;
     this.testPosterName(this.posterName);
   }
 
-  upload() {
+  upload(isValid) {
     this.submitted = true;
 
-    if (this.assetData && !this.rename && !this.renamePoster) {
-      this.loading = true;
+    if (isValid) {
+      if (this.assetData && !this.rename) {
+        this.loading = true;
 
-      this.assetService.validateAsset(this.asset)
-        .subscribe(
-          validRes => {
-            // console.log('Validate pass', validRes);
-            if (validRes.isValid) {
-              if (this.assetType === 'image') {
-                this.assetService.uploadImage(this.assetData)
-                  .subscribe(
-                    uploadRes => {
-                      // console.log('Upload Image Asset Success: ', uploadRes);
-                      this.assetService.createAsset(this.asset)
-                        .subscribe(
-                          res => {
-                            // console.log('New Image Asset Success: ', res);
-                            this.success = true;
-                            this.loading = false;
-                            this.getAssets();
-                          },
-                          err => this.setError('New Image Asset Error: ' + err)
-                        );
-                    },
-                    err => this.setError('Upload Image Asset Error: ' + err)
-                  );
-              } else if (this.assetType === 'video') {
-                this.assetService.uploadVideo(this.assetData)
-                  .subscribe(
-                    vidRes => {
-                      // console.log('Upload Video Asset Success: ', vidRes);
-                      this.assetService.uploadImage(this.posterData)
-                        .subscribe(
-                          imgRes => {
-                            // console.log('Upload Poster Image Success: ', imgRes);
-                            this.assetService.createAsset(this.asset)
-                              .subscribe(
-                                assetRes => {
-                                  // console.log('New Video Asset Success: ', assetRes);
-                                  this.success = true;
-                                  this.loading = false;
-                                  this.getAssets();
-                                },
-                                err => this.setError('New Poster Image Error: ' + err)
-                              );
-                          },
-                          err => this.setError('Upload Poster Image Error: ' + err)
-                        );
-                    },
-                    err => this.setError('Upload Video Asset Error: ' + err)
-                  );
+        this.assetService.validateAsset(this.asset)
+          .subscribe(
+            validRes => {
+              // console.log('Validate pass', validRes);
+              if (validRes.isValid) {
+                if (this.assetType === 'image') {
+                  this.assetService.uploadImage(this.assetData)
+                    .subscribe(
+                      uploadRes => {
+                        // console.log('Upload Image Asset Success: ', uploadRes);
+                        this.assetService.createAsset(this.asset)
+                          .subscribe(
+                            res => {
+                              // console.log('New Image Asset Success: ', res);
+                              this.success = true;
+                              this.loading = false;
+                              this.getAssets();
+                            },
+                            err => this.setError('New Image Asset Error: ' + err)
+                          );
+                      },
+                      err => this.setError('Upload Image Asset Error: ' + err)
+                    );
+                } else if (this.assetType === 'video') {
+                  if (this.posterData && !this.renamePoster) {
+                    this.assetService.uploadVideo(this.assetData)
+                      .subscribe(
+                        vidRes => {
+                          // console.log('Upload Video Asset Success: ', vidRes);
+                          this.assetService.uploadImage(this.posterData)
+                            .subscribe(
+                              imgRes => {
+                                // console.log('Upload Poster Image Success: ', imgRes);
+                                this.assetService.createAsset(this.asset)
+                                  .subscribe(
+                                    assetRes => {
+                                      // console.log('New Video Asset Success: ', assetRes);
+                                      this.success = true;
+                                      this.loading = false;
+                                      this.getAssets();
+                                    },
+                                    err => this.setError('New Poster Image Error: ' + err)
+                                  );
+                              },
+                              err => this.setError('Upload Poster Image Error: ' + err)
+                            );
+                        },
+                        err => this.setError('Upload Video Asset Error: ' + err)
+                      );
+                  } else {
+                    this.requiredPoster = true;
+                    this.loading = false;
+                  }
+                } else {
+                  this.assetService.uploadFile(this.assetData)
+                    .subscribe(
+                      fileRes => {
+                        // console.log('Upload File Asset Success: ', fileRes);
+                        this.assetService.createAsset(this.asset)
+                          .subscribe(
+                            fileAssetRes => {
+                              // console.log('New File Asset Success: ', fileAssetRes);
+                              this.success = true;
+                              this.loading = false;
+                              this.getAssets();
+                            },
+                            err => this.setError('New File Asset Error: ' + err)
+                          );
+                      },
+                      err => this.setError('Upload File Asset Error: ' + err)
+                    );
+                }
               } else {
-                this.assetService.uploadFile(this.assetData)
-                  .subscribe(
-                    fileRes => {
-                      // console.log('Upload File Asset Success: ', fileRes);
-                      this.assetService.createAsset(this.asset)
-                        .subscribe(
-                          fileAssetRes => {
-                            // console.log('New File Asset Success: ', fileAssetRes);
-                            this.success = true;
-                            this.loading = false;
-                            this.getAssets();
-                          },
-                          err => this.setError('New File Asset Error: ' + err)
-                        );
-                    },
-                    err => this.setError('Upload File Asset Error: ' + err)
-                  );
+                this.invalid = true;
+                this.loading = false;
               }
-            } else {
-              this.invalid = true;
-              this.loading = false;
-            }
-          },
-          err => this.setError('Validate fail: ' + err)
-        );
+            },
+            err => this.setError('Validate fail: ' + err)
+          );
+      } else {
+        this.required = true;
+      }
     }
     return false;
   }
@@ -289,15 +310,12 @@ export class AdminAssetsComponent implements OnInit {
   }
 
   reset() {
+    this.clearError();
     this.assetId = '';
     this.asset = new Asset();
     this.assetName = 'Choose asset...';
     this.assetType = '';
-    this.rename = false;
-    this.invalid = false;
     this.posterName = 'Choose fallback image...';
-    this.renamePoster = false;
-    this.invalidPoster = false;
     this.submitted = false;
     this.success = false;
   }
@@ -309,6 +327,11 @@ export class AdminAssetsComponent implements OnInit {
   }
 
   clearError() {
+    this.required = false;
+    this.rename = false;
+    this.invalid = false;
+    this.requiredPoster = false;
+    this.renamePoster = false;
     this.error = '';
   }
 }

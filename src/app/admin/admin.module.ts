@@ -22,6 +22,7 @@ import { AdminNewsComponent } from './admin-news/admin-news.component';
 
 // Modal Components
 import { ImageUploaderComponent } from './modals/image-uploader/image-uploader.component';
+import { VideoUploaderComponent } from './modals/video-uploader/video-uploader.component';
 import { AssetEditComponent } from './modals/asset-edit/asset-edit.component';
 import { AssetDeleteComponent } from './modals/asset-delete/asset-delete.component';
 import { PortfolioFormComponent } from './modals/portfolio-form/portfolio-form.component';
@@ -52,6 +53,7 @@ import { NewsDeleteComponent } from './modals/news-delete/news-delete.component'
     AdminCareersComponent,
     AdminNewsComponent,
     ImageUploaderComponent,
+    VideoUploaderComponent,
     AssetEditComponent,
     AssetDeleteComponent,
     PortfolioFormComponent,
@@ -69,6 +71,7 @@ import { NewsDeleteComponent } from './modals/news-delete/news-delete.component'
   ],
   entryComponents: [
     ImageUploaderComponent,
+    VideoUploaderComponent,
     AssetEditComponent,
     AssetDeleteComponent,
     PortfolioFormComponent,

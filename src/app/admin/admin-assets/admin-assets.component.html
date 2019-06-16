@@ -30,14 +30,14 @@
       <h3>Add New Asset</h3>
 
       <div *ngIf="!success">
-        <form #imageForm="ngForm" novalidate>
-          <div class="inputGroup" [class.nope]="invalid || rename || (asset.errors && (asset.touched || submitted))">
+        <form #assetForm="ngForm" novalidate>
+          <div class="inputGroup" [class.nope]="required || rename || invalid">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="asset" name="asset" #asset required (change)="setAssetData($event)">
+              <input type="file" class="custom-file-input" id="asset" name="asset" accept="image/*,video/mp4,application/*" (change)="setAssetData($event)">
               <label class="custom-file-label" for="asset">{{ assetName }}</label>
             </div>
-            <div class="errorMsg" [@topDown]="true" *ngIf="asset.errors && (asset.touched || submitted)">
-              <p *ngIf="asset.errors.required">Please choose an asset to upload</p>
+            <div class="errorMsg" [@topDown]="true" *ngIf="required">
+              <p>Please choose an asset to upload</p>
             </div>
             <div class="errorMsg" [@topDown]="true" *ngIf="rename">
               <p>Please rename asset to meet standards and try again:</p>
@@ -54,19 +54,19 @@
 
           <div class="inputGroup" [class.nope]="alt.errors && (alt.touched || submitted)" *ngIf="assetType === 'image'">
             <label for="alt">Alt Text</label>
-            <input type="text" class="form-control" name="alt" #alt="ngModel" autocomplete="off" required [(ngModel)]="image.alt">
+            <input type="text" class="form-control" name="alt" #alt="ngModel" autocomplete="off" required [(ngModel)]="asset.alt">
             <div class="errorMsg" [@topDown]="true" *ngIf="alt.errors && (alt.touched || submitted)">
               <p *ngIf="alt.errors.required">Alt Text is required</p>
             </div>
           </div>
 
-          <div class="inputGroup" [class.nope]="invalidPoster || renamePoster || (poster.errors && (poster.touched || submitted))" *ngIf="assetType === 'video'">
+          <div class="inputGroup" [class.nope]="requiredPoster || renamePoster" *ngIf="assetType === 'video'">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="poster" name="poster" accept="image/*" #poster required (change)="setPosterData($event)">
+              <input type="file" class="custom-file-input" id="poster" name="poster" accept="image/*" (change)="setPosterData($event)">
               <label class="custom-file-label" for="poster">{{ posterName }}</label>
             </div>
-            <div class="errorMsg" [@topDown]="true" *ngIf="poster.errors && (poster.touched || submitted)">
-              <p *ngIf="poster.errors.required">Please choose a poster image to upload</p>
+            <div class="errorMsg" [@topDown]="true" *ngIf="requiredPoster">
+              <p>Please choose a fallback image to upload</p>
             </div>
             <div class="errorMsg" [@topDown]="true" *ngIf="renamePoster">
               <p>Please rename poster image to meet standards and try again:</p>
@@ -76,13 +76,10 @@
                 <li>Dashes for spaces</li>
               </ul>
             </div>
-            <div class="errorMsg" [@topDown]="true" *ngIf="invalidPoster">
-              <p>A poster image already exists with this file name</p>
-            </div>
           </div>
   
           <div class="d-flex">
-            <button class="autoBtn mx-0" [disabled]="loading" (click)="upload()">
+            <button class="autoBtn mx-0" [disabled]="loading" (click)="upload(assetForm.valid)">
               <span *ngIf="!loading">Upload</span>
               <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
             </button>

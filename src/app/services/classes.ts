@@ -37,8 +37,9 @@ export class NewsArticle {
   title: string;
   description: string;
   image: string;
-  date: Date;
   source: string;
+  type: string;
+  date: Date;
 }
 
 export class CareerPosition {

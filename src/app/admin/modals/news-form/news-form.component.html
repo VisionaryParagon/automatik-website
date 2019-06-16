@@ -4,31 +4,33 @@
   <button mat-dialog-close><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
 </div>
 
-<form #teamForm="ngForm" novalidate>
+<form #articleForm="ngForm" novalidate>
   <mat-dialog-content>
-    <div class="dialogScroll">
+    <div class="dialogScroll" #dialogScroll>
       <div *ngIf="!success">
-        <div class="inputGroup" [class.nope]="url.errors && (url.touched || submitted)">
-          <label for="url">URL*</label>
-          <input type="text" class="form-control" name="url" #url="ngModel" autocomplete="off" required [(ngModel)]="article.url" (ngModelChange)="fetchData()">
-          <div class="errorMsg" [@topDown]="true" *ngIf="url.errors && (url.touched || submitted)">
-            <p *ngIf="url.errors.required">URL is required</p>
+        <div class="inputGroup" [class.nope]="invalid || (url.errors && (url.touched || submitted))">
+          <label for="url"><span *ngIf="!hasData">Article/Youtube </span>URL</label>
+          <input type="text" class="form-control" name="url" #url="ngModel" autocomplete="off" required [disabled]="hasData" [(ngModel)]="article.url" (ngModelChange)="fetchData()">
+          <div class="errorMsg" [@topDown]="true" *ngIf="invalid || (url.errors && (url.touched || submitted))">
+            <p>Please enter a valid article/Youtube URL or upload a new video below</p>
           </div>
         </div>
 
+        <div class="text-center" *ngIf="!dataLoading && !hasData">
+          <h3>&mdash; OR &mdash;</h3>
+
+          <button class="autoBtn" (click)="chooseVideo()">Upload New Video</button>
+        </div>
+  
         <div class="container py-5" *ngIf="dataLoading">
           <mat-spinner class="mx-auto my-5"></mat-spinner>
         </div>
 
         <div *ngIf="hasData && !dataLoading">
           <news-article [article]="article"></news-article>
-
-          <div class="text-center my-3">
-            <button class="autoBtn" *ngIf="!manualEdit" (click)="editData()">Edit Article Data</button>
-          </div>
         </div>
 
-        <div *ngIf="manualEdit">
+        <div [@fade]="true" *ngIf="manualEdit">
           <div class="inputGroup" [class.nope]="title.errors && (title.touched || submitted)">
             <label for="title">Title*</label>
             <input type="text" class="form-control" name="title" #title="ngModel" autocomplete="off" required [(ngModel)]="article.title">
@@ -61,14 +63,20 @@
               <p *ngIf="date.errors.required">Please select a date</p>
             </div>
           </div>
+
+          <div class="inputGroup" [class.nope]="source.errors && (source.touched || submitted)">
+            <label for="source">Source*</label>
+            <input type="text" class="form-control" name="source" #source="ngModel" autocomplete="off" required [(ngModel)]="article.source">
+            <div class="errorMsg" [@topDown]="true" *ngIf="source.errors && (source.touched || submitted)">
+              <p *ngIf="source.errors.required">Source is required</p>
+            </div>
+          </div>
+
+          <p class="disclaimer text-center">* Required field</p>
         </div>
 
-        <div class="text-center">
-          <p class="disclaimer">* Required field</p>
-
-          <div class="errorMsg" [@topDown]="true" *ngIf="error.length">
-            <p>{{ error }}</p>
-          </div>
+        <div class="errorMsg text-center" [@topDown]="true" *ngIf="error.length">
+          <p>{{ error }}</p>
         </div>
       </div>
 
@@ -79,26 +87,15 @@
           <p>This article has been <span *ngIf="new">added</span><span *ngIf="!new">updated</span>.</p>
         </div>
 
-        <div class="row align-items-center">
-          <div class="col-12 col-md-4">
-            <a [href]="article.url" target="_blank"><img [src]="article.image" width="100%" [alt]="article.title"></a>
-          </div>
-
-          <div class="col-12 col-md-8">
-            <h3><a class="text-body" [href]="article.url" target="_blank">{{ article.title }}</a></h3>
-
-            <p><strong>{{ article.date | date:'fullDate' }}</strong></p>
-
-            <p>{{ article.description }}</p>
-          </div>
-        </div>
+        <news-article [article]="article"></news-article>
       </div>
     </div>
   </mat-dialog-content>
 
   <mat-dialog-actions>
     <button class="autoBtn secondary" *ngIf="!success" mat-dialog-close>Cancel</button>
-    <button class="autoBtn" *ngIf="!success" [disabled]="loading" (click)="submit(article, teamForm.valid)">
+    <button class="autoBtn secondary" *ngIf="!success && hasData && !manualEdit" (click)="editData()">Edit Info</button>
+    <button class="autoBtn" *ngIf="!success" [disabled]="loading || !hasData" (click)="submit(article, articleForm.valid)">
       <span *ngIf="!loading">Submit</span>
       <span *ngIf="loading"><mat-spinner class="mx-auto" [diameter]="20" [strokeWidth]="3"></mat-spinner></span>
     </button>

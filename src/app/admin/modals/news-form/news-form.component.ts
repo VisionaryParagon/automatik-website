@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 import { NewsArticle } from '../../../services/classes';
@@ -6,6 +6,7 @@ import { NewsService } from '../../../services/news.service';
 
 import { FadeAnimation, TopDownAnimation } from '../../../animations';
 
+import { VideoUploaderComponent } from '../video-uploader/video-uploader.component';
 import { ImageUploaderComponent } from '../image-uploader/image-uploader.component';
 
 @Component({
@@ -33,6 +34,8 @@ export class NewsFormComponent implements OnInit {
     width: '90%'
   };
 
+  @ViewChild('dialogScroll') dialogScroll: ElementRef;
+
   constructor(
     private modalService: MatDialog,
     private newsService: NewsService,
@@ -44,34 +47,56 @@ export class NewsFormComponent implements OnInit {
       this.article = this.data;
       this.new = false;
       this.hasData = true;
+      this.editData();
     }
   }
 
   fetchData() {
-    this.dataLoading = true;
+    if (!this.article.type) {
+      this.invalid = false;
+      this.dataLoading = true;
 
-    if (this.timeout) {
-      clearTimeout(this.timeout);
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+
+      this.timeout = setTimeout(() => {
+        this.newsService.getArticleData(this.article)
+          .subscribe(
+            res => {
+              this.article.title = res.title;
+              this.article.description = res.description;
+              this.article.image = res.image;
+              this.article.date = isNaN(new Date(res['article:published_time']).getTime()) ? new Date() : new Date(res['article:published_time']);
+              this.article.source = res.source;
+              this.article.type = res.source.includes('youtube') ? 'youtube' : 'article';
+              this.hasData = true;
+              this.dataLoading = false;
+            },
+            err => {
+              this.invalid = true;
+              this.dataLoading = false;
+            }
+          );
+      }, 1000);
     }
-
-    this.timeout = setTimeout(() => {
-      this.newsService.getArticleData(this.article)
-        .subscribe(
-          res => {
-            this.article.title = res.title;
-            this.article.description = res.description;
-            this.article.image = res.image;
-            this.article.date = isNaN(new Date(res['article:published_time']).getTime()) ? new Date() : new Date(res['article:published_time']);
-            this.article.source = res.source;
-            this.hasData = true;
-            this.dataLoading = false;
-          }
-        );
-    }, 1000);
   }
 
-  editData() {
-    this.manualEdit = true;
+  chooseVideo() {
+    const modal = this.modalService.open(VideoUploaderComponent, this.modalOptions);
+    modal.afterClosed()
+      .subscribe(
+        result => {
+          if (result) {
+            this.article.type = 'video';
+            this.article.url = result.path;
+            this.article.image = result.poster;
+            this.hasData = true;
+            this.editData();
+          }
+        },
+        error => this.setError(error)
+      );
   }
 
   chooseImage(field) {
@@ -87,6 +112,16 @@ export class NewsFormComponent implements OnInit {
         },
         error => this.setError(error)
       );
+  }
+
+  editData() {
+    this.manualEdit = true;
+    setTimeout(() => {
+      this.dialogScroll.nativeElement.scroll({
+        top: 125,
+        behavior: 'smooth'
+      });
+    }, 500);
   }
 
   submit(data, isValid) {

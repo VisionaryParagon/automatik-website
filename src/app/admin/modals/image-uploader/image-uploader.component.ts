@@ -19,12 +19,13 @@ export class ImageUploaderComponent implements OnInit {
   image: Asset = new Asset();
   imageName = 'Choose image...';
   imageData: File;
+  required = false;
+  rename = false;
+  invalid = false;
   selected: string;
   submitted = false;
   loading = false;
   success = false;
-  rename = false;
-  invalid = false;
   error = '';
 
   constructor(
@@ -53,7 +54,7 @@ export class ImageUploaderComponent implements OnInit {
       return 0;
     });
 
-    return images;
+    return images.filter(img => !img.type || img.type === 'image');
   }
 
   updateFilter() {
@@ -84,11 +85,18 @@ export class ImageUploaderComponent implements OnInit {
   }
 
   setImageData(ev) {
+    this.image = new Asset();
     this.imageData = ev.target.files[0];
-    this.imageName = this.imageData.name;
-    this.image.path = 'https://assets.automatik.com/images/' + this.imageName;
-    this.image.type = 'image';
-    this.testImageName(this.imageName);
+
+    if (this.imageData) {
+      this.imageName = this.imageData.name;
+      this.image.path = 'https://assets.automatik.com/images/' + this.imageName;
+      this.image.type = 'image';
+      this.testImageName(this.imageName);
+    } else {
+      this.imageName = 'Choose image...';
+      this.required = true;
+    }
   }
 
   upload() {
@@ -121,29 +129,36 @@ export class ImageUploaderComponent implements OnInit {
                 );
             } else {
               this.invalid = true;
+              this.loading = false;
             }
           },
           err => this.setError('Validate fail: ' + err)
         );
     } else {
-      this.setError('Please select an image to upload');
+      this.required = true;
     }
     return false;
   }
 
   reset() {
+    this.clearError();
     this.image = new Asset();
     this.imageName = 'Choose image...';
     this.selected = '';
     this.submitted = false;
     this.success = false;
-    this.rename = false;
-    this.invalid = false;
   }
 
   setError(err) {
     this.error = err;
     console.error(err);
     this.loading = false;
+  }
+
+  clearError() {
+    this.required = false;
+    this.rename = false;
+    this.invalid = false;
+    this.error = '';
   }
 }

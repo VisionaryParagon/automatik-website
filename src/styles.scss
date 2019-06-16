@@ -2757,6 +2757,20 @@ div.cdk-overlay-dark-backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
 
+mat-horizontal-stepper.mat-stepper-horizontal,
+mat-vertical-stepper.mat-stepper-vertical {
+  background: none;
+  font: 300 16px/1.5em $client-font;
+
+  div.mat-horizontal-stepper-header-container {
+    display: none;
+  }
+
+  div.mat-horizontal-content-container {
+    padding: 0;
+  }
+}
+
 
 /*~~ General Utilities ~~*/
 
